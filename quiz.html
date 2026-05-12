@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Find Your Yatra · Vedic Trails</title>
+<meta name="description" content="A five-question journey to find the pilgrimage that is calling you. Vedic Trails — Bharat, walked with intention." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 30%, #FBF6EC 0%, #F4ECD8 60%, #EDE3CB 100%);
+    background-attachment: fixed;
+    color: #1C2845;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* Paper grain texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.4 0 0 0 0 0.2 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.6;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    z-index: 1;
+  }
+  /* Watermark */
+  body::after {
+    content: 'ॐ';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 30rem;
+    color: #B89455;
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    line-height: 1;
+  }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 246, 236, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(184, 148, 85, 0.18);
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: rgba(28, 40, 69, 0.75);
+    transition: color 0.3s ease;
+  }
+  .nav-back:hover { color: #1C2845; }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    color: #1C2845;
+    font-weight: 500;
+  }
+  .nav-brand-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #1C2845;
+    color: #E6C77A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.1rem;
+  }
+  .nav-end-spacer { width: 60px; }
+
+  /* ============ STAGE ============ */
+  .stage {
+    position: relative;
+    z-index: 2;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ============ INTRO SCREEN ============ */
+  .intro {
+    text-align: center;
+    animation: screenIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .intro.exit { animation: screenOut 0.5s ease-out forwards; }
+  @keyframes screenIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes screenOut {
+    to { opacity: 0; transform: translateY(-15px); }
+  }
+  .intro-glyph {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 5rem;
+    color: #B89455;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    animation: glyphPulse 4s ease-in-out infinite;
+  }
+  @keyframes glyphPulse {
+    0%, 100% { opacity: 0.85; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.04); }
+  }
+  .intro-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #B89455;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .intro-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    color: #1C2845;
+    line-height: 1.02;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .intro-title em { font-style: italic; color: #B89455; }
+  .intro-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.45rem;
+    color: rgba(28, 40, 69, 0.7);
+    line-height: 1.55;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+  .intro-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(28, 40, 69, 0.55);
+    margin-bottom: 3rem;
+  }
+  .intro-meta-dot {
+    width: 4px; height: 4px; background: #B89455; border-radius: 50%;
+  }
+  .intro-begin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.3rem 3rem;
+    background: linear-gradient(135deg, #1C2845 0%, #0F1832 100%);
+    color: #FBF6EC;
+    border: none;
+    border-radius: 999px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .intro-begin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(28, 40, 69, 0.3);
+  }
+  .intro-begin svg { width: 18px; height: 18px; }
+  .intro-skip {
+    display: block;
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(28, 40, 69, 0.55);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+  .intro-skip:hover { color: #B89455; }
+
+  /* ============ QUESTION SCREENS ============ */
+  .question-screen {
+    display: none;
+    animation: screenIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .question-screen.active { display: block; }
+  .question-screen.exit { animation: screenOut 0.45s ease-out forwards; }
+
+  .progress {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+  }
+  .progress-dot {
+    width: 36px;
+    height: 3px;
+    background: rgba(184, 148, 85, 0.25);
+    border-radius: 999px;
+    transition: background 0.5s ease, transform 0.4s ease;
+  }
+  .progress-dot.active { background: #B89455; transform: scaleY(1.6); }
+  .progress-dot.done { background: #1C2845; }
+
+  .q-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B89455;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .q-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 400;
+    color: #1C2845;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+    text-align: center;
+    letter-spacing: -0.015em;
+  }
+  .q-title em { font-style: italic; color: #B89455; }
+  .q-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(28, 40, 69, 0.6);
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .q-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.9rem;
+    margin-bottom: 2rem;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .q-options.cols-3 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .q-options.cols-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .q-option {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(184, 148, 85, 0.3);
+    border-radius: 4px;
+    padding: 1.5rem 1.4rem;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    text-align: left;
+    font-family: inherit;
+    color: #1C2845;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-height: 100px;
+    position: relative;
+  }
+  .q-option:hover {
+    border-color: #B89455;
+    background: rgba(255, 255, 255, 0.85);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(28, 40, 69, 0.08);
+  }
+  .q-option.selected {
+    border-color: #A8312A;
+    background: rgba(168, 49, 42, 0.04);
+    box-shadow: 0 8px 24px rgba(184, 148, 85, 0.18);
+  }
+  .q-option-glyph {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.6rem;
+    color: #B89455;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+  }
+  .q-option-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #1C2845;
+    line-height: 1.25;
+  }
+  .q-option-sub {
+    font-size: 0.85rem;
+    color: rgba(28, 40, 69, 0.6);
+    line-height: 1.4;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .q-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 760px;
+    margin: 0 auto;
+    padding-top: 1.5rem;
+  }
+  .q-back, .q-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 1.8rem;
+    border-radius: 999px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    background: transparent;
+    border: 1px solid transparent;
+    color: rgba(28, 40, 69, 0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .q-back:hover { color: #1C2845; }
+  .q-back svg { width: 16px; height: 16px; }
+  .q-back.hidden { visibility: hidden; }
+  .q-next {
+    background: linear-gradient(135deg, #1C2845 0%, #0F1832 100%);
+    color: #FBF6EC;
+    font-style: normal;
+    font-family: system-ui, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .q-next.ready {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .q-next.ready:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(28, 40, 69, 0.3);
+  }
+  .q-next svg { width: 16px; height: 16px; }
+
+  /* ============ THINKING / RESULT REVEAL ============ */
+  .thinking {
+    display: none;
+    text-align: center;
+    padding: 4rem 0;
+    animation: screenIn 0.6s ease-out both;
+  }
+  .thinking.active { display: block; }
+  .thinking-glyph {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 4rem;
+    color: #B89455;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    animation: thinkPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes thinkPulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+  .thinking-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: rgba(28, 40, 69, 0.7);
+    line-height: 1.5;
+  }
+  .thinking-text span {
+    display: inline-block;
+    opacity: 0;
+    animation: textFade 4s ease-in-out forwards;
+  }
+  .thinking-text span:nth-child(1) { animation-delay: 0s; }
+  .thinking-text span:nth-child(2) { animation-delay: 1.3s; }
+  .thinking-text span:nth-child(3) { animation-delay: 2.6s; }
+  @keyframes textFade {
+    0%, 100% { opacity: 0; }
+    25%, 75% { opacity: 1; }
+  }
+
+  /* ============ RESULT ============ */
+  .result {
+    display: none;
+    text-align: center;
+    animation: screenIn 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .result.active { display: block; }
+  .result-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #B89455;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: revealUp 0.7s 0.2s ease-out forwards;
+  }
+  .result-glyph {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 7rem;
+    color: #1C2845;
+    line-height: 1;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+    opacity: 0;
+    animation: revealUp 0.9s 0.7s ease-out forwards;
+  }
+  .result-state {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: #B89455;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: revealUp 0.7s 1.3s ease-out forwards;
+  }
+  .result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 5rem);
+    font-weight: 400;
+    color: #1C2845;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: revealUp 1s 1.8s ease-out forwards;
+  }
+  .result-title em { font-style: italic; color: #B89455; }
+  .result-why {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.45rem;
+    color: rgba(28, 40, 69, 0.75);
+    line-height: 1.5;
+    max-width: 620px;
+    margin: 0 auto 2.5rem;
+    opacity: 0;
+    animation: revealUp 1s 2.4s ease-out forwards;
+  }
+  .result-divider {
+    width: 60px;
+    height: 1px;
+    background: #B89455;
+    margin: 0 auto 2.5rem;
+    opacity: 0;
+    animation: revealWidth 0.6s 2.9s ease-out forwards;
+  }
+  @keyframes revealUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes revealWidth {
+    from { opacity: 0; width: 0; }
+    to { opacity: 1; width: 60px; }
+  }
+
+  .result-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(184, 148, 85, 0.35);
+    border-radius: 4px;
+    padding: 2.5rem 2.5rem;
+    max-width: 580px;
+    margin: 0 auto 2rem;
+    box-shadow: 0 30px 80px -30px rgba(28, 40, 69, 0.18);
+    opacity: 0;
+    animation: revealUp 0.8s 3.2s ease-out forwards;
+    position: relative;
+  }
+  .result-card::before,
+  .result-card::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+  }
+  .result-card::before {
+    top: -1px; left: -1px;
+    border-top: 1px solid #B89455;
+    border-left: 1px solid #B89455;
+  }
+  .result-card::after {
+    bottom: -1px; right: -1px;
+    border-bottom: 1px solid #B89455;
+    border-right: 1px solid #B89455;
+  }
+  .result-card-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .result-fact-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(28, 40, 69, 0.55);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .result-fact-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: #1C2845;
+    font-weight: 500;
+  }
+  .result-fact-value.price { color: #B89455; font-style: italic; }
+  .result-card-btn {
+    display: block;
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #1C2845 0%, #0F1832 100%);
+    color: #FBF6EC;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .result-card-btn:hover {
+    background: linear-gradient(135deg, #0F1832 0%, #050912 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px rgba(28, 40, 69, 0.35);
+  }
+  .result-card-secondary {
+    margin-top: 0.8rem;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: rgba(28, 40, 69, 0.6);
+  }
+  .result-card-secondary a { color: #B89455; }
+  .result-card-secondary a:hover { text-decoration: underline; }
+
+  .result-alts {
+    max-width: 760px;
+    margin: 3rem auto 2rem;
+    opacity: 0;
+    animation: revealUp 0.7s 3.7s ease-out forwards;
+  }
+  .result-alts-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(28, 40, 69, 0.65);
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+  }
+  .result-alts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+  }
+  .result-alt {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(184, 148, 85, 0.25);
+    border-radius: 3px;
+    padding: 1rem 1.2rem;
+    text-align: left;
+    transition: all 0.3s ease;
+    display: block;
+  }
+  .result-alt:hover {
+    border-color: #B89455;
+    transform: translateY(-2px);
+    background: #FFFFFF;
+  }
+  .result-alt-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: #1C2845;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+  .result-alt-meta {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(28, 40, 69, 0.55);
+  }
+  .result-restart {
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(28, 40, 69, 0.5);
+    font-size: 0.95rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: revealUp 0.7s 4s ease-out forwards;
+  }
+  .result-restart:hover { color: #B89455; }
+
+  @media (max-width: 640px) {
+    .nav { padding: 1rem 1.2rem; }
+    .stage { padding: 3rem 1.2rem; }
+    .intro-glyph { font-size: 3.5rem; }
+    .q-options { grid-template-columns: 1fr; }
+    .q-options.cols-2, .q-options.cols-3 { grid-template-columns: 1fr; }
+    .q-actions { flex-direction: column-reverse; gap: 1rem; align-items: stretch; }
+    .q-next { width: 100%; justify-content: center; }
+    .result-card { padding: 2rem 1.5rem; }
+    .result-card-facts { grid-template-columns: 1fr; gap: 0.5rem; }
+    .result-glyph { font-size: 5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="vedic-trails-homepage-v12.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to the Atlas
+  </a>
+  <div class="nav-brand">
+    <span class="nav-brand-mark">ॐ</span>
+    <span>Vedic Trails</span>
+  </div>
+  <div class="nav-end-spacer"></div>
+</nav>
+
+<div class="stage">
+
+  <!-- ============ INTRO ============ -->
+  <div class="intro" id="screen-intro">
+    <div class="intro-glyph">ॐ</div>
+    <div class="intro-eyebrow">A Darshan Consultation</div>
+    <h1 class="intro-title">Find your <em>yatra.</em></h1>
+    <p class="intro-sub">In the Vedic tradition, no pilgrim chooses their journey alone. They sit with a teacher, who looks at where they are in life, and points to a path. We have made that conversation into five questions.</p>
+    <div class="intro-meta">
+      <span>5 questions</span>
+      <span class="intro-meta-dot"></span>
+      <span>About 90 seconds</span>
+      <span class="intro-meta-dot"></span>
+      <span>No email required</span>
+    </div>
+    <div>
+      <button class="intro-begin" id="beginBtn">
+        Begin the consultation
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+    <a href="vedic-trails-homepage-v12.html#sacred-geography" class="intro-skip">Or explore the Atlas yourself →</a>
+  </div>
+
+  <!-- ============ Q1: WHAT IS CALLING YOU ============ -->
+  <div class="question-screen" id="screen-q1">
+    <div class="progress">
+      <div class="progress-dot active" data-step="1"></div>
+      <div class="progress-dot" data-step="2"></div>
+      <div class="progress-dot" data-step="3"></div>
+      <div class="progress-dot" data-step="4"></div>
+      <div class="progress-dot" data-step="5"></div>
+    </div>
+    <div class="q-num">Question One</div>
+    <h2 class="q-title">What is <em>calling you</em> to this journey?</h2>
+    <p class="q-hint">There is no wrong answer. The mountain knows why you are coming.</p>
+    <div class="q-options cols-3" data-question="calling">
+      <button class="q-option" data-value="devotion">
+        <span class="q-option-glyph">भक्ति</span>
+        <span class="q-option-label">Devotion</span>
+        <span class="q-option-sub">A deity has been in my heart</span>
+      </button>
+      <button class="q-option" data-value="moment">
+        <span class="q-option-glyph">क्षण</span>
+        <span class="q-option-label">A life moment</span>
+        <span class="q-option-sub">Birth, marriage, anniversary, retirement</span>
+      </button>
+      <button class="q-option" data-value="grief">
+        <span class="q-option-glyph">शोक</span>
+        <span class="q-option-label">Loss & grief</span>
+        <span class="q-option-sub">Honoring or remembering someone</span>
+      </button>
+      <button class="q-option" data-value="gratitude">
+        <span class="q-option-glyph">कृतज्ञता</span>
+        <span class="q-option-label">Gratitude</span>
+        <span class="q-option-sub">Something has gone right</span>
+      </button>
+      <button class="q-option" data-value="curiosity">
+        <span class="q-option-glyph">जिज्ञासा</span>
+        <span class="q-option-label">Curiosity</span>
+        <span class="q-option-sub">I want to understand this tradition</span>
+      </button>
+      <button class="q-option" data-value="unsure">
+        <span class="q-option-glyph">शान्ति</span>
+        <span class="q-option-label">I am not sure</span>
+        <span class="q-option-sub">Something is just pulling me</span>
+      </button>
+    </div>
+    <div class="q-actions">
+      <button class="q-back hidden">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <button class="q-next">
+        Next
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ Q2: WHICH DEITY ============ -->
+  <div class="question-screen" id="screen-q2">
+    <div class="progress">
+      <div class="progress-dot done" data-step="1"></div>
+      <div class="progress-dot active" data-step="2"></div>
+      <div class="progress-dot" data-step="3"></div>
+      <div class="progress-dot" data-step="4"></div>
+      <div class="progress-dot" data-step="5"></div>
+    </div>
+    <div class="q-num">Question Two</div>
+    <h2 class="q-title">Which deity feels <em>nearest</em> to you?</h2>
+    <p class="q-hint">If many feel near — or none feels specific — that is also a clear answer.</p>
+    <div class="q-options cols-3" data-question="deity">
+      <button class="q-option" data-value="shiva">
+        <span class="q-option-glyph">शिव</span>
+        <span class="q-option-label">Shiva</span>
+        <span class="q-option-sub">The lord of time, the dancer</span>
+      </button>
+      <button class="q-option" data-value="vishnu">
+        <span class="q-option-glyph">कृष्ण</span>
+        <span class="q-option-label">Vishnu / Krishna / Rama</span>
+        <span class="q-option-sub">The preserver, joy, dharma</span>
+      </button>
+      <button class="q-option" data-value="devi">
+        <span class="q-option-glyph">देवी</span>
+        <span class="q-option-label">The Goddess</span>
+        <span class="q-option-sub">Mother in her many forms</span>
+      </button>
+      <button class="q-option" data-value="buddha">
+        <span class="q-option-glyph">बुद्ध</span>
+        <span class="q-option-label">The Buddha</span>
+        <span class="q-option-sub">The awakened one</span>
+      </button>
+      <button class="q-option" data-value="all">
+        <span class="q-option-glyph">सर्व</span>
+        <span class="q-option-label">All of them</span>
+        <span class="q-option-sub">Whoever blesses my journey</span>
+      </button>
+      <button class="q-option" data-value="show">
+        <span class="q-option-glyph">ॐ</span>
+        <span class="q-option-label">Show me what is right</span>
+        <span class="q-option-sub">I trust the path</span>
+      </button>
+    </div>
+    <div class="q-actions">
+      <button class="q-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <button class="q-next">
+        Next
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ Q3: SEASON OF LIFE ============ -->
+  <div class="question-screen" id="screen-q3">
+    <div class="progress">
+      <div class="progress-dot done" data-step="1"></div>
+      <div class="progress-dot done" data-step="2"></div>
+      <div class="progress-dot active" data-step="3"></div>
+      <div class="progress-dot" data-step="4"></div>
+      <div class="progress-dot" data-step="5"></div>
+    </div>
+    <div class="q-num">Question Three</div>
+    <h2 class="q-title">Where are you <em>in your life?</em></h2>
+    <p class="q-hint">Different journeys suit different seasons. The right yatra meets you where you are.</p>
+    <div class="q-options cols-2" data-question="season">
+      <button class="q-option" data-value="seeking">
+        <span class="q-option-label">In a season of seeking</span>
+        <span class="q-option-sub">Looking for answers, direction, or meaning</span>
+      </button>
+      <button class="q-option" data-value="celebrating">
+        <span class="q-option-label">In a season of celebration</span>
+        <span class="q-option-sub">Something significant has just happened</span>
+      </button>
+      <button class="q-option" data-value="healing">
+        <span class="q-option-label">In a season of healing</span>
+        <span class="q-option-sub">Slow steps. Quiet places. Rest.</span>
+      </button>
+      <button class="q-option" data-value="elder">
+        <span class="q-option-label">Honoring my elders</span>
+        <span class="q-option-sub">A journey with parents, in-laws, or family</span>
+      </button>
+      <button class="q-option" data-value="first">
+        <span class="q-option-label">First-time pilgrim</span>
+        <span class="q-option-sub">My first real spiritual journey in India</span>
+      </button>
+      <button class="q-option" data-value="returning">
+        <span class="q-option-label">A returning pilgrim</span>
+        <span class="q-option-sub">I have walked paths before</span>
+      </button>
+    </div>
+    <div class="q-actions">
+      <button class="q-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <button class="q-next">
+        Next
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ Q4: DURATION ============ -->
+  <div class="question-screen" id="screen-q4">
+    <div class="progress">
+      <div class="progress-dot done" data-step="1"></div>
+      <div class="progress-dot done" data-step="2"></div>
+      <div class="progress-dot done" data-step="3"></div>
+      <div class="progress-dot active" data-step="4"></div>
+      <div class="progress-dot" data-step="5"></div>
+    </div>
+    <div class="q-num">Question Four</div>
+    <h2 class="q-title">How long can you <em>walk this path?</em></h2>
+    <p class="q-hint">Some pilgrimages are weekend retreats. Some take fifteen days. Both are sacred.</p>
+    <div class="q-options cols-2" data-question="duration">
+      <button class="q-option" data-value="short">
+        <span class="q-option-label">A long weekend</span>
+        <span class="q-option-sub">2 – 4 days. A single sacred site.</span>
+      </button>
+      <button class="q-option" data-value="medium">
+        <span class="q-option-label">About a week</span>
+        <span class="q-option-sub">5 – 8 days. A small circuit.</span>
+      </button>
+      <button class="q-option" data-value="long">
+        <span class="q-option-label">Ten days to two weeks</span>
+        <span class="q-option-sub">A complete signature pilgrimage.</span>
+      </button>
+      <button class="q-option" data-value="extended">
+        <span class="q-option-label">Two weeks or more</span>
+        <span class="q-option-sub">The most demanding and rewarding yatras.</span>
+      </button>
+    </div>
+    <div class="q-actions">
+      <button class="q-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <button class="q-next">
+        Next
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ Q5: BUDGET ============ -->
+  <div class="question-screen" id="screen-q5">
+    <div class="progress">
+      <div class="progress-dot done" data-step="1"></div>
+      <div class="progress-dot done" data-step="2"></div>
+      <div class="progress-dot done" data-step="3"></div>
+      <div class="progress-dot done" data-step="4"></div>
+      <div class="progress-dot active" data-step="5"></div>
+    </div>
+    <div class="q-num">Question Five</div>
+    <h2 class="q-title">Your <em>comfort range,</em> per person?</h2>
+    <p class="q-hint">Every Vedic Trails journey is fully managed. This is about the experience you would like at the temples and in between.</p>
+    <div class="q-options cols-2" data-question="budget">
+      <button class="q-option" data-value="entry">
+        <span class="q-option-label">₹15,000 – ₹25,000</span>
+        <span class="q-option-sub">Short journey, premium service</span>
+      </button>
+      <button class="q-option" data-value="mid">
+        <span class="q-option-label">₹25,000 – ₹50,000</span>
+        <span class="q-option-sub">Most signature circuits live here</span>
+      </button>
+      <button class="q-option" data-value="premium">
+        <span class="q-option-label">₹50,000 – ₹85,000</span>
+        <span class="q-option-sub">Premium accommodation, flights included</span>
+      </button>
+      <button class="q-option" data-value="signature">
+        <span class="q-option-label">₹85,000 or above</span>
+        <span class="q-option-sub">Our signature pan-India yatras</span>
+      </button>
+      <button class="q-option" data-value="open">
+        <span class="q-option-label">No constraint</span>
+        <span class="q-option-sub">Show me what is right for me</span>
+      </button>
+    </div>
+    <div class="q-actions">
+      <button class="q-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <button class="q-next">
+        Reveal my yatra
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ THINKING ============ -->
+  <div class="thinking" id="screen-thinking">
+    <div class="thinking-glyph">ॐ</div>
+    <div class="thinking-text">
+      <span>Sitting with your answers…</span>
+      <span>Reading the map of Bharat…</span>
+      <span>Your path is coming into view…</span>
+    </div>
+  </div>
+
+  <!-- ============ RESULT ============ -->
+  <div class="result" id="screen-result">
+    <div class="result-eyebrow" id="resultEyebrow">Your path</div>
+    <div class="result-glyph" id="resultGlyph">उ</div>
+    <div class="result-state" id="resultState">UTTARAKHAND</div>
+    <h1 class="result-title" id="resultTitle">Char Dham <em>Yatra</em></h1>
+    <p class="result-why" id="resultWhy"></p>
+    <div class="result-divider"></div>
+
+    <div class="result-card">
+      <div class="result-card-facts">
+        <div>
+          <div class="result-fact-label">Duration</div>
+          <div class="result-fact-value" id="resultDuration">10N · 11D</div>
+        </div>
+        <div>
+          <div class="result-fact-label">Starting From</div>
+          <div class="result-fact-value price" id="resultPrice">₹39,999</div>
+        </div>
+        <div>
+          <div class="result-fact-label">Best Season</div>
+          <div class="result-fact-value" id="resultSeason">May – Oct</div>
+        </div>
+      </div>
+      <a href="tour-char-dham.html" class="result-card-btn" id="resultViewBtn">View the full itinerary</a>
+      <div class="result-card-secondary">
+        Not sure? <a href="https://wa.me/919999999999" target="_blank" rel="noopener">Speak with a concierge</a>
+      </div>
+    </div>
+
+    <div class="result-alts">
+      <div class="result-alts-title">If this does not feel quite right, you may also consider</div>
+      <div class="result-alts-grid" id="resultAlts"></div>
+    </div>
+
+    <button class="result-restart" id="restartBtn">↻ Take the consultation again</button>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  // ============ TOUR CATALOG ============
+  const TOURS = {
+    'vaishno-devi':    { glyph: 'व', state: 'JAMMU & KASHMIR', title: 'Vaishno Devi <em>Yatra</em>', duration: '2N · 3D', price: '₹14,999', season: 'Apr – Nov', url: 'tour-vaishno-devi.html', deity: 'devi', length: 'short' },
+    'kamakhya':        { glyph: 'अ', state: 'ASSAM', title: 'Kamakhya <em>Pilgrimage</em>', duration: '3N · 4D', price: '₹22,999', season: 'Oct – Mar', url: 'tour-kamakhya.html', deity: 'devi', length: 'short' },
+    'mathura':         { glyph: 'कृ', state: 'UTTAR PRADESH', title: 'Mathura <em>Vrindavan</em>', duration: '2N · 3D', price: '₹16,999', season: 'Oct – Mar', url: 'tour-mathura.html', deity: 'vishnu', length: 'short' },
+    'tirupati':        { glyph: 'व', state: 'ANDHRA PRADESH', title: 'Tirupati <em>Darshan</em>', duration: '2N · 3D', price: '₹15,999', season: 'Oct – Mar', url: 'tour-tirupati.html', deity: 'vishnu', length: 'short' },
+    'shirdi':          { glyph: 'सा', state: 'MAHARASHTRA', title: 'Shirdi <em>Nashik</em>', duration: '3N · 4D', price: '₹18,999', season: 'Oct – Mar', url: 'tour-shirdi.html', deity: 'all', length: 'short' },
+    'ujjain':          { glyph: 'म', state: 'MADHYA PRADESH', title: 'Ujjain <em>Omkareshwar</em>', duration: '3N · 4D', price: '₹19,999', season: 'Oct – Mar', url: 'tour-ujjain.html', deity: 'shiva', length: 'short' },
+
+    'dwarka':          { glyph: 'ग', state: 'GUJARAT', title: 'Dwarka <em>Somnath</em>', duration: '4N · 5D', price: '₹26,999', season: 'Oct – Mar', url: 'tour-dwarka.html', deity: 'vishnu', length: 'medium' },
+    'kerala':          { glyph: 'के', state: 'KERALA', title: 'Kerala <em>Temple Circuit</em>', duration: '4N · 5D', price: '₹24,999', season: 'Oct – Mar', url: 'tour-kerala.html', deity: 'all', length: 'medium' },
+    'kashi':           { glyph: 'का', state: 'UTTAR PRADESH', title: 'Kashi <em>& Ayodhya</em>', duration: '5N · 6D', price: '₹34,999', season: 'Oct – Mar', url: 'tour-kashi.html', deity: 'all', length: 'medium' },
+    'buddhist':        { glyph: 'ब', state: 'BIHAR · UP', title: 'Buddhist <em>Circuit</em>', duration: '5N · 6D', price: '₹31,999', season: 'Oct – Mar', url: 'tour-buddhist.html', deity: 'buddha', length: 'medium' },
+    'jyotirlinga-mh':  { glyph: 'श', state: 'MAHARASHTRA', title: 'Maharashtra <em>Jyotirlingas</em>', duration: '5N · 6D', price: '₹34,999', season: 'Oct – Mar', url: 'tour-jyotirlinga-mh.html', deity: 'shiva', length: 'medium' },
+    'karnataka':       { glyph: 'क', state: 'KARNATAKA', title: 'Karnataka <em>Sacred Trail</em>', duration: '5N · 6D', price: '₹32,999', season: 'Oct – Mar', url: 'tour-karnataka.html', deity: 'all', length: 'medium' },
+    'himachal':        { glyph: 'ज्व', state: 'HIMACHAL', title: 'Himachal <em>Devi Circuit</em>', duration: '5N · 6D', price: '₹32,999', season: 'Apr – Oct', url: 'tour-himachal.html', deity: 'devi', length: 'medium' },
+    'bengal':          { glyph: 'क', state: 'WEST BENGAL', title: 'Bengal <em>Shakti Trail</em>', duration: '4N · 5D', price: '₹28,999', season: 'Oct – Mar', url: 'tour-bengal.html', deity: 'devi', length: 'medium' },
+    'andhra':          { glyph: 'आ', state: 'ANDHRA PRADESH', title: 'Andhra <em>Sacred Trail</em>', duration: '4N · 5D', price: '₹26,999', season: 'Oct – Mar', url: 'tour-andhra.html', deity: 'all', length: 'medium' },
+
+    'rajasthan':       { glyph: 'र', state: 'RAJASTHAN', title: 'Rajasthan <em>Sacred Trail</em>', duration: '6N · 7D', price: '₹42,999', season: 'Oct – Mar', url: 'tour-rajasthan.html', deity: 'all', length: 'medium' },
+    'shakti':          { glyph: 'श', state: 'PAN-INDIA', title: 'Shakti <em>Peethas</em>', duration: '6N · 7D', price: '₹38,999', season: 'Oct – Mar', url: 'tour-shakti.html', deity: 'devi', length: 'medium' },
+    'krishna':         { glyph: 'कृ', state: 'BRAJ · GUJARAT', title: 'Krishna <em>Trail</em>', duration: '7N · 8D', price: '₹46,999', season: 'Oct – Mar', url: 'tour-krishna.html', deity: 'vishnu', length: 'long' },
+    'ramayana':        { glyph: 'राम', state: 'PAN-INDIA', title: 'Ramayana <em>Trail</em>', duration: '8N · 9D', price: '₹52,999', season: 'Oct – Mar', url: 'tour-ramayana.html', deity: 'vishnu', length: 'long' },
+    'tamil-nadu':      { glyph: 'த', state: 'TAMIL NADU', title: 'Tamil <em>Temple Circuit</em>', duration: '7N · 8D', price: '₹52,999', season: 'Oct – Mar', url: 'tour-tamil-nadu.html', deity: 'all', length: 'long' },
+    'char-dham':       { glyph: 'उ', state: 'UTTARAKHAND', title: 'Char Dham <em>Yatra</em>', duration: '10N · 11D', price: '₹39,999', season: 'May – Oct', url: 'tour-char-dham.html', deity: 'all', length: 'long' },
+    'puri-rameswaram': { glyph: '३', state: 'PAN-INDIA', title: 'Puri · Rameswaram · <em>Dwarka</em>', duration: '12N · 13D', price: '₹78,999', season: 'Oct – Mar', url: 'tour-puri-rameswaram.html', deity: 'vishnu', length: 'extended' },
+    'jyotirlinga':     { glyph: 'श', state: 'PAN-INDIA', title: 'Twelve <em>Jyotirlingas</em>', duration: '14N · 15D', price: '₹84,999', season: 'Oct – Mar', url: 'tour-jyotirlinga.html', deity: 'shiva', length: 'extended' },
+  };
+
+  const BUDGET_RANGE = {
+    'entry':     [10000, 25000],
+    'mid':       [25000, 50000],
+    'premium':   [50000, 85000],
+    'signature': [85000, 200000],
+    'open':      [0, 200000],
+  };
+
+  const LENGTH_MAP = {
+    'short': ['short'],
+    'medium': ['medium', 'short'],
+    'long': ['long', 'medium'],
+    'extended': ['extended', 'long'],
+  };
+
+  // ============ STATE ============
+  const answers = {};
+  const screens = ['intro', 'q1', 'q2', 'q3', 'q4', 'q5', 'thinking', 'result'];
+  let currentIdx = 0;
+
+  // ============ SCREEN NAVIGATION ============
+  function showScreen(idx) {
+    const oldEl = document.getElementById('screen-' + screens[currentIdx]);
+    const newEl = document.getElementById('screen-' + screens[idx]);
+    if (oldEl !== newEl) {
+      oldEl.classList.add('exit');
+      setTimeout(() => {
+        oldEl.classList.remove('active', 'exit');
+        oldEl.style.display = '';
+        if (screens[idx] === 'intro') newEl.style.display = 'block';
+        else if (screens[idx] === 'thinking' || screens[idx] === 'result') {
+          newEl.classList.add('active');
+        } else {
+          newEl.classList.add('active');
+        }
+      }, 450);
+    }
+    currentIdx = idx;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Hide all screens initially except intro
+  screens.forEach(s => {
+    const el = document.getElementById('screen-' + s);
+    if (s !== 'intro') el.classList.remove('active');
+  });
+
+  // ============ INTRO ============
+  document.getElementById('beginBtn').addEventListener('click', () => {
+    showScreen(1); // q1
+  });
+
+  // ============ QUESTION HANDLERS ============
+  document.querySelectorAll('.question-screen').forEach(qs => {
+    const options = qs.querySelectorAll('.q-option');
+    const nextBtn = qs.querySelector('.q-next');
+    const backBtn = qs.querySelector('.q-back');
+    const optionsContainer = qs.querySelector('.q-options');
+    const qKey = optionsContainer.getAttribute('data-question');
+
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        answers[qKey] = opt.getAttribute('data-value');
+        nextBtn.classList.add('ready');
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (!nextBtn.classList.contains('ready')) return;
+      const nextIdx = currentIdx + 1;
+      if (screens[nextIdx] === 'thinking') {
+        showScreen(nextIdx);
+        setTimeout(() => {
+          computeAndShowResult();
+        }, 4200);
+      } else {
+        showScreen(nextIdx);
+      }
+    });
+
+    backBtn.addEventListener('click', () => {
+      if (currentIdx > 0) showScreen(currentIdx - 1);
+    });
+  });
+
+  // ============ MATCHING ENGINE ============
+  function computeAndShowResult() {
+    const scores = {};
+    Object.keys(TOURS).forEach(id => scores[id] = 0);
+
+    // CALLING — pushes toward different journey types
+    const calling = answers.calling;
+    if (calling === 'devotion') {
+      scores['jyotirlinga'] += 8; scores['char-dham'] += 7; scores['krishna'] += 7;
+      scores['shakti'] += 6; scores['kashi'] += 6; scores['ramayana'] += 6;
+    } else if (calling === 'moment') {
+      scores['tirupati'] += 8; scores['vaishno-devi'] += 7;
+      scores['mathura'] += 6; scores['dwarka'] += 5;
+    } else if (calling === 'grief') {
+      scores['kashi'] += 10; scores['rameswaram'] = (scores['rameswaram'] || 0) + 8;
+      scores['gangotri'] = (scores['gangotri'] || 0) + 6;
+      scores['char-dham'] += 5;
+    } else if (calling === 'gratitude') {
+      scores['tirupati'] += 9; scores['vaishno-devi'] += 7; scores['shirdi'] += 7;
+      scores['mathura'] += 5; scores['kamakhya'] += 5;
+    } else if (calling === 'curiosity') {
+      scores['kashi'] += 9; scores['tamil-nadu'] += 8; scores['buddhist'] += 8;
+      scores['kerala'] += 6; scores['karnataka'] += 6;
+    } else if (calling === 'unsure') {
+      scores['kashi'] += 7; scores['char-dham'] += 6; scores['vaishno-devi'] += 6;
+      scores['kamakhya'] += 5; scores['mathura'] += 5;
+    }
+
+    // DEITY — strong filter
+    const deity = answers.deity;
+    Object.keys(TOURS).forEach(id => {
+      const t = TOURS[id];
+      if (deity === 'all' || deity === 'show' || t.deity === 'all') {
+        scores[id] += 3;
+      } else if (t.deity === deity) {
+        scores[id] += 10;
+      } else {
+        scores[id] -= 4;
+      }
+    });
+
+    // SEASON
+    const season = answers.season;
+    if (season === 'seeking') {
+      scores['kashi'] += 6; scores['char-dham'] += 5; scores['kamakhya'] += 4;
+      scores['tamil-nadu'] += 4;
+    } else if (season === 'celebrating') {
+      scores['tirupati'] += 6; scores['mathura'] += 6; scores['vaishno-devi'] += 5;
+      scores['dwarka'] += 4;
+    } else if (season === 'healing') {
+      scores['kerala'] += 7; scores['shirdi'] += 6; scores['guruvayur'] = (scores['guruvayur']||0) + 5;
+      scores['ujjain'] += 4;
+    } else if (season === 'elder') {
+      scores['vaishno-devi'] += 8; scores['tirupati'] += 7; scores['shirdi'] += 6;
+      scores['mathura'] += 5; scores['kashi'] += 4;
+    } else if (season === 'first') {
+      scores['vaishno-devi'] += 7; scores['tirupati'] += 6; scores['mathura'] += 6;
+      scores['shirdi'] += 5; scores['kamakhya'] += 4;
+    } else if (season === 'returning') {
+      scores['jyotirlinga'] += 8; scores['puri-rameswaram'] += 7; scores['char-dham'] += 6;
+      scores['shakti'] += 6; scores['ramayana'] += 5;
+    }
+
+    // DURATION — hard-ish filter
+    const duration = answers.duration;
+    const allowedLengths = LENGTH_MAP[duration] || [];
+    Object.keys(TOURS).forEach(id => {
+      const t = TOURS[id];
+      if (allowedLengths.includes(t.length)) {
+        scores[id] += 6;
+      } else {
+        scores[id] -= 8;
+      }
+    });
+
+    // BUDGET — hard filter
+    const budget = answers.budget;
+    const [low, high] = BUDGET_RANGE[budget] || [0, 999999];
+    Object.keys(TOURS).forEach(id => {
+      const price = parseInt(TOURS[id].price.replace(/[₹,]/g, ''));
+      if (price >= low && price <= high) {
+        scores[id] += 5;
+      } else if (budget !== 'open') {
+        scores[id] -= 10;
+      }
+    });
+
+    // Filter out non-existent ids (the gangotri/guruvayur defensive entries)
+    const ranked = Object.keys(TOURS)
+      .map(id => ({ id, score: scores[id] }))
+      .sort((a, b) => b.score - a.score);
+
+    const winner = ranked[0].id;
+    const alts = ranked.slice(1, 4).map(r => r.id);
+
+    renderResult(winner, alts);
+  }
+
+  // ============ RENDER RESULT ============
+  function renderResult(winnerId, altIds) {
+    const t = TOURS[winnerId];
+    document.getElementById('resultGlyph').textContent = t.glyph;
+    document.getElementById('resultState').textContent = t.state;
+    document.getElementById('resultTitle').innerHTML = t.title;
+    document.getElementById('resultDuration').textContent = t.duration;
+    document.getElementById('resultPrice').textContent = t.price;
+    document.getElementById('resultSeason').textContent = t.season;
+    document.getElementById('resultViewBtn').setAttribute('href', t.url);
+
+    // Build a why-statement from the answers
+    const whyParts = [];
+    if (answers.calling === 'grief') whyParts.push('Because you carry loss');
+    else if (answers.calling === 'gratitude') whyParts.push('Because something has gone right');
+    else if (answers.calling === 'devotion') whyParts.push('Because devotion has lived in you');
+    else if (answers.calling === 'curiosity') whyParts.push('Because you want to understand');
+    else if (answers.calling === 'moment') whyParts.push('Because you stand at a threshold');
+    else whyParts.push('Because something is pulling you');
+
+    if (answers.season === 'seeking') whyParts.push('and you are seeking');
+    else if (answers.season === 'healing') whyParts.push('and you need rest');
+    else if (answers.season === 'elder') whyParts.push('and you travel with family');
+    else if (answers.season === 'first') whyParts.push('and this is your first journey');
+    else if (answers.season === 'returning') whyParts.push('and you have walked paths before');
+    else if (answers.season === 'celebrating') whyParts.push('and you are celebrating');
+
+    const whyText = whyParts.join(' ') + ' — this path was made for you.';
+    document.getElementById('resultWhy').textContent = whyText;
+
+    // Render alternatives
+    const altsContainer = document.getElementById('resultAlts');
+    altsContainer.innerHTML = altIds.map(id => {
+      const a = TOURS[id];
+      return `<a href="${a.url}" class="result-alt">
+        <div class="result-alt-name">${a.title.replace(/<\/?em>/g, '')}</div>
+        <div class="result-alt-meta">${a.duration} · From ${a.price}</div>
+      </a>`;
+    }).join('');
+
+    showScreen(7); // result
+  }
+
+  // ============ RESTART ============
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    // Reset state
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.querySelectorAll('.q-option.selected').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.q-next.ready').forEach(b => b.classList.remove('ready'));
+    document.querySelectorAll('.question-screen.active').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-thinking').classList.remove('active');
+    document.getElementById('screen-result').classList.remove('active');
+    currentIdx = 0;
+    document.getElementById('screen-intro').style.display = 'block';
+    document.getElementById('screen-intro').classList.remove('exit');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+</script>
+
+</body>
+</html>

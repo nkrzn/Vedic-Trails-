@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedic Trails — Bharat. Walked with intention.</title>
+<meta name="description" content="India's premium sacred travel brand. Curated temple journeys, pilgrimages, and sacred circuits across Bharat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --shadow: #0E0B08;
+    --shadow-deep: #060403;
+    --stone: #2A2520;
+    --stone-light: #3A332C;
+    --brass: #B8924A;
+    --brass-aged: #8B6F38;
+    --sandstone: #C9A87C;
+    --flame: #F5C76E;
+    --flame-soft: #E8B85F;
+    --manuscript: #F4ECD8;
+    --manuscript-dim: #C8BFA8;
+    --vermillion: #A8312A;
+    --muted: #8A7F6D;
+    --text-soft: #B8AC95;
+
+    --serif: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --devanagari: 'Noto Sans Devanagari', serif;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-slow: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--shadow);
+    color: var(--manuscript);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor — the lamp glow */
+  .cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--flame);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+    mix-blend-mode: screen;
+    box-shadow: 0 0 12px var(--flame), 0 0 24px rgba(245, 199, 110, 0.4);
+  }
+  .cursor-glow {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(245, 199, 110, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s var(--ease), width 0.3s var(--ease), height 0.3s var(--ease);
+  }
+  .cursor-glow.active {
+    width: 60px;
+    height: 60px;
+    border-color: var(--flame);
+  }
+  @media (max-width: 768px) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-glow { display: none; }
+  }
+
+  /* Sacred geometry background texture */
+  .sacred-noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.6s var(--ease), padding 0.6s var(--ease), border 0.6s var(--ease);
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(14, 11, 8, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.2rem 4rem;
+    border-bottom: 1px solid rgba(184, 146, 74, 0.08);
+  }
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--manuscript);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .nav-logo-mark {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-logo-mark svg {
+    width: 100%;
+    height: 100%;
+  }
+  .nav-links {
+    display: flex;
+    gap: 3rem;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.4s var(--ease);
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--flame);
+    transition: width 0.4s var(--ease);
+  }
+  .nav-links a:hover { color: var(--flame); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .sound-toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 100;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(184, 146, 74, 0.3);
+    background: rgba(14, 11, 8, 0.6);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-soft);
+    transition: all 0.4s var(--ease);
+  }
+  .sound-toggle:hover { border-color: var(--flame); color: var(--flame); }
+
+  /* SECTION: THRESHOLD (HERO) */
+  .threshold {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .threshold-ambient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 40% at 50% 55%, rgba(245, 199, 110, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(168, 49, 42, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* The flame */
+  .flame-container {
+    position: relative;
+    width: 100px;
+    height: 140px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: flameAppear 2.5s 0.5s var(--ease-slow) forwards;
+  }
+  @keyframes flameAppear {
+    to { opacity: 1; }
+  }
+  .flame-glow {
+    position: absolute;
+    inset: -60px;
+    background: radial-gradient(circle, rgba(245, 199, 110, 0.25) 0%, transparent 50%);
+    animation: flameGlow 4s ease-in-out infinite;
+  }
+  @keyframes flameGlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+  .flame-svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .flame-body {
+    transform-origin: bottom center;
+    animation: flameFlicker 3s ease-in-out infinite;
+  }
+  @keyframes flameFlicker {
+    0%, 100% { transform: scale(1, 1) rotate(0deg); }
+    25% { transform: scale(1.02, 0.98) rotate(-1deg); }
+    50% { transform: scale(0.98, 1.03) rotate(1deg); }
+    75% { transform: scale(1.01, 0.99) rotate(-0.5deg); }
+  }
+
+  .om-mark {
+    font-family: var(--devanagari);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--flame);
+    opacity: 0;
+    animation: omAppear 2s 1.5s var(--ease-slow) forwards;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+  @keyframes omAppear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 0.6; transform: translateY(0); }
+  }
+
+  .threshold-title {
+    font-family: var(--display);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--manuscript);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .threshold-title span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: wordReveal 1.2s var(--ease-slow) forwards;
+  }
+  .threshold-title span:nth-child(1) { animation-delay: 2.5s; }
+  .threshold-title span:nth-child(2) { animation-delay: 2.8s; font-style: italic; color: var(--flame); }
+  .threshold-title span:nth-child(3) { animation-delay: 3.1s; }
+  .threshold-title span:nth-child(4) { animation-delay: 3.4s; }
+  @keyframes wordReveal {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .threshold-sub {
+    font-family: var(--display);
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-style: italic;
+    color: var(--text-soft);
+    max-width: 480px;
+    opacity: 0;
+    animation: subReveal 1.5s 4s var(--ease-slow) forwards;
+  }
+  @keyframes subReveal {
+    to { opacity: 0.8; }
+  }
+
+  .threshold-scroll {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0;
+    animation: scrollReveal 1.5s 5s var(--ease-slow) forwards;
+  }
+  @keyframes scrollReveal {
+    to { opacity: 1; }
+  }
+  .threshold-scroll-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .threshold-scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, var(--brass), transparent);
+    background-size: 100% 200%;
+    animation: scrollLineMove 2.5s infinite;
+  }
+  @keyframes scrollLineMove {
+    0% { background-position: 0% 100%; }
+    100% { background-position: 0% -100%; }
+  }
+
+  /* SECTION: INVOCATION */
+  .invocation {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+  }
+  .invocation-text {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--manuscript);
+    text-align: center;
+    max-width: 900px;
+    font-style: italic;
+  }
+  .invocation-text .word {
+    display: inline-block;
+    opacity: 0.15;
+    transition: opacity 1s var(--ease-slow), color 1s var(--ease-slow);
+    margin: 0 0.15em;
+  }
+  .invocation-text .word.lit {
+    opacity: 1;
+  }
+  .invocation-text .word.accent {
+    color: var(--flame);
+    font-style: normal;
+  }
+
+  /* Section common */
+  .section {
+    padding: 8rem 4rem;
+    position: relative;
+  }
+  .section-header {
+    max-width: 700px;
+    margin-bottom: 5rem;
+  }
+  .section-header.centered {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--brass);
+  }
+  .section-header.centered .eyebrow {
+    justify-content: center;
+  }
+  .section-header.centered .eyebrow::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--brass);
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--manuscript);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--flame);
+  }
+  .section-body {
+    font-family: var(--display);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--text-soft);
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* SECTION: JOURNEYS BY INTENTION */
+  .intentions {
+    background: var(--shadow);
+    border-top: 1px solid rgba(184, 146, 74, 0.08);
+  }
+  .intentions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(184, 146, 74, 0.08);
+    border: 1px solid rgba(184, 146, 74, 0.08);
+  }
+  .intention {
+    background: var(--shadow);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.6s var(--ease);
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .intention::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(245, 199, 110, 0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.8s var(--ease);
+  }
+  .intention:hover { background: var(--stone); }
+  .intention:hover::before { opacity: 1; }
+  .intention-glyph {
+    font-family: var(--devanagari);
+    font-size: 3.5rem;
+    color: var(--brass);
+    line-height: 1;
+    opacity: 0.5;
+    transition: color 0.6s var(--ease), opacity 0.6s var(--ease), transform 0.8s var(--ease);
+    margin-bottom: 2rem;
+    align-self: flex-start;
+  }
+  .intention:hover .intention-glyph {
+    color: var(--flame);
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  .intention-content {
+    position: relative;
+    z-index: 2;
+  }
+  .intention-purpose {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--brass);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+  }
+  .intention-name {
+    font-family: var(--display);
+    font-size: 1.9rem;
+    font-weight: 400;
+    color: var(--manuscript);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .intention-places {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+  .intention-arrow {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--brass-aged);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brass);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.5s var(--ease);
+  }
+  .intention:hover .intention-arrow {
+    opacity: 1;
+    transform: translateX(0);
+    border-color: var(--flame);
+    color: var(--flame);
+  }
+
+  /* SECTION: LIVING CALENDAR */
+  .calendar-section {
+    background: linear-gradient(180deg, var(--shadow) 0%, var(--stone) 50%, var(--shadow) 100%);
+    border-top: 1px solid rgba(184, 146, 74, 0.08);
+    border-bottom: 1px solid rgba(184, 146, 74, 0.08);
+    padding: 8rem 0;
+  }
+  .calendar-header {
+    padding: 0 4rem;
+    margin-bottom: 4rem;
+  }
+  .calendar-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1rem 4rem 3rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--brass-aged) transparent;
+  }
+  .calendar-scroll::-webkit-scrollbar { height: 4px; }
+  .calendar-scroll::-webkit-scrollbar-track { background: rgba(184, 146, 74, 0.1); }
+  .calendar-scroll::-webkit-scrollbar-thumb { background: var(--brass-aged); border-radius: 2px; }
+
+  .festival-card {
+    flex: 0 0 340px;
+    background: var(--shadow-deep);
+    border: 1px solid rgba(184, 146, 74, 0.15);
+    padding: 2.5rem;
+    scroll-snap-align: start;
+    position: relative;
+    transition: all 0.5s var(--ease);
+    cursor: pointer;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .festival-card:hover {
+    border-color: var(--flame);
+    background: var(--shadow);
+    transform: translateY(-4px);
+  }
+  .festival-when {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .festival-days {
+    font-family: var(--display);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--flame);
+    line-height: 1;
+  }
+  .festival-days-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .festival-name {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--manuscript);
+    margin-bottom: 0.6rem;
+    line-height: 1.2;
+  }
+  .festival-place {
+    font-size: 0.8rem;
+    color: var(--brass);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+  }
+  .festival-desc {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+  .festival-cta {
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    transition: color 0.4s var(--ease);
+  }
+  .festival-card:hover .festival-cta { color: var(--flame); }
+
+  /* SECTION: SACRED MAP */
+  .map-section {
+    padding: 10rem 4rem;
+    background: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .map-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .map-visual {
+    aspect-ratio: 4/5;
+    position: relative;
+  }
+  .map-svg {
+    width: 100%;
+    height: 100%;
+  }
+  .map-star {
+    cursor: pointer;
+    transition: all 0.4s var(--ease);
+  }
+  .map-star:hover circle { fill: var(--flame); r: 6; }
+  .map-label {
+    font-family: var(--display);
+    font-size: 11px;
+    fill: var(--text-soft);
+    font-style: italic;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* SECTION: PILGRIM'S STORY */
+  .pilgrim-section {
+    background: var(--shadow-deep);
+    border-top: 1px solid rgba(184, 146, 74, 0.08);
+    padding: 10rem 4rem;
+  }
+  .pilgrim-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .pilgrim-image {
+    aspect-ratio: 3/4;
+    background: var(--stone);
+    position: relative;
+    overflow: hidden;
+  }
+  .pilgrim-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(245, 199, 110, 0.12) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(184, 146, 74, 0.03) 30px, rgba(184, 146, 74, 0.03) 31px);
+  }
+  .pilgrim-image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .pilgrim-frame {
+    position: absolute;
+    inset: -1px;
+    border: 1px solid var(--brass-aged);
+    transform: translate(20px, 20px);
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .pilgrim-quote {
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--manuscript);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+  .pilgrim-quote::before {
+    content: '“';
+    font-family: var(--display);
+    font-size: 4rem;
+    color: var(--flame);
+    line-height: 0;
+    display: block;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+  }
+  .pilgrim-attr {
+    border-top: 1px solid rgba(184, 146, 74, 0.2);
+    padding-top: 1.5rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .pilgrim-name {
+    font-family: var(--display);
+    font-size: 1.1rem;
+    color: var(--manuscript);
+    font-style: italic;
+  }
+  .pilgrim-journey {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  .pilgrim-meta {
+    margin-top: 4rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-top: 1px solid rgba(184, 146, 74, 0.1);
+    padding-top: 2rem;
+  }
+  .pilgrim-count {
+    font-family: var(--display);
+    font-size: 1rem;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+  .pilgrim-count strong {
+    font-weight: 400;
+    color: var(--flame);
+    font-style: normal;
+    margin-right: 0.3rem;
+  }
+  .pilgrim-more {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--brass);
+    text-decoration: none;
+    transition: color 0.4s var(--ease);
+  }
+  .pilgrim-more:hover { color: var(--flame); }
+
+  /* SECTION: PROMISE */
+  .promise {
+    padding: 12rem 4rem;
+    text-align: center;
+    background: var(--shadow);
+  }
+  .promise-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .promise-line {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--manuscript);
+    line-height: 1.5;
+    margin-bottom: 3.5rem;
+    opacity: 0.4;
+    transition: opacity 1s var(--ease-slow);
+  }
+  .promise-line.visible {
+    opacity: 1;
+  }
+  .promise-line:last-child { margin-bottom: 0; }
+  .promise-line em {
+    color: var(--flame);
+    font-style: normal;
+  }
+  .promise-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--brass), transparent);
+    margin: 0 auto 5rem;
+  }
+
+  /* SECTION: CONCIERGE THRESHOLD */
+  .concierge {
+    background: linear-gradient(180deg, var(--shadow) 0%, var(--stone) 100%);
+    padding: 10rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .concierge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(245, 199, 110, 0.06) 0%, transparent 70%);
+  }
+  .concierge-inner {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .concierge-glyph {
+    font-family: var(--devanagari);
+    font-size: 2.5rem;
+    color: var(--flame);
+    opacity: 0.6;
+    margin-bottom: 2rem;
+    line-height: 1;
+  }
+  .concierge-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--manuscript);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+  .concierge-title em { font-style: italic; color: var(--flame); }
+  .concierge-sub {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-soft);
+    margin-bottom: 4rem;
+  }
+  .concierge-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 580px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--brass-aged);
+    padding-bottom: 1rem;
+    transition: border-color 0.4s var(--ease);
+  }
+  .concierge-form:focus-within { border-color: var(--flame); }
+  .concierge-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--manuscript);
+    font-family: var(--display);
+    font-size: 1.1rem;
+    font-style: italic;
+    padding: 0.5rem 0;
+  }
+  .concierge-input::placeholder { color: var(--muted); }
+  .concierge-submit {
+    background: transparent;
+    border: none;
+    color: var(--flame);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: color 0.4s var(--ease);
+    font-family: var(--sans);
+  }
+  .concierge-submit:hover { color: var(--manuscript); }
+  .concierge-alt {
+    margin-top: 3rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--text-soft);
+  }
+  .concierge-alt a {
+    color: var(--brass);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: all 0.4s var(--ease);
+  }
+  .concierge-alt a:hover { color: var(--flame); border-color: var(--flame); }
+
+  /* CLOSING / FOOTER */
+  .closing {
+    background: var(--shadow-deep);
+    padding: 8rem 4rem 3rem;
+    border-top: 1px solid rgba(184, 146, 74, 0.1);
+    text-align: center;
+  }
+  .closing-flame {
+    width: 50px;
+    height: 70px;
+    margin: 0 auto 2.5rem;
+    position: relative;
+  }
+  .closing-verse {
+    font-family: var(--devanagari);
+    font-size: 1.6rem;
+    color: var(--flame);
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    opacity: 0.85;
+  }
+  .closing-translation {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-soft);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .closing-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--brass-aged), transparent);
+    margin: 5rem auto 4rem;
+  }
+  footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem;
+    text-align: left;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(184, 146, 74, 0.08);
+  }
+  .footer-brand-title {
+    font-family: var(--display);
+    font-size: 1.3rem;
+    color: var(--manuscript);
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand-tag {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--brass);
+    margin-bottom: 1.5rem;
+  }
+  .footer-brand-text {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    line-height: 1.7;
+    max-width: 320px;
+  }
+  .footer-col h4 {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--flame);
+    margin-bottom: 1.5rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .footer-col a {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.4s var(--ease);
+  }
+  .footer-col a:hover { color: var(--flame); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+  .footer-bottom a { color: var(--brass); text-decoration: none; }
+
+  /* REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s var(--ease-slow), transform 1.2s var(--ease-slow);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .map-layout { grid-template-columns: 1fr; gap: 4rem; }
+    .pilgrim-layout { grid-template-columns: 1fr; gap: 4rem; }
+    footer { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1.5rem 1.5rem; }
+    nav.scrolled { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .section { padding: 6rem 1.5rem; }
+    .map-section, .pilgrim-section, .promise, .concierge, .closing { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .calendar-header { padding: 0 1.5rem; }
+    .calendar-scroll { padding: 1rem 1.5rem 2rem; }
+    footer { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    .concierge-form { flex-direction: column; align-items: stretch; }
+    .concierge-input { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sacred-noise"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark">
+      <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="#B8924A" stroke-width="0.8" opacity="0.6"/>
+        <circle cx="20" cy="20" r="12" fill="none" stroke="#B8924A" stroke-width="0.6" opacity="0.4"/>
+        <path d="M20 6 L20 34 M6 20 L34 20" stroke="#B8924A" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="20" cy="20" r="3" fill="#F5C76E"/>
+      </svg>
+    </span>
+    Vedic Trails
+  </a>
+  <ul class="nav-links">
+    <li><a href="#intentions">Journeys</a></li>
+    <li><a href="#calendar">Sacred Calendar</a></li>
+    <li><a href="#map">The Atlas</a></li>
+    <li><a href="#concierge">Concierge</a></li>
+  </ul>
+</nav>
+
+<!-- THRESHOLD -->
+<section class="threshold">
+  <div class="threshold-ambient"></div>
+
+  <!-- The flame -->
+  <div class="flame-container">
+    <div class="flame-glow"></div>
+    <svg class="flame-svg" viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg">
+      <!-- lamp base -->
+      <ellipse cx="50" cy="125" rx="28" ry="4" fill="#3A332C"/>
+      <path d="M28 122 Q50 130 72 122 L70 115 Q50 119 30 115 Z" fill="#8B6F38"/>
+      <path d="M30 115 Q50 119 70 115 L66 105 Q50 109 34 105 Z" fill="#B8924A"/>
+      <!-- wick -->
+      <rect x="49" y="98" width="2" height="10" fill="#2A2520"/>
+      <!-- flame -->
+      <g class="flame-body">
+        <path d="M50 95 Q42 85 45 75 Q47 65 50 55 Q53 65 55 75 Q58 85 50 95 Z"
+              fill="#F5C76E" opacity="0.95"/>
+        <path d="M50 92 Q44 84 47 76 Q49 68 50 60 Q51 68 53 76 Q56 84 50 92 Z"
+              fill="#E8B85F" opacity="0.9"/>
+        <path d="M50 88 Q47 82 48 76 Q50 72 50 68 Q50 72 52 76 Q53 82 50 88 Z"
+              fill="#A8312A" opacity="0.7"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="om-mark">ॐ</div>
+
+  <h1 class="threshold-title">
+    <span>Bharat.</span>
+    <span>Walked</span>
+    <span>with</span>
+    <span>intention.</span>
+  </h1>
+
+  <p class="threshold-sub">For those who travel not to escape, but to arrive.</p>
+
+  <div class="threshold-scroll">
+    <span class="threshold-scroll-text">Begin</span>
+    <div class="threshold-scroll-line"></div>
+  </div>
+</section>
+
+<!-- INVOCATION -->
+<section class="invocation">
+  <p class="invocation-text" id="invocation">
+    <span class="word">For</span>
+    <span class="word">three</span>
+    <span class="word">thousand</span>
+    <span class="word">years,</span>
+    <span class="word">this</span>
+    <span class="word">land</span>
+    <span class="word">has</span>
+    <span class="word">been</span>
+    <span class="word">a</span>
+    <span class="word accent">map</span>
+    <span class="word accent">of</span>
+    <span class="word accent">the</span>
+    <span class="word accent">soul.</span>
+    <br><br>
+    <span class="word">We</span>
+    <span class="word">help</span>
+    <span class="word">you</span>
+    <span class="word">walk</span>
+    <span class="word">it.</span>
+  </p>
+</section>
+
+<!-- JOURNEYS BY INTENTION -->
+<section class="section intentions" id="intentions">
+  <div class="section-header reveal">
+    <div class="eyebrow">Sacred Geographies</div>
+    <h2 class="section-title">Begin not with a <em>destination,</em><br>but with an intention.</h2>
+    <p class="section-body">Bharat is not one journey. It is many — each shaped by who you set out to meet, what you set out to release, where you wish to be transformed. Choose your direction.</p>
+  </div>
+
+  <div class="intentions-grid reveal">
+    <div class="intention">
+      <div class="intention-glyph">शिव</div>
+      <div class="intention-content">
+        <p class="intention-purpose">To witness</p>
+        <h3 class="intention-name">Shiva</h3>
+        <p class="intention-places">Char Dham · 12 Jyotirlingas · Kashi Vishwanath · Kedarnath · Amarnath</p>
+      </div>
+      <div class="intention-arrow">→</div>
+    </div>
+
+    <div class="intention">
+      <div class="intention-glyph">कृष्ण</div>
+      <div class="intention-content">
+        <p class="intention-purpose">To walk with</p>
+        <h3 class="intention-name">Krishna</h3>
+        <p class="intention-places">Mathura · Vrindavan · Govardhan · Dwarka · Puri Jagannath</p>
+      </div>
+      <div class="intention-arrow">→</div>
+    </div>
+
+    <div class="intention">
+      <div class="intention-glyph">देवी</div>
+      <div class="intention-content">
+        <p class="intention-purpose">To meet</p>
+        <h3 class="intention-name">The Goddess</h3>
+        <p class="intention-places">Vaishno Devi · 51 Shakti Peethas · Kamakhya · Tara Tarini · Tirupati</p>
+      </div>
+      <div class="intention-arrow">→</div>
+    </div>
+
+    <div class="intention">
+      <div class="intention-glyph">गंगा</div>
+      <div class="intention-content">
+        <p class="intention-purpose">To return to</p>
+        <h3 class="intention-name">The Source</h3>
+        <p class="intention-places">Gangotri · Yamunotri · Triveni Sangam · Narmada Parikrama · Godavari</p>
+      </div>
+      <div class="intention-arrow">→</div>
+    </div>
+
+    <div class="intention">
+      <div class="intention-glyph">काल</div>
+      <div class="intention-content">
+        <p class="intention-purpose">To stand where</p>
+        <h3 class="intention-name">Time stops</h3>
+        <p class="intention-places">Varanasi · Rameswaram · Hampi · Khajuraho · ancient temple cities</p>
+      </div>
+      <div class="intention-arrow">→</div>
+    </div>
+
+    <div class="intention">
+      <div class="intention-glyph">मार्ग</div>
+      <div class="intention-content">
+        <p class="intention-purpose">To follow</p>
+        <h3 class="intention-name">The Story</h3>
+        <p class="intention-places">Ramayana Trail · Krishna Leela · Adi Shankaracharya's path · Buddha's Way</p>
+      </div>
+      <div class="intention-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVING CALENDAR -->
+<section class="calendar-section" id="calendar">
+  <div class="calendar-header reveal">
+    <div class="eyebrow">The Living Calendar</div>
+    <h2 class="section-title">Time, the way <em>India keeps it.</em></h2>
+    <p class="section-body">Some journeys are best taken on a specific day — a festival, a lunar phase, an alignment that has been observed for centuries. These are the moments worth waiting for.</p>
+  </div>
+
+  <div class="calendar-scroll">
+    <div class="festival-card">
+      <div>
+        <div class="festival-when">
+          <span class="festival-days">12</span>
+          <span class="festival-days-label">days away</span>
+        </div>
+        <h3 class="festival-name">Kartik Purnima</h3>
+        <p class="festival-place">Varanasi · The Ganga</p>
+        <p class="festival-desc">A million earthen lamps set afloat on the Ganga at dusk. The ghats become a galaxy. The most beautiful night of the Hindu year.</p>
+      </div>
+      <p class="festival-cta">Plan this journey →</p>
+    </div>
+
+    <div class="festival-card">
+      <div>
+        <div class="festival-when">
+          <span class="festival-days">38</span>
+          <span class="festival-days-label">days away</span>
+        </div>
+        <h3 class="festival-name">Geeta Jayanti</h3>
+        <p class="festival-place">Kurukshetra · Brahma Sarovar</p>
+        <p class="festival-desc">The day the Bhagavad Gita was spoken. The sacred pond glows with lamps. Recitations echo across the field of dharma.</p>
+      </div>
+      <p class="festival-cta">Plan this journey →</p>
+    </div>
+
+    <div class="festival-card">
+      <div>
+        <div class="festival-when">
+          <span class="festival-days">61</span>
+          <span class="festival-days-label">days away</span>
+        </div>
+        <h3 class="festival-name">Makar Sankranti</h3>
+        <p class="festival-place">Triveni Sangam · Prayagraj</p>
+        <p class="festival-desc">The sun begins its northward journey. Pilgrims bathe at the confluence of three rivers — one of them invisible, all of them holy.</p>
+      </div>
+      <p class="festival-cta">Plan this journey →</p>
+    </div>
+
+    <div class="festival-card">
+      <div>
+        <div class="festival-when">
+          <span class="festival-days">94</span>
+          <span class="festival-days-label">days away</span>
+        </div>
+        <h3 class="festival-name">Maha Shivratri</h3>
+        <p class="festival-place">Kashi · The 12 Jyotirlingas</p>
+        <p class="festival-desc">The longest night of devotion to Shiva. Temple bells from dusk to dawn. The Jyotirlinga circuit comes alive with rare ritual access.</p>
+      </div>
+      <p class="festival-cta">Plan this journey →</p>
+    </div>
+
+    <div class="festival-card">
+      <div>
+        <div class="festival-when">
+          <span class="festival-days">128</span>
+          <span class="festival-days-label">days away</span>
+        </div>
+        <h3 class="festival-name">Holi at Barsana</h3>
+        <p class="festival-place">Braj · Mathura-Vrindavan</p>
+        <p class="festival-desc">Not the Holi the world knows. The original — Lathmar Holi, Phoolon ki Holi, ten days of Krishna's playful chaos in his own land.</p>
+      </div>
+      <p class="festival-cta">Plan this journey →</p>
+    </div>
+
+    <div class="festival-card">
+      <div>
+        <div class="festival-when">
+          <span class="festival-days">186</span>
+          <span class="festival-days-label">days away</span>
+        </div>
+        <h3 class="festival-name">Char Dham Opens</h3>
+        <p class="festival-place">Himalayas · Uttarakhand</p>
+        <p class="festival-desc">The four sacred shrines emerge from winter. Akshaya Tritiya marks the opening. Six months of pilgrimage begin.</p>
+      </div>
+      <p class="festival-cta">Plan this journey →</p>
+    </div>
+  </div>
+</section>
+
+<!-- SACRED MAP -->
+<section class="map-section" id="map">
+  <div class="map-layout">
+    <div class="map-visual reveal">
+      <svg class="map-svg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ornamental frame -->
+        <rect x="2" y="2" width="396" height="496" fill="none" stroke="#8B6F38" stroke-width="0.5" opacity="0.4"/>
+        <rect x="10" y="10" width="380" height="480" fill="none" stroke="#8B6F38" stroke-width="0.3" opacity="0.25"/>
+
+        <!-- Corner ornaments -->
+        <g stroke="#B8924A" stroke-width="0.5" fill="none" opacity="0.5">
+          <path d="M2 2 L20 2 M2 2 L2 20"/>
+          <path d="M398 2 L380 2 M398 2 L398 20"/>
+          <path d="M2 498 L20 498 M2 498 L2 480"/>
+          <path d="M398 498 L380 498 M398 498 L398 480"/>
+        </g>
+
+        <!-- India outline (stylized, simplified) -->
+        <path d="M180 80
+                 Q200 70 230 85
+                 Q260 90 275 110
+                 Q290 130 285 155
+                 Q280 175 270 195
+                 Q280 215 290 240
+                 Q300 270 290 300
+                 Q280 330 260 360
+                 Q240 390 220 420
+                 Q200 440 180 430
+                 Q165 410 155 380
+                 Q140 350 130 320
+                 Q115 290 110 260
+                 Q100 230 110 200
+                 Q120 170 135 145
+                 Q145 120 160 100
+                 Q170 85 180 80 Z"
+              fill="rgba(184, 146, 74, 0.06)"
+              stroke="#B8924A"
+              stroke-width="0.8"
+              opacity="0.7"/>
+
+        <!-- Sacred geometry lines connecting temples -->
+        <g stroke="#F5C76E" stroke-width="0.4" fill="none" opacity="0.3" stroke-dasharray="2 3">
+          <path d="M195 130 L210 175 L165 200 L195 130 Z"/>
+          <path d="M165 200 L155 280 L195 320"/>
+          <path d="M195 320 L230 360 L210 175"/>
+        </g>
+
+        <!-- Temple stars -->
+        <g class="map-star">
+          <circle cx="195" cy="130" r="3" fill="#F5C76E"/>
+          <circle cx="195" cy="130" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="205" y="128" class="map-label">Kedarnath</text>
+
+        <g class="map-star">
+          <circle cx="210" cy="175" r="3" fill="#F5C76E"/>
+          <circle cx="210" cy="175" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="220" y="173" class="map-label">Kashi</text>
+
+        <g class="map-star">
+          <circle cx="165" cy="200" r="3" fill="#F5C76E"/>
+          <circle cx="165" cy="200" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="100" y="198" class="map-label" text-anchor="end">Dwarka</text>
+
+        <g class="map-star">
+          <circle cx="155" cy="280" r="3" fill="#F5C76E"/>
+          <circle cx="155" cy="280" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="90" y="278" class="map-label" text-anchor="end">Shirdi</text>
+
+        <g class="map-star">
+          <circle cx="195" cy="320" r="3" fill="#F5C76E"/>
+          <circle cx="195" cy="320" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="205" y="318" class="map-label">Tirupati</text>
+
+        <g class="map-star">
+          <circle cx="230" cy="360" r="3" fill="#F5C76E"/>
+          <circle cx="230" cy="360" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="240" y="358" class="map-label">Rameswaram</text>
+
+        <g class="map-star">
+          <circle cx="170" cy="400" r="3" fill="#F5C76E"/>
+          <circle cx="170" cy="400" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="105" y="398" class="map-label" text-anchor="end">Guruvayur</text>
+
+        <g class="map-star">
+          <circle cx="245" cy="220" r="3" fill="#F5C76E"/>
+          <circle cx="245" cy="220" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="255" y="218" class="map-label">Puri</text>
+
+        <g class="map-star">
+          <circle cx="180" cy="155" r="3" fill="#F5C76E"/>
+          <circle cx="180" cy="155" r="8" fill="none" stroke="#F5C76E" stroke-width="0.4" opacity="0.4"/>
+        </g>
+        <text x="115" y="153" class="map-label" text-anchor="end">Vrindavan</text>
+
+        <!-- Center compass -->
+        <g transform="translate(200, 250)" opacity="0.4">
+          <circle r="20" fill="none" stroke="#B8924A" stroke-width="0.4"/>
+          <circle r="2" fill="#F5C76E"/>
+          <path d="M0 -18 L0 18 M-18 0 L18 0" stroke="#B8924A" stroke-width="0.3"/>
+        </g>
+
+        <!-- Bottom inscription -->
+        <text x="200" y="475" text-anchor="middle" class="map-label" style="font-size: 9px; letter-spacing: 0.3em;">
+          BHARATA · THE SACRED ATLAS
+        </text>
+      </svg>
+    </div>
+
+    <div class="reveal">
+      <div class="eyebrow">The Atlas</div>
+      <h2 class="section-title">Every temple on this land<br>has a <em>relationship</em><br>with every other.</h2>
+      <p class="section-body" style="margin-bottom: 2.5rem;">
+        Long before Google Maps, Adi Shankaracharya drew lines across India that still hold. The 12 Jyotirlingas trace a precise geometry. The Char Dhams form a compass. The 51 Shakti Peethas mark where a goddess's body fell to earth.
+      </p>
+      <p class="section-body" style="margin-bottom: 3rem;">
+        We don't show you tours. We show you the threads that bind this country together — and help you choose which one to follow.
+      </p>
+      <a href="#" style="font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--flame); text-decoration: none; border-bottom: 1px solid var(--brass-aged); padding-bottom: 6px;">Explore the full atlas →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PILGRIM'S STORY -->
+<section class="pilgrim-section">
+  <div class="pilgrim-layout">
+    <div class="pilgrim-image reveal">
+      <div class="pilgrim-image-placeholder">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#8A7F6D" stroke-width="0.8">
+          <rect x="5" y="5" width="30" height="30"/>
+          <circle cx="20" cy="17" r="4"/>
+          <path d="M5 30 L15 22 L22 27 L35 18"/>
+        </svg>
+        <span>Photography placeholder</span>
+        <span style="font-size: 0.6rem; opacity: 0.6;">Insert: cinematic portrait of pilgrim at temple</span>
+      </div>
+      <div class="pilgrim-frame"></div>
+    </div>
+
+    <div class="reveal">
+      <div class="eyebrow">A Single Story</div>
+      <blockquote class="pilgrim-quote">
+        I had visited Kashi three times before. Each time as a tourist. Vedic Trails arranged for me to be at Manikarnika ghat at four in the morning, with someone who could explain what I was seeing — not just historically, but spiritually. I wept. For the first time in my life, I understood why my grandmother insisted everyone in our family come here at least once.
+      </blockquote>
+      <div class="pilgrim-attr">
+        <span class="pilgrim-name">— Anjali Subramaniam</span>
+        <span class="pilgrim-journey">Kashi · 4 nights · Oct 2025</span>
+      </div>
+
+      <div class="pilgrim-meta">
+        <p class="pilgrim-count"><strong>247</strong> journeys curated this year.</p>
+        <a href="#" class="pilgrim-more">Read more stories →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE QUIET PROMISE -->
+<section class="promise">
+  <div class="promise-inner">
+    <div class="eyebrow" style="justify-content: center; margin-bottom: 4rem;">
+      <span style="width: 30px; height: 1px; background: var(--brass);"></span>
+      Our Quiet Promise
+      <span style="width: 30px; height: 1px; background: var(--brass);"></span>
+    </div>
+
+    <p class="promise-line">Every journey is planned by someone <em>who has walked it.</em></p>
+    <p class="promise-line">Every temple has someone <em>waiting at the door.</em></p>
+    <p class="promise-line">Every moment of friction has been removed,<br><em>so you can be present.</em></p>
+  </div>
+</section>
+
+<!-- CONCIERGE -->
+<section class="concierge" id="concierge">
+  <div class="concierge-inner">
+    <div class="concierge-glyph">श्री</div>
+    <h2 class="concierge-title">Tell us what <em>you're seeking.</em></h2>
+    <p class="concierge-sub">We'll walk the rest of the way with you.</p>
+
+    <form class="concierge-form" onsubmit="event.preventDefault(); alert('Form submission — connect to your backend.');">
+      <input type="text" class="concierge-input" placeholder="I'd like to visit Kashi with my mother..." />
+      <button type="submit" class="concierge-submit">Send →</button>
+    </form>
+
+    <div class="concierge-alt">
+      <span>Or write to us at</span>
+      <a href="mailto:concierge@vedictrails.com">concierge@vedictrails.com</a>
+      <span>·</span>
+      <a href="https://wa.me/919999999999">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="closing-flame">
+    <svg viewBox="0 0 50 70" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="25" cy="65" rx="14" ry="2" fill="#3A332C"/>
+      <path d="M14 63 Q25 67 36 63 L34 58 Q25 60 16 58 Z" fill="#8B6F38"/>
+      <rect x="24" y="48" width="2" height="6" fill="#2A2520"/>
+      <g class="flame-body">
+        <path d="M25 47 Q21 42 23 36 Q24 30 25 25 Q26 30 27 36 Q29 42 25 47 Z" fill="#F5C76E"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="closing-verse">सर्वे भवन्तु सुखिनः</p>
+  <p class="closing-translation">May all beings be happy.<br>May all beings be free from suffering.</p>
+
+  <div class="closing-divider"></div>
+
+  <footer>
+    <div>
+      <h3 class="footer-brand-title">Vedic Trails</h3>
+      <p class="footer-brand-tag">Bharat. Walked with intention.</p>
+      <p class="footer-brand-text">India's premium sacred travel brand. Curated temple journeys, pilgrimages, and sacred circuits — designed for those who travel to arrive.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Journeys</h4>
+      <ul>
+        <li><a href="#">Char Dham</a></li>
+        <li><a href="#">12 Jyotirlingas</a></li>
+        <li><a href="#">South India Temples</a></li>
+        <li><a href="#">Krishna Circuit</a></li>
+        <li><a href="#">Shakti Peethas</a></li>
+        <li><a href="#">View all →</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Discover</h4>
+      <ul>
+        <li><a href="#">The Atlas</a></li>
+        <li><a href="#">Sacred Calendar</a></li>
+        <li><a href="#">Pilgrim Stories</a></li>
+        <li><a href="#">Find My Journey</a></li>
+        <li><a href="#">Journal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Vedic Trails</h4>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Concierge</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="mailto:concierge@vedictrails.com">concierge@vedictrails.com</a></li>
+        <li><a href="tel:+91022688188">022 6881 8888</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <div class="footer-bottom">
+    <span>© 2026 Vedic Trails. A premium sacred travel brand.</span>
+    <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<button class="sound-toggle" id="soundToggle" aria-label="Toggle ambient sound">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+    <line x1="23" y1="9" x2="17" y2="15" stroke-dasharray="2 2"/>
+    <line x1="17" y1="9" x2="23" y2="15" stroke-dasharray="2 2"/>
+  </svg>
+</button>
+
+<script>
+  // CURSOR
+  const dot = document.getElementById('cursorDot');
+  const glow = document.getElementById('cursorGlow');
+  document.addEventListener('mousemove', (e) => {
+    dot.style.left = e.clientX + 'px';
+    dot.style.top = e.clientY + 'px';
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .intention, .festival-card').forEach(el => {
+    el.addEventListener('mouseenter', () => glow.classList.add('active'));
+    el.addEventListener('mouseleave', () => glow.classList.remove('active'));
+  });
+
+  // NAV scroll state
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      document.getElementById('nav').classList.add('scrolled');
+    } else {
+      document.getElementById('nav').classList.remove('scrolled');
+    }
+  });
+
+  // INVOCATION word reveal
+  const invocation = document.getElementById('invocation');
+  const words = invocation.querySelectorAll('.word');
+  const invObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        words.forEach((w, i) => {
+          setTimeout(() => w.classList.add('lit'), i * 180);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  invObserver.observe(invocation);
+
+  // REVEAL ON SCROLL
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // PROMISE lines stagger reveal
+  const promiseLines = document.querySelectorAll('.promise-line');
+  const promiseObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        promiseLines.forEach((line, i) => {
+          setTimeout(() => line.classList.add('visible'), i * 600);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  if (promiseLines.length) promiseObserver.observe(promiseLines[0]);
+</script>
+
+</body>
+</html>

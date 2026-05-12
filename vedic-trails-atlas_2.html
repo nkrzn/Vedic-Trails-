@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sacred Atlas — Vedic Trails</title>
+<meta name="description" content="An interactive map of sacred India. Explore pilgrimage circuits, temple stories, and curated journeys across 3,500 years of devotion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F4ECD8;
+    --cream-deep: #EDE2C7;
+    --paper: #FBF6EC;
+    --paper-aged: #F0E5CA;
+    --navy: #1A2640;
+    --navy-deep: #0F1832;
+    --navy-soft: #2E3E5E;
+    --gold: #B8924A;
+    --gold-leaf: #C9A352;
+    --gold-light: #D4AE5F;
+    --gold-pale: #E8D29A;
+    --gold-bg: #F5E8C8;
+    --vermillion: #A8312A;
+    --terracotta: #C66B3D;
+    --river: #6B8AA8;
+    --mountain: #3A506B;
+    --ink: #2A2520;
+    --text-soft: #5A5346;
+    --text-muted: #8A8377;
+    --border-soft: rgba(184, 146, 74, 0.2);
+    --border-mid: rgba(184, 146, 74, 0.4);
+
+    --serif: 'Fraunces', Georgia, serif;
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --devanagari: 'Noto Serif Devanagari', serif;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-slow: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(184, 146, 74, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(168, 49, 42, 0.03) 0%, transparent 40%);
+  }
+
+  /* Parchment texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0 0.15 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  /* ========== NAV ========== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.3rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(244, 236, 216, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+  .nav-logo-text {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.3s var(--ease);
+  }
+  .nav-back:hover { color: var(--gold); }
+  .nav-saved {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--navy);
+    color: var(--gold-light);
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+  }
+  .nav-saved:hover { background: var(--gold); color: var(--navy); }
+  .nav-saved-count {
+    background: var(--gold);
+    color: var(--navy);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .nav-saved:hover .nav-saved-count { background: var(--navy); color: var(--gold-light); }
+
+  /* ========== HERO ========== */
+  .atlas-hero {
+    padding: 9rem 3rem 3rem;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .atlas-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.5rem 1.1rem;
+    background: rgba(184, 146, 74, 0.1);
+    border: 1px solid var(--border-mid);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .atlas-eyebrow-glyph {
+    font-family: var(--devanagari);
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .atlas-title {
+    font-family: var(--display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--navy);
+    letter-spacing: -0.015em;
+    margin-bottom: 1.2rem;
+  }
+  .atlas-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .atlas-sub {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--text-soft);
+    max-width: 640px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+  }
+  .atlas-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .atlas-meta span { display: flex; align-items: center; gap: 0.4rem; }
+  .atlas-meta .dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+
+  /* ========== LENS SWITCHER ========== */
+  .lens-switcher {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem auto;
+    padding: 0.4rem;
+    background: var(--paper);
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    width: fit-content;
+    gap: 0.3rem;
+    box-shadow: 0 4px 20px rgba(26, 38, 64, 0.04);
+  }
+  .lens-btn {
+    background: transparent;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--sans);
+  }
+  .lens-btn:hover { color: var(--navy); }
+  .lens-btn.active {
+    background: var(--navy);
+    color: var(--gold-light);
+  }
+  .lens-btn-icon { font-size: 1rem; }
+
+  /* ========== MAIN ATLAS LAYOUT ========== */
+  .atlas-stage {
+    position: relative;
+    padding: 2rem 3rem 4rem;
+    max-width: 1500px;
+    margin: 0 auto;
+    z-index: 2;
+  }
+  .atlas-frame {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 60px -30px rgba(26, 38, 64, 0.15),
+      0 0 0 1px var(--border-soft);
+  }
+
+  /* Decorative manuscript frame */
+  .atlas-frame::before,
+  .atlas-frame::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .frame-corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .frame-corner-tl { top: 16px; left: 16px; border-top: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .frame-corner-tr { top: 16px; right: 16px; border-top: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+  .frame-corner-bl { bottom: 16px; left: 16px; border-bottom: 1px solid var(--gold); border-left: 1px solid var(--gold); }
+  .frame-corner-br { bottom: 16px; right: 16px; border-bottom: 1px solid var(--gold); border-right: 1px solid var(--gold); }
+
+  .atlas-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr 320px;
+    min-height: 720px;
+  }
+
+  /* ========== LEFT PANEL — CIRCUITS LIST ========== */
+  .atlas-left {
+    padding: 2.5rem 1.5rem;
+    border-right: 1px solid var(--border-soft);
+    background: var(--paper-aged);
+    overflow-y: auto;
+    max-height: 720px;
+  }
+  .panel-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .panel-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+    font-style: italic;
+  }
+  .circuit-item {
+    padding: 1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s var(--ease);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .circuit-item:hover {
+    background: var(--paper);
+    border-color: var(--border-soft);
+  }
+  .circuit-item.active {
+    background: var(--paper);
+    border-color: var(--gold);
+    box-shadow: 0 4px 16px rgba(184, 146, 74, 0.15);
+  }
+  .circuit-item-name {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .circuit-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(184, 146, 74, 0.15);
+    flex-shrink: 0;
+  }
+  .circuit-name-text {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .circuit-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding-left: 22px;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .circuit-meta-item { display: flex; align-items: center; gap: 0.25rem; }
+  .circuit-meta-divider { color: var(--border-mid); }
+
+  /* ========== CENTER — THE MAP ========== */
+  .atlas-center {
+    position: relative;
+    background: var(--paper);
+    background-image:
+      linear-gradient(rgba(184, 146, 74, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184, 146, 74, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    overflow: hidden;
+  }
+
+  /* Decorative Devanagari watermark */
+  .map-watermark {
+    position: absolute;
+    font-family: var(--devanagari);
+    color: var(--gold);
+    opacity: 0.04;
+    font-size: 12rem;
+    pointer-events: none;
+    z-index: 1;
+    line-height: 1;
+    user-select: none;
+  }
+  .watermark-1 { top: 20%; left: 5%; }
+  .watermark-2 { bottom: 15%; right: 8%; }
+
+  .map-svg {
+    width: 100%;
+    height: 100%;
+    min-height: 720px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Map stars */
+  .temple-star {
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+  }
+  .temple-star circle.star-core {
+    fill: var(--gold);
+    transition: all 0.3s var(--ease);
+  }
+  .temple-star circle.star-halo {
+    fill: var(--gold);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+  }
+  .temple-star:hover circle.star-core { fill: var(--vermillion); r: 6; }
+  .temple-star:hover circle.star-halo { opacity: 0.25; }
+  .temple-star.active circle.star-core { fill: var(--vermillion); r: 6; }
+  .temple-star.active circle.star-halo { opacity: 0.3; animation: pulse-halo 2s ease-in-out infinite; }
+  .temple-star.saved circle.star-core { fill: #C66B3D; }
+
+  @keyframes pulse-halo {
+    0%, 100% { opacity: 0.3; r: 18; }
+    50% { opacity: 0.5; r: 22; }
+  }
+
+  .map-route {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    transition: opacity 0.5s var(--ease);
+    pointer-events: none;
+  }
+  .map-route.active {
+    opacity: 0.85;
+    animation: drawRoute 2.5s var(--ease-slow) forwards;
+  }
+  .map-route.glow {
+    stroke: var(--vermillion);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px rgba(184, 146, 74, 0.5));
+  }
+  @keyframes drawRoute {
+    to { stroke-dashoffset: 0; }
+  }
+
+  .map-label {
+    font-family: var(--display);
+    font-size: 11px;
+    fill: var(--navy);
+    font-style: italic;
+    font-weight: 500;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s var(--ease);
+  }
+  .map-label.visible { opacity: 0.85; }
+
+  .map-india-outline {
+    fill: rgba(184, 146, 74, 0.04);
+    stroke: var(--navy);
+    stroke-width: 1.2;
+    opacity: 0.5;
+  }
+
+  /* Compass */
+  .compass {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+    background: var(--paper);
+    border: 1px solid var(--border-soft);
+    border-radius: 50%;
+    padding: 0.8rem;
+    width: 130px;
+    height: 130px;
+    box-shadow: 0 8px 24px rgba(26, 38, 64, 0.08);
+  }
+  .compass-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .compass-svg {
+    width: 100%;
+    height: 100%;
+  }
+  .compass-direction {
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+  }
+  .compass-direction text {
+    font-family: var(--display);
+    font-size: 9px;
+    font-weight: 500;
+    fill: var(--text-soft);
+    transition: fill 0.3s var(--ease);
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+  .compass-direction:hover text { fill: var(--gold); font-size: 10px; }
+  .compass-direction.active text { fill: var(--vermillion); font-weight: 600; }
+
+  /* Time slider */
+  .time-slider-wrap {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: var(--paper);
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    padding: 0.8rem 1.5rem;
+    display: none;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 8px 24px rgba(26, 38, 64, 0.08);
+    min-width: 420px;
+  }
+  .time-slider-wrap.visible {
+    display: flex;
+    animation: fadeUp 0.5s var(--ease) forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+  .time-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 500;
+    min-width: 60px;
+  }
+  .time-current {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--navy);
+    font-weight: 500;
+    text-align: center;
+    min-width: 110px;
+  }
+  .time-current em {
+    font-style: italic;
+    color: var(--gold);
+    font-size: 0.85rem;
+    display: block;
+    line-height: 1;
+  }
+  .time-input {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 3px;
+    background: var(--gold-bg);
+    border-radius: 3px;
+    outline: none;
+  }
+  .time-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 0 3px rgba(184, 146, 74, 0.2);
+  }
+  .time-input::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* ========== RIGHT PANEL — DETAIL ========== */
+  .atlas-right {
+    border-left: 1px solid var(--border-soft);
+    background: var(--paper);
+    overflow-y: auto;
+    max-height: 720px;
+    position: relative;
+  }
+  .detail-empty {
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: var(--display);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .detail-empty-glyph {
+    font-family: var(--devanagari);
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 1rem;
+  }
+  .detail-empty-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-soft);
+  }
+  .detail-empty-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    font-style: normal;
+    letter-spacing: 0.05em;
+  }
+
+  .detail-content {
+    padding: 2rem 1.8rem;
+    display: none;
+  }
+  .detail-content.visible { display: block; animation: detailIn 0.5s var(--ease) forwards; }
+  @keyframes detailIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .detail-glyph {
+    font-family: var(--devanagari);
+    font-size: 2.5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.8rem;
+  }
+  .detail-region {
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .detail-title {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .detail-deity {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    margin-bottom: 1.2rem;
+  }
+  .detail-story {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .detail-attrs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .detail-attr {
+    padding: 0.7rem 0.8rem;
+    background: var(--paper-aged);
+    border-radius: 4px;
+  }
+  .detail-attr-label {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .detail-attr-value {
+    font-size: 0.85rem;
+    color: var(--navy);
+    font-weight: 500;
+    font-family: var(--display);
+  }
+  .detail-save {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s var(--ease);
+    margin-bottom: 1.5rem;
+    justify-content: center;
+  }
+  .detail-save:hover { background: var(--gold); color: var(--paper); }
+  .detail-save.saved { background: var(--terracotta); border-color: var(--terracotta); color: white; }
+  .detail-save.saved:hover { background: var(--vermillion); border-color: var(--vermillion); }
+  .detail-save-icon { font-size: 1rem; }
+
+  .detail-tours-title {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .detail-tours-title::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .tour-mini {
+    display: block;
+    padding: 1rem;
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+    margin-bottom: 0.7rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.3s var(--ease);
+    background: var(--paper);
+  }
+  .tour-mini:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(184, 146, 74, 0.15);
+  }
+  .tour-mini-name {
+    font-family: var(--display);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+  }
+  .tour-mini-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--text-soft);
+  }
+  .tour-mini-duration {
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+  .tour-mini-price {
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--gold);
+  }
+  .tour-mini-cta {
+    margin-top: 0.7rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--border-soft);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--navy);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tour-mini-cta-arrow {
+    color: var(--gold);
+    transition: transform 0.3s var(--ease);
+  }
+  .tour-mini:hover .tour-mini-cta-arrow { transform: translateX(3px); }
+
+  /* Circuit detail */
+  .circuit-detail-cta {
+    margin-top: 1rem;
+    padding: 1.2rem;
+    background: linear-gradient(135deg, var(--gold-bg) 0%, var(--paper-aged) 100%);
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+  }
+  .circuit-detail-cta-label {
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .circuit-detail-cta-title {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .circuit-detail-cta-price {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+  }
+  .circuit-detail-cta-price em {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-right: 0.3rem;
+  }
+  .circuit-detail-cta-btn {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--navy);
+    color: var(--gold-light);
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.3s var(--ease);
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+  .circuit-detail-cta-btn:hover { background: var(--gold); color: var(--navy); }
+
+  /* ========== STORY SCROLL SECTION ========== */
+  .story-section {
+    position: relative;
+    padding: 6rem 3rem;
+    background: var(--navy);
+    color: var(--cream);
+    overflow: hidden;
+    z-index: 2;
+  }
+  .story-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 40% 50% at 20% 30%, rgba(184, 146, 74, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 80% 70%, rgba(168, 49, 42, 0.08) 0%, transparent 60%);
+  }
+  .story-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+    position: relative;
+  }
+  .story-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .story-eyebrow::before,
+  .story-eyebrow::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--gold-light);
+  }
+  .story-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .story-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .story-sub {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: rgba(244, 236, 216, 0.7);
+  }
+
+  .story-frames {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .story-frame {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-bottom: 8rem;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s var(--ease-slow), transform 1s var(--ease-slow);
+  }
+  .story-frame.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .story-frame:nth-child(even) {
+    direction: rtl;
+  }
+  .story-frame:nth-child(even) > * {
+    direction: ltr;
+  }
+  .story-frame:last-child { margin-bottom: 0; }
+
+  .story-visual {
+    aspect-ratio: 4/3;
+    background: var(--navy-deep);
+    border: 1px solid rgba(184, 146, 74, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .story-visual svg {
+    width: 100%;
+    height: 100%;
+  }
+  .story-num {
+    font-family: var(--display);
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(184, 146, 74, 0.15);
+    line-height: 1;
+    margin-bottom: 1.2rem;
+  }
+  .story-frame-title {
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .story-frame-title em { font-style: italic; color: var(--gold-light); }
+  .story-frame-text {
+    font-size: 1rem;
+    color: rgba(244, 236, 216, 0.75);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+  .story-frame-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--gold-light);
+    color: var(--gold-light);
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s var(--ease);
+  }
+  .story-frame-cta:hover {
+    background: var(--gold-light);
+    color: var(--navy);
+  }
+
+  /* ========== RECOMMENDED JOURNEYS ========== */
+  .recommend-section {
+    background: var(--cream);
+    padding: 7rem 3rem;
+    position: relative;
+    z-index: 2;
+  }
+  .recommend-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+  }
+  .recommend-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+  }
+  .recommend-eyebrow::before,
+  .recommend-eyebrow::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .recommend-title {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .recommend-title em { font-style: italic; color: var(--gold); }
+  .recommend-sub {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--text-soft);
+    font-size: 1.1rem;
+  }
+
+  .recommend-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .rec-card {
+    background: var(--paper);
+    border: 1px solid var(--border-soft);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s var(--ease);
+    display: flex;
+    flex-direction: column;
+  }
+  .rec-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -15px rgba(26, 38, 64, 0.15);
+    border-color: var(--gold);
+  }
+  .rec-card-image {
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-img-1 { background: linear-gradient(170deg, #3D5A8A 0%, #0F1F3A 100%); }
+  .rec-img-2 { background: linear-gradient(170deg, #C66B3D 0%, #6B2818 100%); }
+  .rec-img-3 { background: linear-gradient(170deg, #B8924A 0%, #5E4318 100%); }
+  .rec-card-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(245, 199, 110, 0.3) 0%, transparent 60%);
+  }
+  .rec-card-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--navy);
+    color: var(--gold-light);
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+  .rec-card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .rec-card-region {
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .rec-card-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  .rec-card-desc {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex: 1;
+  }
+  .rec-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .rec-card-price {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .rec-card-price em {
+    font-style: normal;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-right: 0.3rem;
+  }
+  .rec-card-duration {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+  }
+
+  /* ========== SAVED MODAL ========== */
+  .saved-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 24, 50, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .saved-modal.visible {
+    display: flex;
+    animation: modalIn 0.3s var(--ease) forwards;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .saved-modal-inner {
+    background: var(--paper);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    position: relative;
+  }
+  .saved-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--navy);
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    line-height: 1;
+  }
+  .saved-modal-title {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .saved-modal-sub {
+    font-style: italic;
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+    font-family: var(--display);
+  }
+  .saved-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .saved-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: var(--display);
+    font-size: 1.05rem;
+  }
+  .saved-empty-glyph {
+    font-family: var(--devanagari);
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 1rem;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: var(--navy-deep);
+    color: rgba(244, 236, 216, 0.75);
+    padding: 4rem 3rem 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(184, 146, 74, 0.15);
+  }
+  .footer-glyph {
+    font-family: var(--devanagari);
+    font-size: 2rem;
+    color: var(--gold-light);
+    opacity: 0.7;
+    margin-bottom: 1rem;
+  }
+  .footer-brand-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .footer-brand-tag {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--gold-light);
+    margin-bottom: 1.5rem;
+  }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 1.5rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: rgba(244, 236, 216, 0.4);
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 1100px) {
+    .atlas-grid { grid-template-columns: 1fr; }
+    .atlas-left, .atlas-right { max-height: none; border: none; border-bottom: 1px solid var(--border-soft); }
+    .atlas-center { min-height: 500px; }
+    .map-svg { min-height: 500px; }
+    .compass { width: 100px; height: 100px; padding: 0.5rem; }
+    .time-slider-wrap { min-width: 320px; padding: 0.6rem 1rem; }
+    .story-frame { grid-template-columns: 1fr; gap: 2rem; }
+    .story-frame:nth-child(even) { direction: ltr; }
+    .recommend-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.2rem; }
+    .nav-saved span:not(.nav-saved-count) { display: none; }
+    .atlas-hero { padding: 8rem 1.2rem 2rem; }
+    .atlas-stage { padding: 1rem 1.2rem 3rem; }
+    .lens-switcher { flex-wrap: wrap; gap: 0.2rem; }
+    .lens-btn { padding: 0.5rem 1rem; font-size: 0.78rem; }
+    .compass { width: 80px; height: 80px; top: 1rem; right: 1rem; }
+    .time-slider-wrap { min-width: 280px; bottom: 1rem; }
+    .time-label { display: none; }
+    .story-section { padding: 4rem 1.2rem; }
+    .recommend-section { padding: 4rem 1.2rem; }
+    footer { padding: 3rem 1.2rem 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.7rem; }
+    .map-watermark { font-size: 7rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="vedic-trails-homepage-v2.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    <span>Back</span>
+  </a>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="18" fill="none" stroke="#B8924A" stroke-width="1"/>
+      <circle cx="20" cy="20" r="12" fill="none" stroke="#B8924A" stroke-width="0.7" opacity="0.6"/>
+      <path d="M20 4 L20 36 M4 20 L36 20" stroke="#B8924A" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="20" cy="20" r="4" fill="#B8924A"/>
+    </svg>
+    <span class="nav-logo-text">Vedic Trails</span>
+  </a>
+  <button class="nav-saved" onclick="openSavedModal()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    <span>Saved</span>
+    <span class="nav-saved-count" id="savedCount">0</span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="atlas-hero">
+  <div class="atlas-eyebrow">
+    <span class="atlas-eyebrow-glyph">श्री</span>
+    <span>The Sacred Atlas</span>
+  </div>
+  <h1 class="atlas-title">A living map of <em>sacred India.</em></h1>
+  <p class="atlas-sub">Explore pilgrimage circuits, temple stories, and 3,500 years of devotion. Click any star to find the journey that begins there.</p>
+  <div class="atlas-meta">
+    <span><span class="dot"></span>142 temples</span>
+    <span><span class="dot"></span>12 circuits</span>
+    <span><span class="dot"></span>3,500 years</span>
+  </div>
+
+  <!-- Lens switcher -->
+  <div class="lens-switcher" role="tablist">
+    <button class="lens-btn active" data-lens="devotion" role="tab">
+      <span class="lens-btn-icon">🪔</span>
+      Devotion
+    </button>
+    <button class="lens-btn" data-lens="mythology" role="tab">
+      <span class="lens-btn-icon">📜</span>
+      Mythology
+    </button>
+    <button class="lens-btn" data-lens="time" role="tab">
+      <span class="lens-btn-icon">⏳</span>
+      Time
+    </button>
+  </div>
+</section>
+
+<!-- ATLAS STAGE -->
+<section class="atlas-stage">
+  <div class="atlas-frame">
+    <div class="frame-corner frame-corner-tl"></div>
+    <div class="frame-corner frame-corner-tr"></div>
+    <div class="frame-corner frame-corner-bl"></div>
+    <div class="frame-corner frame-corner-br"></div>
+
+    <div class="atlas-grid">
+      <!-- LEFT — Circuits list -->
+      <aside class="atlas-left">
+        <h2 class="panel-title">Sacred Circuits</h2>
+        <p class="panel-sub">Click any circuit to trace its path</p>
+
+        <div id="circuitsList">
+          <!-- Populated by JS -->
+        </div>
+      </aside>
+
+      <!-- CENTER — The Map -->
+      <div class="atlas-center" id="mapCenter">
+        <div class="map-watermark watermark-1">ॐ</div>
+        <div class="map-watermark watermark-2">श्री</div>
+
+        <!-- Compass -->
+        <div class="compass">
+          <div class="compass-inner">
+            <svg class="compass-svg" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="48" fill="none" stroke="#B8924A" stroke-width="0.5" opacity="0.4"/>
+              <circle cx="50" cy="50" r="38" fill="none" stroke="#B8924A" stroke-width="0.4" opacity="0.3"/>
+              <circle cx="50" cy="50" r="3" fill="#B8924A"/>
+
+              <!-- Compass directions -->
+              <g class="compass-direction" data-dir="N">
+                <circle cx="50" cy="8" r="8" fill="transparent"/>
+                <text x="50" y="9">N</text>
+              </g>
+              <g class="compass-direction" data-dir="NE">
+                <circle cx="80" cy="20" r="6" fill="transparent"/>
+                <text x="80" y="21">NE</text>
+              </g>
+              <g class="compass-direction" data-dir="E">
+                <circle cx="92" cy="50" r="8" fill="transparent"/>
+                <text x="92" y="51">E</text>
+              </g>
+              <g class="compass-direction" data-dir="SE">
+                <circle cx="80" cy="80" r="6" fill="transparent"/>
+                <text x="80" y="81">SE</text>
+              </g>
+              <g class="compass-direction" data-dir="S">
+                <circle cx="50" cy="92" r="8" fill="transparent"/>
+                <text x="50" y="93">S</text>
+              </g>
+              <g class="compass-direction" data-dir="SW">
+                <circle cx="20" cy="80" r="6" fill="transparent"/>
+                <text x="20" y="81">SW</text>
+              </g>
+              <g class="compass-direction" data-dir="W">
+                <circle cx="8" cy="50" r="8" fill="transparent"/>
+                <text x="8" y="51">W</text>
+              </g>
+              <g class="compass-direction" data-dir="NW">
+                <circle cx="20" cy="20" r="6" fill="transparent"/>
+                <text x="20" y="21">NW</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Time slider (only visible in Time lens) -->
+        <div class="time-slider-wrap" id="timeSlider">
+          <span class="time-label">1500 BCE</span>
+          <span class="time-current" id="timeCurrent">
+            500 BCE
+            <em>Pre-Mauryan</em>
+          </span>
+          <input type="range" class="time-input" id="timeInput" min="-1500" max="2025" value="-500" step="50">
+          <span class="time-label">2025 CE</span>
+        </div>
+
+        <!-- THE MAP -->
+        <svg class="map-svg" viewBox="0 0 500 720" xmlns="http://www.w3.org/2000/svg" id="mapSvg">
+          <!-- India outline (stylized) -->
+          <path class="map-india-outline" d="M225 80
+                   Q260 70 290 90
+                   Q320 95 340 115
+                   Q355 135 350 160
+                   Q345 180 335 200
+                   Q345 220 360 245
+                   Q375 275 365 310
+                   Q355 345 335 380
+                   Q315 420 290 460
+                   Q270 495 250 540
+                   Q235 585 220 610
+                   Q200 625 180 615
+                   Q160 590 150 555
+                   Q135 520 125 485
+                   Q110 450 105 415
+                   Q95 380 100 345
+                   Q105 310 115 280
+                   Q125 245 140 215
+                   Q150 185 165 160
+                   Q175 130 195 105
+                   Q210 85 225 80 Z"/>
+
+          <!-- Decorative geometry under map -->
+          <g opacity="0.08" stroke="#B8924A" stroke-width="0.5" fill="none">
+            <path d="M230 360 L290 240 L155 240 Z"/>
+            <path d="M230 360 L290 480 L155 480 Z"/>
+            <circle cx="230" cy="360" r="120"/>
+          </g>
+
+          <!-- Routes (drawn first so under stars) -->
+          <g id="routesLayer">
+            <!-- Routes added by JS -->
+          </g>
+
+          <!-- Temple stars + labels -->
+          <g id="starsLayer">
+            <!-- Populated by JS -->
+          </g>
+
+          <!-- Center inscription -->
+          <text x="250" y="700" text-anchor="middle" font-family="Cormorant Garamond" font-size="11" fill="#B8924A" font-style="italic" letter-spacing="0.3em" opacity="0.5">
+            BHĀRATA · THE SACRED ATLAS
+          </text>
+        </svg>
+      </div>
+
+      <!-- RIGHT — Detail panel -->
+      <aside class="atlas-right" id="detailPanel">
+        <div class="detail-empty" id="detailEmpty">
+          <div class="detail-empty-glyph">ॐ</div>
+          <p class="detail-empty-text">Begin by selecting a star or circuit on the map.</p>
+          <p class="detail-empty-hint">Every temple has a journey waiting.</p>
+        </div>
+        <div class="detail-content" id="detailContent">
+          <!-- Populated by JS -->
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<section class="story-section">
+  <div class="story-header">
+    <div class="story-eyebrow">A Journey Through Sacred India</div>
+    <h2 class="story-title">Five threads. <em>One civilization.</em></h2>
+    <p class="story-sub">The routes that have shaped Indian spiritual life for millennia.</p>
+  </div>
+
+  <div class="story-frames">
+    <div class="story-frame">
+      <div>
+        <div class="story-num">01</div>
+        <h3 class="story-frame-title">Char Dham — <em>the four shrines</em></h3>
+        <p class="story-frame-text">
+          In the 8th century, Adi Shankaracharya marked four temples at the four corners of India — a sacred geometry that has guided pilgrims for 1,200 years. Walk all four, and tradition says you wash away the karma of a lifetime.
+        </p>
+        <a href="tour-char-dham.html" class="story-frame-cta">
+          View the Char Dham journey →
+        </a>
+      </div>
+      <div class="story-visual">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="story1Glow" cx="50%" cy="50%">
+              <stop offset="0%" stop-color="#D4AE5F" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#0F1832" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="300" fill="#0F1832"/>
+          <ellipse cx="200" cy="150" rx="180" ry="120" fill="url(#story1Glow)"/>
+          <!-- Char Dham diamond -->
+          <path d="M200 60 L320 150 L200 240 L80 150 Z" fill="none" stroke="#D4AE5F" stroke-width="1.5" opacity="0.6" stroke-dasharray="3 3"/>
+          <g>
+            <circle cx="200" cy="60" r="6" fill="#D4AE5F"/>
+            <circle cx="200" cy="60" r="14" fill="none" stroke="#D4AE5F" stroke-width="0.5" opacity="0.4"/>
+            <text x="200" y="45" text-anchor="middle" font-family="Cormorant Garamond" font-size="11" font-style="italic" fill="#F4ECD8">Badrinath</text>
+          </g>
+          <g>
+            <circle cx="320" cy="150" r="6" fill="#D4AE5F"/>
+            <circle cx="320" cy="150" r="14" fill="none" stroke="#D4AE5F" stroke-width="0.5" opacity="0.4"/>
+            <text x="345" y="153" text-anchor="start" font-family="Cormorant Garamond" font-size="11" font-style="italic" fill="#F4ECD8">Puri</text>
+          </g>
+          <g>
+            <circle cx="200" cy="240" r="6" fill="#D4AE5F"/>
+            <circle cx="200" cy="240" r="14" fill="none" stroke="#D4AE5F" stroke-width="0.5" opacity="0.4"/>
+            <text x="200" y="262" text-anchor="middle" font-family="Cormorant Garamond" font-size="11" font-style="italic" fill="#F4ECD8">Rameswaram</text>
+          </g>
+          <g>
+            <circle cx="80" cy="150" r="6" fill="#D4AE5F"/>
+            <circle cx="80" cy="150" r="14" fill="none" stroke="#D4AE5F" stroke-width="0.5" opacity="0.4"/>
+            <text x="55" y="153" text-anchor="end" font-family="Cormorant Garamond" font-size="11" font-style="italic" fill="#F4ECD8">Dwarka</text>
+          </g>
+          <circle cx="200" cy="150" r="3" fill="#A8312A"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="story-frame">
+      <div>
+        <div class="story-num">02</div>
+        <h3 class="story-frame-title">The Twelve <em>Jyotirlingas</em></h3>
+        <p class="story-frame-text">
+          Twelve sites where Shiva is said to have manifested as a column of cosmic light. Spread across nine states from the Himalayas to the southern coast, they form one of the most precise sacred geometries in the world.
+        </p>
+        <a href="tour-jyotirlinga.html" class="story-frame-cta">
+          View the Jyotirlinga circuit →
+        </a>
+      </div>
+      <div class="story-visual">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#0F1832"/>
+          <!-- 12 stars constellation -->
+          <g stroke="#D4AE5F" stroke-width="0.8" fill="none" opacity="0.4" stroke-dasharray="2 4">
+            <path d="M100 80 L160 60 L220 90 L280 70 L320 110 L300 160 L280 210 L240 240 L180 250 L120 220 L80 170 L90 120 Z"/>
+          </g>
+          <g fill="#D4AE5F">
+            <circle cx="100" cy="80" r="4"/>
+            <circle cx="160" cy="60" r="4"/>
+            <circle cx="220" cy="90" r="4"/>
+            <circle cx="280" cy="70" r="4"/>
+            <circle cx="320" cy="110" r="4"/>
+            <circle cx="300" cy="160" r="4"/>
+            <circle cx="280" cy="210" r="4"/>
+            <circle cx="240" cy="240" r="4"/>
+            <circle cx="180" cy="250" r="4"/>
+            <circle cx="120" cy="220" r="4"/>
+            <circle cx="80" cy="170" r="4"/>
+            <circle cx="90" cy="120" r="4"/>
+          </g>
+          <g fill="none" stroke="#D4AE5F" stroke-width="0.4" opacity="0.5">
+            <circle cx="100" cy="80" r="10"/>
+            <circle cx="280" cy="70" r="10"/>
+            <circle cx="240" cy="240" r="10"/>
+            <circle cx="80" cy="170" r="10"/>
+          </g>
+          <text x="200" y="155" text-anchor="middle" font-family="Cormorant Garamond" font-size="22" font-style="italic" fill="#F4ECD8" opacity="0.8">XII</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="story-frame">
+      <div>
+        <div class="story-num">03</div>
+        <h3 class="story-frame-title">Krishna's path <em>through Braj</em></h3>
+        <p class="story-frame-text">
+          From his birthplace in Mathura's prison to the playful pastures of Vrindavan to the kingdom he ruled at Dwarka — the life of Krishna is mapped across India. Walking this trail is walking a story 5,000 years old.
+        </p>
+        <a href="tour-krishna.html" class="story-frame-cta">
+          View the Krishna trail →
+        </a>
+      </div>
+      <div class="story-visual">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#0F1832"/>
+          <!-- Krishna trail -->
+          <path d="M80 100 Q150 80 210 120 T340 200" fill="none" stroke="#D4AE5F" stroke-width="2" opacity="0.7" stroke-dasharray="4 4"/>
+          <g>
+            <circle cx="80" cy="100" r="6" fill="#D4AE5F"/>
+            <circle cx="80" cy="100" r="14" fill="none" stroke="#D4AE5F" stroke-width="0.5" opacity="0.4"/>
+            <text x="80" y="85" text-anchor="middle" font-family="Cormorant Garamond" font-size="11" font-style="italic" fill="#F4ECD8">Dwarka</text>
+          </g>
+          <g>
+            <circle cx="210" cy="120" r="6" fill="#D4AE5F"/>
+            <text x="210" y="105" text-anchor="middle" font-family="Cormorant Garamond" font-size="11" font-style="italic" fill="#F4ECD8">Mathura</text>
+          </g>
+          <g>
+            <circle cx="250" cy="155" r="5" fill="#D4AE5F"/>
+            <text x="265" y="158" font-family="Cormorant Garamond" font-size="10" font-style="italic" fill="#F4ECD8">Vrindavan</text>
+          </g>
+          <g>
+            <circle cx="340" cy="200" r="6" fill="#D4AE5F"/>
+            <circle cx="340" cy="200" r="14" fill="none" stroke="#D4AE5F" stroke-width="0.5" opacity="0.4"/>
+            <text x="340" y="225" text-anchor="middle" font-family="Cormorant Garamond" font-size="11" font-style="italic" fill="#F4ECD8">Puri Jagannath</text>
+          </g>
+          <text x="200" y="40" text-anchor="middle" font-family="Noto Serif Devanagari" font-size="20" fill="#D4AE5F" opacity="0.6">कृष्ण</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="story-frame">
+      <div>
+        <div class="story-num">04</div>
+        <h3 class="story-frame-title">South India's <em>living temples</em></h3>
+        <p class="story-frame-text">
+          The greatest concentration of unbroken temple traditions on earth. The Chola, Pallava, and Pandya kings built temples that still function exactly as they did a thousand years ago — towering gopurams, thousand-pillared halls, daily rituals unchanged.
+        </p>
+        <a href="tour-south-india.html" class="story-frame-cta">
+          View the South India circuit →
+        </a>
+      </div>
+      <div class="story-visual">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#0F1832"/>
+          <!-- Temple gopuram silhouette -->
+          <g stroke="#D4AE5F" stroke-width="1" fill="none" opacity="0.7">
+            <path d="M180 240 L180 180 L150 160 L150 130 L130 110 L130 80 L200 50 L270 80 L270 110 L250 130 L250 160 L220 180 L220 240 Z"/>
+            <line x1="200" y1="50" x2="200" y2="240" opacity="0.4"/>
+            <line x1="150" y1="160" x2="250" y2="160" opacity="0.4"/>
+            <line x1="130" y1="110" x2="270" y2="110" opacity="0.4"/>
+          </g>
+          <g fill="#D4AE5F" opacity="0.5">
+            <circle cx="160" cy="100" r="2"/>
+            <circle cx="240" cy="100" r="2"/>
+            <circle cx="200" cy="70" r="3"/>
+            <circle cx="180" cy="135" r="2"/>
+            <circle cx="220" cy="135" r="2"/>
+          </g>
+          <text x="60" y="280" font-family="Cormorant Garamond" font-size="10" font-style="italic" fill="#D4AE5F" opacity="0.6">Madurai · Thanjavur · Chidambaram</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="story-frame">
+      <div>
+        <div class="story-num">05</div>
+        <h3 class="story-frame-title">Kashi — <em>where time stops</em></h3>
+        <p class="story-frame-text">
+          The oldest continuously inhabited city in the world. Standing on the ghats of the Ganga at four in the morning, watching the first lamp meet the river — this is the moment where Indian spirituality stops being an idea and becomes something you have actually touched.
+        </p>
+        <a href="tour-kashi.html" class="story-frame-cta">
+          View the Kashi journey →
+        </a>
+      </div>
+      <div class="story-visual">
+        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ganga" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#6B8AA8" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#6B8AA8" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#6B8AA8" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="300" fill="#0F1832"/>
+          <!-- Ganga -->
+          <path d="M0 180 Q100 175 200 180 T400 178" fill="none" stroke="url(#ganga)" stroke-width="20" opacity="0.4"/>
+          <path d="M0 185 Q100 180 200 185 T400 183" fill="none" stroke="#6B8AA8" stroke-width="1" opacity="0.5"/>
+          <!-- Floating diyas -->
+          <g fill="#D4AE5F">
+            <circle cx="60" cy="183" r="2"/>
+            <circle cx="120" cy="181" r="2"/>
+            <circle cx="180" cy="184" r="2"/>
+            <circle cx="240" cy="182" r="2"/>
+            <circle cx="300" cy="180" r="2"/>
+            <circle cx="350" cy="184" r="2"/>
+            <circle cx="90" cy="195" r="1.5"/>
+            <circle cx="210" cy="195" r="1.5"/>
+            <circle cx="330" cy="193" r="1.5"/>
+          </g>
+          <!-- Ghat steps -->
+          <g stroke="#D4AE5F" stroke-width="0.6" opacity="0.5">
+            <line x1="0" y1="200" x2="400" y2="200"/>
+            <line x1="0" y1="215" x2="400" y2="215"/>
+            <line x1="0" y1="230" x2="400" y2="230"/>
+            <line x1="0" y1="245" x2="400" y2="245"/>
+          </g>
+          <!-- Temple silhouette -->
+          <path d="M150 100 L160 80 L170 60 L180 80 L185 100 L200 100 L210 70 L220 50 L230 70 L235 100 L250 100 L255 75 L265 90 L270 100 L300 100 L300 180 L150 180 Z" fill="#D4AE5F" opacity="0.3"/>
+          <text x="200" y="50" text-anchor="middle" font-family="Cormorant Garamond" font-size="14" font-style="italic" fill="#D4AE5F" opacity="0.7">काशी</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDED JOURNEYS -->
+<section class="recommend-section">
+  <div class="recommend-header">
+    <div class="recommend-eyebrow">Begin Here</div>
+    <h2 class="recommend-title">Three journeys to <em>start with</em></h2>
+    <p class="recommend-sub">Our most-loved circuits across sacred India.</p>
+  </div>
+
+  <div class="recommend-grid">
+    <a href="tour-char-dham.html" class="rec-card">
+      <div class="rec-card-image rec-img-1">
+        <span class="rec-card-badge">Best Seller</span>
+      </div>
+      <div class="rec-card-content">
+        <span class="rec-card-region">Uttarakhand · Himalayas</span>
+        <h3 class="rec-card-title">Char Dham Yatra</h3>
+        <p class="rec-card-desc">The four shrines of the Himalayas. A complete journey through India's most revered pilgrimage.</p>
+        <div class="rec-card-footer">
+          <span class="rec-card-price"><em>From</em>₹39,999</span>
+          <span class="rec-card-duration">10N · 11D</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="tour-tamil-nadu.html" class="rec-card">
+      <div class="rec-card-image rec-img-2">
+        <span class="rec-card-badge">Premium</span>
+      </div>
+      <div class="rec-card-content">
+        <span class="rec-card-region">Tamil Nadu · South India</span>
+        <h3 class="rec-card-title">Tamil Temple Circuit</h3>
+        <p class="rec-card-desc">Towering gopurams, thousand-pillar halls, and the greatest living temple traditions on earth.</p>
+        <div class="rec-card-footer">
+          <span class="rec-card-price"><em>From</em>₹52,999</span>
+          <span class="rec-card-duration">7N · 8D</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="tour-kashi.html" class="rec-card">
+      <div class="rec-card-image rec-img-3">
+        <span class="rec-card-badge">Most Sought</span>
+      </div>
+      <div class="rec-card-content">
+        <span class="rec-card-region">Uttar Pradesh · Sacred Land</span>
+        <h3 class="rec-card-title">Kashi & Ayodhya</h3>
+        <p class="rec-card-desc">The oldest living city in the world. Stand on the ghats of the Ganga where time stops.</p>
+        <div class="rec-card-footer">
+          <span class="rec-card-price"><em>From</em>₹34,999</span>
+          <span class="rec-card-duration">5N · 6D</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SAVED MODAL -->
+<div class="saved-modal" id="savedModal" onclick="closeSavedModal(event)">
+  <div class="saved-modal-inner" onclick="event.stopPropagation()">
+    <button class="saved-modal-close" onclick="closeSavedModal()">×</button>
+    <h2 class="saved-modal-title">Your Lit Diyas</h2>
+    <p class="saved-modal-sub">Temples you've saved on your sacred map</p>
+    <div id="savedListContent">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-glyph">ॐ</div>
+    <div class="footer-brand-title">Vedic Trails</div>
+    <p class="footer-brand-tag">Bharat. Walked with intention.</p>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Vedic Trails. India's Premium Sacred Travel Brand.</span>
+    <span>The Sacred Atlas v1.0</span>
+  </div>
+</footer>
+
+<script>
+  // ============ DATA ============
+  const temples = [
+    // North
+    { id: 'kedarnath', name: 'Kedarnath', deity: 'Lord Shiva', region: 'Uttarakhand', x: 245, y: 145, style: 'Nagara', glyph: 'श', circuits: ['char-dham', 'jyotirlinga'], dir: 'N',
+      story: 'Set among the Himalayan peaks at 11,755 feet, Kedarnath is one of the most revered Shiva temples — believed to be over a thousand years old, built by the Pandavas, rebuilt by Adi Shankaracharya.',
+      tours: [
+        { name: 'Char Dham Yatra', duration: '10N · 11D', price: '₹39,999', url: 'tour-char-dham.html' },
+        { name: 'Kedarnath Express', duration: '5N · 6D', price: '₹28,999', url: 'tour-kedarnath.html' }
+      ]
+    },
+    { id: 'badrinath', name: 'Badrinath', deity: 'Lord Vishnu', region: 'Uttarakhand', x: 270, y: 130, style: 'Nagara', glyph: 'व', circuits: ['char-dham'], dir: 'N',
+      story: 'The northernmost of the four Char Dhams, dedicated to Vishnu in his Badrinarayan form. The temple sits between the Nar and Narayan mountains, on the bank of the Alaknanda river.',
+      tours: [
+        { name: 'Char Dham Yatra', duration: '10N · 11D', price: '₹39,999', url: 'tour-char-dham.html' }
+      ]
+    },
+    { id: 'yamunotri', name: 'Yamunotri', deity: 'Goddess Yamuna', region: 'Uttarakhand', x: 215, y: 135, style: 'Nagara', glyph: 'य', circuits: ['char-dham'], dir: 'N',
+      story: 'The source of the Yamuna river. Pilgrims cook rice in the hot springs as offering. The first stop of the traditional Char Dham circuit.',
+      tours: [
+        { name: 'Char Dham Yatra', duration: '10N · 11D', price: '₹39,999', url: 'tour-char-dham.html' }
+      ]
+    },
+    { id: 'gangotri', name: 'Gangotri', deity: 'Goddess Ganga', region: 'Uttarakhand', x: 230, y: 140, style: 'Nagara', glyph: 'ग', circuits: ['char-dham'], dir: 'N',
+      story: 'Where the Ganga first descended to earth from Shiva\'s matted hair. The temple is closed for six months of winter, opening on Akshaya Tritiya.',
+      tours: [
+        { name: 'Char Dham Yatra', duration: '10N · 11D', price: '₹39,999', url: 'tour-char-dham.html' }
+      ]
+    },
+    { id: 'vaishno-devi', name: 'Vaishno Devi', deity: 'Mata Vaishno Devi', region: 'Jammu & Kashmir', x: 195, y: 95, style: 'Cave Shrine', glyph: 'दे', circuits: ['shakti'], dir: 'N',
+      story: 'A sacred cave shrine in the Trikuta Mountains. Pilgrims trek 13 km to reach the natural rock formations of the three goddesses — one of the most visited religious sites in India.',
+      tours: [
+        { name: 'Vaishno Devi Yatra', duration: '2N · 3D', price: '₹14,999', url: 'tour-vaishno-devi.html' },
+        { name: 'Vaishno Devi Premium', duration: '3N · 4D', price: '₹22,999', url: 'tour-vaishno-devi-premium.html' }
+      ]
+    },
+    // Central
+    { id: 'kashi', name: 'Kashi (Varanasi)', deity: 'Lord Shiva', region: 'Uttar Pradesh', x: 285, y: 230, style: 'Nagara', glyph: 'का', circuits: ['jyotirlinga'], dir: 'C',
+      story: 'The oldest continuously inhabited city in the world. Dwelling place of Shiva. To die in Kashi, tradition says, is to attain moksha — liberation from the cycle of rebirth.',
+      tours: [
+        { name: 'Kashi & Ayodhya', duration: '5N · 6D', price: '₹34,999', url: 'tour-kashi.html' },
+        { name: 'Kashi-Rameswaram Yatra', duration: '10N · 11D', price: '₹48,999', url: 'tour-kashi-rameswaram.html' }
+      ]
+    },
+    { id: 'ayodhya', name: 'Ayodhya', deity: 'Lord Rama', region: 'Uttar Pradesh', x: 270, y: 200, style: 'Nagara', glyph: 'अ', circuits: ['ramayana'], dir: 'C',
+      story: 'Birthplace of Lord Rama, capital of the Kosala kingdom. The recently consecrated Ram Mandir has made this one of the most significant pilgrimage destinations in modern India.',
+      tours: [
+        { name: 'Kashi & Ayodhya', duration: '5N · 6D', price: '₹34,999', url: 'tour-kashi.html' }
+      ]
+    },
+    { id: 'mathura', name: 'Mathura', deity: 'Lord Krishna', region: 'Uttar Pradesh', x: 240, y: 195, style: 'Nagara', glyph: 'कृ', circuits: ['krishna'], dir: 'C',
+      story: 'Birthplace of Krishna, on the banks of the Yamuna. The Krishna Janmabhoomi temple marks the very prison cell where he was born at midnight, 5,000 years ago.',
+      tours: [
+        { name: 'Mathura Vrindavan', duration: '2N · 3D', price: '₹16,999', url: 'tour-mathura.html' },
+        { name: 'Krishna Trail Premium', duration: '4N · 5D', price: '₹28,999', url: 'tour-krishna-premium.html' }
+      ]
+    },
+    { id: 'vrindavan', name: 'Vrindavan', deity: 'Lord Krishna', region: 'Uttar Pradesh', x: 245, y: 200, style: 'Nagara', glyph: 'वृ', circuits: ['krishna'], dir: 'C',
+      story: 'The forest of Krishna\'s childhood — where he played his flute, danced with the gopis, and lived his early life. The town has over 5,000 temples, all dedicated to Krishna.',
+      tours: [
+        { name: 'Mathura Vrindavan', duration: '2N · 3D', price: '₹16,999', url: 'tour-mathura.html' }
+      ]
+    },
+    { id: 'ujjain', name: 'Ujjain (Mahakaleshwar)', deity: 'Lord Shiva', region: 'Madhya Pradesh', x: 215, y: 280, style: 'Nagara', glyph: 'उ', circuits: ['jyotirlinga'], dir: 'C',
+      story: 'One of the seven sacred cities of Hinduism. The Mahakaleshwar Jyotirlinga is unique — it faces south, and the famous Bhasma Aarti at 4 AM uses ash from cremation grounds.',
+      tours: [
+        { name: 'Ujjain Omkareshwar', duration: '3N · 4D', price: '₹19,999', url: 'tour-ujjain.html' }
+      ]
+    },
+    { id: 'omkareshwar', name: 'Omkareshwar', deity: 'Lord Shiva', region: 'Madhya Pradesh', x: 195, y: 295, style: 'Nagara', glyph: 'ॐ', circuits: ['jyotirlinga'], dir: 'C',
+      story: 'On an island in the Narmada river, shaped like the sacred Om symbol. One of the 12 Jyotirlingas and a powerful Shaivite shrine.',
+      tours: [
+        { name: 'Ujjain Omkareshwar', duration: '3N · 4D', price: '₹19,999', url: 'tour-ujjain.html' }
+      ]
+    },
+    // West
+    { id: 'dwarka', name: 'Dwarka', deity: 'Lord Krishna', region: 'Gujarat', x: 130, y: 245, style: 'Nagara', glyph: 'द्व', circuits: ['char-dham', 'krishna'], dir: 'W',
+      story: 'Krishna\'s legendary kingdom by the sea. The original city is said to lie submerged under the Arabian Sea. The current Dwarkadhish temple has been a pilgrimage site for over 2,500 years.',
+      tours: [
+        { name: 'Dwarka-Somnath', duration: '4N · 5D', price: '₹26,999', url: 'tour-dwarka.html' }
+      ]
+    },
+    { id: 'somnath', name: 'Somnath', deity: 'Lord Shiva', region: 'Gujarat', x: 145, y: 280, style: 'Nagara', glyph: 'सो', circuits: ['jyotirlinga'], dir: 'W',
+      story: 'The first of the 12 Jyotirlingas. Destroyed and rebuilt seven times across millennia, it stands today as a symbol of resilience and devotion. The temple faces the western sea.',
+      tours: [
+        { name: 'Dwarka-Somnath', duration: '4N · 5D', price: '₹26,999', url: 'tour-dwarka.html' }
+      ]
+    },
+    { id: 'shirdi', name: 'Shirdi', deity: 'Sai Baba', region: 'Maharashtra', x: 200, y: 360, style: 'Modern', glyph: 'सा', circuits: ['saint-circuit'], dir: 'SW',
+      story: 'The home of Sai Baba — a saint who transcended religious boundaries in the late 19th century. His samadhi temple draws millions every year.',
+      tours: [
+        { name: 'Shirdi Nashik Yatra', duration: '3N · 4D', price: '₹18,999', url: 'tour-shirdi.html' }
+      ]
+    },
+    // East
+    { id: 'puri', name: 'Puri Jagannath', deity: 'Lord Jagannath', region: 'Odisha', x: 320, y: 295, style: 'Kalinga', glyph: 'जा', circuits: ['char-dham', 'krishna'], dir: 'E',
+      story: 'One of the four Char Dhams. Home to Jagannath, Balabhadra, and Subhadra. The Rath Yatra here, where three massive chariots are pulled through the streets, is one of the oldest festivals in the world.',
+      tours: [
+        { name: 'Puri-Rameswaram-Dwarka', duration: '12N · 13D', price: '₹78,999', url: 'tour-puri-rameswaram.html' }
+      ]
+    },
+    { id: 'kamakhya', name: 'Kamakhya', deity: 'Goddess Kamakhya', region: 'Assam', x: 390, y: 215, style: 'Nilachal', glyph: 'का', circuits: ['shakti'], dir: 'NE',
+      story: 'The most important Shakti Peetha — where, according to legend, the yoni of the goddess Sati fell. One of the few temples in India dedicated to female power in its most primal form.',
+      tours: [
+        { name: 'Kamakhya Pilgrimage', duration: '3N · 4D', price: '₹22,999', url: 'tour-kamakhya.html' }
+      ]
+    },
+    // South
+    { id: 'tirupati', name: 'Tirupati', deity: 'Lord Venkateswara', region: 'Andhra Pradesh', x: 245, y: 470, style: 'Dravida', glyph: 'ति', circuits: ['vishnu'], dir: 'S',
+      story: 'The wealthiest religious institution in the world. Lord Venkateswara is said to be paying off a celestial loan — devotees offer gold and hair to help him repay it.',
+      tours: [
+        { name: 'Tirupati Darshan', duration: '2N · 3D', price: '₹15,999', url: 'tour-tirupati.html' }
+      ]
+    },
+    { id: 'rameswaram', name: 'Rameswaram', deity: 'Lord Shiva (Ramanathaswamy)', region: 'Tamil Nadu', x: 250, y: 600, style: 'Dravida', glyph: 'रा', circuits: ['char-dham', 'jyotirlinga', 'ramayana'], dir: 'S',
+      story: 'Where Rama built the bridge to Lanka. One of the four Char Dhams and one of the 12 Jyotirlingas. The temple has the longest corridor in any Hindu temple in the world.',
+      tours: [
+        { name: 'Tamil Temple Circuit', duration: '7N · 8D', price: '₹52,999', url: 'tour-tamil-nadu.html' },
+        { name: 'Kashi-Rameswaram Yatra', duration: '10N · 11D', price: '₹48,999', url: 'tour-kashi-rameswaram.html' }
+      ]
+    },
+    { id: 'madurai', name: 'Madurai (Meenakshi)', deity: 'Goddess Meenakshi', region: 'Tamil Nadu', x: 230, y: 565, style: 'Dravida', glyph: 'मी', circuits: ['shakti', 'tamil-circuit'], dir: 'S',
+      story: '14 gopurams covered in 33,000 painted sculptures. The Meenakshi-Sundareswara temple is one of the most spectacular works of Dravidian architecture ever built.',
+      tours: [
+        { name: 'Tamil Temple Circuit', duration: '7N · 8D', price: '₹52,999', url: 'tour-tamil-nadu.html' }
+      ]
+    },
+    { id: 'thanjavur', name: 'Thanjavur (Brihadeeswarar)', deity: 'Lord Shiva', region: 'Tamil Nadu', x: 240, y: 545, style: 'Dravida', glyph: 'त', circuits: ['tamil-circuit'], dir: 'S',
+      story: 'Built by Raja Raja Chola in 1010 CE, the Brihadeeswarar temple\'s tower is 216 feet tall — and the capstone, weighing 80 tons, was somehow placed at the top a thousand years ago.',
+      tours: [
+        { name: 'Tamil Temple Circuit', duration: '7N · 8D', price: '₹52,999', url: 'tour-tamil-nadu.html' }
+      ]
+    },
+    { id: 'guruvayur', name: 'Guruvayur', deity: 'Lord Krishna', region: 'Kerala', x: 200, y: 555, style: 'Kerala', glyph: 'गु', circuits: ['kerala-temples'], dir: 'SW',
+      story: 'The Dwarka of South India. Krishna is worshipped here as a four-year-old child. The temple\'s exact date is unknown, but it\'s mentioned in texts going back 5,000 years.',
+      tours: [
+        { name: 'Kerala Temple Circuit', duration: '4N · 5D', price: '₹24,999', url: 'tour-kerala.html' }
+      ]
+    },
+    { id: 'sabarimala', name: 'Sabarimala', deity: 'Lord Ayyappa', region: 'Kerala', x: 215, y: 600, style: 'Kerala', glyph: 'अ', circuits: ['kerala-temples'], dir: 'S',
+      story: 'A forest shrine in the Western Ghats. Pilgrims observe 41 days of strict vrata (fasting and celibacy) before the trek up the 18 sacred steps to the temple.',
+      tours: [
+        { name: 'Kerala Temple Circuit', duration: '4N · 5D', price: '₹24,999', url: 'tour-kerala.html' }
+      ]
+    },
+  ];
+
+  const circuits = [
+    {
+      id: 'char-dham',
+      name: 'Char Dham Yatra',
+      shortDesc: 'The four sacred shrines of the Himalayas',
+      temples: ['yamunotri', 'gangotri', 'kedarnath', 'badrinath'],
+      duration: '10N · 11D',
+      priceFrom: '₹39,999',
+      tag: 'Best Seller',
+      url: 'tour-char-dham.html',
+      color: '#D4AE5F'
+    },
+    {
+      id: 'jyotirlinga',
+      name: '12 Jyotirlingas',
+      shortDesc: 'Twelve points of cosmic light across India',
+      temples: ['kedarnath', 'kashi', 'somnath', 'ujjain', 'omkareshwar', 'rameswaram'],
+      duration: '14N · 15D',
+      priceFrom: '₹84,999',
+      tag: 'Grand Circuit',
+      url: 'tour-jyotirlinga.html',
+      color: '#D4AE5F'
+    },
+    {
+      id: 'krishna',
+      name: 'Krishna Trail',
+      shortDesc: 'The path of Krishna\'s life across India',
+      temples: ['mathura', 'vrindavan', 'dwarka', 'puri'],
+      duration: '7N · 8D',
+      priceFrom: '₹46,999',
+      tag: 'Story Circuit',
+      url: 'tour-krishna.html',
+      color: '#C66B3D'
+    },
+    {
+      id: 'ramayana',
+      name: 'Ramayana Trail',
+      shortDesc: 'From Ayodhya to Rameswaram',
+      temples: ['ayodhya', 'rameswaram'],
+      duration: '8N · 9D',
+      priceFrom: '₹52,999',
+      tag: 'Story Circuit',
+      url: 'tour-ramayana.html',
+      color: '#A8312A'
+    },
+    {
+      id: 'shakti',
+      name: 'Shakti Peethas',
+      shortDesc: 'Where the goddess fell to earth',
+      temples: ['vaishno-devi', 'kamakhya', 'madurai'],
+      duration: '6N · 7D',
+      priceFrom: '₹38,999',
+      tag: 'Goddess Circuit',
+      url: 'tour-shakti.html',
+      color: '#A8312A'
+    },
+    {
+      id: 'tamil-circuit',
+      name: 'Tamil Temple Circuit',
+      shortDesc: 'Living temple traditions of the south',
+      temples: ['madurai', 'thanjavur', 'rameswaram'],
+      duration: '7N · 8D',
+      priceFrom: '₹52,999',
+      tag: 'Premium',
+      url: 'tour-tamil-nadu.html',
+      color: '#B8924A'
+    },
+    {
+      id: 'kerala-temples',
+      name: 'Kerala Temples',
+      shortDesc: 'Guruvayur to Sabarimala',
+      temples: ['guruvayur', 'sabarimala'],
+      duration: '4N · 5D',
+      priceFrom: '₹24,999',
+      tag: 'Regional',
+      url: 'tour-kerala.html',
+      color: '#5C8A6E'
+    },
+  ];
+
+  const directionLabels = {
+    'N': 'North India',
+    'NE': 'North-East',
+    'E': 'East India',
+    'SE': 'South-East',
+    'S': 'South India',
+    'SW': 'South-West',
+    'W': 'West India',
+    'NW': 'North-West'
+  };
+
+  // ============ STATE ============
+  let activeCircuit = null;
+  let activeTemple = null;
+  let activeDirection = null;
+  let activeLens = 'devotion';
+  let savedTemples = JSON.parse(localStorage.getItem('vt_saved') || '[]');
+
+  // ============ RENDER STARS ============
+  const starsLayer = document.getElementById('starsLayer');
+  temples.forEach(t => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'temple-star');
+    g.setAttribute('data-id', t.id);
+    if (savedTemples.includes(t.id)) g.classList.add('saved');
+    g.innerHTML = `
+      <circle class="star-halo" cx="${t.x}" cy="${t.y}" r="18"/>
+      <circle class="star-core" cx="${t.x}" cy="${t.y}" r="4"/>
+    `;
+    g.addEventListener('click', () => selectTemple(t.id));
+    starsLayer.appendChild(g);
+
+    // Label
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('class', 'map-label');
+    label.setAttribute('x', t.x + 10);
+    label.setAttribute('y', t.y - 8);
+    label.setAttribute('data-id', t.id);
+    label.textContent = t.name;
+    starsLayer.appendChild(label);
+  });
+
+  // ============ RENDER CIRCUITS LIST ============
+  const circuitsList = document.getElementById('circuitsList');
+  circuits.forEach(c => {
+    const item = document.createElement('div');
+    item.className = 'circuit-item';
+    item.setAttribute('data-id', c.id);
+    item.innerHTML = `
+      <div class="circuit-item-name">
+        <span class="circuit-dot" style="background:${c.color};box-shadow:0 0 0 3px ${c.color}25"></span>
+        <span class="circuit-name-text">${c.name}</span>
+      </div>
+      <div class="circuit-meta">
+        <span class="circuit-meta-item">${c.duration}</span>
+        <span class="circuit-meta-divider">·</span>
+        <span class="circuit-meta-item">From ${c.priceFrom}</span>
+        <span class="circuit-meta-divider">·</span>
+        <span class="circuit-meta-item">${c.temples.length} stops</span>
+      </div>
+    `;
+    item.addEventListener('click', () => selectCircuit(c.id));
+    circuitsList.appendChild(item);
+  });
+
+  // ============ ROUTE DRAWING ============
+  function drawCircuitRoute(circuit) {
+    const routesLayer = document.getElementById('routesLayer');
+    routesLayer.innerHTML = '';
+
+    const points = circuit.temples
+      .map(id => temples.find(t => t.id === id))
+      .filter(Boolean);
+
+    if (points.length < 2) return;
+
+    // Draw path
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i-1];
+      const cur = points[i];
+      const midX = (prev.x + cur.x) / 2;
+      const midY = (prev.y + cur.y) / 2 - 10; // slight curve
+      d += ` Q ${midX} ${midY} ${cur.x} ${cur.y}`;
+    }
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('class', 'map-route active');
+    path.setAttribute('d', d);
+    path.style.stroke = circuit.color;
+    routesLayer.appendChild(path);
+  }
+
+  function clearRoute() {
+    document.getElementById('routesLayer').innerHTML = '';
+  }
+
+  // ============ TEMPLE SELECTION ============
+  function selectTemple(templeId) {
+    const t = temples.find(x => x.id === templeId);
+    if (!t) return;
+    activeTemple = templeId;
+    activeCircuit = null;
+
+    // Update visual state
+    document.querySelectorAll('.temple-star').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.temple-star[data-id="${templeId}"]`)?.classList.add('active');
+    document.querySelectorAll('.map-label').forEach(l => l.classList.remove('visible'));
+    document.querySelector(`.map-label[data-id="${templeId}"]`)?.classList.add('visible');
+    document.querySelectorAll('.circuit-item').forEach(c => c.classList.remove('active'));
+
+    // Render detail panel
+    const isSaved = savedTemples.includes(templeId);
+    document.getElementById('detailEmpty').style.display = 'none';
+    const dc = document.getElementById('detailContent');
+    dc.innerHTML = `
+      <div class="detail-glyph">${t.glyph}</div>
+      <div class="detail-region">${t.region}</div>
+      <h3 class="detail-title">${t.name}</h3>
+      <div class="detail-deity">${t.deity}</div>
+      <p class="detail-story">${t.story}</p>
+      <div class="detail-attrs">
+        <div class="detail-attr">
+          <div class="detail-attr-label">Architecture</div>
+          <div class="detail-attr-value">${t.style}</div>
+        </div>
+        <div class="detail-attr">
+          <div class="detail-attr-label">Circuits</div>
+          <div class="detail-attr-value">${t.circuits.length}</div>
+        </div>
+      </div>
+      <button class="detail-save ${isSaved ? 'saved' : ''}" onclick="toggleSave('${t.id}')">
+        <span class="detail-save-icon">${isSaved ? '🪔' : '○'}</span>
+        <span>${isSaved ? 'Saved to your map' : 'Light a diya here'}</span>
+      </button>
+      <div class="detail-tours-title">Tours that include this temple</div>
+      ${t.tours.map(tour => `
+        <a href="${tour.url}" class="tour-mini">
+          <div class="tour-mini-name">${tour.name}</div>
+          <div class="tour-mini-meta">
+            <span class="tour-mini-duration">${tour.duration}</span>
+            <span class="tour-mini-price">From ${tour.price}</span>
+          </div>
+          <div class="tour-mini-cta">
+            <span>View Itinerary</span>
+            <span class="tour-mini-cta-arrow">→</span>
+          </div>
+        </a>
+      `).join('')}
+    `;
+    dc.classList.add('visible');
+    clearRoute();
+  }
+
+  // ============ CIRCUIT SELECTION ============
+  function selectCircuit(circuitId) {
+    const c = circuits.find(x => x.id === circuitId);
+    if (!c) return;
+    activeCircuit = circuitId;
+    activeTemple = null;
+
+    // Update visual state
+    document.querySelectorAll('.circuit-item').forEach(x => x.classList.remove('active'));
+    document.querySelector(`.circuit-item[data-id="${circuitId}"]`)?.classList.add('active');
+    document.querySelectorAll('.temple-star').forEach(s => {
+      s.classList.remove('active');
+      if (c.temples.includes(s.getAttribute('data-id'))) {
+        s.classList.add('active');
+      }
+    });
+    document.querySelectorAll('.map-label').forEach(l => {
+      l.classList.remove('visible');
+      if (c.temples.includes(l.getAttribute('data-id'))) {
+        l.classList.add('visible');
+      }
+    });
+
+    // Draw route
+    drawCircuitRoute(c);
+
+    // Render detail
+    document.getElementById('detailEmpty').style.display = 'none';
+    const dc = document.getElementById('detailContent');
+    const templeList = c.temples.map(id => {
+      const t = temples.find(x => x.id === id);
+      return t ? t.name : '';
+    }).filter(Boolean).join(' · ');
+
+    dc.innerHTML = `
+      <div class="detail-region">Sacred Circuit</div>
+      <h3 class="detail-title">${c.name}</h3>
+      <div class="detail-deity">${c.shortDesc}</div>
+      <p class="detail-story">A complete pilgrimage circuit visiting ${c.temples.length} sacred sites: ${templeList}.</p>
+      <div class="detail-attrs">
+        <div class="detail-attr">
+          <div class="detail-attr-label">Duration</div>
+          <div class="detail-attr-value">${c.duration}</div>
+        </div>
+        <div class="detail-attr">
+          <div class="detail-attr-label">Stops</div>
+          <div class="detail-attr-value">${c.temples.length} temples</div>
+        </div>
+      </div>
+      <div class="circuit-detail-cta">
+        <div class="circuit-detail-cta-label">Complete Journey</div>
+        <div class="circuit-detail-cta-title">${c.name}</div>
+        <div class="circuit-detail-cta-price"><em>From</em>${c.priceFrom}</div>
+        <a href="${c.url}" class="circuit-detail-cta-btn">View Full Itinerary →</a>
+      </div>
+    `;
+    dc.classList.add('visible');
+  }
+
+  // ============ COMPASS DIRECTION ============
+  document.querySelectorAll('.compass-direction').forEach(d => {
+    d.addEventListener('click', () => {
+      const dir = d.getAttribute('data-dir');
+      document.querySelectorAll('.compass-direction').forEach(x => x.classList.remove('active'));
+      d.classList.add('active');
+      activeDirection = dir;
+      // Highlight temples in that direction
+      document.querySelectorAll('.temple-star').forEach(s => {
+        const tId = s.getAttribute('data-id');
+        const t = temples.find(x => x.id === tId);
+        s.classList.remove('active');
+        if (t && t.dir === dir) {
+          s.classList.add('active');
+        }
+      });
+      document.querySelectorAll('.map-label').forEach(l => {
+        const tId = l.getAttribute('data-id');
+        const t = temples.find(x => x.id === tId);
+        l.classList.remove('visible');
+        if (t && t.dir === dir) l.classList.add('visible');
+      });
+
+      // Show region in detail
+      document.getElementById('detailEmpty').style.display = 'none';
+      const dc = document.getElementById('detailContent');
+      const matched = temples.filter(t => t.dir === dir);
+      dc.innerHTML = `
+        <div class="detail-region">Region</div>
+        <h3 class="detail-title">${directionLabels[dir]}</h3>
+        <div class="detail-deity">${matched.length} sacred sites in this region</div>
+        <p class="detail-story">Tap any temple on the map to learn more, or browse our curated journeys for this region below.</p>
+        <div class="detail-tours-title">Featured journeys</div>
+        ${getCircuitsForDirection(dir).map(c => `
+          <a href="${c.url}" class="tour-mini">
+            <div class="tour-mini-name">${c.name}</div>
+            <div class="tour-mini-meta">
+              <span class="tour-mini-duration">${c.duration}</span>
+              <span class="tour-mini-price">From ${c.priceFrom}</span>
+            </div>
+            <div class="tour-mini-cta">
+              <span>View Itinerary</span>
+              <span class="tour-mini-cta-arrow">→</span>
+            </div>
+          </a>
+        `).join('') || '<p style="font-size:0.85rem;color:var(--text-muted);font-style:italic;">More journeys coming soon for this region.</p>'}
+      `;
+      dc.classList.add('visible');
+      clearRoute();
+    });
+  });
+
+  function getCircuitsForDirection(dir) {
+    const regionTemples = temples.filter(t => t.dir === dir).map(t => t.id);
+    return circuits.filter(c => c.temples.some(tId => regionTemples.includes(tId)));
+  }
+
+  // ============ LENS SWITCHER ============
+  document.querySelectorAll('.lens-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lens-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeLens = btn.getAttribute('data-lens');
+
+      const timeSlider = document.getElementById('timeSlider');
+      if (activeLens === 'time') {
+        timeSlider.classList.add('visible');
+        updateTimeLens(parseInt(document.getElementById('timeInput').value));
+      } else {
+        timeSlider.classList.remove('visible');
+        // Reset visibility
+        document.querySelectorAll('.temple-star').forEach(s => { s.style.opacity = ''; });
+      }
+
+      if (activeLens === 'mythology') {
+        // Highlight story circuits
+        const storyCircuits = ['krishna', 'ramayana'];
+        document.querySelectorAll('.temple-star').forEach(s => {
+          const tId = s.getAttribute('data-id');
+          const t = temples.find(x => x.id === tId);
+          const inStory = t && t.circuits.some(c => storyCircuits.includes(c));
+          s.style.opacity = inStory ? '1' : '0.3';
+        });
+      } else if (activeLens === 'devotion') {
+        document.querySelectorAll('.temple-star').forEach(s => { s.style.opacity = ''; });
+      }
+    });
+  });
+
+  // ============ TIME SLIDER ============
+  const timeInput = document.getElementById('timeInput');
+  const timeCurrent = document.getElementById('timeCurrent');
+
+  function getEra(year) {
+    if (year < -800) return 'Vedic Age';
+    if (year < -300) return 'Pre-Mauryan';
+    if (year < 100) return 'Mauryan';
+    if (year < 600) return 'Gupta Era';
+    if (year < 900) return 'Pallava–Chalukya';
+    if (year < 1200) return 'Chola–Vijayanagara';
+    if (year < 1600) return 'Medieval';
+    if (year < 1900) return 'Mughal–British';
+    return 'Modern';
+  }
+
+  function updateTimeLens(year) {
+    const display = year < 0 ? `${Math.abs(year)} BCE` : `${year} CE`;
+    timeCurrent.innerHTML = `${display}<em>${getEra(year)}</em>`;
+    // Fade temples in/out based on era proximity (decorative)
+    document.querySelectorAll('.temple-star').forEach(s => {
+      // For prototype: just visual flow
+      const random = Math.random();
+      if (year < -500 && random > 0.3) s.style.opacity = '0.2';
+      else if (year < 0 && random > 0.5) s.style.opacity = '0.4';
+      else s.style.opacity = '';
+    });
+  }
+  timeInput.addEventListener('input', (e) => updateTimeLens(parseInt(e.target.value)));
+
+  // ============ SAVE / DIYA ============
+  function toggleSave(templeId) {
+    const idx = savedTemples.indexOf(templeId);
+    if (idx > -1) {
+      savedTemples.splice(idx, 1);
+    } else {
+      savedTemples.push(templeId);
+    }
+    localStorage.setItem('vt_saved', JSON.stringify(savedTemples));
+    updateSavedCount();
+    // Update star visual
+    document.querySelectorAll('.temple-star').forEach(s => {
+      const id = s.getAttribute('data-id');
+      s.classList.toggle('saved', savedTemples.includes(id));
+    });
+    // Re-render current detail
+    if (activeTemple === templeId) selectTemple(templeId);
+  }
+
+  function updateSavedCount() {
+    document.getElementById('savedCount').textContent = savedTemples.length;
+  }
+  updateSavedCount();
+
+  // ============ SAVED MODAL ============
+  function openSavedModal() {
+    const modal = document.getElementById('savedModal');
+    const content = document.getElementById('savedListContent');
+    if (savedTemples.length === 0) {
+      content.innerHTML = `
+        <div class="saved-empty">
+          <div class="saved-empty-glyph">🪔</div>
+          <p>You haven't lit any diyas yet.</p>
+          <p style="font-size:0.85rem;margin-top:0.6rem;font-style:normal;color:var(--text-muted);">Click any temple on the Atlas to begin your map.</p>
+        </div>
+      `;
+    } else {
+      content.innerHTML = `
+        <div class="saved-list">
+          ${savedTemples.map(id => {
+            const t = temples.find(x => x.id === id);
+            if (!t) return '';
+            return `
+              <a href="javascript:void(0)" onclick="closeSavedModal();selectTemple('${t.id}');document.querySelector('.atlas-stage').scrollIntoView({behavior:'smooth'});" class="tour-mini">
+                <div class="tour-mini-name">${t.name}</div>
+                <div class="tour-mini-meta">
+                  <span class="tour-mini-duration">${t.region}</span>
+                  <span class="tour-mini-price">${t.tours.length} tours</span>
+                </div>
+                <div class="tour-mini-cta">
+                  <span>View on Atlas</span>
+                  <span class="tour-mini-cta-arrow">→</span>
+                </div>
+              </a>
+            `;
+          }).join('')}
+        </div>
+      `;
+    }
+    modal.classList.add('visible');
+  }
+  function closeSavedModal(e) {
+    if (e && e.target.id !== 'savedModal') return;
+    document.getElementById('savedModal').classList.remove('visible');
+  }
+  window.openSavedModal = openSavedModal;
+  window.closeSavedModal = closeSavedModal;
+  window.toggleSave = toggleSave;
+  window.selectTemple = selectTemple;
+
+  // ============ STORY SCROLL REVEALS ============
+  const storyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.story-frame').forEach(f => storyObserver.observe(f));
+
+  // ============ INITIAL DEMO ANIMATION ============
+  // After 1 second, gently highlight the Char Dham circuit as a teaser
+  setTimeout(() => {
+    if (!activeCircuit && !activeTemple) {
+      const charDham = circuits.find(c => c.id === 'char-dham');
+      if (charDham) {
+        // Just draw the route, don't select
+        drawCircuitRoute(charDham);
+        // Then fade it after 4s
+        setTimeout(() => {
+          if (!activeCircuit && !activeTemple) clearRoute();
+        }, 4000);
+      }
+    }
+  }, 1500);
+</script>
+
+</body>
+</html>
