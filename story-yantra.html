@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The mathematics of the Sri Yantra · Vedic Trails</title>
+<meta name="description" content="43 triangles, 9 interlocking forms. The most complex sacred diagram ever conceived — and why mathematicians are still studying it." />
+<meta property="og:title" content="The mathematics of the Sri Yantra · Vedic Trails" />
+<meta property="og:description" content="The most complex sacred diagram ever conceived. On what the Sri Yantra actually is, and why mathematicians are still studying it." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --parchment: #F4ECD8; --cream: #FBF6EC; --charcoal: #2A2419;
+  --navy: #1C2845; --gold: #B89455; --muted: rgba(28,40,69,0.55); --border: rgba(184,148,85,0.25);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--charcoal); font-family: 'Cormorant Garamond', Georgia, serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(251,246,236,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between; }
+.nav-brand { font-size: 1.2rem; font-weight: 500; color: var(--navy); }
+.nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: color 0.3s; }
+.nav-back:hover { color: var(--navy); }
+.nav-section { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+/* HERO — no photo, geometric */
+.story-hero {
+  min-height: 75vh; background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 6rem 3rem;
+}
+.story-hero-yantra {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0.07;
+}
+.story-hero-yantra svg { width: min(90vw, 700px); height: auto; }
+.story-hero-content { position: relative; z-index: 2; text-align: center; max-width: 720px; }
+.story-hero-number { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(184,148,85,0.7); margin-bottom: 1.5rem; }
+.story-hero-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.02em; color: #F4ECD8; margin-bottom: 1.5rem; }
+.story-hero-title em { font-style: italic; color: rgba(200,165,95,0.85); }
+.story-hero-sub { font-style: italic; font-size: 1.2rem; color: rgba(244,236,216,0.65); line-height: 1.6; max-width: 520px; margin: 0 auto 2rem; }
+.story-hero-meta { display: flex; align-items: center; justify-content: center; gap: 2rem; }
+.story-hero-meta-item { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(184,148,85,0.65); }
+
+.story-body { max-width: 720px; margin: 0 auto; padding: 6rem 2rem 8rem; }
+.story-lede { font-size: 1.5rem; font-weight: 400; font-style: italic; line-height: 1.5; color: var(--navy); margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+.story-body p { font-size: 1.2rem; line-height: 1.85; color: var(--charcoal); margin-bottom: 1.8rem; font-weight: 300; }
+.story-body p strong { font-weight: 500; color: var(--navy); }
+.story-body h2 { font-size: 1.9rem; font-weight: 400; line-height: 1.15; color: var(--navy); letter-spacing: -0.01em; margin: 3.5rem 0 1.5rem; }
+.story-body h2 em { font-style: italic; }
+.story-pull { margin: 3rem -2rem; padding: 2.5rem 3rem; background: var(--parchment); border-left: 3px solid var(--gold); position: relative; }
+.story-pull::before { content: '\201C'; position: absolute; top: 1rem; left: 2rem; font-size: 6rem; color: rgba(184,148,85,0.12); line-height: 1; }
+.story-pull p { font-size: 1.4rem !important; font-style: italic; color: var(--navy) !important; line-height: 1.55 !important; margin: 0 !important; }
+
+/* Yantra diagram inline */
+.story-yantra {
+  margin: 3rem -2rem;
+  background: var(--navy);
+  padding: 3rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.story-yantra svg { width: min(100%, 480px); height: auto; }
+.story-yantra-caption { font-size: 0.78rem; color: var(--muted); font-style: italic; text-align: center; margin-top: 1rem; }
+
+.story-rule { width: 48px; height: 1px; background: var(--gold); margin: 3rem 0; }
+.story-cta { margin-top: 5rem; padding-top: 3rem; border-top: 1px solid var(--border); text-align: center; }
+.story-cta-eyebrow { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.story-cta-title { font-size: 2rem; font-weight: 400; color: var(--navy); margin-bottom: 0.8rem; }
+.story-cta-title em { font-style: italic; }
+.story-cta-body { font-style: italic; color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; }
+.story-cta-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 1rem 2.2rem; background: linear-gradient(135deg, #1C2845, #0F1832); color: #F4ECD8; border-radius: 999px; font-size: 0.82rem; letter-spacing: 0.08em; font-family: system-ui, sans-serif; font-weight: 600; transition: all 0.3s ease; }
+.story-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(28,40,69,0.3); }
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  .story-body { padding: 4rem 1.5rem 6rem; }
+  .story-pull { margin: 2.5rem -1.5rem; padding: 2rem 2rem; }
+  .story-yantra { margin: 2.5rem -1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="stories.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Stories
+  </a>
+  <div class="nav-brand">Vedic Trails</div>
+  <div class="nav-section">Story 03</div>
+</nav>
+
+<!-- HERO — geometric, no photo -->
+<div class="story-hero">
+  <div class="story-hero-yantra">
+    <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#B89455" fill="none" stroke-width="1.5">
+        <circle cx="350" cy="350" r="290"/>
+        <circle cx="350" cy="350" r="250"/>
+        <circle cx="350" cy="350" r="200"/>
+        <!-- 9 triangles simplified -->
+        <polygon points="350,100 620,540 80,540"/>
+        <polygon points="350,600 80,170 620,170"/>
+        <polygon points="350,140 590,510 110,510"/>
+        <polygon points="350,560 110,210 590,210"/>
+        <polygon points="350,180 560,480 140,480"/>
+        <polygon points="350,520 140,250 560,250"/>
+        <polygon points="350,220 530,450 170,450"/>
+        <polygon points="350,480 170,280 530,280"/>
+        <circle cx="350" cy="350" r="30"/>
+        <circle cx="350" cy="350" r="8" fill="#B89455"/>
+        <!-- Lotus petals outer -->
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(0,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(22.5,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(45,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(67.5,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(90,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(112.5,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(135,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(157.5,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(180,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(202.5,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(225,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(247.5,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(270,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(292.5,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(315,350,350)"/>
+        <ellipse cx="350" cy="90" rx="18" ry="42" transform="rotate(337.5,350,350)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="story-hero-content">
+    <div class="story-hero-number">Story 03 · Sacred Geometry</div>
+    <h1 class="story-hero-title">The mathematics of<br><em>the Sri Yantra</em></h1>
+    <p class="story-hero-sub">43 triangles, 9 interlocking forms, the precise mathematical relationship between the cosmos and the self. What the Sri Yantra actually is — and why mathematicians are still studying it.</p>
+    <div class="story-hero-meta">
+      <div class="story-hero-meta-item">Sacred Geometry · Tantra</div>
+      <div class="story-hero-meta-item">9 min read</div>
+    </div>
+  </div>
+</div>
+
+<div class="story-body">
+
+  <p class="story-lede">The Sri Yantra — the sacred diagram at the centre of our navigation on this website — is not a decorative pattern. It is a precise geometric statement about the structure of the universe, constructed according to rules that are still not fully understood, encoding relationships between the divine feminine and masculine principles that can be expressed as mathematical ratios, and functioning as an object of meditation whose contemplation is said to produce specific effects on the mind.</p>
+
+  <p>It has been constructed and used continuously for at least 1,500 years. Possibly much longer — the tradition claims it was always known, which is the kind of claim that is impossible to verify and unwise to dismiss entirely.</p>
+
+  <h2>What it is, precisely</h2>
+
+  <p>The Sri Yantra consists of nine interlocking triangles arranged around a central point called the <em>bindu</em>. Four of the triangles point upward — representing Shiva, the masculine principle. Five point downward — representing Shakti, the feminine principle. The interlocking of these nine triangles creates <strong>43 smaller triangles</strong> that together map the universe in a specific hierarchical way.</p>
+
+  <p>Around these 43 triangles are two lotus arrangements — an inner ring of 8 petals, an outer ring of 16. Around those are three concentric circles, and around those a square frame with four openings, called the <em>bhupura</em> (earth boundary), which represents the temple gates in the four directions.</p>
+
+  <div class="story-yantra">
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <rect width="500" height="500" fill="#1C2845"/>
+      <g transform="translate(250,250)" stroke="#B89455" fill="none" stroke-width="1.2" opacity="0.8">
+        <!-- Bhupura -->
+        <rect x="-200" y="-200" width="400" height="400"/>
+        <rect x="-188" y="-188" width="376" height="376"/>
+        <!-- Gate marks -->
+        <line x1="-200" y1="-30" x2="-220" y2="-30"/>
+        <line x1="-200" y1="30" x2="-220" y2="30"/>
+        <line x1="200" y1="-30" x2="220" y2="-30"/>
+        <line x1="200" y1="30" x2="220" y2="30"/>
+        <line x1="-30" y1="-200" x2="-30" y2="-220"/>
+        <line x1="30" y1="-200" x2="30" y2="-220"/>
+        <line x1="-30" y1="200" x2="-30" y2="220"/>
+        <line x1="30" y1="200" x2="30" y2="220"/>
+        <!-- Outer circles -->
+        <circle cx="0" cy="0" r="178"/>
+        <circle cx="0" cy="0" r="162"/>
+        <circle cx="0" cy="0" r="148"/>
+        <!-- 16 outer lotus petals -->
+        <g opacity="0.6">
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(22.5)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(67.5)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(112.5)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(157.5)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(202.5)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(247.5)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(292.5)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(315)"/>
+          <ellipse cx="0" cy="-155" rx="11" ry="24" transform="rotate(337.5)"/>
+        </g>
+        <!-- 8 inner lotus petals -->
+        <g opacity="0.7">
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(0)"/>
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(45)"/>
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(90)"/>
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(135)"/>
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(180)"/>
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(225)"/>
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(270)"/>
+          <ellipse cx="0" cy="-120" rx="9" ry="20" transform="rotate(315)"/>
+        </g>
+        <!-- 9 interlocking triangles -->
+        <!-- 4 upward (Shiva) -->
+        <polygon points="0,-98, 85,49, -85,49" stroke="#C9A961" stroke-width="1.4"/>
+        <polygon points="0,-75, 65,37, -65,37"/>
+        <polygon points="0,-52, 45,26, -45,26"/>
+        <polygon points="0,-30, 26,15, -26,15"/>
+        <!-- 5 downward (Shakti) -->
+        <polygon points="0,98, -85,-49, 85,-49" stroke="#A8312A" stroke-width="1.4"/>
+        <polygon points="0,75, -65,-37, 65,-37"/>
+        <polygon points="0,52, -45,-26, 45,-26"/>
+        <polygon points="0,30, -26,-15, 26,-15"/>
+        <polygon points="0,15, -13,-8, 13,-8"/>
+        <!-- Bindu -->
+        <circle cx="0" cy="0" r="5" fill="#E6C77A" stroke="none"/>
+        <circle cx="0" cy="0" r="12"/>
+      </g>
+    </svg>
+    <div class="story-yantra-caption">The Sri Yantra — 9 interlocking triangles, 43 subsidiary triangles, the bindu at the centre</div>
+  </div>
+
+  <h2>The mathematical problem</h2>
+
+  <p>Constructing a geometrically perfect Sri Yantra — one in which all 43 triangles share their vertices precisely, with no gaps or overlaps — is an unsolved problem in Euclidean geometry. The constraints imposed by the traditional design are so numerous and so precise that constructing a perfect Sri Yantra by ruler and compass alone requires satisfying a set of simultaneous geometric conditions that cannot all be satisfied exactly.</p>
+
+  <p>In practice, every drawn Sri Yantra contains small compromises. Traditional craftsmen knew this, and different schools of sacred geometry handled the compromises in different ways — some accepting near-perfect solutions, others applying additional rules about which constraints took priority. A paper published in the American Mathematical Monthly in 1985 attempted to quantify the geometric constraints of the Sri Yantra. It could not resolve them completely.</p>
+
+  <div class="story-pull"><p>"The Sri Yantra may be the only sacred object in any world tradition that has been the subject of serious mathematical analysis in peer-reviewed mathematics journals. Not as a historical curiosity. As an unsolved problem."</p></div>
+
+  <h2>What it represents</h2>
+
+  <p>In the Shakta Tantric tradition, the Sri Yantra is understood as a <strong>map of the universe</strong> from the inside outward. The bindu at the centre is the point of creation — Shakti in her most concentrated form, before manifestation. Moving outward through the concentric rings, each layer represents a successively more expanded, more material state of existence. The outermost square is the physical world. The innermost point is the self.</p>
+
+  <p>The meditator's task — in the Tantric practice built around the Sri Yantra — is to move inward through the layers in reverse order, from the material world back to the bindu, which is simultaneously the centre of the diagram and the centre of their own awareness. The Sri Yantra is not an object to be worshipped from outside. It is a map of an interior journey.</p>
+
+  <p>This is why the 43 triangles are not arbitrary. Each one corresponds to a specific state of consciousness, a specific deity, a specific quality of mind. The tradition contains detailed texts mapping each triangle to a specific <em>shakti</em> — each with her own name, colour, mantra, and quality. The outer layers are gross and obvious. The inner layers become increasingly subtle and difficult to distinguish. The bindu at the centre is beyond description.</p>
+
+  <h2>Why we use it</h2>
+
+  <p>When we built the navigation system for this website — the atlas that maps the sacred sites of India — the Sri Yantra was the obvious choice. Not as decoration. Because it is exactly what we needed: a system that moves from the periphery to the centre, that encodes within it the idea that every sacred site is part of a larger pattern, and that the pattern points toward something singular and concentrated at its core.</p>
+
+  <p>The 16 outer lotus petals in our version map to 16 destinations. The 8 inner petals map to 8 regions. The 9 interlocking triangles at the centre map to 9 signature circuits — the deep journeys that we think are the most complete expressions of pilgrimage in India. The bindu at the very centre is the intention you bring to any of them.</p>
+
+  <p>We thought this was a clever design choice. The more we worked with it, the more we thought it was simply the correct one.</p>
+
+  <div class="story-rule"></div>
+
+  <p>The Sri Yantra has been in continuous use for at least 1,500 years. The traditions that use it believe it has been in use forever — that it was always known, that it encodes truths about the structure of consciousness that do not change. The mathematicians who study it have not resolved its geometric problem. The meditators who work with it report that the resolution comes from the inside.</p>
+
+  <div class="story-cta">
+    <div class="story-cta-eyebrow">Explore the atlas</div>
+    <h3 class="story-cta-title">The Sacred <em>Atlas</em></h3>
+    <p class="story-cta-body">The Sri Yantra navigation on our homepage maps all 38 sacred sites and 9 pilgrimage circuits of India. Click any petal, triangle, or temple to begin.</p>
+    <a href="vedic-trails-homepage-v20.html#sacred-geography" class="story-cta-btn">Open the atlas →</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>What it means to die in Kashi · Vedic Trails</title>
+<meta name="description" content="The most auspicious place to die on earth. On Manikarnika Ghat, the eternal fire, and what it means to be liberated." />
+<meta property="og:title" content="What it means to die in Kashi · Vedic Trails" />
+<meta property="og:description" content="35,000 people come to Kashi every year specifically to die here. On Manikarnika Ghat and what moksha actually means." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1600261669797-1bb7b27939be?w=1200&q=80" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --parchment: #F4ECD8; --cream: #FBF6EC; --charcoal: #2A2419;
+  --navy: #1C2845; --ink: #0F1832; --gold: #B89455;
+  --terracotta: #A8312A; --muted: rgba(28,40,69,0.55); --border: rgba(184,148,85,0.25);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--charcoal); font-family: 'Cormorant Garamond', Georgia, serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(251,246,236,0.96); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { font-size: 1.2rem; font-weight: 500; color: var(--navy); }
+.nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); transition: color 0.3s; }
+.nav-back:hover { color: var(--navy); }
+.nav-section { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+/* HERO */
+.story-hero {
+  position: relative; min-height: 75vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.story-hero-img {
+  position: absolute; inset: 0;
+}
+.story-hero-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: sepia(0.3) contrast(1.1) brightness(0.7);
+}
+.story-hero-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,24,50,0.92) 0%, rgba(15,24,50,0.4) 50%, rgba(15,24,50,0.1) 100%);
+}
+.story-hero-content {
+  position: relative; z-index: 2;
+  padding: 5rem 3rem;
+  max-width: 820px;
+}
+.story-hero-number {
+  font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(184,148,85,0.8); margin-bottom: 1.2rem;
+}
+.story-hero-title {
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 300; line-height: 1.0; letter-spacing: -0.025em;
+  color: #F4ECD8; margin-bottom: 1.2rem;
+}
+.story-hero-title em { font-style: italic; color: rgba(200,165,95,0.9); }
+.story-hero-sub {
+  font-style: italic; font-size: 1.25rem; color: rgba(244,236,216,0.7);
+  line-height: 1.55; max-width: 560px;
+}
+.story-hero-meta {
+  margin-top: 2rem; display: flex; align-items: center; gap: 2rem;
+}
+.story-hero-meta-item { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(184,148,85,0.7); }
+
+/* BODY */
+.story-body {
+  max-width: 720px; margin: 0 auto;
+  padding: 6rem 2rem 8rem;
+}
+.story-lede {
+  font-size: 1.55rem; font-weight: 400; font-style: italic;
+  line-height: 1.5; color: var(--navy);
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+.story-body p {
+  font-size: 1.2rem; line-height: 1.85;
+  color: var(--charcoal); margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+.story-body p strong { font-weight: 500; color: var(--navy); }
+.story-body h2 {
+  font-size: 1.9rem; font-weight: 400; line-height: 1.15;
+  color: var(--navy); letter-spacing: -0.01em;
+  margin: 3.5rem 0 1.5rem;
+}
+.story-body h2 em { font-style: italic; }
+
+/* Image */
+.story-image {
+  width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; margin: 3rem 0;
+  position: relative;
+}
+.story-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block; filter: sepia(0.2) contrast(1.05);
+}
+.story-image-caption {
+  font-size: 0.78rem; color: var(--muted);
+  font-style: italic; margin-top: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+/* Image placeholder */
+.story-image-placeholder {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--parchment); border: 1px solid var(--border);
+  margin: 3rem 0; display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 0.8rem;
+}
+.story-image-placeholder span {
+  font-style: italic; font-size: 0.9rem; color: var(--muted);
+}
+
+/* Pull quote */
+.story-pull {
+  margin: 3rem -2rem; padding: 2.5rem 3rem;
+  background: var(--parchment);
+  border-left: 3px solid var(--gold);
+  position: relative;
+}
+.story-pull::before {
+  content: '\201C'; position: absolute; top: 1rem; left: 2rem;
+  font-size: 6rem; color: rgba(184,148,85,0.12); line-height: 1;
+}
+.story-pull p {
+  font-size: 1.4rem !important; font-style: italic;
+  color: var(--navy) !important; line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+/* Rule */
+.story-rule {
+  width: 48px; height: 1px; background: var(--gold);
+  margin: 3rem 0;
+}
+
+/* CTA */
+.story-cta {
+  margin-top: 5rem; padding-top: 3rem; border-top: 1px solid var(--border);
+  text-align: center;
+}
+.story-cta-eyebrow { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.story-cta-title { font-size: 2rem; font-weight: 400; color: var(--navy); margin-bottom: 0.8rem; line-height: 1.15; }
+.story-cta-title em { font-style: italic; }
+.story-cta-body { font-style: italic; color: var(--muted); font-size: 1.05rem; margin-bottom: 2rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+.story-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 1rem 2.2rem;
+  background: linear-gradient(135deg, #1C2845, #0F1832);
+  color: #F4ECD8; border-radius: 999px;
+  font-size: 0.82rem; letter-spacing: 0.08em; font-family: system-ui, sans-serif; font-weight: 600;
+  transition: all 0.3s ease;
+}
+.story-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(28,40,69,0.3); }
+
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  .story-hero-content { padding: 4rem 1.5rem; }
+  .story-body { padding: 4rem 1.5rem 6rem; }
+  .story-pull { margin: 2.5rem -1.5rem; padding: 2rem 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="stories.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Stories
+  </a>
+  <div class="nav-brand">Vedic Trails</div>
+  <div class="nav-section">Story 01</div>
+</nav>
+
+<!-- HERO -->
+<div class="story-hero">
+  <div class="story-hero-img">
+    <img src="https://images.unsplash.com/photo-1600261669797-1bb7b27939be?w=1400&q=85&fit=crop" alt="Varanasi ghats at dawn" />
+  </div>
+  <div class="story-hero-content">
+    <div class="story-hero-number">Story 01 · Kashi</div>
+    <h1 class="story-hero-title">What it means to<br><em>die in Kashi</em></h1>
+    <p class="story-hero-sub">The most auspicious place to die on earth — and why 35,000 people come here every year specifically for that purpose.</p>
+    <div class="story-hero-meta">
+      <div class="story-hero-meta-item">Varanasi · Uttar Pradesh</div>
+      <div class="story-hero-meta-item">8 min read</div>
+    </div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="story-body">
+
+  <p class="story-lede">Every day in Varanasi, between 80 and 100 bodies are cremated on the two burning ghats — Manikarnika and Harishchandra. The fires have not gone out for over 3,000 years. The city does not pause. The river does not care. The smoke rises into the early morning light and the boatmen row through it without expression.</p>
+
+  <p>There is a word in Sanskrit — <strong>Kashi</strong> — that means "the city of light." Varanasi has had this name since before its other names were recorded. It is one of the oldest continuously inhabited cities on earth, possibly the oldest. Mark Twain, who visited in 1896, wrote that Varanasi was "older than history, older than tradition, older even than legend, and looks twice as old as all of them put together." He was not wrong.</p>
+
+  <p>What brings people here — what has always brought people here — is not quite what brings them to other sacred cities. Pilgrims come to Tirupati to see God. They come to Char Dham to complete a duty. They come to Varanasi to <strong>die</strong>.</p>
+
+  <div class="story-pull"><p>"To die in Kashi is to receive moksha — liberation from the cycle of birth and death — directly from the lips of Shiva himself. This is not a metaphor. Kashi Vishwanath whispers the Taraka mantra into the ear of the dying. The liberation is immediate."</p></div>
+
+  <h2>What moksha actually means</h2>
+
+  <p>The Sanskrit word <em>moksha</em> is usually translated as "liberation" or "salvation," which gives it a Christian resonance it doesn't quite deserve. Moksha in the Hindu framework is liberation specifically from <strong>samsara</strong> — the endless cycle of death and rebirth. Every living being, in this understanding, has been dying and being reborn for an incalculable number of lifetimes, accumulating karma, exhausting it, accumulating more. Moksha is the exit from this cycle. Not heaven. Not paradise. Exit.</p>
+
+  <p>The Kashi Khanda — a text that describes the sacred geography and theology of Varanasi in considerable detail — is specific about what happens here. Shiva himself is said to reside in Kashi in a particular way, not just as the deity enshrined at Kashi Vishwanath but as the city itself. When someone dies in Kashi, Shiva personally whispers the Taraka mantra — a specific sacred syllable — into their ear. This act grants them moksha regardless of what karma they have accumulated. It cancels the debt.</p>
+
+  <p>This is why the dying come here. Not symbolically — actually. The hospices of Varanasi, called <em>mumukshubhavans</em> (houses of those who desire liberation), receive between 10,000 and 35,000 people annually who have come specifically to die here. They may stay for days, weeks, or months. Some arrive already dying. Some arrive healthy and wait. The hospice operators have a phrase for the state their guests are in: <em>mumukshu</em> — one who desires liberation above all other desires.</p>
+
+  <div class="story-image">
+    <img src="https://images.unsplash.com/photo-dz42hvd61BE?w=1400&q=85&fit=crop" alt="Boats on the Ganges at Varanasi" loading="lazy" />
+    <div class="story-image-caption">The Ganges at Varanasi — Photo: Srivatsan Balaji / Unsplash</div>
+  </div>
+
+  <h2>The eternal fire of Manikarnika</h2>
+
+  <p>Manikarnika Ghat takes its name from the earring — <em>manikarnika</em> — of Sati, which is said to have fallen here when Vishnu dismembered her body to free Shiva from grief. The site is therefore simultaneously a cremation ground and a Shakti Peetha — a place of enormous sacred power, the physical location of the goddess's continued presence in the earth.</p>
+
+  <p>The fire here has not been extinguished for over 3,500 years, by the account of the Dom family who tend it. The Doms — a hereditary community associated with death rituals across South Asia — have maintained the sacred fire at Manikarnika across generations whose count they have lost. Every cremation fire at Manikarnika is lit from this central flame. No family brings their own fire. They take it from the eternal source.</p>
+
+  <p>Approximately 80-100 cremations happen at Manikarnika every day. The work is continuous. There are no breaks for festivals, no breaks for monsoon, no breaks for any reason. The wood — sandalwood for those who can afford it, mango wood otherwise — is stacked in enormous quantities along the ghat and sold by weight. The Dom family controls this trade. It is their hereditary right and their hereditary duty simultaneously.</p>
+
+  <div class="story-pull"><p>"Photography is not permitted at Manikarnika. Not because of a rule but because of an understanding. You are watching someone's last moment. You are watching a family in its most private hour. The fire is not a spectacle."</p></div>
+
+  <h2>The city that refuses to grieve</h2>
+
+  <p>What is most striking to first-time visitors at Manikarnika — more than the fire, more than the smoke, more than the bodies — is the atmosphere. There is no grief. Or rather, there is grief, but it exists alongside something that is not grief. The city treats death the way other cities treat weather. It is present. It is part of what the day contains. The boats pass. The silk merchants sell their wares three hundred metres away. Children play on the adjacent ghats. The parrots nest in the abandoned buildings above the burning ground.</p>
+
+  <p>This is not callousness. This is what happens when an entire city has organised its spiritual life around the understanding that death is not the end — it is the point. The body is not the person. The burning is a ceremony of release, not loss. The soul that was temporarily housed in that particular body is now moving on, and if it moved on at Manikarnika, it is moving on to moksha. There is, in this framework, nothing to grieve about.</p>
+
+  <p>Whether you find this comforting or disturbing or both probably says something about your own relationship with mortality. The city does not care which. It has been here since before philosophy was a word, and it will be here when philosophy has been forgotten.</p>
+
+  <div class="story-rule"></div>
+
+  <p>If you go to Varanasi — and you should — go to Manikarnika at dawn. Take a boat. Do not photograph. Watch the smoke rise into the first light over the Ganges. Try to be honest with yourself about what you are watching and why it moves you.</p>
+
+  <p>The correct response to Manikarnika is not reverence. It is not discomfort. It is something more like recognition — that this city has been doing something that all of us are doing, just more honestly. We are all, eventually, wood for someone else's fire. Kashi simply says this out loud.</p>
+
+  <div class="story-cta">
+    <div class="story-cta-eyebrow">Plan this journey</div>
+    <h3 class="story-cta-title">Kashi &amp; <em>Ayodhya</em></h3>
+    <p class="story-cta-body">Five days in Varanasi — the dawn boat, Manikarnika at first light, the Kashi Vishwanath corridor, Sarnath, and Ayodhya.</p>
+    <a href="tour-kashi.html" class="story-cta-btn">View the itinerary →</a>
+  </div>
+
+</div>
+
+</body>
+</html>

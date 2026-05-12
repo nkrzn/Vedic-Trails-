@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stories · Vedic Trails</title>
+<meta name="description" content="Editorial writing from the sacred geography of India. What it means to die in Kashi. Why 50,000 people go to Tirupati every day. The mathematics of the Sri Yantra." />
+<meta property="og:title" content="Stories · Vedic Trails" />
+<meta property="og:description" content="Editorial writing from the sacred geography of India." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1600261669797-1bb7b27939be?w=1200&q=80" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --parchment: #F4ECD8;
+  --cream: #FBF6EC;
+  --charcoal: #2A2419;
+  --navy: #1C2845;
+  --ink: #0F1832;
+  --gold: #B89455;
+  --brass: #C9A961;
+  --terracotta: #A8312A;
+  --muted: rgba(28,40,69,0.55);
+  --border: rgba(184,148,85,0.25);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(251,246,236,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { font-size: 1.3rem; font-weight: 500; color: var(--navy); letter-spacing: 0.02em; }
+.nav-back {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); transition: color 0.3s;
+}
+.nav-back:hover { color: var(--navy); }
+.nav-section { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+
+/* HEADER */
+.stories-header {
+  padding: 7rem 3rem 5rem;
+  max-width: 900px; margin: 0 auto; text-align: center;
+}
+.stories-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.stories-eyebrow::before, .stories-eyebrow::after {
+  content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+}
+.stories-title {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300; line-height: 1.0; letter-spacing: -0.02em;
+  color: var(--navy); margin-bottom: 1.5rem;
+}
+.stories-title em { font-style: italic; color: var(--gold); opacity: 0.8; }
+.stories-sub {
+  font-style: italic; font-size: 1.25rem; color: var(--muted);
+  line-height: 1.6; max-width: 560px; margin: 0 auto;
+}
+
+/* STORY GRID */
+.stories-grid {
+  max-width: 1100px; margin: 0 auto;
+  padding: 3rem 3rem 8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.story-card {
+  border-right: 1px solid var(--border);
+  padding: 3rem 2.5rem;
+  display: flex; flex-direction: column;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+.story-card:last-child { border-right: none; }
+.story-card:hover { background: rgba(184,148,85,0.04); }
+
+.story-card-image {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  background: var(--parchment);
+  position: relative;
+}
+.story-card-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+  filter: sepia(0.15) contrast(1.05);
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.story-card:hover .story-card-image img { transform: scale(1.04); }
+
+/* Image placeholder */
+.story-card-image-placeholder {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.story-card-image-placeholder-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 4rem; color: rgba(184,148,85,0.25); line-height: 1;
+}
+
+.story-card-number {
+  font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+}
+.story-card-title {
+  font-size: 1.7rem; font-weight: 400; line-height: 1.1;
+  letter-spacing: -0.01em; color: var(--navy);
+  margin-bottom: 1rem;
+}
+.story-card-title em { font-style: italic; }
+.story-card-excerpt {
+  font-style: italic; font-size: 1rem; color: var(--muted);
+  line-height: 1.65; margin-bottom: 1.5rem; flex: 1;
+}
+.story-card-meta {
+  font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: 0.5rem;
+}
+.story-card-meta::after { content: '→'; }
+
+@media (max-width: 900px) {
+  .stories-grid { grid-template-columns: 1fr; }
+  .story-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .nav { padding: 1rem 1.5rem; }
+  .stories-header { padding: 5rem 1.5rem 3rem; }
+  .stories-grid { padding: 2rem 1.5rem 6rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="vedic-trails-homepage-v20.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Home
+  </a>
+  <div class="nav-brand">Vedic Trails</div>
+  <div class="nav-section">Stories</div>
+</nav>
+
+<div class="stories-header">
+  <div class="stories-eyebrow">Editorial</div>
+  <h1 class="stories-title">Writing from<br><em>sacred India</em></h1>
+  <p class="stories-sub">Three pieces on the places, traditions, and ideas that make sacred India one of the most intellectually alive geographies on earth.</p>
+</div>
+
+<div class="stories-grid">
+
+  <a href="story-kashi.html" class="story-card">
+    <div class="story-card-image">
+      <img src="https://images.unsplash.com/photo-1600261669797-1bb7b27939be?w=800&q=80&fit=crop" alt="Varanasi ghats at dawn" loading="lazy" />
+    </div>
+    <div class="story-card-number">Story 01</div>
+    <h2 class="story-card-title">What it means to<br><em>die in Kashi</em></h2>
+    <p class="story-card-excerpt">The most auspicious place to die on earth — and why 35,000 people come here every year specifically for that purpose. On Manikarnika Ghat, the eternal fire, and what it means to be liberated.</p>
+    <div class="story-card-meta">Read the story</div>
+  </a>
+
+  <a href="story-tirupati.html" class="story-card">
+    <div class="story-card-image">
+      <img src="https://images.unsplash.com/photo-MSJ0h0iXZ7o?w=800&q=80&fit=crop" alt="Tirupati Tirumala temple aerial" loading="lazy" />
+    </div>
+    <div class="story-card-number">Story 02</div>
+    <h2 class="story-card-title">Why 50,000 people go to<br><em>Tirupati every day</em></h2>
+    <p class="story-card-excerpt">More visitors than the Vatican, Mecca, and Jerusalem combined. The most visited sacred site on earth is in a small hill town in Andhra Pradesh. On scale, devotion, and what happens when faith operates at this magnitude.</p>
+    <div class="story-card-meta">Read the story</div>
+  </a>
+
+  <a href="story-yantra.html" class="story-card">
+    <div class="story-card-image-placeholder">
+      <div class="story-card-image-placeholder-glyph">ॐ</div>
+    </div>
+    <div class="story-card-number">Story 03</div>
+    <h2 class="story-card-title">The mathematics of<br><em>the Sri Yantra</em></h2>
+    <p class="story-card-excerpt">The most complex sacred diagram ever conceived — 43 triangles, 9 interlocking forms, the precise mathematical relationship between the cosmos and the self. On what the Sri Yantra actually is, and why mathematicians are still studying it.</p>
+    <div class="story-card-meta">Read the story</div>
+  </a>
+
+</div>
+
+</body>
+</html>
