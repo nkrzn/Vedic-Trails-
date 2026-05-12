@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Atlas of Sacred Anomalies · Vedic Trails</title>
+<meta name="description" content="Eight coordinates across India where geology, mythology, and sacred tradition converge in ways that resist easy explanation. An expedition archive by Vedic Trails." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   ATLAS OF SACRED ANOMALIES
+   Dark mineral · Expedition archive · Sacred cartography
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ash:       #1A1812;
+  --charcoal:  #221F18;
+  --carbon:    #2C2820;
+  --slate:     #3A3528;
+  --dust:      #7A7060;
+  --faded:     #9A8E7A;
+  --parchment: #C8B898;
+  --cream:     #D8C8A8;
+  --brass:     #8A7040;
+  --gold:      #A88848;
+  --tarnish:   #6A5830;
+  --ember:     #8A3820;
+  --copper:    #A04828;
+  --red:       #7A2818;
+  --ink:       #181410;
+  --paper:     #E8D8B8;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ash);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── NOISE TEXTURE OVERLAY ─────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.55;
+}
+
+/* ── NAV ───────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: linear-gradient(to bottom, rgba(26,24,18,0.98) 0%, rgba(26,24,18,0) 100%);
+}
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--dust);
+  transition: color 0.3s;
+}
+.nav-back:hover { color: var(--parchment); }
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--parchment);
+  letter-spacing: 0.05em;
+}
+.nav-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dust);
+}
+
+/* ── COVER ─────────────────────────────────────────────────── */
+.cover {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 8rem 6rem;
+  overflow: hidden;
+}
+.cover-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 65% 40%, rgba(90,70,30,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 80% at 80% 60%, rgba(138,56,32,0.07) 0%, transparent 60%),
+    linear-gradient(160deg, #1A1812 0%, #221F18 40%, #1E1B14 100%);
+}
+/* Topographic lines */
+.cover-topo {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 34px,
+      rgba(168,136,72,0.8) 34px,
+      rgba(168,136,72,0.8) 35px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 34px,
+      rgba(168,136,72,0.3) 34px,
+      rgba(168,136,72,0.3) 35px
+    );
+}
+.cover-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+.cover-classification {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.cover-classification-line {
+  width: 48px;
+  height: 1px;
+  background: var(--brass);
+}
+.cover-classification-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.cover-index {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--tarnish);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+.cover-title {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+.cover-title em {
+  font-style: italic;
+  color: var(--parchment);
+  opacity: 0.7;
+}
+.cover-subtitle {
+  font-style: italic;
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: var(--faded);
+  line-height: 1.5;
+  max-width: 520px;
+  margin-bottom: 3rem;
+}
+.cover-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.cover-meta-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: var(--dust);
+  text-transform: uppercase;
+}
+.cover-meta-item span {
+  display: block;
+  color: var(--parchment);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  letter-spacing: 0.05em;
+}
+.cover-scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 4rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  writing-mode: vertical-rl;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.cover-scroll-hint::before {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: var(--tarnish);
+}
+
+/* ── INTRODUCTION ──────────────────────────────────────────── */
+.introduction {
+  padding: 8rem 6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+}
+.introduction-coordinates {
+  position: sticky;
+  top: 6rem;
+}
+.intro-coord-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  margin-bottom: 2rem;
+}
+.intro-coord-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--dust);
+  line-height: 2.2;
+  letter-spacing: 0.05em;
+}
+.intro-coord-item.active { color: var(--parchment); }
+.intro-coord-number {
+  color: var(--tarnish);
+  margin-right: 0.8rem;
+}
+.intro-body h2 {
+  font-size: 2.6rem;
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 2rem;
+  letter-spacing: -0.015em;
+}
+.intro-body h2 em { font-style: italic; color: var(--parchment); opacity: 0.75; }
+.intro-body p {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--faded);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+.intro-body p strong {
+  color: var(--cream);
+  font-weight: 400;
+}
+.intro-rule {
+  width: 48px;
+  height: 1px;
+  background: var(--brass);
+  margin: 2.5rem 0;
+}
+.intro-note {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--tarnish);
+  line-height: 1.7;
+  border-left: 1px solid var(--slate);
+  padding-left: 1.2rem;
+}
+
+/* ── ANOMALY ENTRIES ───────────────────────────────────────── */
+.anomalies {
+  padding: 0 0 10rem;
+}
+
+.anomaly {
+  position: relative;
+  border-top: 1px solid rgba(90,80,50,0.3);
+  padding: 7rem 6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.anomaly:last-child { border-bottom: 1px solid rgba(90,80,50,0.3); }
+
+/* alternating layout */
+.anomaly:nth-child(even) {
+  grid-template-columns: 1fr 280px;
+}
+.anomaly:nth-child(even) .anomaly-sidebar {
+  order: 2;
+}
+.anomaly:nth-child(even) .anomaly-main {
+  order: 1;
+}
+
+/* Entry number watermark */
+.anomaly-number {
+  position: absolute;
+  top: 4rem;
+  right: 5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 9rem;
+  font-weight: 300;
+  color: rgba(90,80,50,0.08);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+.anomaly:nth-child(even) .anomaly-number {
+  right: auto;
+  left: 5rem;
+}
+
+/* Sidebar */
+.anomaly-sidebar {
+  position: sticky;
+  top: 6rem;
+}
+.anomaly-index {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  margin-bottom: 0.6rem;
+}
+.anomaly-coords {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--parchment);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+.anomaly-elevation {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--dust);
+  letter-spacing: 0.08em;
+  margin-bottom: 2.5rem;
+}
+.anomaly-phenomenon {
+  margin-bottom: 2.5rem;
+}
+.anomaly-phenomenon-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  margin-bottom: 0.6rem;
+}
+.anomaly-phenomenon-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--brass);
+  border: 1px solid rgba(138,112,64,0.4);
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  margin: 0.2rem 0.2rem 0 0;
+}
+.anomaly-field-notes {
+  border-top: 1px solid rgba(90,80,50,0.3);
+  padding-top: 1.8rem;
+}
+.anomaly-field-notes-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  margin-bottom: 0.8rem;
+}
+.anomaly-field-notes-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--dust);
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+.anomaly-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+  border-bottom: 1px solid rgba(138,112,64,0.35);
+  padding-bottom: 0.2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.anomaly-cta:hover { color: var(--gold); border-bottom-color: var(--gold); }
+.anomaly-cta::after { content: '→'; transition: transform 0.3s ease; }
+.anomaly-cta:hover::after { transform: translateX(4px); }
+
+/* Main content */
+.anomaly-main {}
+.anomaly-title {
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+.anomaly-title em {
+  font-style: italic;
+  color: var(--parchment);
+  opacity: 0.65;
+}
+.anomaly-region {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dust);
+  margin-bottom: 2.5rem;
+}
+
+.anomaly-lede {
+  font-size: 1.45rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--parchment);
+  line-height: 1.55;
+  margin-bottom: 2.5rem;
+  opacity: 0.85;
+}
+
+.anomaly-body p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--faded);
+  margin-bottom: 1.4rem;
+}
+.anomaly-body p strong {
+  color: var(--cream);
+  font-weight: 400;
+}
+
+.anomaly-pull {
+  margin: 2.5rem 0;
+  padding: 1.8rem 2rem 1.8rem 2rem;
+  border-left: 2px solid var(--tarnish);
+  position: relative;
+}
+.anomaly-pull::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5rem;
+  color: rgba(106,88,48,0.15);
+  line-height: 1;
+}
+.anomaly-pull p {
+  font-size: 1.25rem !important;
+  font-style: italic;
+  color: var(--parchment) !important;
+  line-height: 1.6 !important;
+  opacity: 0.8;
+}
+
+/* Visited by strip */
+.anomaly-visitors {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(90,80,50,0.25);
+}
+.anomaly-visitors-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  margin-bottom: 0.8rem;
+}
+.anomaly-visitors-names {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.0rem;
+  color: var(--dust);
+  line-height: 1.8;
+}
+
+/* Visual marker — the anomaly glyph */
+.anomaly-glyph {
+  display: block;
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 1.6rem;
+  color: var(--tarnish);
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+/* Topographic SVG for each entry */
+.anomaly-topo {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 2rem;
+  opacity: 0.5;
+}
+
+/* ── SECTION DIVIDER ───────────────────────────────────────── */
+.section-divider {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-top: 1px solid rgba(90,80,50,0.2);
+  border-bottom: 1px solid rgba(90,80,50,0.2);
+  margin: 0 6rem;
+}
+.section-divider-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 2rem;
+  color: var(--tarnish);
+  margin-bottom: 1rem;
+}
+.section-divider-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+}
+
+/* ── CTA FOOTER ────────────────────────────────────────────── */
+.atlas-footer {
+  padding: 10rem 6rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.atlas-footer-eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  margin-bottom: 2rem;
+}
+.atlas-footer-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--cream);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.atlas-footer-title em { font-style: italic; color: var(--parchment); opacity: 0.65; }
+.atlas-footer-body {
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--faded);
+  max-width: 520px;
+  margin: 0 auto 3rem;
+  line-height: 1.65;
+}
+.atlas-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.atlas-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.1rem 2.4rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  text-decoration: none;
+}
+.atlas-footer-btn-primary {
+  background: var(--parchment);
+  color: var(--ash);
+  border: 1px solid var(--parchment);
+}
+.atlas-footer-btn-primary:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+.atlas-footer-btn-outline {
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid rgba(200,184,152,0.35);
+}
+.atlas-footer-btn-outline:hover {
+  border-color: var(--parchment);
+  background: rgba(200,184,152,0.05);
+}
+
+/* ── BOTTOM NAV ────────────────────────────────────────────── */
+.bottom-nav {
+  border-top: 1px solid rgba(90,80,50,0.25);
+  padding: 2rem 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bottom-nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--dust);
+}
+.bottom-nav-links {
+  display: flex;
+  gap: 2rem;
+}
+.bottom-nav-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tarnish);
+  transition: color 0.3s;
+}
+.bottom-nav-links a:hover { color: var(--parchment); }
+
+/* ── SCROLL ANIMATIONS ─────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* ── RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .cover { padding: 0 0 7rem 4rem; }
+  .introduction { padding: 6rem 4rem; gap: 4rem; }
+  .anomaly { padding: 6rem 4rem; gap: 3.5rem; }
+  .section-divider { margin: 0 4rem; }
+  .atlas-footer { padding: 8rem 4rem; }
+  .bottom-nav { padding: 2rem 4rem; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 1.2rem 1.5rem; }
+  .cover { padding: 0 0 6rem 1.5rem; }
+  .cover-title { font-size: clamp(3rem, 13vw, 5rem); }
+  .cover-meta-row { flex-wrap: wrap; gap: 1.2rem; }
+  .cover-scroll-hint { display: none; }
+  .introduction {
+    grid-template-columns: 1fr;
+    padding: 4rem 1.5rem;
+    gap: 3rem;
+  }
+  .introduction-coordinates { position: static; }
+  .anomaly {
+    grid-template-columns: 1fr;
+    padding: 4rem 1.5rem;
+    gap: 2.5rem;
+  }
+  .anomaly:nth-child(even) { grid-template-columns: 1fr; }
+  .anomaly:nth-child(even) .anomaly-sidebar,
+  .anomaly:nth-child(even) .anomaly-main { order: unset; }
+  .anomaly-sidebar { position: static; }
+  .anomaly-number { display: none; }
+  .section-divider { margin: 0 1.5rem; }
+  .atlas-footer { padding: 6rem 1.5rem; }
+  .bottom-nav { padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="vedic-trails-homepage-v20.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Return to Atlas
+  </a>
+  <div class="nav-brand">Vedic Trails</div>
+  <div class="nav-label">Sacred Anomalies</div>
+</nav>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-topo"></div>
+
+  <div class="cover-content">
+    <div class="cover-classification reveal">
+      <div class="cover-classification-line"></div>
+      <div class="cover-classification-text">Expedition Archive · Series I · Restricted Distribution</div>
+    </div>
+    <div class="cover-index reveal reveal-delay-1">VT–SA–001 / INDIA / SACRED GEOGRAPHY DIVISION</div>
+    <h1 class="cover-title reveal reveal-delay-1">
+      Atlas of<br>
+      <em>Sacred</em><br>
+      Anomalies
+    </h1>
+    <p class="cover-subtitle reveal reveal-delay-2">
+      Eight coordinates across India where geology, mythology, and sacred tradition converge in ways that resist easy explanation.
+    </p>
+    <div class="cover-meta-row reveal reveal-delay-3">
+      <div class="cover-meta-item">Sites Documented<span>08</span></div>
+      <div class="cover-meta-item">Geographic Range<span>8°N – 32°N</span></div>
+      <div class="cover-meta-item">Classification<span>Sacred Anomaly</span></div>
+      <div class="cover-meta-item">Status<span>Active Field</span></div>
+    </div>
+  </div>
+
+  <div class="cover-scroll-hint">Scroll to enter</div>
+</section>
+
+<!-- INTRODUCTION -->
+<section class="introduction">
+  <div class="introduction-coordinates reveal">
+    <div class="intro-coord-label">Documented Sites</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">01</span> Kasar Devi · 29°37′N</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">02</span> Chausath Yogini · 26°32′N</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">03</span> Lepakshi · 13°48′N</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">04</span> Jwala Ji · 31°52′N</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">05</span> Kamakhya · 26°10′N</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">06</span> Mehandipur Balaji · 26°57′N</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">07</span> Kodungallur · 10°13′N</div>
+    <div class="intro-coord-item"><span class="intro-coord-number">08</span> Parassinikadavu · 11°59′N</div>
+  </div>
+
+  <div class="intro-body reveal reveal-delay-1">
+    <h2>India does not hide its sacred geography.<br><em>It simply does not explain it.</em></h2>
+    <p>There is a category of sacred site in India that does not appear in the usual itineraries. These are not the great temple complexes — Tirupati, Varanasi, Madurai, the Char Dham — whose importance is clear, whose rituals are documented, whose crowds measure devotion in hundreds of thousands. Those places are extraordinary and we love them.</p>
+    <p>These are <strong>something different</strong>. These are the places where something else is happening — where geology does something unusual, where the mythology is stranger and older and harder to dismiss, where seekers from traditions entirely outside Hinduism have been drawn for reasons they cannot articulate, where the architecture encodes knowledge we have not yet properly decoded, where the flame burns without fuel, where the pillar hangs without support, where the magnetic field does something measurable that the surrounding landscape does not.</p>
+    <p>This archive documents eight such coordinates. It does not claim to explain them. The most honest thing we can say is that these places seem to be <strong>doing something</strong> — and that human beings across millennia, from radically different traditions and epistemological frameworks, have agreed.</p>
+    <div class="intro-rule"></div>
+    <div class="intro-note">
+      VT FIELD PROTOCOL: These sites are documented with verifiable coordinates, confirmed historical record, and firsthand expedition notes. We have excluded phenomena that rely on single sources, conspiracy frameworks, or cannot be independently verified. What remains is, if anything, more interesting than what was removed.
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================
+     ANOMALY ENTRIES
+     ====================================================== -->
+<div class="anomalies">
+
+<!-- ── 01. KASAR DEVI ──────────────────────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">01</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">कसार</div>
+    <div class="anomaly-index">Anomaly 01 of 08</div>
+    <div class="anomaly-coords">29°37′N · 79°38′E</div>
+    <div class="anomaly-elevation">Elevation: 1,890m · Almora, Uttarakhand</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Geomagnetic Anomaly</span>
+      <span class="anomaly-phenomenon-tag">Van Allen Belt Node</span>
+      <span class="anomaly-phenomenon-tag">Meditation Axis</span>
+      <span class="anomaly-phenomenon-tag">Counter-Culture Site</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Temple structure: 2nd century CE.<br>
+        Brahmi script inscription on rock face.<br>
+        Geomagnetic data: anomalous.<br>
+        One of three confirmed global nodes.<br>
+        Best approached: dawn or late evening.<br>
+        Altitude sickness: unlikely at 1,890m.
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-char-dham.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Kasar Devi<br><em>Crank's Ridge</em></h2>
+    <div class="anomaly-region">Almora · Kumaon Himalayas · Uttarakhand</div>
+
+    <p class="anomaly-lede">In the 1890s, Swami Vivekananda came here to meditate and wrote that the clarity he found was unlike anything he had experienced. In the 1960s, so did Bob Dylan, George Harrison, and Cat Stevens. The geologists came later and found something measurable.</p>
+
+    <div class="anomaly-body">
+      <p>The Kasar Devi temple sits on a ridge above Almora at 1,890 metres, looking north across the Himalayan snowline. It is a small temple — 2nd century CE, dedicated to Kasar Devi, a local manifestation of Shakti — the kind of place you could walk past without registering its significance. What keeps drawing people back is not its architecture.</p>
+
+      <p>The area sits within a confirmed <strong>geomagnetic anomaly</strong>: a zone where the Earth's magnetic field exhibits measurable deviations from its surrounding region. The ridge falls on what researchers have described as a node point of the Van Allen radiation belts — the charged-particle shells that surround the Earth. This same characterization has been applied to <strong>Machu Picchu</strong> in Peru and <strong>Stonehenge</strong> in England. All three were independently identified as sacred sites by their respective civilisations before any electromagnetic science existed.</p>
+
+      <p>The scientific explanation — to the extent one exists — is that anomalous geomagnetic fields may influence melatonin production, cortisol levels, and brainwave states, producing measurable shifts toward alpha and theta activity. Whether this constitutes "energy" in the sacred sense or "physics" in the scientific sense is a distinction that only matters if you think those are different things.</p>
+
+      <div class="anomaly-pull">
+        <p>Did ancient cultures somehow sense these energy zones before having the instruments to measure them? Or did people simply build in places they found conducive to stillness — and the physics followed from the stillness? The question is more interesting than any answer we currently have.</p>
+      </div>
+
+      <p>The ridge was called <em>Crank's Ridge</em> by the British — a sardonic colonial name for the meditators, seekers, and unconventional thinkers who kept appearing here. By the 1960s it had been renamed "Hippie Hill" by the counter-culture that flooded the Kumaon hills. Lama Anagarika Govinda wrote his major works here. D.H. Lawrence spent two summers here. The Swedish mystic Alfred Sorensen died here. A rock face at the back of the ancient temple still carries a Brahmi inscription that no one has fully decoded.</p>
+    </div>
+
+    <div class="anomaly-visitors">
+      <div class="anomaly-visitors-label">Among those who came here</div>
+      <div class="anomaly-visitors-names">Swami Vivekananda · Bob Dylan · George Harrison · Cat Stevens · D.H. Lawrence · Lama Anagarika Govinda · Alfred Sorensen · Robert Thurman</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 02. CHAUSATH YOGINI ──────────────────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">02</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">योगिनी</div>
+    <div class="anomaly-index">Anomaly 02 of 08</div>
+    <div class="anomaly-coords">26°32′N · 78°17′E</div>
+    <div class="anomaly-elevation">Elevation: 188m · Mitaoli, Morena, Madhya Pradesh</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Sacred Geometry</span>
+      <span class="anomaly-phenomenon-tag">Tantric Architecture</span>
+      <span class="anomaly-phenomenon-tag">Hypaethral Design</span>
+      <span class="anomaly-phenomenon-tag">Feminine Cosmology</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Built: 11th century CE. Kachchhapaghata.<br>
+        Circular plan. Radius: 170 feet.<br>
+        64 chambers + central Shiva shrine.<br>
+        Hypaethral: open to sky by design.<br>
+        Stands on isolated hilltop.<br>
+        Possible inspiration: Indian Parliament.<br>
+        Rediscovered by modern scholarship: 1953.
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-jyotirlinga.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Chausath<br>Yogini Temple<br><em>Mitaoli</em></h2>
+    <div class="anomaly-region">Morena District · Madhya Pradesh · Central India</div>
+
+    <p class="anomaly-lede">Built in the 11th century and left largely undisturbed until modern archaeology rediscovered it, this circular hilltop temple encodes a cosmology of feminine power that neither the mainstream Hindu tradition nor Western scholarship has fully integrated.</p>
+
+    <div class="anomaly-body">
+      <p>The Chausath Yogini Temple at Mitaoli sits on an isolated rocky hill rising from the plains of Morena district. From above, it is a perfect circle: a 170-foot radius wall enclosing 64 identical chambers, each containing an image of a Yogini — a class of tantric goddess associated with flight, shape-shifting, and powers that exist outside the conventional divine hierarchy. At the centre, Shiva. The Yoginis face inward toward him across an open courtyard.</p>
+
+      <p>The design is <strong>hypaethral</strong> — deliberately open to the sky. This is unusual among Indian temples, which are typically enclosed, their sanctums deliberately cave-like. The Yogini temples were built open because the Yoginis were understood to be <strong>capable of flight</strong>. They required access to the sky. This is not metaphor — it is architectural specification derived from theology.</p>
+
+      <p>Only 13 such circular Yogini temples survive in India. They represent a strand of religious thought — female, tantric, cosmologically radical — that was largely suppressed after the 13th century. The Mitaoli temple was so remote and so frequented by dacoits (who used it as a refuge unknown to authorities) that it went effectively undocumented for centuries. Scholars formally re-engaged with it only in 1953.</p>
+
+      <div class="anomaly-pull">
+        <p>The circular, open-to-sky design with a central shrine surrounded by 64 peripheral chambers has been noted by several architects and historians as remarkably similar to the Parliament of India building in New Delhi. The resemblance is precise enough to appear deliberate rather than coincidental.</p>
+      </div>
+
+      <p>What the Yogini cult was doing theologically is genuinely difficult to summarise. It was not mainstream Shaivism. It centred 64 semi-divine feminine beings of enormous power — animal-headed, beautiful-bodied, dangerous, worshipped through practices that no longer exist in documented form. The architecture remains. The theology it served has largely vanished.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 03. LEPAKSHI ─────────────────────────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">03</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">लेपाक्षि</div>
+    <div class="anomaly-index">Anomaly 03 of 08</div>
+    <div class="anomaly-coords">13°48′N · 77°36′E</div>
+    <div class="anomaly-elevation">Elevation: 614m · Anantapur, Andhra Pradesh</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Gravitational Anomaly</span>
+      <span class="anomaly-phenomenon-tag">Vijayanagara Engineering</span>
+      <span class="anomaly-phenomenon-tag">Ramayana Sacred Site</span>
+      <span class="anomaly-phenomenon-tag">Fresco Archive</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Built: c. 1530 CE. Vijayanagara.<br>
+        Commissioned: Virupanna & Viranna.<br>
+        Pillars: 70 total. 1 hanging.<br>
+        Paper passes beneath the base.<br>
+        British engineer attempt to move: documented.<br>
+        Monolithic Nandi: largest in Andhra.<br>
+        Jatayu connection: Ramayana.<br>
+        Largest unfinished gopuram: on site.
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-tamil-nadu.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Lepakshi<br><em>The Hanging Pillar</em></h2>
+    <div class="anomaly-region">Anantapur District · Andhra Pradesh · Deccan Plateau</div>
+
+    <p class="anomaly-lede">Among the 70 stone pillars of this 16th-century Vijayanagara temple, one appears not to touch the ground. Visitors have been passing cloth and paper beneath its base for five hundred years. No one has satisfactorily explained how it stays up.</p>
+
+    <div class="anomaly-body">
+      <p>The Veerabhadra Temple at Lepakshi was built around 1530 CE during the reign of King Achyuta Deva Raya, commissioned by two brothers — Virupanna and Viranna — who served as governors under the Vijayanagara administration. Its ceilings carry the largest surviving collection of Vijayanagara-era frescoes in existence: hundreds of figures painted in ochre, green, and black on a surface that has not been restored.</p>
+
+      <p>Of the temple's 70 stone pillars, 69 are unremarkable pieces of 16th-century structural engineering. The 70th <strong>does not appear to touch the floor</strong>. A thin sheet of paper passes cleanly beneath one corner of its base. The pillar is not floating — it connects to the ceiling above — but its lower end maintains a gap from the stone floor that has survived centuries of seismic activity, monsoon expansion and contraction, and at least one documented attempt by a British colonial engineer to move it to determine how it was supported. The engineer's attempt dislodged the pillar slightly from its original position but still did not reveal any concealed mechanism.</p>
+
+      <div class="anomaly-pull">
+        <p>The most compelling explanation is not a mystery at all: that the Vijayanagara architects deliberately engineered this effect — that the pillar is precisely load-distributed to appear unsupported while remaining structurally integral. If so, it represents a level of structural calculation in the 16th century that we are only now able to model computationally.</p>
+      </div>
+
+      <p>Lepakshi also holds a <strong>Ramayana connection</strong>. This is said to be the site where Jatayu — the divine eagle who tried to stop Ravana from abducting Sita — fell wounded. The name "Lepakshi" derives from Lord Rama's words to the dying eagle: <em>Le Pakshi</em> — "rise, bird." The town was already a sacred site before the temple was built.</p>
+
+      <p>The monolithic Nandi bull outside the complex is the largest in Andhra Pradesh. The gopuram was begun but never completed — the most common explanation is that the funds ran out, or that one of the brothers fell from royal favour. The unfinished tower has stood for five hundred years in mid-construction, a monument to interrupted ambition.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 04. JWALA JI ──────────────────────────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">04</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">ज्वाला</div>
+    <div class="anomaly-index">Anomaly 04 of 08</div>
+    <div class="anomaly-coords">31°52′N · 76°19′E</div>
+    <div class="anomaly-elevation">Elevation: 645m · Kangra, Himachal Pradesh</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Eternal Flame</span>
+      <span class="anomaly-phenomenon-tag">Natural Gas Fissure</span>
+      <span class="anomaly-phenomenon-tag">Shakti Peetha</span>
+      <span class="anomaly-phenomenon-tag">Aniconic Deity</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Mentioned: Mahabharata. Ancient.<br>
+        No idol. Flame is the deity.<br>
+        Nine flames: nine forms of Devi.<br>
+        Natural gas: seismic source debated.<br>
+        Akbar's extinguishing attempt: documented.<br>
+        Gold chhatra offered: turned unknown metal.<br>
+        Scriptures translated here for Firuz Shah.<br>
+        56km from Dharamshala.
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-vaishno-devi.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Jwala Ji<br><em>The Tongue of Fire</em></h2>
+    <div class="anomaly-region">Jawalamukhi · Kangra Valley · Himachal Pradesh</div>
+
+    <p class="anomaly-lede">There is no idol here. There never was. The goddess manifests as nine flames that have burned through cracks in the ancient rock for as long as anyone has been recording — without oil, without wicks, without any human maintenance. When the Mughal Emperor Akbar tried to extinguish them, they kept burning. The gold umbrella he offered in submission turned into an unknown metal.</p>
+
+    <div class="anomaly-body">
+      <p>The Jwala Ji temple in the Kangra valley of Himachal Pradesh is one of the 51 Shakti Peethas — sites where parts of the goddess Sati's body fell to earth after Vishnu dismembered her to free Shiva from grief. This particular site is where <strong>her tongue fell</strong>. The flame that burns here is understood as her tongue, still speaking, still alive, manifested as fire through the fissures in the Shivalik rock.</p>
+
+      <p>The geological explanation is straightforward: natural gas deposits beneath the Shivalik range seep through fissures and ignite at the surface. The source of the ignition has never been definitively identified. The gas composition varies — there are nine distinct flames, and their colours differ. One burns a stable blue. The rest flicker between blue and gold. Scientists were commissioned in the 1970s by the Government of India to explore commercial natural gas possibilities in the area; they found evidence of <strong>a sleeping volcano</strong> beneath the site. The exploration was not pursued.</p>
+
+      <div class="anomaly-pull">
+        <p>Emperor Akbar visited in the 16th century specifically to test whether the flames could be extinguished. He diverted water from a local river over them and placed iron plates across the fissures. The flames burned through the water and reappeared around the plates. He offered a solid gold umbrella — the chhatra — in acknowledgment. According to both temple tradition and historical record, the gold transformed into an unidentified metal. It is still kept in the temple. No one has ever determined what it is.</p>
+      </div>
+
+      <p>Unlike virtually every other Hindu sacred site, <strong>there is no image here</strong>. The deity is the flame. This is an aniconic tradition — a refusal of representation — that places Jwala Ji in a theological category almost entirely distinct from temple-based Hinduism. The flames predate any structure built around them. The structure was built to house the fire, not to house a sculpture.</p>
+
+      <p>The Mahabharata mentions this site. The library attached to the temple, containing Sanskrit texts on astronomy, mathematics, and medicine, was translated into Persian by scholars working under Firuz Shah Tughlaq in the 14th century. Many of the originals were destroyed or dispersed during later conflicts. What those manuscripts contained is partly lost.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 05. KAMAKHYA ─────────────────────────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">05</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">कामाख्या</div>
+    <div class="anomaly-index">Anomaly 05 of 08</div>
+    <div class="anomaly-coords">26°10′N · 91°42′E</div>
+    <div class="anomaly-elevation">Elevation: 79m · Nilachal Hill, Guwahati, Assam</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Shakti Peetha</span>
+      <span class="anomaly-phenomenon-tag">Yonic Sanctum</span>
+      <span class="anomaly-phenomenon-tag">Tantric Seat</span>
+      <span class="anomaly-phenomenon-tag">Ambubachi Anomaly</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Location: Nilachal Hill, Guwahati.<br>
+        No idol. Natural rock fissure.<br>
+        Annual: Ambubachi Mela — June.<br>
+        Spring turns red during Ambubachi.<br>
+        Water chemistry change: documented.<br>
+        Most powerful Shakti Peetha. Disputed.<br>
+        Tantric traditions: still active.<br>
+        Tour page: tour-kamakhya.html
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-kamakhya.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Kamakhya<br><em>The Menstruating Goddess</em></h2>
+    <div class="anomaly-region">Nilachal Hill · Guwahati · Assam · Northeast India</div>
+
+    <p class="anomaly-lede">The sanctum of Kamakhya contains no image. It contains a natural cleft in the rock — understood as the yoni of the goddess — from which a spring flows. Once a year, for three days, the spring runs red. The temple closes. The entire region observes stillness. Then it opens again.</p>
+
+    <div class="anomaly-body">
+      <p>Kamakhya on Nilachal Hill above Guwahati is described in the Kalika Purana as the most powerful of all the Shakti Peethas — the place where the <strong>womb and yoni of Sati fell</strong>. Unlike most sacred sites, the deity here is not represented by sculpture. The sanctum contains a natural depression in the rock, perpetually wet from an underground spring, which is understood as the body of the goddess herself. The priests worship the rock. The rock is the deity.</p>
+
+      <p>Once a year, usually in June, the Brahmaputra river near the temple turns a dark reddish colour and the temple closes for three days. This is <strong>Ambubachi Mela</strong> — the festival of the goddess's menstruation. The water chemistry during this period has been examined; the explanation offered by scientists is iron oxide from the soil. The priests find this explanation unsatisfying, though not incorrect. Tens of thousands of tantric practitioners, ascetics, and sadhus from across India converge for the festival from locations they have walked to for weeks.</p>
+
+      <div class="anomaly-pull">
+        <p>What Kamakhya represents theologically is a direct challenge to the sanitised, fertility-adverse, male-centred religiosity that came to dominate both colonial-era Hinduism and its modern descendants. The goddess here is explicitly a sexual, embodied, cyclical being. The temple has been destroyed and rebuilt multiple times by rulers who found this difficult to accommodate.</p>
+      </div>
+
+      <p>The Tantric traditions active at Kamakhya include practices — some involving blood, some involving transgression of ordinary social boundaries — that most mainstream religious institutions would prefer not to acknowledge. These practices are ancient. They are documented in texts that have been in continuous use. The goddess here does not ask to be comfortable.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 06. MEHANDIPUR BALAJI ────────────────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">06</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">बाला जी</div>
+    <div class="anomaly-index">Anomaly 06 of 08</div>
+    <div class="anomaly-coords">26°57′N · 76°59′E</div>
+    <div class="anomaly-elevation">Elevation: 312m · Dausa, Rajasthan</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Exorcism Centre</span>
+      <span class="anomaly-phenomenon-tag">Psychological Sanctuary</span>
+      <span class="anomaly-phenomenon-tag">Hanuman Peetha</span>
+      <span class="anomaly-phenomenon-tag">Contested Phenomenon</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Location: Dausa, Rajasthan.<br>
+        Hanuman manifestation: Balaji.<br>
+        Daily: exorcism rituals. Public.<br>
+        Resident population: afflicted.<br>
+        Some live here for months or years.<br>
+        Academic studies: published.<br>
+        Do not photograph rituals: respect.<br>
+        Emotionally intense. Prepare.
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-rajasthan.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Mehandipur<br>Balaji<br><em>The Court of Hanuman</em></h2>
+    <div class="anomaly-region">Dausa District · Eastern Rajasthan</div>
+
+    <p class="anomaly-lede">This temple in Rajasthan is one of the most psychologically intense sacred sites in India. People come here who are experiencing conditions that modern medicine has been unable to address — and a proportion of them, by their own account and the account of their families, leave improved. The academic literature is divided. The phenomenon is real.</p>
+
+    <div class="anomaly-body">
+      <p>Mehandipur Balaji is a Hanuman temple in the Dausa district of Rajasthan that has functioned for centuries as India's primary site for the treatment of what devotees call <em>preta badha</em> — affliction by spirits — and what psychiatry would categorise as a range of dissociative, psychotic, and treatment-resistant disorders. People arrive here who have exhausted other options. Some stay for weeks. Some for months. Some build their lives around proximity to the temple.</p>
+
+      <p>The rituals performed here are <strong>genuine exorcism procedures</strong>. They involve specific chants, physical interactions with the priests, and extended worship in the intense atmosphere of the main shrine. They are conducted daily and are open to witness. They are loud. They involve people in visible distress. They are also, for a significant number of attendees, apparently effective — or at least the families believe they are, and the attendees return to functional lives.</p>
+
+      <div class="anomaly-pull">
+        <p>Several academic studies have examined Mehandipur — from anthropologists, psychiatrists, and religious studies scholars. The findings converge on the same uncomfortable conclusion: something is happening here that the existing frameworks of both biomedicine and religious scholarship account for poorly. The site operates as a sanctuary for people whom the mainstream has exhausted. Whether the mechanism is spiritual or psychological is, perhaps, the wrong question.</p>
+      </div>
+
+      <p>The temple itself is not architecturally remarkable. What is remarkable is the community that has formed around it — the <strong>permanent residents</strong>, the families who camp in the temple precinct for months, the network of support structures that have grown up to serve people in crisis. Mehandipur is not, ultimately, about the unusual. It is about the human beings at the end of their resources, and what they find when they arrive here.</p>
+
+      <p>We include it in this atlas not because we endorse any specific explanation for what happens here, but because it is one of the most honest expressions of something Indian sacred culture has always understood: that the boundary between the mental and the spiritual is not a boundary at all.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 07. KODUNGALLUR ──────────────────────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">07</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">ഭദ്ര</div>
+    <div class="anomaly-index">Anomaly 07 of 08</div>
+    <div class="anomaly-coords">10°13′N · 76°12′E</div>
+    <div class="anomaly-elevation">Elevation: 5m · Thrissur, Kerala</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Goddess of Reversals</span>
+      <span class="anomaly-phenomenon-tag">Bharani Festival</span>
+      <span class="anomaly-phenomenon-tag">Pre-Vedic Tradition</span>
+      <span class="anomaly-phenomenon-tag">Ritual Transgression</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Location: Kodungallur, Thrissur dist.<br>
+        Deity: Kodungallur Bhagavathy.<br>
+        Annual: Bharani festival — March/April.<br>
+        Ritual obscenities: documented tradition.<br>
+        Pre-Vedic origin: debated, widely held.<br>
+        Also: ancient trade port. Jewish, Arab.<br>
+        St. Thomas: landed here, 52 CE. Tradition.<br>
+        Complex layering. Handle with care.
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-kerala.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Kodungallur<br>Bhagavathy<br><em>The Reversal Goddess</em></h2>
+    <div class="anomaly-region">Kodungallur · Thrissur District · Kerala</div>
+
+    <p class="anomaly-lede">Once a year, during the Bharani festival, thousands of devotees walk to this temple singing songs that would be obscene in any other context. This is not disorder — it is prescription. The goddess here demands the reversal of all ordinary social categories as the price of her blessing. It is one of the oldest documented ritual traditions in Kerala.</p>
+
+    <div class="anomaly-body">
+      <p>Kodungallur was, for at least two thousand years, one of the most important ports in the Indian Ocean world — a place where Arab traders, Jewish merchants, and later the Apostle Thomas (according to tradition) arrived on the Malabar Coast. The Kodungallur Bhagavathy temple sits in a town that has been a crossroads of civilisations since before the common era.</p>
+
+      <p>The goddess here — Kodungallur Bhagavathy, a fierce form of Devi — has a specific demand during the annual Bharani festival: <strong>the complete inversion of normal social codes</strong>. Devotees, many of them from traditionally lower castes, walk to the temple in a procession called the <em>Kavu Theendal</em>, singing ritual songs that are explicitly obscene by the standards of ordinary life. The goddess, in this tradition, is appeased by the transgression of exactly those social hierarchies that oppress devotees during the rest of the year.</p>
+
+      <div class="anomaly-pull">
+        <p>What the Bharani festival encodes is a pre-Brahminical religious logic in which the divine feminine requires not propriety but authenticity — not the performance of social order, but its periodic dismantling. The ritual has survived Brahmin disapproval, colonial condemnation, and several attempts at suppression. It continues, on the same date, in the same place, with the same songs.</p>
+      </div>
+
+      <p>Kodungallur also sits within the Theyyam belt of North Kerala — the region where one of the most extraordinary ritual traditions in India is still alive. In Theyyam, hereditary performers from lower-caste communities become the god — not represent, not mime, but literally become — through an hours-long ceremony of costume, makeup, and invocation. Once the transformation is complete, the performer speaks with divine authority to Brahmin priests who must kneel before them. The caste order is inverted for the duration of the ritual. Then it is restored.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 08. PARASSINIKADAVU / MUTHAPPAN ──────────────────────── -->
+<div class="anomaly reveal">
+  <div class="anomaly-number">08</div>
+
+  <div class="anomaly-sidebar">
+    <div class="anomaly-glyph">മുത്തപ്പൻ</div>
+    <div class="anomaly-index">Anomaly 08 of 08</div>
+    <div class="anomaly-coords">11°59′N · 75°32′E</div>
+    <div class="anomaly-elevation">Elevation: 12m · Kannur, Kerala</div>
+
+    <div class="anomaly-phenomenon">
+      <div class="anomaly-phenomenon-label">Classified As</div>
+      <span class="anomaly-phenomenon-tag">Theyyam Living Ritual</span>
+      <span class="anomaly-phenomenon-tag">Divine Possession</span>
+      <span class="anomaly-phenomenon-tag">Hunter God</span>
+      <span class="anomaly-phenomenon-tag">Caste Subversion</span>
+    </div>
+
+    <div class="anomaly-field-notes">
+      <div class="anomaly-field-notes-label">Field Notes</div>
+      <div class="anomaly-field-notes-text">
+        Location: Parassinikadavu, Kannur.<br>
+        Deity: Thiruvappana (Muthappan).<br>
+        Theyyam: daily performance. Not seasonal.<br>
+        Fish and toddy: prasad. Unusual.<br>
+        Performers: Malayan caste (lower).<br>
+        Devotees: all communities. All castes.<br>
+        Dogs sacred: roam freely in precinct.<br>
+        Approach at dawn for quietest hour.
+      </div>
+    </div>
+
+    <a class="anomaly-cta" href="tour-kerala.html">Plan an approach</a>
+  </div>
+
+  <div class="anomaly-main">
+    <h2 class="anomaly-title">Parassinikadavu<br><em>Muthappan</em></h2>
+    <div class="anomaly-region">Kannur District · North Kerala · Malabar Coast</div>
+
+    <p class="anomaly-lede">This is the only temple in India where Theyyam — divine possession — is performed daily rather than seasonally. The god who is worshipped here is a hunter who eats fish, drinks toddy, and accepts offerings of both. Dogs are sacred to him and wander freely through the temple precinct. The performers who become him are from lower castes. The Brahmin priests are secondary.</p>
+
+    <div class="anomaly-body">
+      <p>Parassinikadavu on the banks of the Valapattanam river in Kannur district is the most accessible entry point into the world of <strong>Theyyam</strong> — the extraordinary ritual tradition of North Kerala in which performers from hereditary lower-caste families undergo a transformation that is understood, by all participants, as genuine divine possession.</p>
+
+      <p>The god at Parassinikadavu is Muthappan — more formally, Thiruvappana — a deity who does not fit the standard Brahminical pantheon. He is a hunter. His sacred offerings are <strong>fish and toddy</strong> (fermented palm wine). His sacred animals are dogs, which roam freely in the temple precinct without anyone finding this remarkable. He is worshipped by people of all castes. He is served by performers from the Malayan community — a lower-caste group — who, during the performance, outrank every Brahmin present.</p>
+
+      <div class="anomaly-pull">
+        <p>The Theyyam performer does not act the god. The hours-long ceremony of makeup, costume, and chant is not theatre — it is transformation. When the process is complete, the performer is the deity. They speak in his voice. They issue blessings that devotees trust with their livelihoods. Then the ceremony ends, the makeup comes off, and they return to their ordinary social position. This transition — from untouchable to god and back in a single evening — is performed hundreds of times each year across North Kerala. It has been for as long as anyone can document.</p>
+      </div>
+
+      <p>Theyyam is not a tourist performance. It is not a cultural show. It is a living religious practice in which something that the West would categorise as "performance" is categorised by its practitioners and audience as "fact." This distinction matters. Watching Theyyam without understanding what it is — that you are watching someone become a god, by the sincere belief of everyone present — is to miss the entire point of what you are seeing.</p>
+
+      <p>Parassinikadavu is the one place where this can be witnessed daily, year-round, in a temple context — not at a private ceremony in a village compound accessible only by local invitation. The Muthappan Theyyam begins in the early morning and late evening. The river behind the temple reflects the torchlight. The dogs sleep at the god's feet. It is one of the most unusual things you can witness on earth.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /anomalies -->
+
+<!-- DIVIDER -->
+<div class="section-divider reveal">
+  <div class="section-divider-glyph">ॐ</div>
+  <div class="section-divider-text">VT–SA–001 · End of Field Documentation · Series I · Eight Coordinates</div>
+</div>
+
+<!-- CTA FOOTER -->
+<div class="atlas-footer reveal">
+  <div class="atlas-footer-eyebrow">Begin Your Expedition</div>
+  <h2 class="atlas-footer-title">These places are<br><em>still there.</em></h2>
+  <p class="atlas-footer-body">Every site in this archive is accessible. Most are undervisited. All of them reward the kind of traveller who arrives with genuine curiosity rather than a checklist. We build the approach for you.</p>
+  <div class="atlas-footer-actions">
+    <a href="vedic-trails-homepage-v20.html" class="atlas-footer-btn atlas-footer-btn-primary">Return to the Atlas</a>
+    <a href="https://wa.me/919999999999?text=I%20want%20to%20explore%20the%20sacred%20anomalies%20of%20India" class="atlas-footer-btn atlas-footer-btn-outline" target="_blank" rel="noopener">Speak with a concierge</a>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div class="bottom-nav-brand">Vedic Trails · Sacred Anomalies Series</div>
+  <div class="bottom-nav-links">
+    <a href="vedic-trails-homepage-v20.html">Homepage</a>
+    <a href="quiz.html">Find Your Yatra</a>
+    <a href="tour-kamakhya.html">Kamakhya</a>
+    <a href="tour-kerala.html">Kerala</a>
+  </div>
+</div>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// Cover immediate reveal
+document.querySelectorAll('.cover .reveal').forEach((el, i) => {
+  setTimeout(() => el.classList.add('visible'), 200 + i * 150);
+});
+
+// Active coordinate highlight based on scroll position
+const anomalyEls = document.querySelectorAll('.anomaly');
+const coordItems = document.querySelectorAll('.intro-coord-item');
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const idx = Array.from(anomalyEls).indexOf(entry.target);
+      coordItems.forEach((item, i) => {
+        item.classList.toggle('active', i === idx);
+      });
+    }
+  });
+}, { threshold: 0.5 });
+anomalyEls.forEach(el => scrollObserver.observe(el));
+</script>
+
+</body>
+</html>
