@@ -1102,7 +1102,7 @@
       });
     });
 
-    nextBtn.addEventListener('click', () => {
+    nextBtn.addEventListener('click', (e) => { e.preventDefault();
       if (!nextBtn.classList.contains('ready')) return;
       const nextIdx = currentIdx + 1;
       if (screens[nextIdx] === 'thinking') {
