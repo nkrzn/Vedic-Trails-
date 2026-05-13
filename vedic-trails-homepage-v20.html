@@ -2986,7 +2986,7 @@
             </svg>
           </div>
 
-          <svg class="atlas-map-svg" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <svg class="atlas-map-svg" viewBox="-40 -30 780 880" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
             <defs>
               <!-- Lotus petal shape -->
               <path id="lotusPetal" d="M0 0 Q -15 -38 0 -66 Q 15 -38 0 0 Z"/>
@@ -3196,7 +3196,7 @@
     { id: 'kedarnath', name: 'Kedarnath', state: 'Uttarakhand', deity: 'Lord Shiva (Jyotirlinga)', x: 380, y: 225, tier: 'major', circuits: ['char-dham', 'jyotirlinga'],
       story: 'A Jyotirlinga at 11,755 feet in the Himalayas.',
       tours: [{ name: 'Char Dham Yatra', duration: '10N · 11D', price: '₹39,999', url: 'tour-char-dham.html' }] },
-    { id: 'rameswaram', name: 'Rameswaram', state: 'Tamil Nadu', deity: 'Lord Shiva (Jyotirlinga)', x: 365, y: 705, tier: 'major', circuits: ['char-dham', 'jyotirlinga', 'south'],
+    { id: 'rameswaram', name: 'Rameswaram', state: 'Tamil Nadu', deity: 'Lord Shiva (Jyotirlinga)', x: 365, y: 705, tier: 'major', circuits: ['char-dham', 'jyotirlinga', 'south', 'ramayana'],
       story: 'Where Rama built the bridge to Lanka. Char Dham, Jyotirlinga, Ramayana site.',
       tours: [{ name: 'Tamil Temple Circuit', duration: '7N · 8D', price: '₹52,999', url: 'tour-tamil-nadu.html' }] },
 
@@ -3310,9 +3310,10 @@
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     g.setAttribute('class', 'temple tier-' + t.tier);
     g.setAttribute('data-id', t.id);
+    const dotR = t.tier === 'major' ? 5.5 : (t.tier === 'chardham' ? 5 : (t.tier === 'shakti' ? 4.5 : 4));
     g.innerHTML = `
       <circle class="halo" cx="${t.x}" cy="${t.y}" r="${haloR}"/>
-      <circle class="dot" cx="${t.x}" cy="${t.y}"/>
+      <circle class="dot" cx="${t.x}" cy="${t.y}" r="${dotR}" fill="#A8312A"/>
     `;
     g.addEventListener('click', (e) => { e.stopPropagation(); selectTemple(t.id); });
     g.addEventListener('mouseenter', () => showLabel(t));
