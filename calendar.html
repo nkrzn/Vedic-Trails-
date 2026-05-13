@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sacred Calendar 2026 · Vedic Trails</title>
+<meta name="description" content="Festival dates, auspicious travel months, and pilgrimage seasons across India. Plan your journey around the sacred calendar." />
+<meta property="og:title" content="Sacred Calendar 2026 · Vedic Trails" />
+<meta property="og:description" content="When to go, where to go, and why — the sacred calendar of India mapped to our pilgrimage circuits." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1606722581293-628fa217a6f7?w=1200&q=80" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --parchment: #F4ECD8;
+  --cream: #FBF6EC;
+  --charcoal: #2A2419;
+  --navy: #1C2845;
+  --ink: #0F1832;
+  --gold: #B89455;
+  --brass: #C9A961;
+  --terracotta: #A8312A;
+  --muted: rgba(28,40,69,0.55);
+  --border: rgba(184,148,85,0.25);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(251,246,236,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { font-size: 1.2rem; font-weight: 500; color: var(--navy); }
+.nav-back {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); transition: color 0.3s;
+}
+.nav-back:hover { color: var(--navy); }
+.nav-section { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+/* HEADER */
+.cal-header {
+  padding: 6rem 3rem 4rem;
+  max-width: 900px; margin: 0 auto; text-align: center;
+}
+.cal-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.cal-eyebrow::before, .cal-eyebrow::after {
+  content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+}
+.cal-title {
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 300; line-height: 1.0; letter-spacing: -0.02em;
+  color: var(--navy); margin-bottom: 1.2rem;
+}
+.cal-title em { font-style: italic; color: var(--gold); opacity: 0.85; }
+.cal-sub {
+  font-style: italic; font-size: 1.2rem; color: var(--muted);
+  line-height: 1.6; max-width: 560px; margin: 0 auto 2.5rem;
+}
+.cal-note {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: rgba(184,148,85,0.1);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.8rem; color: var(--muted); font-style: italic;
+}
+
+/* SEASON OVERVIEW */
+.seasons {
+  max-width: 1100px; margin: 0 auto;
+  padding: 2rem 3rem 4rem;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.season {
+  padding: 2rem;
+  border-right: 1px solid var(--border);
+}
+.season:last-child { border-right: none; }
+.season-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 2.5rem; color: var(--gold); opacity: 0.6;
+  line-height: 1; margin-bottom: 1rem;
+}
+.season-name {
+  font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.4rem;
+}
+.season-months {
+  font-size: 1.2rem; font-weight: 400; color: var(--navy);
+  margin-bottom: 0.8rem;
+}
+.season-desc {
+  font-style: italic; font-size: 0.95rem; color: var(--muted);
+  line-height: 1.6;
+}
+.season-rating {
+  margin-top: 1rem; display: flex; gap: 3px;
+}
+.season-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--border);
+}
+.season-dot.active { background: var(--gold); }
+
+/* MONTH GRID */
+.months-section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 5rem 3rem;
+}
+.months-section-title {
+  font-size: 2rem; font-weight: 400; color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.months-section-title em { font-style: italic; }
+.months-section-sub {
+  font-style: italic; color: var(--muted); font-size: 1rem;
+  margin-bottom: 3rem;
+}
+.months-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+}
+.month-block {
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 2.5rem;
+}
+.month-block:nth-child(even) { border-right: none; }
+.month-block:last-child, .month-block:nth-last-child(2) {
+  border-bottom: 1px solid var(--border);
+}
+.month-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.month-name {
+  font-size: 1.6rem; font-weight: 400; color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.month-year { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; }
+.month-rating {
+  display: flex; align-items: center; gap: 2px;
+}
+.month-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--border);
+}
+.month-dot.good { background: var(--gold); }
+.month-dot.peak { background: var(--terracotta); }
+
+.month-festivals { margin-bottom: 1.2rem; }
+.festival-item {
+  display: flex; gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(184,148,85,0.12);
+}
+.festival-item:last-child { border-bottom: none; }
+.festival-date {
+  font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); min-width: 70px; padding-top: 2px;
+}
+.festival-name {
+  font-size: 1.0rem; color: var(--navy); font-weight: 400;
+  line-height: 1.3;
+}
+.festival-note {
+  font-size: 0.82rem; font-style: italic; color: var(--muted);
+  line-height: 1.4; margin-top: 0.2rem;
+}
+.month-tours {
+  margin-top: 1rem;
+}
+.month-tours-label {
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.5rem;
+}
+.month-tour-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+}
+.month-tour-tag {
+  display: inline-block;
+  font-size: 0.72rem; color: var(--gold);
+  border: 1px solid var(--border);
+  border-radius: 2px; padding: 0.2rem 0.6rem;
+  transition: all 0.3s ease;
+}
+.month-tour-tag:hover {
+  background: var(--gold); color: var(--cream);
+}
+
+/* AUSPICIOUS DATES */
+.auspicious-section {
+  background: var(--parchment);
+  padding: 5rem 3rem;
+}
+.auspicious-inner {
+  max-width: 1100px; margin: 0 auto;
+}
+.auspicious-title {
+  font-size: 2rem; font-weight: 400; color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.auspicious-title em { font-style: italic; }
+.auspicious-sub {
+  font-style: italic; color: var(--muted); font-size: 1rem;
+  margin-bottom: 3rem;
+}
+.auspicious-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.auspicious-card {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1.8rem;
+}
+.auspicious-card-date {
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.5rem;
+}
+.auspicious-card-name {
+  font-size: 1.3rem; font-weight: 400; color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.auspicious-card-desc {
+  font-style: italic; font-size: 0.92rem; color: var(--muted);
+  line-height: 1.55;
+}
+
+/* LEGEND */
+.legend {
+  max-width: 1100px; margin: 0 auto;
+  padding: 2rem 3rem;
+  display: flex; align-items: center; gap: 2rem;
+  border-top: 1px solid var(--border);
+}
+.legend-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.78rem; color: var(--muted); font-style: italic;
+}
+.legend-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+/* CTA */
+.cal-cta {
+  text-align: center; padding: 7rem 3rem;
+  border-top: 1px solid var(--border);
+}
+.cal-cta-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.2rem;
+}
+.cal-cta-title {
+  font-size: 2.5rem; font-weight: 300; color: var(--navy);
+  margin-bottom: 1rem; letter-spacing: -0.01em;
+}
+.cal-cta-title em { font-style: italic; color: var(--gold); opacity: 0.85; }
+.cal-cta-body {
+  font-style: italic; color: var(--muted); font-size: 1.1rem;
+  max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.65;
+}
+.cal-cta-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 1.1rem 2.4rem;
+  background: linear-gradient(135deg, #1C2845, #0F1832);
+  color: #F4ECD8; border-radius: 999px;
+  font-size: 0.85rem; letter-spacing: 0.08em;
+  font-family: system-ui, sans-serif; font-weight: 600;
+  transition: all 0.35s ease;
+}
+.cal-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(28,40,69,0.3);
+}
+
+@media (max-width: 900px) {
+  .nav { padding: 1rem 1.5rem; }
+  .cal-header { padding: 5rem 1.5rem 3rem; }
+  .seasons { grid-template-columns: 1fr 1fr; padding: 1.5rem; }
+  .season { border-bottom: 1px solid var(--border); }
+  .months-section { padding: 4rem 1.5rem; }
+  .months-grid { grid-template-columns: 1fr; }
+  .month-block { border-right: none; }
+  .auspicious-section { padding: 4rem 1.5rem; }
+  .auspicious-grid { grid-template-columns: 1fr; }
+  .legend { padding: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+  .cal-cta { padding: 5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="vedic-trails-homepage-v20.html" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Home
+  </a>
+  <div class="nav-brand">Vedic Trails</div>
+  <div class="nav-section">Calendar 2026</div>
+</nav>
+
+<div class="cal-header">
+  <div class="cal-eyebrow">Sacred Calendar</div>
+  <h1 class="cal-title">When to go,<br><em>where to go, and why</em></h1>
+  <p class="cal-sub">The sacred calendar of India is ancient, complex, and specific. Certain places are only fully alive at certain times. This is what we know about when to go where.</p>
+  <div class="cal-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    All dates follow the 2026 Hindu lunar calendar
+  </div>
+</div>
+
+<!-- SEASON OVERVIEW -->
+<div class="seasons">
+  <div class="season">
+    <div class="season-glyph">शी</div>
+    <div class="season-name">Winter Peak</div>
+    <div class="season-months">Oct – Feb</div>
+    <p class="season-desc">The finest season for most circuits. Cool, dry, clear skies. Every major festival falls in this window. Char Dham, South India, Rajasthan all peak here.</p>
+    <div class="season-rating">
+      <div class="season-dot active"></div><div class="season-dot active"></div>
+      <div class="season-dot active"></div><div class="season-dot active"></div>
+      <div class="season-dot active"></div>
+    </div>
+  </div>
+  <div class="season">
+    <div class="season-glyph">वस</div>
+    <div class="season-name">Spring</div>
+    <div class="season-months">Mar – May</div>
+    <p class="season-desc">Holi in Braj (March). Char Dham opens (April/May). The Himalayas wake. Excellent for Mathura-Vrindavan, Vaishno Devi, and North India before the heat arrives.</p>
+    <div class="season-rating">
+      <div class="season-dot active"></div><div class="season-dot active"></div>
+      <div class="season-dot active"></div><div class="season-dot active"></div>
+      <div class="season-dot"></div>
+    </div>
+  </div>
+  <div class="season">
+    <div class="season-glyph">वर्ष</div>
+    <div class="season-name">Monsoon</div>
+    <div class="season-months">Jun – Sep</div>
+    <p class="season-desc">Challenging for most circuits. Char Dham closes. However: South India temples are spectacular in monsoon, Kamakhya's Ambubachi Mela is June, and Jagannath Rath Yatra (Puri) is June-July.</p>
+    <div class="season-rating">
+      <div class="season-dot active"></div><div class="season-dot active"></div>
+      <div class="season-dot"></div><div class="season-dot"></div>
+      <div class="season-dot"></div>
+    </div>
+  </div>
+  <div class="season">
+    <div class="season-glyph">शर</div>
+    <div class="season-name">Autumn</div>
+    <div class="season-months">Sep – Oct</div>
+    <p class="season-desc">Navratri (Oct) is among the most important festival periods. Dussehra, Diwali follow. Char Dham closes (Oct/Nov) for winter. The Himalayan pilgrimages make their final runs of the season.</p>
+    <div class="season-rating">
+      <div class="season-dot active"></div><div class="season-dot active"></div>
+      <div class="season-dot active"></div><div class="season-dot active"></div>
+      <div class="season-dot"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MONTH BY MONTH -->
+<div class="months-section">
+  <h2 class="months-section-title">Month by <em>month</em></h2>
+  <p class="months-section-sub">Key festivals, pilgrimage dates, and our recommended circuits for each month of 2026.</p>
+
+  <div class="months-grid">
+
+    <!-- JANUARY -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">January</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Jan 14</div>
+          <div>
+            <div class="festival-name">Makar Sankranti</div>
+            <div class="festival-note">The sun's transition into Capricorn. Sacred bathing at every river confluence. Prayagraj, Varanasi, and Haridwar are particularly significant.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Jan 26</div>
+          <div>
+            <div class="festival-name">Republic Day</div>
+            <div class="festival-note">Practical note: transport disruptions in major cities. Avoid travel to Delhi-adjacent circuits on this date.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-kashi.html" class="month-tour-tag">Kashi</a>
+          <a href="tour-tamil-nadu.html" class="month-tour-tag">Tamil Nadu</a>
+          <a href="tour-rajasthan.html" class="month-tour-tag">Rajasthan</a>
+          <a href="tour-kerala.html" class="month-tour-tag">Kerala</a>
+          <a href="tour-tirupati.html" class="month-tour-tag">Tirupati</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEBRUARY -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">February</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Feb 2026</div>
+          <div>
+            <div class="festival-name">Maha Shivaratri</div>
+            <div class="festival-note">The great night of Shiva. All 12 Jyotirlinga temples are at their most intense. Varanasi, Ujjain, and Somnath see the largest gatherings. Night-long vigil and fasting.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Feb 2026</div>
+          <div>
+            <div class="festival-name">Vasant Panchami</div>
+            <div class="festival-note">Saraswati Puja. Significant in Bengal and eastern India. Yellow is worn. Educational institutions worship their tools.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-jyotirlinga.html" class="month-tour-tag">12 Jyotirlingas</a>
+          <a href="tour-ujjain.html" class="month-tour-tag">Ujjain</a>
+          <a href="tour-kashi.html" class="month-tour-tag">Kashi</a>
+          <a href="tour-bengal.html" class="month-tour-tag">Bengal</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MARCH -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">March</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Mar 2026</div>
+          <div>
+            <div class="festival-name">Holi · Lathmar Holi</div>
+            <div class="festival-note">The original Holi is in Barsana and Nandgaon in Braj — the Lathmar Holi where women beat men with sticks. This is not the Holi of water balloons and gulal. It is the recreation of Krishna and Radha's play.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Mar–Apr</div>
+          <div>
+            <div class="festival-name">Kodungallur Bharani</div>
+            <div class="festival-note">Annual festival of ritual transgression at Kodungallur Bhagavathy — one of the most unusual festivals in India. Kerala.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-mathura.html" class="month-tour-tag">Mathura-Vrindavan</a>
+          <a href="tour-krishna.html" class="month-tour-tag">Krishna Trail</a>
+          <a href="tour-kerala.html" class="month-tour-tag">Kerala</a>
+          <a href="tour-rajasthan.html" class="month-tour-tag">Rajasthan</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- APRIL -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">April</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot"></div>
+          <div class="month-dot"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Late Apr</div>
+          <div>
+            <div class="festival-name">Char Dham Opens</div>
+            <div class="festival-note">The four Himalayan shrines — Yamunotri, Gangotri, Kedarnath, Badrinath — open for the season after winter closure. The opening dates follow auspicious Akshaya Tritiya. Book immediately — the first weeks fill within days.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Apr 2026</div>
+          <div>
+            <div class="festival-name">Ram Navami</div>
+            <div class="festival-note">The birth anniversary of Rama. Ayodhya's Ram Mandir receives its largest footfall of the year. Rameswaram and Hampi are also significant on this day.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-char-dham.html" class="month-tour-tag">Char Dham</a>
+          <a href="tour-ramayana.html" class="month-tour-tag">Ramayana Trail</a>
+          <a href="tour-vaishno-devi.html" class="month-tour-tag">Vaishno Devi</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAY -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">May</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot"></div>
+          <div class="month-dot"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">May 2026</div>
+          <div>
+            <div class="festival-name">Buddha Purnima</div>
+            <div class="festival-note">The birth, enlightenment, and death anniversary of the Buddha — all said to occur on the same full moon. Bodh Gaya and Sarnath receive pilgrims from every Buddhist country. The Mahabodhi Temple at night on Buddha Purnima is extraordinary.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">May–Jun</div>
+          <div>
+            <div class="festival-name">Char Dham Peak Season</div>
+            <div class="festival-note">The most popular month for Char Dham. Kedarnath can receive 10,000+ pilgrims per day. Our helicopter packages and special access arrangements are essential this month.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-char-dham.html" class="month-tour-tag">Char Dham</a>
+          <a href="tour-buddhist.html" class="month-tour-tag">Buddhist Circuit</a>
+          <a href="tour-himachal.html" class="month-tour-tag">Himachal</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- JUNE -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">June</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot"></div><div class="month-dot"></div>
+          <div class="month-dot"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Jun 2026</div>
+          <div>
+            <div class="festival-name">Ambubachi Mela · Kamakhya</div>
+            <div class="festival-note">The most unusual festival in India — the annual menstruation of the goddess Kamakhya. The temple closes for three days. Tens of thousands of Tantric practitioners, ascetics, and sadhus converge at Guwahati. Not for everyone. For those ready for it: irreplaceable.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Jun–Jul</div>
+          <div>
+            <div class="festival-name">Jagannath Rath Yatra · Puri</div>
+            <div class="festival-note">The chariot procession of Jagannath — the largest chariot procession in the world. The deity leaves his temple and travels through the city in a chariot pulled by thousands of devotees. One million people attend.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-kamakhya.html" class="month-tour-tag">Kamakhya</a>
+          <a href="tour-puri-rameswaram.html" class="month-tour-tag">Puri Circuit</a>
+          <a href="tour-tamil-nadu.html" class="month-tour-tag">Tamil Nadu</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- OCTOBER -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">October</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Oct 2026</div>
+          <div>
+            <div class="festival-name">Navratri</div>
+            <div class="festival-note">Nine nights of the goddess. The most important festival period in the Shakta tradition. Kamakhya, Vaishno Devi, Vindhyavasini, and all 51 Shakti Peethas are at their most intense. Garba in Gujarat. Durga Puja in Bengal (Oct).</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Oct 2026</div>
+          <div>
+            <div class="festival-name">Durga Puja · Kolkata</div>
+            <div class="festival-note">The most spectacular festival in Kolkata — five days of elaborately constructed pandals, goddess imagery, and collective celebration that transforms the city. The largest festival in Eastern India by participation.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Late Oct</div>
+          <div>
+            <div class="festival-name">Char Dham Closes</div>
+            <div class="festival-note">The Himalayan shrines close for winter on auspicious dates in October-November. The closing ceremonies — particularly at Kedarnath — are extraordinarily atmospheric. Book by September.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-shakti.html" class="month-tour-tag">Shakti Peethas</a>
+          <a href="tour-bengal.html" class="month-tour-tag">Bengal</a>
+          <a href="tour-kamakhya.html" class="month-tour-tag">Kamakhya</a>
+          <a href="tour-vaishno-devi.html" class="month-tour-tag">Vaishno Devi</a>
+          <a href="tour-char-dham.html" class="month-tour-tag">Char Dham closing</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOVEMBER -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">November</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Nov 2026</div>
+          <div>
+            <div class="festival-name">Diwali</div>
+            <div class="festival-note">Varanasi and Ayodhya are the most extraordinary places to spend Diwali — the illumination of the ghats, the fireworks over the Ganges, the scale of the celebration in the city where Rama returned from exile. Book far in advance.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Nov 2026</div>
+          <div>
+            <div class="festival-name">Dev Deepawali</div>
+            <div class="festival-note">Varanasi's own festival — on Kartik Purnima (the full moon after Diwali), 84 ghats along the Ganges are illuminated with one million lamps simultaneously. Witnessed from a boat on the river. One of the most visually overwhelming experiences in India.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-kashi.html" class="month-tour-tag">Kashi (Dev Deepawali)</a>
+          <a href="tour-ramayana.html" class="month-tour-tag">Ramayana Trail</a>
+          <a href="tour-rajasthan.html" class="month-tour-tag">Rajasthan</a>
+          <a href="tour-karnataka.html" class="month-tour-tag">Karnataka</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECEMBER -->
+    <div class="month-block">
+      <div class="month-header">
+        <div class="month-name">December</div>
+        <div class="month-rating">
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div><div class="month-dot good"></div>
+          <div class="month-dot good"></div>
+        </div>
+      </div>
+      <div class="month-festivals">
+        <div class="festival-item">
+          <div class="festival-date">Dec 2026</div>
+          <div>
+            <div class="festival-name">Thrissur Pooram</div>
+            <div class="festival-note">Kerala's most spectacular festival — decorated elephants, percussion ensembles, and fireworks at the Vadakkunnathan Temple in Thrissur. The finest display of caparisoned elephants in the world.</div>
+          </div>
+        </div>
+        <div class="festival-item">
+          <div class="festival-date">Dec–Jan</div>
+          <div>
+            <div class="festival-name">Peak South India Season</div>
+            <div class="festival-note">The finest month for Tamil Nadu, Kerala, Andhra, and Karnataka temple circuits. Cool, dry, clear. The music season in Chennai (Dec–Jan) adds a cultural dimension.</div>
+          </div>
+        </div>
+      </div>
+      <div class="month-tours">
+        <div class="month-tours-label">Recommended circuits</div>
+        <div class="month-tour-tags">
+          <a href="tour-tamil-nadu.html" class="month-tour-tag">Tamil Nadu</a>
+          <a href="tour-kerala.html" class="month-tour-tag">Kerala</a>
+          <a href="tour-andhra.html" class="month-tour-tag">Andhra</a>
+          <a href="tour-karnataka.html" class="month-tour-tag">Karnataka</a>
+          <a href="tour-tirupati.html" class="month-tour-tag">Tirupati</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- AUSPICIOUS DATES -->
+<div class="auspicious-section">
+  <div class="auspicious-inner">
+    <h2 class="auspicious-title">Most auspicious <em>dates for pilgrimage</em></h2>
+    <p class="auspicious-sub">Certain dates in the Hindu calendar carry particular weight for beginning a yatra. These are the dates our concierges most commonly recommend as departure points.</p>
+    <div class="auspicious-grid">
+      <div class="auspicious-card">
+        <div class="auspicious-card-date">Ekadashi · Twice monthly</div>
+        <div class="auspicious-card-name">The Eleventh Day</div>
+        <p class="auspicious-card-desc">The eleventh day of each lunar fortnight is sacred to Vishnu. Beginning a Vaishnava pilgrimage — Tirupati, Mathura, Char Dham, Dwarka — on Ekadashi is considered especially auspicious. Fasting is traditional on this day.</p>
+      </div>
+      <div class="auspicious-card">
+        <div class="auspicious-card-date">Akshaya Tritiya · Apr/May</div>
+        <div class="auspicious-card-name">The Undying Third</div>
+        <p class="auspicious-card-desc">The third day of the bright fortnight of Vaishakha. Considered auspicious for beginning any important undertaking. The Char Dham temples traditionally open on this date. Anything begun today is said to grow without diminishing.</p>
+      </div>
+      <div class="auspicious-card">
+        <div class="auspicious-card-date">Kartik Purnima · Oct/Nov</div>
+        <div class="auspicious-card-name">The Full Moon of Kartik</div>
+        <p class="auspicious-card-desc">The full moon of the month of Kartik — considered one of the most sacred days in the Hindu calendar. Dev Deepawali in Varanasi. Sacred bathing at Pushkar Lake. Guru Nanak Jayanti. Pilgrimage on this day is said to carry the merit of many ordinary pilgrimages.</p>
+      </div>
+      <div class="auspicious-card">
+        <div class="auspicious-card-date">Makar Sankranti · Jan 14</div>
+        <div class="auspicious-card-name">The Solar Transition</div>
+        <p class="auspicious-card-desc">The sun enters Capricorn — a solar event, unlike most Hindu festivals which follow the lunar calendar. Sacred bathing in rivers is universally practiced. Prayagraj, Varanasi, Haridwar, and Rameswaram all receive massive pilgrimages on this date.</p>
+      </div>
+      <div class="auspicious-card">
+        <div class="auspicious-card-date">Maha Shivaratri · Feb</div>
+        <div class="auspicious-card-name">The Great Night of Shiva</div>
+        <p class="auspicious-card-desc">The fourteenth night of the dark fortnight of Phalguna. The most significant night in the Shaiva calendar. All 12 Jyotirlinga temples perform special abhisheka through the night. Night vigil and fasting. Beginning a Jyotirlinga circuit on this date carries enormous merit.</p>
+      </div>
+      <div class="auspicious-card">
+        <div class="auspicious-card-date">Any Monday · Throughout year</div>
+        <div class="auspicious-card-name">Shiva's Day</div>
+        <p class="auspicious-card-desc">Monday is Shiva's day. Beginning any Shiva-related pilgrimage — Jyotirlingas, Ujjain, Kashi — on a Monday is considered appropriate. The Mahakaleshwar Bhasma Aarti in Ujjain is most attended on Mondays.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#B89455"></div>
+    Excellent conditions
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:#A8312A"></div>
+    Peak festival period — book early
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="background:rgba(184,148,85,0.25)"></div>
+    Off-season or challenging conditions
+  </div>
+  <div style="margin-left: auto; font-style: italic; font-size: 0.8rem; color: var(--muted);">
+    Exact dates vary by year · Our concierge confirms all dates at booking
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cal-cta">
+  <div class="cal-cta-eyebrow">Plan your journey</div>
+  <h2 class="cal-cta-title">Every journey is built<br><em>around your dates</em></h2>
+  <p class="cal-cta-body">Tell us when you want to travel and we will build the itinerary around the most auspicious moments available in that window. No two journeys are identical.</p>
+  <a href="https://wa.me/919920120186?text=Hello%20Vedic%20Trails%20%F0%9F%99%8F%20I%20would%20like%20to%20plan%20a%20pilgrimage%20and%20discuss%20the%20best%20dates%20for%20my%20journey." class="cal-cta-btn" target="_blank" rel="noopener">
+    Speak with a concierge →
+  </a>
+</div>
+
+</body>
+</html>

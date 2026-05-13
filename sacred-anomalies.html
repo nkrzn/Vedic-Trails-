@@ -661,6 +661,103 @@ body::before {
 }
 .bottom-nav-links a:hover { color: var(--parchment); }
 
+/* ── IMAGE ZONES ───────────────────────────────────────────── */
+.anomaly-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  background: var(--carbon);
+  border: 1px solid rgba(90,80,50,0.25);
+}
+.anomaly-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(0.25) contrast(1.05) brightness(0.85);
+  transition: transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.anomaly:hover .anomaly-image img { transform: scale(1.03); }
+.anomaly-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,24,18,0.82) 0%, rgba(26,24,18,0.15) 45%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.2rem 1.4rem;
+  pointer-events: none;
+}
+.anomaly-image-coords {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(200,184,152,0.75);
+  margin-bottom: 0.2rem;
+}
+.anomaly-image-caption {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+  color: rgba(200,184,152,0.4);
+  text-transform: uppercase;
+}
+.anomaly-image-placeholder {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  background: var(--carbon);
+  border: 1px solid rgba(90,80,50,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+.anomaly-image-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 18px,
+    rgba(90,80,50,0.055) 18px,
+    rgba(90,80,50,0.055) 19px
+  );
+}
+.anomaly-image-placeholder-icon {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 2.5rem;
+  color: rgba(106,88,48,0.2);
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+}
+.anomaly-image-placeholder-coords {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--tarnish);
+  position: relative;
+  z-index: 1;
+}
+.anomaly-image-placeholder-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(106,88,48,0.4);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 2rem;
+}
+
 /* ── SCROLL ANIMATIONS ─────────────────────────────────────── */
 .reveal {
   opacity: 0;
@@ -711,6 +808,16 @@ body::before {
   .bottom-nav { padding: 2rem 1.5rem; flex-direction: column; gap: 1.5rem; }
 }
 </style>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vedic-trails.vercel.app/sacred-anomalies.html" />
+  <meta property="og:title" content="Atlas of Sacred Anomalies · Vedic Trails" />
+  <meta property="og:description" content="Eight coordinates across India where geology, mythology, and sacred tradition converge in ways that resist easy explanation. Kasar Devi, Lepakshi, Jwala Ji, Kamakhya." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1606722581293-628fa217a6f7?w=1200&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Atlas of Sacred Anomalies · Vedic Trails" />
+  <meta name="twitter:description" content="Eight coordinates across India where geology, mythology, and sacred tradition converge in ways that resist easy explanation. Kasar Devi, Lepakshi, Jwala Ji, Kamakhya." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1606722581293-628fa217a6f7?w=1200&q=80" />
 </head>
 <body>
 
@@ -819,6 +926,13 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image">
+      <img src="ritesh-raj-yDL_xEoWKkA-unsplash.jpg" alt="Himalayan temple at dusk — Uttarakhand" loading="lazy" />
+      <div class="anomaly-image-overlay">
+        <div class="anomaly-image-coords">29°37′N · 79°38′E · 1,890m</div>
+        <div class="anomaly-image-caption">Kumaon Himalayas · Uttarakhand · Photo: Ritesh Raj / Unsplash</div>
+      </div>
+    </div>
     <h2 class="anomaly-title">Kasar Devi<br><em>Crank's Ridge</em></h2>
     <div class="anomaly-region">Almora · Kumaon Himalayas · Uttarakhand</div>
 
@@ -880,6 +994,11 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image-placeholder">
+      <div class="anomaly-image-placeholder-icon">योगिनी</div>
+      <div class="anomaly-image-placeholder-coords">26°32′N · 78°17′E</div>
+      <div class="anomaly-image-placeholder-label">Chausath Yogini · Mitaoli · Field photograph pending</div>
+    </div>
     <h2 class="anomaly-title">Chausath<br>Yogini Temple<br><em>Mitaoli</em></h2>
     <div class="anomaly-region">Morena District · Madhya Pradesh · Central India</div>
 
@@ -937,6 +1056,11 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image-placeholder">
+      <div class="anomaly-image-placeholder-icon">लेपाक्षि</div>
+      <div class="anomaly-image-placeholder-coords">13°48′N · 77°36′E</div>
+      <div class="anomaly-image-placeholder-label">Lepakshi · Andhra Pradesh · Field photograph pending</div>
+    </div>
     <h2 class="anomaly-title">Lepakshi<br><em>The Hanging Pillar</em></h2>
     <div class="anomaly-region">Anantapur District · Andhra Pradesh · Deccan Plateau</div>
 
@@ -994,6 +1118,11 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image-placeholder">
+      <div class="anomaly-image-placeholder-icon">ज्वाला</div>
+      <div class="anomaly-image-placeholder-coords">31°52′N · 76°19′E</div>
+      <div class="anomaly-image-placeholder-label">Jwala Ji · Kangra · Field photograph pending</div>
+    </div>
     <h2 class="anomaly-title">Jwala Ji<br><em>The Tongue of Fire</em></h2>
     <div class="anomaly-region">Jawalamukhi · Kangra Valley · Himachal Pradesh</div>
 
@@ -1051,6 +1180,11 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image-placeholder">
+      <div class="anomaly-image-placeholder-icon">कामाख्या</div>
+      <div class="anomaly-image-placeholder-coords">26°10′N · 91°42′E</div>
+      <div class="anomaly-image-placeholder-label">Kamakhya · Guwahati · Field photograph pending</div>
+    </div>
     <h2 class="anomaly-title">Kamakhya<br><em>The Menstruating Goddess</em></h2>
     <div class="anomaly-region">Nilachal Hill · Guwahati · Assam · Northeast India</div>
 
@@ -1106,6 +1240,11 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image-placeholder">
+      <div class="anomaly-image-placeholder-icon">बाला जी</div>
+      <div class="anomaly-image-placeholder-coords">26°57′N · 76°59′E</div>
+      <div class="anomaly-image-placeholder-label">Mehandipur Balaji · Dausa · Field photograph pending</div>
+    </div>
     <h2 class="anomaly-title">Mehandipur<br>Balaji<br><em>The Court of Hanuman</em></h2>
     <div class="anomaly-region">Dausa District · Eastern Rajasthan</div>
 
@@ -1163,6 +1302,11 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image-placeholder">
+      <div class="anomaly-image-placeholder-icon">ഭദ്ര</div>
+      <div class="anomaly-image-placeholder-coords">10°13′N · 76°12′E</div>
+      <div class="anomaly-image-placeholder-label">Kodungallur Bhagavathy · Kerala · Field photograph pending</div>
+    </div>
     <h2 class="anomaly-title">Kodungallur<br>Bhagavathy<br><em>The Reversal Goddess</em></h2>
     <div class="anomaly-region">Kodungallur · Thrissur District · Kerala</div>
 
@@ -1218,6 +1362,11 @@ body::before {
   </div>
 
   <div class="anomaly-main">
+        <div class="anomaly-image-placeholder">
+      <div class="anomaly-image-placeholder-icon">മുത്തപ്പൻ</div>
+      <div class="anomaly-image-placeholder-coords">11°59′N · 75°32′E</div>
+      <div class="anomaly-image-placeholder-label">Parassinikadavu · Kannur · Field photograph pending</div>
+    </div>
     <h2 class="anomaly-title">Parassinikadavu<br><em>Muthappan</em></h2>
     <div class="anomaly-region">Kannur District · North Kerala · Malabar Coast</div>
 
@@ -1254,7 +1403,7 @@ body::before {
   <p class="atlas-footer-body">Every site in this archive is accessible. Most are undervisited. All of them reward the kind of traveller who arrives with genuine curiosity rather than a checklist. We build the approach for you.</p>
   <div class="atlas-footer-actions">
     <a href="vedic-trails-homepage-v20.html" class="atlas-footer-btn atlas-footer-btn-primary">Return to the Atlas</a>
-    <a href="https://wa.me/919999999999?text=I%20want%20to%20explore%20the%20sacred%20anomalies%20of%20India" class="atlas-footer-btn atlas-footer-btn-outline" target="_blank" rel="noopener">Speak with a concierge</a>
+    <a href="https://wa.me/919920120186?text=I%20want%20to%20explore%20the%20sacred%20anomalies%20of%20India" class="atlas-footer-btn atlas-footer-btn-outline" target="_blank" rel="noopener">Speak with a concierge</a>
   </div>
 </div>
 
