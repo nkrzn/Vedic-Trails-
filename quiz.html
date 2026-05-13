@@ -1063,15 +1063,13 @@
         oldEl.classList.remove('active', 'exit');
         oldEl.style.display = '';
         if (screens[idx] === 'intro') newEl.style.display = 'block';
-        else if (screens[idx] === 'thinking' || screens[idx] === 'result') {
-          newEl.classList.add('active');
-        } else {
-          newEl.classList.add('active');
+document.getElementById('screen-' + idx)?.scrollIntoView({ behavior: 'smooth', block: 'center' });          newEl.classList.add('active');
+document.getElementById('screen-' + idx)?.scrollIntoView({ behavior: 'smooth', block: 'center' });          newEl.classList.add('active');
         }
       }, 450);
     }
     currentIdx = idx;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('screen-' + idx)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   // Hide all screens initially except intro
@@ -1082,7 +1080,7 @@
 
   // ============ INTRO ============
   document.getElementById('beginBtn').addEventListener('click', () => {
-    showScreen(1); // q1
+    showScreen(1); document.getElementById('screen-1').scrollIntoView({behavior:'smooth',block:'start'}); document.getElementById('screen-1').scrollIntoView({behavior:'smooth',block:'start'}); // q1
   });
 
   // ============ QUESTION HANDLERS ============
@@ -1273,7 +1271,7 @@
     currentIdx = 0;
     document.getElementById('screen-intro').style.display = 'block';
     document.getElementById('screen-intro').classList.remove('exit');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('screen-' + idx)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 })();
 </script>
