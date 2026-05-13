@@ -92,11 +92,11 @@
 
       <button class="booking-dialog-submit" id="bookingSubmit">Send reservation request</button>
       <div class="booking-dialog-actions">
-        <a href="https://wa.me/919999999999" class="booking-dialog-whatsapp" id="bookingWA" target="_blank" rel="noopener">
+        <a href="https://wa.me/919920120186" class="booking-dialog-whatsapp" id="bookingWA" target="_blank" rel="noopener">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
           Chat on WhatsApp
         </a>
-        <a href="tel:+919999999999" class="booking-dialog-call">
+        <a href="tel:+919920120186" class="booking-dialog-call">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
           Call us now
         </a>
@@ -156,7 +156,7 @@
   ['bf-name','bf-phone','bf-month','bf-pax','bf-notes'].forEach(id => {
     document.getElementById(id)?.addEventListener('input', () => {
       const wa = document.getElementById('bookingWA');
-      if (wa) wa.href = `https://wa.me/919999999999?text=${buildWAMessage()}`;
+      if (wa) wa.href = `https://wa.me/919920120186?text=${buildWAMessage()}`;
     });
   });
 
@@ -186,7 +186,7 @@
     }));
 
     // Open WhatsApp with pre-filled message (primary handoff)
-    const waUrl = `https://wa.me/919999999999?text=${buildWAMessage()}`;
+    const waUrl = `https://wa.me/919920120186?text=${buildWAMessage()}`;
     window.open(waUrl, '_blank', 'noopener');
 
     // Show confirmation

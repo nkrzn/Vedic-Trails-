@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dwarka & Somnath · 4N · 5D · Vedic Trails</title>
+<meta name="description" content="Krishna's kingdom by the sea and the first Jyotirlinga, rebuilt seven times. 4 nights, 5 days. From ₹26,999.">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   VEDIC TRAILS — SHARED TOUR PAGE STYLES
+   Manuscript palette + Sankalpa Stone signature component
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: #FBF6EC;
+  color: #1C2845;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(251, 246, 236, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(184, 148, 85, 0.18);
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  color: #1C2845;
+  font-weight: 500;
+}
+.nav-brand-mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1C2845;
+  color: #E6C77A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 1.1rem;
+}
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: rgba(28, 40, 69, 0.75);
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.nav-back:hover { color: #1C2845; }
+.nav-end-spacer { width: 60px; }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  padding: 5rem 3rem 4rem;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+/* Decorative Devanagari glyph in the hero corner */
+.hero-glyph-bg {
+  position: absolute;
+  top: 4rem;
+  right: 4rem;
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 18rem;
+  color: #B89455;
+  opacity: 0.08;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  font-weight: 400;
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B89455;
+  margin-bottom: 1.4rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 35px;
+  height: 1px;
+  background: #B89455;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 400;
+  color: #1C2845;
+  line-height: 1;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 2;
+}
+.hero-title em { font-style: italic; color: #B89455; }
+.hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.45rem;
+  color: rgba(28, 40, 69, 0.7);
+  max-width: 720px;
+  line-height: 1.55;
+  margin-bottom: 2.5rem;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(184, 148, 85, 0.3);
+}
+.hero-meta-item-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(28, 40, 69, 0.55);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.hero-meta-item-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: #1C2845;
+  font-weight: 500;
+}
+.hero-meta-item-value.price em {
+  color: #B89455;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* ============ MAIN GRID ============ */
+.main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 3rem 6rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* ============ SECTIONS ============ */
+.section { margin-bottom: 5rem; }
+.section:last-child { margin-bottom: 0; }
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #B89455;
+  margin-bottom: 1rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: #B89455;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 500;
+  color: #1C2845;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+.section-title em { font-style: italic; color: #B89455; }
+.section-prose {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 1.08rem;
+  color: rgba(28, 40, 69, 0.82);
+  line-height: 1.75;
+  max-width: 720px;
+}
+.section-prose p { margin-bottom: 1.2rem; }
+.section-prose p:last-child { margin-bottom: 0; }
+.pull-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: rgba(28, 40, 69, 0.75);
+  line-height: 1.45;
+  padding: 1.5rem 0 1.5rem 2rem;
+  border-left: 2px solid #B89455;
+  margin: 2rem 0;
+  max-width: 680px;
+}
+
+/* ============ ITINERARY DAY CARDS ============ */
+.day {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(184, 148, 85, 0.25);
+}
+.day:last-child { border-bottom: 1px solid rgba(184, 148, 85, 0.25); }
+.day-num-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.day-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  font-weight: 300;
+  color: #B89455;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+  font-style: italic;
+}
+.day-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  color: rgba(28, 40, 69, 0.55);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.day-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: #1C2845;
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+.day-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(184, 148, 85, 0.9);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.day-prose {
+  color: rgba(28, 40, 69, 0.78);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+.day-includes-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B89455;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.day-includes-list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.92rem;
+  color: rgba(28, 40, 69, 0.72);
+}
+.day-includes-list li {
+  padding: 0.28rem 0 0.28rem 1.1rem;
+  position: relative;
+}
+.day-includes-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #B89455;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ============ SANKALPA STONE ============
+   The signature feature - intention setting before booking */
+.sankalpa {
+  background: linear-gradient(135deg, #F4ECD8 0%, #EDE3CB 100%);
+  border: 1px solid rgba(184, 148, 85, 0.35);
+  border-radius: 4px;
+  padding: 3rem 3.5rem;
+  position: relative;
+  margin: 5rem 0;
+  overflow: hidden;
+}
+.sankalpa::before,
+.sankalpa::after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+}
+.sankalpa::before {
+  top: -1px; left: -1px;
+  border-top: 1.5px solid #B89455;
+  border-left: 1.5px solid #B89455;
+}
+.sankalpa::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 1.5px solid #B89455;
+  border-right: 1.5px solid #B89455;
+}
+.sankalpa-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 2.6rem;
+  color: #B89455;
+  line-height: 1;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+.sankalpa-eyebrow {
+  font-size: 0.74rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #B89455;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+.sankalpa-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.3rem;
+  font-weight: 500;
+  color: #1C2845;
+  margin-bottom: 0.7rem;
+  line-height: 1.15;
+}
+.sankalpa-title em { font-style: italic; color: #B89455; }
+.sankalpa-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(28, 40, 69, 0.7);
+  line-height: 1.5;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+.sankalpa-explainer {
+  font-size: 0.95rem;
+  color: rgba(28, 40, 69, 0.75);
+  line-height: 1.7;
+  max-width: 620px;
+  margin-bottom: 2rem;
+}
+.sankalpa-intentions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+.sankalpa-intent {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(184, 148, 85, 0.3);
+  border-radius: 3px;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #1C2845;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.sankalpa-intent:hover {
+  border-color: #B89455;
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-1px);
+}
+.sankalpa-intent.selected {
+  border-color: #A8312A;
+  background: rgba(168, 49, 42, 0.06);
+  color: #1C2845;
+  box-shadow: 0 4px 16px rgba(184, 148, 85, 0.2);
+}
+.sankalpa-intent-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.sankalpa-intent-icon svg { width: 100%; height: 100%; display: block; }
+.sankalpa-intent.selected .sankalpa-intent-icon svg path,
+.sankalpa-intent.selected .sankalpa-intent-icon svg circle {
+  stroke: #A8312A;
+}
+.sankalpa-custom {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(184, 148, 85, 0.35);
+  border-radius: 3px;
+  padding: 1.1rem 1.2rem;
+  width: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #1C2845;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 80px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.sankalpa-custom:focus { border-color: #B89455; }
+.sankalpa-custom::placeholder {
+  color: rgba(28, 40, 69, 0.4);
+  font-style: italic;
+}
+.sankalpa-confirm {
+  margin-top: 1.5rem;
+  padding: 1.4rem 1.6rem;
+  background: rgba(168, 49, 42, 0.06);
+  border: 1px solid rgba(168, 49, 42, 0.25);
+  border-radius: 3px;
+  display: none;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.sankalpa-confirm.show { display: flex; }
+.sankalpa-confirm-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 1.8rem;
+  color: #A8312A;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.sankalpa-confirm-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #1C2845;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+.sankalpa-confirm-text strong {
+  display: block;
+  font-style: normal;
+  font-weight: 600;
+  color: #A8312A;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+/* ============ INCLUDED / EXCLUDED ============ */
+.inc-exc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+.inc-exc-block-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #1C2845;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.inc-mark, .exc-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+.inc-mark { background: rgba(184, 148, 85, 0.15); color: #8A6B36; }
+.exc-mark { background: rgba(168, 49, 42, 0.12); color: #A8312A; }
+.inc-exc ul {
+  list-style: none;
+  padding: 0;
+  color: rgba(28, 40, 69, 0.78);
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+.inc-exc li {
+  padding: 0.4rem 0 0.4rem 1.3rem;
+  position: relative;
+}
+.inc-exc li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.85rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.inc-exc-incl li::before { background: #B89455; }
+.inc-exc-excl li::before { background: rgba(168, 49, 42, 0.55); }
+
+/* ============ RIGHT BOOKING CARD ============ */
+.booking {
+  position: sticky;
+  top: 90px;
+  background: #FFFFFF;
+  border: 1px solid rgba(184, 148, 85, 0.3);
+  border-radius: 4px;
+  padding: 2rem;
+  box-shadow: 0 30px 80px -30px rgba(28, 40, 69, 0.15);
+}
+.booking-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #B89455;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.booking-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.booking-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  color: #1C2845;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.booking-price-from {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(28, 40, 69, 0.55);
+  font-size: 1rem;
+}
+.booking-price-meta {
+  font-size: 0.85rem;
+  color: rgba(28, 40, 69, 0.6);
+  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+.booking-divider {
+  height: 1px;
+  background: rgba(184, 148, 85, 0.3);
+  margin: 1.4rem 0;
+}
+.booking-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+.booking-fact {
+  background: rgba(184, 148, 85, 0.1);
+  border-radius: 3px;
+  padding: 0.9rem 1rem;
+}
+.booking-fact-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(28, 40, 69, 0.55);
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+.booking-fact-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #1C2845;
+  font-weight: 500;
+}
+.booking-sankalpa-status {
+  background: rgba(168, 49, 42, 0.06);
+  border: 1px solid rgba(168, 49, 42, 0.2);
+  border-radius: 3px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1rem;
+  display: none;
+  align-items: center;
+  gap: 0.7rem;
+}
+.booking-sankalpa-status.show { display: flex; }
+.booking-sankalpa-status-icon {
+  font-family: 'Noto Serif Devanagari', serif;
+  color: #A8312A;
+  font-size: 1.2rem;
+}
+.booking-sankalpa-status-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #A8312A;
+  font-size: 0.92rem;
+}
+.booking-btn {
+  display: block;
+  width: 100%;
+  padding: 1.1rem;
+  background: linear-gradient(135deg, #1C2845 0%, #0F1832 100%);
+  color: #FBF6EC;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.booking-btn:hover {
+  background: linear-gradient(135deg, #0F1832 0%, #050912 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(28, 40, 69, 0.3);
+}
+.booking-btn-outline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid #25D366;
+  color: #25D366;
+  border-radius: 3px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.6rem;
+  text-decoration: none;
+}
+.booking-btn-outline:hover {
+  background: #25D366;
+  color: #FFFFFF;
+}
+.booking-btn-outline svg { width: 18px; height: 18px; }
+.booking-btn-outline-brass {
+  border-color: #B89455;
+  color: #B89455;
+}
+.booking-btn-outline-brass:hover {
+  background: #B89455;
+  color: #FBF6EC;
+  border-color: #B89455;
+}
+.booking-trust {
+  font-size: 0.78rem;
+  color: rgba(28, 40, 69, 0.55);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+/* ============ MAP STRIP ============ */
+.map-strip {
+  background: #F4ECD8;
+  border: 1px solid rgba(184, 148, 85, 0.25);
+  border-radius: 4px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.map-strip-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #FBF6EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 1.8rem;
+  color: #B89455;
+}
+.map-strip-content { flex: 1; }
+.map-strip-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  color: #1C2845;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.map-strip-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(28, 40, 69, 0.65);
+  font-size: 1rem;
+}
+.map-strip-link {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #B89455;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ============ ALSO CONSIDER (cross-sell) ============ */
+.also-consider {
+  background: #F4ECD8;
+  border-top: 1px solid rgba(184, 148, 85, 0.25);
+  padding: 5rem 3rem;
+  margin-top: 4rem;
+}
+.also-consider-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+.also-consider-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.also-consider-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.also-card {
+  background: #FBF6EC;
+  border: 1px solid rgba(184, 148, 85, 0.3);
+  border-radius: 4px;
+  padding: 1.8rem;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: block;
+}
+.also-card:hover {
+  border-color: #B89455;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -10px rgba(28, 40, 69, 0.18);
+}
+.also-card-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 2.2rem;
+  color: #B89455;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+  font-weight: 500;
+}
+.also-card-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 500;
+  color: #1C2845;
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+.also-card-meta {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(28, 40, 69, 0.6);
+  margin-bottom: 1rem;
+}
+.also-card-price {
+  font-family: 'Cormorant Garamond', serif;
+  color: #B89455;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* ============ CONCIERGE STRIP ============ */
+.concierge {
+  margin-top: 0;
+  background: linear-gradient(135deg, #1C2845 0%, #0F1832 100%);
+  color: #F4ECD8;
+  padding: 4rem 3rem;
+  border-radius: 0;
+  text-align: center;
+}
+.concierge-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 3rem;
+  color: #E6C77A;
+  margin-bottom: 1rem;
+  opacity: 0.85;
+}
+.concierge h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.3rem;
+  font-weight: 400;
+  margin-bottom: 0.8rem;
+  line-height: 1.15;
+}
+.concierge h3 em { font-style: italic; color: #E6C77A; }
+.concierge p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(244, 236, 216, 0.75);
+  font-size: 1.2rem;
+  max-width: 540px;
+  margin: 0 auto 2.2rem;
+}
+.concierge-buttons {
+  display: inline-flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.concierge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1rem 2rem;
+  background: #E6C77A;
+  color: #0F1832;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+}
+.concierge-btn:hover {
+  background: #FBF6EC;
+  transform: translateY(-2px);
+}
+.concierge-btn.outline {
+  background: transparent;
+  border: 1px solid rgba(244, 236, 216, 0.4);
+  color: #F4ECD8;
+}
+.concierge-btn.outline:hover {
+  background: rgba(244, 236, 216, 0.1);
+  border-color: #E6C77A;
+}
+.concierge-btn svg { width: 18px; height: 18px; }
+
+@media (max-width: 1024px) {
+  .main { grid-template-columns: 1fr; }
+  .booking { position: static; }
+  .hero-glyph-bg { font-size: 10rem; right: 1rem; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.2rem; }
+  .hero, .main, .also-consider { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .hero { padding-top: 2.5rem; padding-bottom: 2rem; }
+  .hero-meta { gap: 1.5rem; }
+  .day { grid-template-columns: 1fr; gap: 0.5rem; }
+  .day-num { font-size: 2.2rem; }
+  .inc-exc { grid-template-columns: 1fr; gap: 2rem; }
+  .sankalpa { padding: 2rem 1.5rem; margin: 3rem 0; }
+  .concierge { padding: 3rem 1.5rem; }
+  .map-strip { flex-direction: column; align-items: flex-start; text-align: left; }
+}
+
+/* ============================================================
+   BOOKING DIALOG — "Reserve This Journey"
+   Slides up from bottom, manuscript style, concierge handoff
+   ============================================================ */
+
+.booking-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 24, 50, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.booking-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.booking-dialog {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  width: min(680px, 100vw);
+  background: #FBF6EC;
+  border-top: 1px solid rgba(184, 148, 85, 0.4);
+  border-left: 1px solid rgba(184, 148, 85, 0.25);
+  border-right: 1px solid rgba(184, 148, 85, 0.25);
+  border-radius: 4px 4px 0 0;
+  padding: 2.5rem 2.5rem 3rem;
+  z-index: 201;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  max-height: 92vh;
+  overflow-y: auto;
+}
+.booking-dialog.open {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Corner marks */
+.booking-dialog::before,
+.booking-dialog::after {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+}
+.booking-dialog::before {
+  top: -1px; left: -1px;
+  border-top: 1.5px solid #B89455;
+  border-left: 1.5px solid #B89455;
+}
+.booking-dialog::after {
+  top: -1px; right: -1px;
+  border-top: 1.5px solid #B89455;
+  border-right: 1.5px solid #B89455;
+}
+
+.booking-dialog-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(28, 40, 69, 0.5);
+  font-size: 1.4rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  font-family: system-ui, sans-serif;
+}
+.booking-dialog-close:hover { color: #1C2845; }
+
+.booking-dialog-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #B89455;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.booking-dialog-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #1C2845;
+  margin-bottom: 0.4rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.booking-dialog-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(28, 40, 69, 0.65);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Sankalpa status strip inside dialog */
+.booking-dialog-sankalpa {
+  background: rgba(168, 49, 42, 0.05);
+  border: 1px solid rgba(168, 49, 42, 0.2);
+  border-radius: 3px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.5rem;
+  display: none;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #A8312A;
+  font-size: 0.95rem;
+}
+.booking-dialog-sankalpa.show { display: flex; }
+.booking-dialog-sankalpa-icon {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+/* Form fields */
+.booking-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.booking-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.booking-field.full { grid-column: 1 / -1; }
+.booking-field label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(28, 40, 69, 0.6);
+  font-weight: 600;
+}
+.booking-field input,
+.booking-field select,
+.booking-field textarea {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(184, 148, 85, 0.35);
+  border-radius: 3px;
+  padding: 0.8rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: #1C2845;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 100%;
+}
+.booking-field input:focus,
+.booking-field select:focus,
+.booking-field textarea:focus { border-color: #B89455; }
+.booking-field textarea { resize: vertical; min-height: 80px; }
+.booking-field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B89455' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Divider */
+.booking-dialog-divider {
+  height: 1px;
+  background: rgba(184, 148, 85, 0.25);
+  margin: 1.5rem 0;
+}
+
+/* Action buttons */
+.booking-dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+.booking-dialog-submit {
+  grid-column: 1 / -1;
+  display: block;
+  width: 100%;
+  padding: 1.2rem;
+  background: linear-gradient(135deg, #1C2845 0%, #0F1832 100%);
+  color: #FBF6EC;
+  border: none;
+  border-radius: 3px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  margin-bottom: 0.8rem;
+}
+.booking-dialog-submit:hover {
+  background: linear-gradient(135deg, #0F1832 0%, #050912 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(28, 40, 69, 0.28);
+}
+.booking-dialog-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid #25D366;
+  color: #25D366;
+  border-radius: 3px;
+  font-family: system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.booking-dialog-whatsapp:hover { background: #25D366; color: #fff; }
+.booking-dialog-whatsapp svg { width: 18px; height: 18px; flex-shrink: 0; }
+.booking-dialog-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: transparent;
+  border: 1px solid rgba(184, 148, 85, 0.5);
+  color: #8A6B36;
+  border-radius: 3px;
+  font-family: system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.booking-dialog-call:hover { background: #B89455; border-color: #B89455; color: #FBF6EC; }
+.booking-dialog-call svg { width: 18px; height: 18px; flex-shrink: 0; }
+.booking-dialog-trust {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: rgba(28, 40, 69, 0.5);
+  text-align: center;
+  margin-top: 1.2rem;
+  line-height: 1.5;
+}
+
+/* Confirmation state */
+.booking-dialog-confirm {
+  display: none;
+  text-align: center;
+  padding: 2rem 0;
+}
+.booking-dialog-confirm.show { display: block; }
+.booking-dialog-confirm-glyph {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 3rem;
+  color: #B89455;
+  margin-bottom: 1rem;
+}
+.booking-dialog-confirm-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: #1C2845;
+  margin-bottom: 0.8rem;
+}
+.booking-dialog-confirm-body {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(28, 40, 69, 0.7);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+}
+.booking-dialog-confirm-ref {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #B89455;
+}
+
+@media (max-width: 640px) {
+  .booking-dialog { padding: 2rem 1.3rem 2.5rem; }
+  .booking-form { grid-template-columns: 1fr; }
+  .booking-field.full { grid-column: 1; }
+  .booking-dialog-actions { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body data-tour-id="dwarka">
+
+<nav class="nav">
+  <a href="vedic-trails-homepage-v12.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to the Atlas
+  </a>
+  <div class="nav-brand">
+    <span class="nav-brand-mark">ॐ</span>
+    <span>Vedic Trails</span>
+  </div>
+  <div class="nav-end-spacer"></div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glyph-bg">ગ</div>
+  <div class="hero-eyebrow">Dwarka & Somnath · The Saurashtra Coast</div>
+  <h1 class="hero-title">Dwarka<br><em>& Somnath</em></h1>
+  <p class="hero-sub">Two of India's most ancient sacred sites, both standing at the edge of the Arabian Sea. Dwarkadhish — Krishna's kingdom, said to lie now beneath the waves. Somnath — the first Jyotirlinga, destroyed and rebuilt seven times over a thousand years. The Saurashtra coast of Gujarat, where mythology meets the ocean.</p>
+
+  <div class="hero-meta">
+    <div>
+      <div class="hero-meta-item-label">Duration</div>
+      <div class="hero-meta-item-value">4 Nights · 5 Days</div>
+    </div>
+    <div>
+      <div class="hero-meta-item-label">Region</div>
+      <div class="hero-meta-item-value">Saurashtra · Gujarat</div>
+    </div>
+    <div>
+      <div class="hero-meta-item-label">Best Season</div>
+      <div class="hero-meta-item-value">October – March</div>
+    </div>
+    <div>
+      <div class="hero-meta-item-label">Starting From</div>
+      <div class="hero-meta-item-value class="price""><em>₹26,999</em> / person</div>
+    </div>
+  </div>
+</section>
+
+<div class="main">
+  <div class="content">
+
+    <section class="section">
+      <div class="section-eyebrow">The Journey</div>
+      <h2 class="section-title">A kingdom under the sea. <em>A temple rebuilt seven times.</em></h2>
+      <div class="section-prose">
+        <p>Dwarka is where Krishna came after leaving Mathura and Vrindavan. He built a city here on the Saurashtra coast, ruled it as a king, and according to the Mahabharata, the city submerged into the sea after he died. Marine archaeologists have found structures 30-40 meters below the surface of the Gulf of Khambhat that some scholars connect to this account. The temple standing on the shore today — the Dwarkadhish temple, with its 78-meter spire — is one of the four Char Dham and one of the holiest sites for Vaishnavas in India.</p>
+        <p>Somnath, five hours south along the coast, is the first of the twelve Jyotirlingas. It has been destroyed by invaders at least six times — by Al-Qāhir, Mahmud of Ghazni, Alauddin Khalji, Muzaffar Shah, and Aurangzeb — and rebuilt each time. The current temple, built in 1951 in the Chalukya style at the initiative of Sardar Patel, is the seventh. Inside is the same tradition of Shiva worship that has been maintained, interrupted and restarted, for more than fifteen centuries. The temple stands literally at the point where the Arabian Sea, the Lune River, and the Saraswati (underground) meet — at coordinates the ancient astronomers identified as the "Prabha Tirtha."</p>
+        <p>Five days along this coast — Dwarka, Bet Dwarka, Nageshwar, Somnath — take you through some of the most geographically and historically layered sacred terrain in India.</p>
+<div class="pull-quote">"The first time Somnath was destroyed, the priests simply moved the sacred flame to a safe place and began planning the next temple. It took six invasions before anyone thought to stop rebuilding."</div>
+      </div>
+    </section>
+
+    <!-- ============ SANKALPA STONE — signature feature ============ -->
+    <section class="sankalpa" id="sankalpa">
+      <div class="sankalpa-glyph">संकल्प</div>
+      <div class="sankalpa-eyebrow">Sankalpa · The Sacred Intention</div>
+      <h2 class="sankalpa-title">Before you walk this path, <em>set your intention.</em></h2>
+      <p class="sankalpa-sub">Every pilgrimage in the Vedic tradition begins with sankalpa — a stated reason for the journey, offered to the deity before the first step.</p>
+      <p class="sankalpa-explainer">Choose an intention below or write your own. Your sankalpa will be inscribed on a copper leaf and offered by our temple priest at the morning aarti on the first day of your journey — a tradition we revive at no extra cost. Your intention is yours alone; we never share it.</p>
+
+      <div class="sankalpa-intentions">
+        <button class="sankalpa-intent" data-intent="family" data-label="Blessing for my family">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </span>
+          <span>Blessing for my family</span>
+        </button>
+        <button class="sankalpa-intent" data-intent="gratitude" data-label="A gesture of gratitude">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </span>
+          <span>A gesture of gratitude</span>
+        </button>
+        <button class="sankalpa-intent" data-intent="calling" data-label="Answering a calling">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+          </span>
+          <span>Answering a calling</span>
+        </button>
+        <button class="sankalpa-intent" data-intent="cleansing" data-label="Seeking inner cleansing">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+            </svg>
+          </span>
+          <span>Seeking inner cleansing</span>
+        </button>
+        <button class="sankalpa-intent" data-intent="moksha" data-label="The path toward moksha">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/>
+            </svg>
+          </span>
+          <span>The path toward moksha</span>
+        </button>
+        <button class="sankalpa-intent" data-intent="health" data-label="Healing & health">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </span>
+          <span>Healing & health</span>
+        </button>
+        <button class="sankalpa-intent" data-intent="success" data-label="Beginning a new chapter">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <path d="M6 9l6 6 6-6"/><circle cx="12" cy="12" r="10"/>
+            </svg>
+          </span>
+          <span>Beginning a new chapter</span>
+        </button>
+        <button class="sankalpa-intent" data-intent="peace" data-label="Stillness & peace">
+          <span class="sankalpa-intent-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1C2845" stroke-width="1.2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/>
+            </svg>
+          </span>
+          <span>Stillness & peace</span>
+        </button>
+      </div>
+
+      <textarea class="sankalpa-custom" id="sankalpaCustom" placeholder="Or write your own intention in your own words…" maxlength="240"></textarea>
+
+      <div class="sankalpa-confirm" id="sankalpaConfirm">
+        <div class="sankalpa-confirm-glyph">ॐ</div>
+        <div class="sankalpa-confirm-text" id="sankalpaConfirmText"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">Day by Day</div>
+      <h2 class="section-title">The <em>Itinerary</em></h2>
+
+      <div class="day">
+        <div class="day-num-col">
+          <div class="day-num">01</div>
+          <div class="day-label">Day 01</div>
+        </div>
+        <div class="day-content">
+          <h3 class="day-title">Arrive Jamnagar · Drive to Dwarka</h3>
+          <div class="day-subtitle">To the western Char Dham</div>
+          <p class="day-prose">Fly to Jamnagar (nearest airport to Dwarka). Drive along the Saurashtra coast to Dwarka (2 hours). Afternoon arrival. Check into sea-facing hotel. Evening visit to the Rukmini Devi Temple, dedicated to Krishna's primary wife — a quieter, more intimate site than the main Dwarkadhish temple, rarely crowded. Sunset at the Gomti Ghat where the Gomti river meets the sea.</p>
+          <div class="day-includes">
+            <div class="day-includes-label">Included Today</div>
+            <ul class="day-includes-list">
+            <li>Jamnagar airport pickup</li>
+            <li>Coastal drive to Dwarka</li>
+            <li>Sea-facing heritage hotel</li>
+            <li>Rukmini Devi Temple and Gomti Ghat</li>
+            <li>Welcome dinner with Gujarati thali</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num-col">
+          <div class="day-num">02</div>
+          <div class="day-label">Day 02</div>
+        </div>
+        <div class="day-content">
+          <h3 class="day-title">Dwarkadhish · Bet Dwarka</h3>
+          <div class="day-subtitle">The kingdom and the island</div>
+          <p class="day-prose">Pre-dawn Mangala aarti at the Dwarkadhish Temple, then full VIP darshan. The temple's morning ritual involves changing the flag on its spire — a 78-meter column of stone — five times a day, by a hereditary family of flag-bearers whose lineage stretches back centuries. Afternoon boat trip to Bet Dwarka — the island 30 minutes offshore where Krishna actually lived with his family, separate from the administrative city. The island has a timeless, unhurried quality that the mainland temple town lacks.</p>
+          <div class="day-includes">
+            <div class="day-includes-label">Included Today</div>
+            <ul class="day-includes-list">
+            <li>Pre-dawn Dwarkadhish Mangala aarti</li>
+            <li>VIP darshan</li>
+            <li>Boat trip to Bet Dwarka</li>
+            <li>Island temple visits</li>
+            <li>Sunset dinner by the sea</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num-col">
+          <div class="day-num">03</div>
+          <div class="day-label">Day 03</div>
+        </div>
+        <div class="day-content">
+          <h3 class="day-title">Nageshwar Jyotirlinga · Drive toward Somnath</h3>
+          <div class="day-subtitle">The lord of serpents</div>
+          <p class="day-prose">Morning darshan at Nageshwar — one of the twelve Jyotirlingas, 15 km from Dwarka, famous for its enormous outdoor Shiva murti (the largest Shiva statue in India at the time it was built). Drive south along the Saurashtra coast to Porbandar — Gandhi's birthplace — for a brief visit to the Kirti Mandir (his family home, now a museum). Continue to Somnath for evening arrival. Sunset at the Somnath beach temple.</p>
+          <div class="day-includes">
+            <div class="day-includes-label">Included Today</div>
+            <ul class="day-includes-list">
+            <li>Nageshwar Jyotirlinga darshan</li>
+            <li>Coastal drive</li>
+            <li>Porbandar Gandhi birthplace (optional)</li>
+            <li>Somnath hotel near temple</li>
+            <li>Evening at the sea</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num-col">
+          <div class="day-num">04</div>
+          <div class="day-label">Day 04</div>
+        </div>
+        <div class="day-content">
+          <h3 class="day-title">Somnath · Bhalka Tirtha · Triveni Sangam</h3>
+          <div class="day-subtitle">Where the rivers meet the sea</div>
+          <p class="day-prose">Pre-dawn Somnath darshan — the Jyotirlinga that faces directly west toward Mecca (unusual among temples), built so the prana-pratishtha line extends unbroken to Antarctica with no land in between. Visit to Bhalka Tirtha — 2 km from Somnath, the site where Krishna was struck by the hunter's arrow that ended his earthly life. Then to the Triveni Sangam — where the Arabian Sea, Hiranya River, and the underground Saraswati meet — considered among the holiest of confluences. Afternoon rest at Somnath.</p>
+          <div class="day-includes">
+            <div class="day-includes-label">Included Today</div>
+            <ul class="day-includes-list">
+            <li>Somnath VIP darshan</li>
+            <li>Bhalka Tirtha visit</li>
+            <li>Triveni Sangam ritual</li>
+            <li>All meals</li>
+            <li>Guided storytelling at all sites</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="day">
+        <div class="day-num-col">
+          <div class="day-num">05</div>
+          <div class="day-label">Day 05</div>
+        </div>
+        <div class="day-content">
+          <h3 class="day-title">Gir Forest · Departure</h3>
+          <div class="day-subtitle">The last Asiatic lions</div>
+          <p class="day-prose">Optional morning jeep safari at Gir National Park — the last wild habitat of the Asiatic lion, 65 km from Somnath (₹3,500 add-on per person, booking in advance essential). Otherwise, a reflective morning at the Somnath beach temple. Transfer to Diu airport (90 km, 1.5 hours) for your return flight.</p>
+          <div class="day-includes">
+            <div class="day-includes-label">Included Today</div>
+            <ul class="day-includes-list">
+            <li>Morning at Somnath</li>
+            <li>Drive to Diu airport</li>
+            <li>Prasadam and pilgrimage completion certificate</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section">
+      <div class="section-eyebrow">What's Included</div>
+      <h2 class="section-title">Every detail, <em>taken care of.</em></h2>
+      <div class="inc-exc">
+        <div class="inc-exc-incl">
+          <h3 class="inc-exc-block-title"><span class="inc-mark">✓</span> Included</h3>
+          <ul>
+            <li>4 nights sea-facing accommodation in Dwarka (×2) and Somnath (×2)</li>
+            <li>All breakfasts, lunches, and dinners</li>
+            <li>Dwarkadhish pre-dawn aarti and VIP darshan</li>
+            <li>Boat trip to Bet Dwarka island</li>
+            <li>Nageshwar Jyotirlinga VIP darshan</li>
+            <li>Somnath VIP darshan</li>
+            <li>Bhalka Tirtha and Triveni Sangam visits</li>
+            <li>Coastal drives in air-conditioned vehicle</li>
+            <li>Personal guide with Mahabharata storytelling tradition</li>
+            <li>24/7 WhatsApp concierge</li>
+          </ul>
+        </div>
+        <div class="inc-exc-excl">
+          <h3 class="inc-exc-block-title"><span class="exc-mark">✕</span> Not Included</h3>
+          <ul>
+            <li>Flights to Jamnagar and from Diu</li>
+            <li>Travel insurance</li>
+            <li>Optional Gir safari (₹3,500 per person)</li>
+            <li>Personal expenses</li>
+            <li>Tips (suggested ₹3,000 per couple)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="map-strip">
+        <div class="map-strip-icon">ગ</div>
+        <div class="map-strip-content">
+          <div class="map-strip-title">Saurashtra Sacred Coast · Gujarat</div>
+          <div class="map-strip-sub">Dwarka · Bet Dwarka · Nageshwar · Porbandar · Somnath · Bhalka Tirtha · Diu</div>
+        </div>
+        <a href="vedic-trails-homepage-v12.html#sacred-geography" class="map-strip-link">View on Atlas →</a>
+      </div>
+    </section>
+
+  </div>
+
+  <aside class="booking">
+    <div class="booking-eyebrow">Starting From</div>
+    <div class="booking-price-row">
+      <span class="booking-price">₹26,999</span>
+      <span class="booking-price-from">/ person</span>
+    </div>
+    <div class="booking-price-meta">Twin sharing · Sea-facing accommodation</div>
+
+    <div class="booking-divider"></div>
+
+    <div class="booking-facts">
+      <div class="booking-fact">
+        <div class="booking-fact-label">Duration</div>
+        <div class="booking-fact-value">4N · 5D</div>
+      </div>
+      <div class="booking-fact">
+        <div class="booking-fact-label">Group Size</div>
+        <div class="booking-fact-value">2 – 14</div>
+      </div>
+      <div class="booking-fact">
+        <div class="booking-fact-label">Departures</div>
+        <div class="booking-fact-value">Oct – Mar</div>
+      </div>
+      <div class="booking-fact">
+        <div class="booking-fact-label">Difficulty</div>
+        <div class="booking-fact-value">Easy</div>
+      </div>
+    </div>
+
+    <div class="booking-sankalpa-status" id="bookingSankalpaStatus">
+      <span class="booking-sankalpa-status-icon">ॐ</span>
+      <span class="booking-sankalpa-status-text" id="bookingSankalpaStatusText"></span>
+    </div>
+
+    <button class="booking-btn">Reserve This Journey</button>
+    <a href="https://wa.me/919920120186?text=Hello%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Dwarka%20&%20Somnath" class="booking-btn-outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.671 5.461l-.998 3.648 3.816-.808zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.03-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+      Chat on WhatsApp
+    </a>
+    <button class="booking-btn-outline booking-btn-outline-brass">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      Call our concierge
+    </button>
+
+    <div class="booking-trust">No advance payment required to reserve.<br>Speak to our team first.</div>
+  </aside>
+</div>
+
+<section class="also-consider">
+  <div class="also-consider-inner">
+    <div class="also-consider-header">
+      <div class="section-eyebrow" style="justify-content:center;">You may also consider</div>
+      <h2 class="section-title" style="text-align:center;">Other <em>sacred journeys</em></h2>
+    </div>
+    <div class="also-consider-grid">
+        <a href="tour-krishna.html" class="also-card">
+          <div class="also-card-glyph">कृ</div>
+          <div class="also-card-name">Krishna Trail</div>
+          <div class="also-card-meta">7N · 8D · The Path of Krishna</div>
+          <div class="also-card-price">From ₹46,999</div>
+        </a>
+        <a href="tour-jyotirlinga.html" class="also-card">
+          <div class="also-card-glyph">श</div>
+          <div class="also-card-name">12 Jyotirlingas</div>
+          <div class="also-card-meta">14N · 15D · Pillars of Cosmic Light</div>
+          <div class="also-card-price">From ₹84,999</div>
+        </a>
+        <a href="tour-kashi.html" class="also-card">
+          <div class="also-card-glyph">का</div>
+          <div class="also-card-name">Kashi & Ayodhya</div>
+          <div class="also-card-meta">5N · 6D · Where time stops</div>
+          <div class="also-card-price">From ₹34,999</div>
+        </a>
+    </div>
+  </div>
+</section>
+
+<div class="concierge">
+  <div class="concierge-glyph">ॐ</div>
+  <h3>Have a question about <em>this journey?</em></h3>
+  <p>Speak with one of our pilgrimage concierges. We'll personalize this itinerary to your dates, dietary needs, and devotional intentions.</p>
+  <div class="concierge-buttons">
+    <a href="https://wa.me/919920120186" class="concierge-btn" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+      WhatsApp Us
+    </a>
+    <a href="tel:+919920120186" class="concierge-btn outline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      Call Now
+    </a>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// SANKALPA STONE — the intention-setting ritual
+// Stores intent per tour in localStorage; reveals booking confirmation
+// ============================================================
+(function() {
+  const tourId = document.body.getAttribute('data-tour-id');
+  if (!tourId) return;
+  const storageKey = 'sankalpa_' + tourId;
+
+  const intents = document.querySelectorAll('.sankalpa-intent');
+  const customField = document.getElementById('sankalpaCustom');
+  const confirmBox = document.getElementById('sankalpaConfirm');
+  const confirmText = document.getElementById('sankalpaConfirmText');
+  const bookingStatus = document.getElementById('bookingSankalpaStatus');
+  const bookingStatusText = document.getElementById('bookingSankalpaStatusText');
+
+  function setIntent(intent, label) {
+    localStorage.setItem(storageKey, JSON.stringify({ intent, label, ts: Date.now() }));
+    showConfirm(label);
+    intents.forEach(i => i.classList.toggle('selected', i.getAttribute('data-intent') === intent));
+    if (customField && intent !== 'custom') customField.value = '';
+  }
+
+  function showConfirm(label) {
+    if (confirmBox && confirmText) {
+      confirmText.innerHTML = '<strong>Your sankalpa is set</strong>Your intention will be carried to the temple. Our concierge will offer it at the morning aarti on your behalf.';
+      confirmBox.classList.add('show');
+    }
+    if (bookingStatus && bookingStatusText) {
+      bookingStatusText.textContent = 'Your sankalpa is set: "' + label + '"';
+      bookingStatus.classList.add('show');
+    }
+  }
+
+  intents.forEach(item => {
+    item.addEventListener('click', () => {
+      const intent = item.getAttribute('data-intent');
+      const label = item.getAttribute('data-label') || item.textContent.trim();
+      setIntent(intent, label);
+    });
+  });
+
+  if (customField) {
+    let typingTimeout;
+    customField.addEventListener('input', (e) => {
+      clearTimeout(typingTimeout);
+      const value = e.target.value.trim();
+      if (!value) return;
+      typingTimeout = setTimeout(() => {
+        intents.forEach(i => i.classList.remove('selected'));
+        setIntent('custom', value);
+      }, 800);
+    });
+  }
+
+  // Restore state on load
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (saved) {
+      if (saved.intent === 'custom' && customField) {
+        customField.value = saved.label;
+      } else {
+        const match = document.querySelector(`.sankalpa-intent[data-intent="${saved.intent}"]`);
+        if (match) match.classList.add('selected');
+      }
+      showConfirm(saved.label);
+    }
+  } catch (e) { /* noop */ }
+})();
+
+</script>
+<script>
+// ============================================================
+// BOOKING DIALOG — "Reserve This Journey"
+// Reads sankalpa from localStorage, generates WhatsApp message
+// Submits via a concierge-handoff (WhatsApp + email fallback)
+// ============================================================
+(function() {
+  const tourId   = document.body.getAttribute('data-tour-id') || 'general';
+  const tourName = document.querySelector('.hero-title')?.textContent?.trim()
+                || document.querySelector('h1')?.textContent?.trim()
+                || 'this journey';
+  const tourPrice = document.querySelector('.booking-price')?.textContent?.trim() || '';
+
+  // ── Inject dialog HTML ────────────────────────────────────
+  // Inject minimal style to control SVG sizes in dialog
+  const bookingStyle = document.createElement('style');
+  bookingStyle.textContent = '.booking-dialog svg { display:inline-block; flex-shrink:0; } .booking-overlay, .booking-dialog { font-family: system-ui, -apple-system, sans-serif; }';
+  document.head.appendChild(bookingStyle);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'booking-overlay';
+  overlay.id = 'bookingOverlay';
+
+  const dialog = document.createElement('div');
+  dialog.className = 'booking-dialog';
+  dialog.id = 'bookingDialog';
+  dialog.setAttribute('role', 'dialog');
+  dialog.setAttribute('aria-modal', 'true');
+  dialog.setAttribute('aria-label', 'Reserve your journey');
+
+  // Read saved sankalpa
+  let sankalpaTxt = '';
+  try {
+    const saved = JSON.parse(localStorage.getItem('sankalpa_' + tourId) || 'null');
+    if (saved) sankalpaTxt = saved.label || '';
+  } catch(e) {}
+
+  const sankalpaBadge = sankalpaTxt
+    ? `<div class="booking-dialog-sankalpa show" id="dialogSankalpaBadge">
+        <span class="booking-dialog-sankalpa-icon">ॐ</span>
+        <span>Your sankalpa: <em>"${sankalpaTxt}"</em> — will be offered at the morning aarti.</span>
+       </div>`
+    : `<div class="booking-dialog-sankalpa" id="dialogSankalpaBadge"></div>`;
+
+  dialog.innerHTML = `
+    <button class="booking-dialog-close" id="bookingDialogClose" aria-label="Close">✕</button>
+
+    <div id="bookingFormState">
+      <div class="booking-dialog-eyebrow">Reserve This Journey</div>
+      <h2 class="booking-dialog-title">${tourName}</h2>
+      <p class="booking-dialog-subtitle">No payment now. Our concierge will contact you within the hour to confirm dates, group size, and your preferences.</p>
+
+      ${sankalpaBadge}
+
+      <div class="booking-form" id="bookingForm">
+        <div class="booking-field">
+          <label>Your Name</label>
+          <input type="text" id="bf-name" placeholder="Full name" autocomplete="name" required />
+        </div>
+        <div class="booking-field">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" id="bf-phone" placeholder="+91 98765 43210" autocomplete="tel" required />
+        </div>
+        <div class="booking-field">
+          <label>Preferred Travel Month</label>
+          <select id="bf-month">
+            <option value="">Select month</option>
+            <option>January 2026</option><option>February 2026</option>
+            <option>March 2026</option><option>April 2026</option>
+            <option>May 2026</option><option>June 2026</option>
+            <option>July 2026</option><option>August 2026</option>
+            <option>September 2026</option><option>October 2026</option>
+            <option>November 2026</option><option>December 2026</option>
+            <option>January 2027</option><option>Flexible</option>
+          </select>
+        </div>
+        <div class="booking-field">
+          <label>Travellers</label>
+          <select id="bf-pax">
+            <option>1 person</option><option>2 people</option>
+            <option>3 people</option><option>4 people</option>
+            <option>5–8 people</option><option>9–16 people</option>
+            <option>16+ (group)</option>
+          </select>
+        </div>
+        <div class="booking-field full">
+          <label>Anything we should know</label>
+          <textarea id="bf-notes" placeholder="Dietary requirements, mobility considerations, special dates, or any questions…"></textarea>
+        </div>
+      </div>
+
+      <div class="booking-dialog-divider"></div>
+
+      <button class="booking-dialog-submit" id="bookingSubmit">Send reservation request</button>
+      <div class="booking-dialog-actions">
+        <a href="https://wa.me/919920120186" class="booking-dialog-whatsapp" id="bookingWA" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.413c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <a href="tel:+919920120186" class="booking-dialog-call">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          Call us now
+        </a>
+      </div>
+      <p class="booking-dialog-trust">No payment required to reserve. We will call you to confirm every detail before proceeding.</p>
+    </div>
+
+    <div class="booking-dialog-confirm" id="bookingConfirm">
+      <div class="booking-dialog-confirm-glyph">ॐ</div>
+      <h3 class="booking-dialog-confirm-title">Your reservation is received.</h3>
+      <p class="booking-dialog-confirm-body">Our pilgrimage concierge will reach you on WhatsApp within the hour. We look forward to walking this path with you.</p>
+      <div class="booking-dialog-confirm-ref" id="bookingRef"></div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.appendChild(dialog);
+
+  // ── Open / Close ──────────────────────────────────────────
+  function openDialog() {
+    overlay.classList.add('open');
+    dialog.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('bf-name')?.focus(), 500);
+  }
+  function closeDialog() {
+    overlay.classList.remove('open');
+    dialog.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Wire all "Reserve" buttons on the page
+  document.querySelectorAll('.booking-btn, [data-open-booking]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      openDialog();
+    });
+  });
+
+  document.getElementById('bookingDialogClose').addEventListener('click', closeDialog);
+  overlay.addEventListener('click', closeDialog);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDialog(); });
+
+  // ── Update WhatsApp link dynamically ─────────────────────
+  function buildWAMessage() {
+    const name  = document.getElementById('bf-name')?.value  || '';
+    const phone = document.getElementById('bf-phone')?.value || '';
+    const month = document.getElementById('bf-month')?.value || 'Flexible';
+    const pax   = document.getElementById('bf-pax')?.value   || '2';
+    const notes = document.getElementById('bf-notes')?.value || '';
+    const sankalpa = sankalpaTxt ? `\nSankalpa: "${sankalpaTxt}"` : '';
+
+    const msg = `Hello Vedic Trails 🙏\n\nI'd like to reserve: *${tourName}*${tourPrice ? ` (${tourPrice})` : ''}\n\nName: ${name}\nPhone: ${phone}\nTravel: ${month}\nGroup: ${pax}${sankalpa}${notes ? `\nNotes: ${notes}` : ''}\n\nPlease contact me to confirm.`;
+    return encodeURIComponent(msg);
+  }
+
+  ['bf-name','bf-phone','bf-month','bf-pax','bf-notes'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', () => {
+      const wa = document.getElementById('bookingWA');
+      if (wa) wa.href = `https://wa.me/919920120186?text=${buildWAMessage()}`;
+    });
+  });
+
+  // ── Submit ────────────────────────────────────────────────
+  document.getElementById('bookingSubmit').addEventListener('click', () => {
+    const name  = document.getElementById('bf-name')?.value.trim();
+    const phone = document.getElementById('bf-phone')?.value.trim();
+    if (!name || !phone) {
+      document.getElementById('bf-name').style.borderColor = name ? '' : '#A8312A';
+      document.getElementById('bf-phone').style.borderColor = phone ? '' : '#A8312A';
+      return;
+    }
+
+    // Generate a reference number
+    const ref = 'VT-' + Date.now().toString(36).toUpperCase().slice(-6);
+    localStorage.setItem('booking_ref_' + tourId, ref);
+
+    // Save to localStorage for the concierge-sankalpa strip
+    localStorage.setItem('pending_reservation', JSON.stringify({
+      tourId, tourName, ref,
+      name, phone,
+      month: document.getElementById('bf-month')?.value,
+      pax:   document.getElementById('bf-pax')?.value,
+      notes: document.getElementById('bf-notes')?.value,
+      sankalpa: sankalpaTxt,
+      ts: Date.now()
+    }));
+
+    // Open WhatsApp with pre-filled message (primary handoff)
+    const waUrl = `https://wa.me/919920120186?text=${buildWAMessage()}`;
+    window.open(waUrl, '_blank', 'noopener');
+
+    // Show confirmation
+    document.getElementById('bookingFormState').style.display = 'none';
+    document.getElementById('bookingRef').textContent = 'Reference: ' + ref;
+    document.getElementById('bookingConfirm').classList.add('show');
+    // Update the booking card status if on page
+    const statusEl = document.getElementById('bookingSankalpaStatus');
+    if (statusEl) {
+      statusEl.classList.add('show');
+      const textEl = document.getElementById('bookingSankalpaStatusText');
+      if (textEl) textEl.textContent = 'Reservation requested · Ref: ' + ref;
+    }
+  });
+})();
+
+</script>
+</body>
+</html>
