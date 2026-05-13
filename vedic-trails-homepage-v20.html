@@ -7,7 +7,7 @@
 <meta name="description" content="India's premium sacred travel brand. Curated temple journeys, pilgrimages, and sacred circuits across India.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Inter:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -83,7 +83,9 @@
     -webkit-backdrop-filter: none;
   }
   nav.over-dark .nav-logo-text,
-  nav.over-dark .nav-links a { color: rgba(244, 236, 216, 0.92); }
+  nav.over-dark .nav-links a {
+    color: rgba(244, 236, 216, 0.92);
+  }
   nav.over-dark .nav-logo-mark circle,
   nav.over-dark .nav-logo-mark path { stroke: #E6C77A; }
   nav.over-dark .nav-logo-mark circle[fill] { fill: #E6C77A; }
@@ -111,10 +113,10 @@
     height: 32px;
   }
   .nav-logo-text {
-    font-family: var(--display);
-    font-size: 1.5rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.45rem;
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
     color: var(--navy);
   }
   .nav-links {
@@ -124,8 +126,11 @@
     align-items: center;
   }
   .nav-links a {
-    font-size: 0.85rem;
+    font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, sans-serif;
+    font-size: 0.7rem;
     font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--navy);
     text-decoration: none;
     transition: color 0.3s var(--ease);
@@ -149,9 +154,11 @@
     padding: 0.7rem 1.5rem;
     border: none;
     border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     transition: all 0.3s var(--ease);
     text-decoration: none;
   }
@@ -1253,6 +1260,55 @@
     .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
     .featured-header { flex-direction: column; align-items: flex-start; }
   }
+
+  /* IMMERSIVE HERO */
+  .immersive{position:relative;width:100%;height:100vh;min-height:580px;max-height:880px;overflow:hidden;background:#1A1510}
+  .imm-slide{position:absolute;inset:0;opacity:0;transition:opacity 2s ease-in-out;z-index:1}
+  .imm-slide.active{opacity:1;z-index:2}
+  .imm-slide img{width:100%;height:100%;object-fit:cover;filter:sepia(0.15) contrast(1.05) brightness(0.6) saturate(0.85);transform:scale(1.06);transition:transform 14s ease-out}
+  .imm-slide.active img{transform:scale(1.0)}
+  .imm-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(26,21,16,0.88) 0%,rgba(26,21,16,0.25) 40%,rgba(26,21,16,0.08) 70%,rgba(26,21,16,0.2) 100%),linear-gradient(to right,rgba(26,21,16,0.35) 0%,transparent 50%);z-index:1}
+  .imm-content{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4rem 4.5rem;max-width:1400px;margin:0 auto;left:0;right:0}
+  .imm-top{position:absolute;top:0;left:0;right:0;z-index:11;padding:5.5rem 4rem 0;display:flex;align-items:center;justify-content:space-between}
+  .imm-mark{font-family:system-ui,-apple-system,sans-serif;font-size:0.58rem;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:rgba(184,148,85,0.5)}
+  .imm-plate-num{font-family:system-ui,-apple-system,sans-serif;font-size:0.58rem;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:rgba(244,236,216,0.3)}
+  .imm-headline{margin-bottom:1.5rem;transition:opacity 1s ease,transform 1s ease}
+  .imm-headline.fading{opacity:0;transform:translateY(10px)}
+  .imm-overline{font-family:system-ui,-apple-system,sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:rgba(184,148,85,0.6);margin-bottom:0.8rem}
+  .imm-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:400;line-height:1.05;letter-spacing:-0.01em;color:#F4ECD8}
+  .imm-title em{font-style:italic;font-weight:400;color:rgba(201,169,97,0.85)}
+  .imm-info{display:flex;align-items:flex-end;justify-content:space-between;gap:3rem}
+  .imm-desc{max-width:460px;transition:opacity 1s ease,transform 1s ease}
+  .imm-desc.fading{opacity:0;transform:translateY(8px)}
+  .imm-desc-text{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.05rem;color:rgba(244,236,216,0.5);line-height:1.6;margin-bottom:0.8rem}
+  .imm-coords{font-size:0.65rem;letter-spacing:0.12em;color:rgba(184,148,85,0.4);font-family:system-ui,sans-serif}
+  .imm-ctas{display:flex;gap:0.7rem;flex-shrink:0}
+  .imm-cta{padding:0.7rem 1.5rem;border-radius:3px;font-size:0.76rem;letter-spacing:0.05em;font-family:system-ui,sans-serif;font-weight:600;transition:all 0.35s cubic-bezier(0.22,1,0.36,1);text-decoration:none;white-space:nowrap}
+  .imm-cta-p{background:#F4ECD8;color:#1C2845}.imm-cta-p:hover{background:#E6C77A;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .imm-cta-o{background:transparent;border:1px solid rgba(184,148,85,0.3);color:rgba(244,236,216,0.65)}.imm-cta-o:hover{border-color:rgba(184,148,85,0.6);color:#F4ECD8}
+  .imm-dots{position:absolute;right:3.5rem;top:50%;transform:translateY(-50%);z-index:11;display:flex;flex-direction:column;gap:0.7rem}
+  .imm-dot{width:7px;height:7px;border-radius:50%;border:1px solid rgba(184,148,85,0.35);background:transparent;cursor:pointer;transition:all 0.4s;padding:0}
+  .imm-dot.active{background:#B89455;border-color:#B89455;transform:scale(1.3)}
+  .imm-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(184,148,85,0.1);z-index:11}
+  .imm-progress-bar{height:100%;background:rgba(184,148,85,0.5);width:0%;transition:width 0.3s linear}
+
+  /* NAV BAR — luxury refinement */
+  .nav .nav-brand, .nav-brand {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-weight: 500 !important;
+    font-size: 1.3rem !important;
+    letter-spacing: 0.02em !important;
+  }
+  .nav a:not(.nav-brand):not(.plan-btn) {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif !important;
+    font-size: 0.72rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+  }
+
+  @media(max-width:768px){.immersive{max-height:80vh;min-height:480px}.imm-content{padding:0 1.5rem 3rem}.imm-top{padding:5rem 1.5rem 0}.imm-info{flex-direction:column;align-items:flex-start;gap:1.2rem}.imm-dots{right:1rem}.imm-title{font-size:clamp(1.9rem,8vw,2.8rem)}}
+
 </style>
 </head>
 <body>
@@ -1269,9 +1325,9 @@
     <span class="nav-logo-text">Vedic Trails</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#journeys">Journeys</a></li>
+    <li><a href="journeys.html">Journeys</a></li>
     <li><a href="vedic-trails-homepage-v20.html#sacred-geography">Sacred Geography</a></li>
-    <li><a href="#tours">Tours</a></li>
+    <li><a href="journeys.html">Tours</a></li>
     <li><a href="calendar.html" href="calendar.html">Calendar</a></li>
     <li><a href="#testimonials" href="stories.html">Stories</a></li>
   </ul>
@@ -1622,185 +1678,90 @@
 </style>
 
 <!-- ============ DUOTONE FILTER (defined once, referenced by all photos) ============ -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <!-- Sepia-ash duotone: maps luminance to a unified color ramp.
-         Shadows → deep ash-brown (#2A2018); highlights → warm parchment (#D4C49E).
-         This is the move that makes three photos read as one archive. -->
-    <filter id="duotone-archive" color-interpolation-filters="sRGB">
-      <!-- Desaturate the photograph completely -->
-      <feColorMatrix type="matrix" values="
-        0.299 0.587 0.114 0 0
-        0.299 0.587 0.114 0 0
-        0.299 0.587 0.114 0 0
-        0     0     0     1 0"/>
-      <!-- Remap the luminance into a sepia-ash gradient -->
-      <feComponentTransfer>
-        <!-- R channel: shadows 0.16 → highlights 0.83 (warm parchment cream) -->
-        <feFuncR type="table" tableValues="0.16 0.30 0.46 0.62 0.78 0.92"/>
-        <!-- G channel: shadows 0.13 → highlights 0.77 (slightly less than red, giving warmth) -->
-        <feFuncG type="table" tableValues="0.12 0.24 0.38 0.55 0.70 0.85"/>
-        <!-- B channel: shadows 0.10 → highlights 0.62 (cooler in shadow, mineral) -->
-        <feFuncB type="table" tableValues="0.10 0.18 0.28 0.42 0.55 0.70"/>
-      </feComponentTransfer>
-    </filter>
 
-    <!-- Plate 3 (Rameswaram) needs a lighter inverse duotone — pale paper -->
-    <filter id="duotone-paper" color-interpolation-filters="sRGB">
-      <feColorMatrix type="matrix" values="
-        0.299 0.587 0.114 0 0
-        0.299 0.587 0.114 0 0
-        0.299 0.587 0.114 0 0
-        0     0     0     1 0"/>
-      <feComponentTransfer>
-        <feFuncR type="table" tableValues="0.34 0.48 0.62 0.76 0.88 0.96"/>
-        <feFuncG type="table" tableValues="0.30 0.43 0.56 0.70 0.82 0.91"/>
-        <feFuncB type="table" tableValues="0.27 0.38 0.49 0.61 0.72 0.82"/>
-      </feComponentTransfer>
-    </filter>
-  </defs>
-</svg>
 
-<!-- ============ PLATE 1 — KEDARNATH ============ -->
-<section class="plate plate--kedarnath">
-  <img class="plate-photo"
-       data-photo-fallbacks="https://images.unsplash.com/photo-1606722581293-628fa217a6f7?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1572468100469-9f2f6e2d8b85?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1605649461784-edc01e8b6f30?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1542888262-22e62fad7d22?w=2400&q=85&auto=format&fit=crop"
-       src="https://images.unsplash.com/photo-1606722581293-628fa217a6f7?w=2400&q=85&auto=format&fit=crop"
-       alt="Kedarnath in the Garhwal Himalaya"
-       loading="eager"
-       fetchpriority="high" />
-  <div class="plate-tone"></div>
-  <div class="plate-vignette"></div>
-  <div class="plate-fiber"></div>
-  <div class="plate-grain"></div>
+<!-- ============ IMMERSIVE HERO — Sacred Portal ============ -->
+<section class="immersive" id="immersive">
+  <div class="imm-slide active" data-scene="0">
+    <img src="https://images.unsplash.com/photo-1606722581293-628fa217a6f7?w=2400&q=85&auto=format&fit=crop" alt="Kedarnath" loading="eager" />
+  </div>
+  <div class="imm-slide" data-scene="1">
+    <img src="https://images.unsplash.com/photo-1600261669797-1bb7b27939be?w=2400&q=85&auto=format&fit=crop" alt="Varanasi ghats" loading="lazy" />
+  </div>
+  <div class="imm-slide" data-scene="2">
+    <img src="https://images.unsplash.com/photo-1692173248120-59547c3d4653?w=2400&q=85&auto=format&fit=crop" alt="Meenakshi temple" loading="lazy" />
+  </div>
+  <div class="imm-slide" data-scene="3">
+    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=2400&q=85&auto=format&fit=crop" alt="Kerala backwaters" loading="lazy" />
+  </div>
 
-  <div class="plate-mark">An atlas of Bharat</div>
+  <div class="imm-top">
+    <div class="imm-mark">An atlas of Bharat</div>
+    <div class="imm-plate-num" id="immPlate">Plate No. 1 · Kedarnath</div>
+  </div>
 
-  <div class="plate-content">
-    <div class="plate-coords">
-      30°44′N · 79°04′E
-      <div class="plate-coords-rule"></div>
-      <div class="plate-coords-scale">Survey of India · Sheet 53N/11</div>
+  <div class="imm-content">
+    <div class="imm-headline" id="immH">
+      <div class="imm-overline">Vedic Trails</div>
+      <h1 class="imm-title" id="immT">Bharat, mapped<br>by her <em>temples.</em></h1>
     </div>
-
-    <div class="plate-headline">
-      <div class="plate-headline-overline">Vedic Trails</div>
-      <h1 class="plate-headline-text">Bharat, mapped<br>by her temples.</h1>
+    <div class="imm-location" id="immLoc" style="margin-bottom:1.2rem;transition:opacity 1s ease,transform 1s ease">
+      <div class="imm-loc-sep" style="font-family:system-ui,sans-serif;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(184,148,85,0.45);margin-bottom:0.5rem;display:flex;align-items:center;gap:0.6rem"><span style="width:24px;height:1px;background:rgba(184,148,85,0.35);display:block"></span><span id="immPN2">Plate No. 1 · Kedarnath</span></div>
+      <div id="immLocName" style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:rgba(244,236,216,0.75);line-height:1.1;margin-bottom:0.3rem">Garhwal Himalaya</div>
+      <div id="immLocMeta" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.9rem;color:rgba(244,236,216,0.35)">11,755 ft · Uttarakhand</div>
     </div>
-
-    <div class="plate-slug">
-      <div class="plate-slug-number">Plate No. 1 · Kedarnath</div>
-      <div class="plate-slug-place">Garhwal Himalaya</div>
-      <div class="plate-slug-meta">11,755 ft · Uttarakhand</div>
-      <div class="plate-slug-detail">One of twelve Jyotirlingas. The temple is closed five months of the year, buried in snow. Pilgrims walk from Gaurikund — sixteen kilometres on foot, or by helicopter when the weather opens.</div>
-    </div>
-
-    <div class="plate-pace">
-      <div class="plate-pace-label">Best approached</div>
-      <div class="plate-pace-text">May through October.<br>Pre-monsoon if you can manage it.</div>
+    <div class="imm-info">
+      <div class="imm-desc" id="immD">
+        <div class="imm-desc-text" id="immTx">One of twelve Jyotirlingas. The temple is closed five months of the year, buried in snow. Pilgrims walk sixteen kilometres on foot.</div>
+        <div class="imm-coords" id="immCo">30°44′N · 79°04′E · Garhwal Himalaya · 11,755 ft</div>
+      </div>
+      <!-- CTAs removed for cleaner hero -->
     </div>
   </div>
-</section>
 
-<!-- ============ PLATE 2 — KASHI ============ -->
-<section class="plate plate--kashi">
-  <img class="plate-photo"
-       data-photo-fallbacks="https://images.unsplash.com/photo-1600261669797-1bb7b27939be?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1561361398-a8d9b6d6e3e0?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1561361398-aff5e76b8e89?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1561361398-cae2a8e63d80?w=2400&q=85&auto=format&fit=crop"
-       src="https://images.unsplash.com/photo-1600261669797-1bb7b27939be?w=2400&q=85&auto=format&fit=crop"
-       alt="The ghats of Varanasi at dawn"
-       loading="lazy" />
-  <div class="plate-tone"></div>
-  <div class="plate-vignette"></div>
-  <div class="plate-fiber"></div>
-  <div class="plate-grain"></div>
-
-  <div class="plate-mark">Continued from Plate 1</div>
-
-  <div class="plate-content">
-    <div class="plate-coords">
-      25°19′N · 83°00′E
-      <div class="plate-coords-rule"></div>
-      <div class="plate-coords-scale">Manikarnika &amp; Dashashwamedh</div>
-    </div>
-
-    <div class="plate-headline" style="grid-column: 1 / -1; align-self: end; margin-bottom: 0;"></div>
-
-    <div class="plate-slug">
-      <div class="plate-slug-number">Plate No. 2 · Kashi</div>
-      <div class="plate-slug-place">Banks of the Ganga</div>
-      <div class="plate-slug-meta">Varanasi · Uttar Pradesh</div>
-      <div class="plate-slug-detail">Continuously inhabited for at least three thousand years — older than Babylon, older than Athens. The ghats have been in unbroken ritual use since before the Buddha walked the earth.</div>
-    </div>
-
-    <div class="plate-pace">
-      <div class="plate-pace-label">A note on time</div>
-      <div class="plate-pace-text">There are three offerings per day on the river.<br>The first is at four in the morning.</div>
-    </div>
+  <div class="imm-dots">
+    <button class="imm-dot active" data-scene="0"></button>
+    <button class="imm-dot" data-scene="1"></button>
+    <button class="imm-dot" data-scene="2"></button>
+    <button class="imm-dot" data-scene="3"></button>
   </div>
+
+  <div class="imm-progress"><div class="imm-progress-bar" id="immPr"></div></div>
 </section>
 
-<!-- ============ PLATE 3 — MADURAI ============ -->
-<section class="plate plate--tamil">
-  <img class="plate-photo"
-       style="filter: url(#duotone-paper) contrast(0.9) brightness(0.92) saturate(0.65);"
-       data-photo-fallbacks="https://images.unsplash.com/photo-1692173248120-59547c3d4653?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1567157577867-05ccb1388e66?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1604608672516-f1b9b1d92be5?w=2400&q=85&auto=format&fit=crop|https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=2400&q=85&auto=format&fit=crop"
-       src="https://images.unsplash.com/photo-1692173248120-59547c3d4653?w=2400&q=85&auto=format&fit=crop"
-       alt="A Tamil Nadu temple corridor"
-       loading="lazy" />
-  <div class="plate-tone" style="opacity: 0.32; background: linear-gradient(180deg, rgba(180, 160, 120, 0.25) 0%, rgba(150, 130, 95, 0.15) 50%, rgba(100, 80, 55, 0.35) 100%);"></div>
-  <div class="plate-vignette" style="background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 50%, rgba(50, 38, 24, 0.4) 90%, rgba(40, 30, 18, 0.6) 100%);"></div>
-  <div class="plate-fiber"></div>
-  <div class="plate-grain"></div>
-
-  <div class="plate-mark">Continued from Plate 2</div>
-
-  <div class="plate-content">
-    <div class="plate-coords">
-      9°55′N · 78°07′E
-      <div class="plate-coords-rule"></div>
-      <div class="plate-coords-scale">Meenakshi Sundareswarar</div>
-    </div>
-
-    <div class="plate-slug">
-      <div class="plate-slug-number">Plate No. 3 · Madurai</div>
-      <div class="plate-slug-place">The southern temples</div>
-      <div class="plate-slug-meta">Tamil Nadu</div>
-      <div class="plate-slug-detail">A thousand pillars at Meenakshi. Fourteen gopurams covered in thirty-three thousand painted sculptures, repainted by hand once every twelve years. The rituals have not stopped for nine hundred years.</div>
-    </div>
-
-    <div class="plate-pace">
-      <div class="plate-pace-label">The complete passage</div>
-      <div class="plate-pace-text">2,800 kilometres from Kedarnath south to the sea.<br>The full atlas, walked.</div>
-    </div>
-  </div>
-</section>
-
-<!-- Photo fallback resolver: if a primary photo 404s, try the next alternate. -->
 <script>
-  (function() {
-    document.querySelectorAll('.plate-photo[data-photo-fallbacks]').forEach(img => {
-      const fallbacks = (img.getAttribute('data-photo-fallbacks') || '').split('|').filter(Boolean);
-      let attempt = 0;
-      img.addEventListener('error', function() {
-        attempt++;
-        if (attempt < fallbacks.length) {
-          img.src = fallbacks[attempt];
-        } else {
-          // Final fallback: replace the broken image with a rich sepia tone field
-          img.style.display = 'none';
-          const placeholder = document.createElement('div');
-          placeholder.className = 'plate-photo plate-photo-final-fallback';
-          placeholder.style.background = img.closest('.plate--kedarnath') ?
-            'radial-gradient(ellipse 100% 60% at 40% 35%, rgba(78, 64, 44, 0.55) 0%, transparent 65%), radial-gradient(ellipse 80% 50% at 75% 70%, rgba(50, 38, 24, 0.5) 0%, transparent 60%), linear-gradient(178deg, #3A2E1F 0%, #2D2418 50%, #1F1810 100%)' :
-            img.closest('.plate--kashi') ?
-            'radial-gradient(ellipse 100% 50% at 30% 70%, rgba(90, 60, 38, 0.5) 0%, transparent 70%), linear-gradient(180deg, #2B2218 0%, #3D2E1F 35%, #4A3525 60%, #2A1E14 100%)' :
-            'radial-gradient(ellipse 60% 100% at 50% 50%, rgba(180, 155, 110, 0.45) 0%, transparent 70%), linear-gradient(180deg, #6E5A40 0%, #8A7252 35%, #A38B68 55%, #6B5638 88%, #4A3C28 100%)';
-          placeholder.style.filter = 'none';
-          img.parentElement.insertBefore(placeholder, img);
-        }
-      });
-    });
-  })();
+(function(){
+  var S=[
+    {p:'Plate No. 1 · Kedarnath',t:'Bharat, mapped<br>by her <em>temples.</em>',x:'One of twelve Jyotirlingas. The temple is closed five months of the year, buried in snow. Pilgrims walk sixteen kilometres on foot.',c:'30°44′N · 79°04′E · Garhwal Himalaya · 11,755 ft',ln:'Garhwal Himalaya',lm:'11,755 ft · Uttarakhand'},
+    {p:'Plate No. 2 · Kashi',t:'The oldest city<br>on <em>earth.</em>',x:'Continuously inhabited for three thousand years. The ghats have been in unbroken ritual use since before the Buddha walked here.',c:'25°19′N · 83°00′E · Varanasi · Banks of the Ganga',ln:'Banks of the Ganga',lm:'Varanasi · Uttar Pradesh'},
+    {p:'Plate No. 3 · Madurai',t:'A thousand pillars.<br><em>Nine hundred years.</em>',x:'Fourteen gopurams covered in thirty-three thousand painted sculptures, repainted by hand every twelve years. The rituals have not stopped.',c:'9°55′N · 78°07′E · Meenakshi Sundareswarar · Tamil Nadu',ln:'Meenakshi Sundareswarar',lm:'Madurai · Tamil Nadu'},
+    {p:'Plate No. 4 · Kerala',t:'Temples of water<br>and <em>firelight.</em>',x:'The most architecturally distinct temple tradition in India. Low, dark, built in laterite and timber, sanctums lit by oil lamps.',c:'10°31′N · 76°13′E · Guruvayur · Kerala',ln:'Guruvayur',lm:'Kerala · South India'}
+  ];
+  var cur=0,tmr,ptmr,pv=0,INT=8000,FD=500;
+  var sl=document.querySelectorAll('.imm-slide'),dt=document.querySelectorAll('.imm-dot');
+  var hEl=document.getElementById('immH'),dEl=document.getElementById('immD');
+  var tEl=document.getElementById('immT'),txEl=document.getElementById('immTx');
+  var coEl=document.getElementById('immCo'),plEl=document.getElementById('immPlate');
+  var prEl=document.getElementById('immPr');
+  function go(i){
+    if(i===cur&&sl[cur].classList.contains('active'))return;
+    hEl.classList.add('fading');dEl.classList.add('fading');var loc=document.getElementById('immLoc');if(loc)loc.style.opacity='0';
+    setTimeout(function(){
+      sl[cur].classList.remove('active');dt[cur].classList.remove('active');
+      cur=i;sl[cur].classList.add('active');dt[cur].classList.add('active');
+      var s=S[cur];tEl.innerHTML=s.t;txEl.textContent=s.x;coEl.textContent=s.c;plEl.textContent=s.p;var ln=document.getElementById('immLocName');var lm=document.getElementById('immLocMeta');var pn2=document.getElementById('immPN2');if(ln)ln.textContent=s.ln||'';if(lm)lm.textContent=s.lm||'';if(pn2)pn2.textContent=s.p;
+      setTimeout(function(){hEl.classList.remove('fading');dEl.classList.remove('fading');var loc2=document.getElementById('immLoc');if(loc2)loc2.style.opacity='1'},80);
+    },FD);
+    pv=0;if(prEl)prEl.style.width='0%';
+  }
+  function nxt(){go((cur+1)%S.length)}
+  function play(){stop();tmr=setInterval(nxt,INT);ptmr=setInterval(function(){pv+=100/(INT/50);if(pv>100)pv=100;if(prEl)prEl.style.width=pv+'%'},50)}
+  function stop(){clearInterval(tmr);clearInterval(ptmr)}
+  dt.forEach(function(d){d.addEventListener('click',function(){go(parseInt(d.dataset.scene));stop();play()})});
+  var im=document.getElementById('immersive');
+  if(im){im.addEventListener('mouseenter',stop);im.addEventListener('mouseleave',play)}
+  play();
+})();
 </script>
 
 <!-- HERO -->
@@ -1857,7 +1818,7 @@
       </p>
 
       <div class="hero-actions">
-        <a href="#journeys" class="btn-primary">
+        <a href="journeys.html" class="btn-primary">
           Explore Journeys
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -3997,7 +3958,7 @@
         <div class="eyebrow">Featured Journeys</div>
         <h2 class="section-title">This <em>season's</em> most beloved journeys</h2>
       </div>
-      <a href="#" class="featured-link">
+      <a href="journeys.html" class="featured-link">
         View all tours →
       </a>
     </div>

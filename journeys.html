@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>All Journeys · Vedic Trails</title>
+<meta name="description" content="23 sacred circuits across India. Browse every journey we offer.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Noto+Serif+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FBF6EC;--parch:#F4ECD8;--charcoal:#2A2419;--navy:#1C2845;--ink:#0F1832;
+  --gold:#B89455;--brass:#C9A961;--terra:#A8312A;
+  --muted:rgba(42,36,25,0.45);--border:rgba(184,148,85,0.2);
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--charcoal);font-family:'Cormorant Garamond',Georgia,serif;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:200;background:rgba(251,246,236,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0.9rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.nav-left{display:flex;align-items:center;gap:2rem}
+.nav-back{display:flex;align-items:center;gap:0.4rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);transition:color 0.3s}.nav-back:hover{color:var(--navy)}
+.nav-brand{font-size:1.15rem;font-weight:500;color:var(--navy);letter-spacing:0.02em}
+.nav-links{display:flex;gap:1.8rem}
+.nav-link{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);transition:color 0.3s}.nav-link:hover{color:var(--navy)}.nav-link.active{color:var(--navy);border-bottom:1px solid var(--navy);padding-bottom:2px}
+.nav-cta{padding:0.5rem 1.2rem;background:var(--navy);color:var(--parch);border-radius:3px;font-size:0.72rem;letter-spacing:0.06em;font-family:system-ui,sans-serif;font-weight:600;transition:all 0.3s}.nav-cta:hover{background:var(--ink)}
+
+/* HEADER */
+.header{padding:4.5rem 3rem 3.5rem;background:linear-gradient(135deg,#1C2845 0%,#0F1832 60%,#162040 100%);position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='rgba(184,148,85,0.04)' stroke-width='0.5'%3E%3Cpath d='M30 0v60M0 30h60'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.header-inner{max-width:1300px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:1}
+.header-left{max-width:620px}
+.header-eyebrow{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem}
+.header-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+.header-title{font-size:clamp(2.5rem,4.5vw,3.8rem);font-weight:300;line-height:1.05;color:#F4ECD8;margin-bottom:1rem;letter-spacing:-0.02em}
+.header-title em{font-style:italic;color:var(--brass)}
+.header-sub{font-style:italic;font-size:1.05rem;color:rgba(244,236,216,0.55);line-height:1.6}
+.header-right{text-align:right}
+.header-stat{margin-bottom:1.2rem}.header-stat-val{font-size:2.2rem;font-weight:300;color:#F4ECD8;line-height:1;letter-spacing:-0.02em}.header-stat-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(184,148,85,0.6);margin-top:0.2rem}
+.header-divider{width:40px;height:1px;background:rgba(184,148,85,0.3);margin:0 0 1.2rem auto}
+
+/* FILTERS BAR */
+.filters-bar{position:sticky;top:52px;z-index:100;background:rgba(251,246,236,0.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0.8rem 3rem}
+.filters-inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.filter-group{display:flex;align-items:center;gap:0.3rem}
+.filter-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-right:0.3rem;white-space:nowrap}
+.f-btn{padding:0.3rem 0.7rem;border:1px solid var(--border);border-radius:3px;font-size:0.78rem;color:var(--charcoal);font-family:'Cormorant Garamond',serif;transition:all 0.2s;white-space:nowrap}
+.f-btn:hover{border-color:var(--gold);color:var(--navy)}
+.f-btn.ac{background:var(--navy);border-color:var(--navy);color:var(--parch)}
+.filter-sep{width:1px;height:24px;background:var(--border);margin:0 0.3rem}
+.filter-clear{font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--terra);margin-left:auto;cursor:pointer;font-family:system-ui,sans-serif;white-space:nowrap}
+.filter-clear:hover{opacity:0.7}
+
+/* SORT BAR */
+.sort-bar{max-width:1300px;margin:0 auto;padding:1.2rem 3rem 0.8rem;display:flex;align-items:center;justify-content:space-between}
+.sort-count{font-style:italic;font-size:0.92rem;color:var(--muted)}.sort-count strong{font-style:normal;color:var(--navy);font-weight:400}
+.sort-right{display:flex;align-items:center;gap:0.8rem}
+.sort-sel{padding:0.3rem 0.6rem;border:1px solid var(--border);border-radius:3px;font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:var(--charcoal);background:transparent;cursor:pointer;outline:none;appearance:none}
+
+/* GRID */
+.main-layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;padding:0 3rem}
+.sidebar{position:sticky;top:145px;height:calc(100vh - 145px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;border-right:1px solid var(--border);padding:1.5rem;background:var(--parch)}
+.sidebar::-webkit-scrollbar{width:2px}.sidebar::-webkit-scrollbar-thumb{background:var(--border)}
+.sb-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border)}
+.sb-title{font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.sb-clear{font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--terra);cursor:pointer;font-family:system-ui,sans-serif;font-weight:500}
+.sb-count{font-style:italic;font-size:0.92rem;color:var(--muted);margin-bottom:1rem}.sb-count strong{font-style:normal;color:var(--navy);font-weight:400}
+.sb-group{margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+.sb-label{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--charcoal);opacity:0.5;font-weight:500;margin-bottom:0.5rem;display:block}
+.sb-opts{display:flex;flex-wrap:wrap;gap:0.3rem}
+.sb-btn{padding:0.35rem 0.7rem;border:1px solid var(--border);border-radius:3px;font-size:0.88rem;color:var(--charcoal);font-family:"Cormorant Garamond",serif;transition:all 0.2s;background:transparent}
+.sb-btn:hover{border-color:var(--gold);color:var(--navy)}
+.sb-btn.ac{background:var(--navy);border-color:var(--navy);color:var(--parch)}
+.grid-col{padding:0 0 6rem 2rem;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+
+/* CARD — Remote Lands style: big photo, clean info below */
+.card{display:flex;flex-direction:column;cursor:pointer;transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease);border:1px solid var(--border);background:var(--cream);box-shadow:0 2px 8px rgba(0,0,0,0.04);border-radius:4px;overflow:hidden}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,0.12),0 4px 12px rgba(0,0,0,0.06)}
+
+/* Top meta row — Duration / Region / Price ABOVE image */
+.card-top-meta{display:flex;align-items:center;padding:0.8rem 1rem;border-bottom:1px solid var(--border)}
+.card-top-item{display:flex;flex-direction:column;gap:1px;flex:1}
+.card-top-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--charcoal);opacity:0.5;font-family:system-ui,sans-serif;font-weight:500}
+.card-top-val{font-size:0.95rem;color:var(--navy);font-weight:500}
+.card-top-price{text-align:right;flex:1}
+.card-top-price-from{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--charcoal);opacity:0.5;font-family:system-ui,sans-serif;font-weight:500}
+.card-top-price-val{font-size:1.25rem;color:var(--navy);font-weight:600}
+.card-top-sep{width:1px;height:28px;background:var(--border);margin:0 0.8rem;flex-shrink:0}
+
+/* Image */
+.card-img{position:relative;width:100%;aspect-ratio:3/2;overflow:hidden;background:var(--parch)}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.8s var(--ease)}
+.card:hover .card-img img{transform:scale(1.04)}
+.card-tag{position:absolute;top:0.8rem;left:0.8rem;font-size:0.55rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.2rem 0.5rem;background:rgba(255,255,255,0.92);color:var(--navy);border-radius:2px;font-family:system-ui,sans-serif;font-weight:600}
+
+/* Body — title, temples, mood */
+.card-body{padding:1.2rem 1rem 0;flex:1;display:flex;flex-direction:column}
+.card-title{font-size:1.25rem;font-weight:500;color:var(--navy);line-height:1.15;margin-bottom:0.3rem;letter-spacing:-0.01em}
+.card-temples{font-size:0.78rem;color:var(--muted);line-height:1.4;margin-bottom:0.6rem}
+.card-mood{font-style:italic;font-size:0.88rem;color:var(--charcoal);line-height:1.45;opacity:0.7;flex:1}
+
+/* Glyph divider */
+.card-divider{text-align:center;padding:0.8rem 0;color:rgba(184,148,85,0.3);font-family:'Noto Serif Devanagari',serif;font-size:1rem;line-height:1;position:relative}
+.card-divider::before,.card-divider::after{content:'';position:absolute;top:50%;height:1px;background:var(--border);width:calc(50% - 1.5rem)}
+.card-divider::before{left:1rem}
+.card-divider::after{right:1rem}
+
+/* Bottom meta + CTA */
+.card-bottom{padding:0 1rem 0}
+.card-meta{display:flex;align-items:center;gap:1rem;padding:0.6rem 0;border-top:1px solid var(--border)}
+.card-meta-item{display:flex;flex-direction:column;gap:1px}
+.card-meta-label{font-size:0.5rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-family:system-ui,sans-serif}
+.card-meta-val{font-size:0.82rem;color:var(--navy)}
+.card-price{margin-left:auto;text-align:right}
+.card-price-from{font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);font-family:system-ui,sans-serif}
+.card-price-val{font-size:1.1rem;color:var(--navy);font-weight:500}
+.card-cta-btn{display:block;width:100%;padding:0.75rem;background:var(--navy);color:var(--parch);text-align:center;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-family:system-ui,sans-serif;font-weight:600;transition:all 0.3s var(--ease);text-decoration:none;margin-top:0}
+.card-cta-btn:hover{background:var(--ink)}
+
+/* FEATURED — spans 2 cols, larger */
+
+
+
+
+/* NO RESULTS */
+.no-res{grid-column:1/-1;padding:5rem 2rem;text-align:center}
+.no-res-title{font-size:1.5rem;color:var(--navy);margin-bottom:0.5rem}
+.no-res-sub{font-style:italic;color:var(--muted);margin-bottom:1.5rem}
+.no-res-btn{padding:0.6rem 1.5rem;border:1px solid var(--border);border-radius:3px;font-size:0.82rem;color:var(--navy);cursor:pointer;transition:all 0.3s}.no-res-btn:hover{background:var(--navy);color:var(--parch)}
+
+/* CTA */
+.cta-section{max-width:1300px;margin:0 auto;padding:5rem 3rem;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr auto;align-items:center;gap:3rem}
+.cta-left{}
+.cta-eyebrow{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem}
+.cta-title{font-size:2rem;font-weight:300;color:var(--navy);line-height:1.1;margin-bottom:0.5rem}.cta-title em{font-style:italic}
+.cta-body{font-style:italic;color:var(--muted);font-size:1rem;max-width:480px}
+.cta-actions{display:flex;flex-direction:column;gap:0.6rem}
+.cta-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.6rem;border-radius:3px;font-size:0.78rem;letter-spacing:0.05em;font-family:system-ui,sans-serif;font-weight:600;transition:all 0.3s}
+.cta-btn-primary{background:var(--navy);color:var(--parch)}.cta-btn-primary:hover{background:var(--ink);transform:translateY(-1px)}
+.cta-btn-outline{background:transparent;border:1px solid var(--border);color:var(--navy)}.cta-btn-outline:hover{border-color:var(--navy)}
+
+
+.themes-strip{position:sticky;top:52px;z-index:99;border-top:2px solid var(--gold);border-bottom:1px solid var(--border);padding:0;overflow:hidden;background:#EDE3CB;box-shadow:0 4px 12px rgba(0,0,0,0.06)}
+.themes-inner{display:flex;overflow-x:auto;scrollbar-width:none;max-width:1400px;margin:0 auto;padding:0 3rem}
+.themes-inner::-webkit-scrollbar{display:none}
+.th-btn{flex-shrink:0;padding:0.85rem 1.5rem;display:flex;align-items:center;gap:0.5rem;border-right:1px solid rgba(184,148,85,0.2);font-size:0.95rem;letter-spacing:0.04em;color:var(--charcoal);font-weight:400;transition:all 0.3s;white-space:nowrap;background:transparent;border-top:none;border-bottom:2px solid transparent;border-left:none}
+.th-btn:first-child{border-left:1px solid rgba(184,148,85,0.2)}
+.th-btn:hover{color:var(--navy);background:rgba(184,148,85,0.1)}
+.th-btn.active{color:var(--navy);border-bottom-color:var(--navy);background:rgba(28,40,69,0.06);font-weight:500}
+.th-glyph{font-family:'Noto Serif Devanagari',serif;font-size:1.15rem;color:var(--gold);opacity:0.8}
+
+
+  /* MOBILE FILTER SHEET */
+  .mf-overlay{display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.5);backdrop-filter:blur(3px)}
+  .mf-overlay.open{display:block}
+  .mf-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--cream);border-radius:16px 16px 0 0;max-height:85vh;overflow-y:auto;transform:translateY(100%);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1)}
+  .mf-overlay.open .mf-sheet{transform:translateY(0)}
+  .mf-header{position:sticky;top:0;background:var(--cream);padding:1.2rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;z-index:1;border-radius:16px 16px 0 0}
+  .mf-title{font-size:1.1rem;font-weight:500;color:var(--navy)}
+  .mf-header-right{display:flex;align-items:center;gap:1rem}
+  .mf-clear{font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--terra);font-family:system-ui,sans-serif;font-weight:500;background:none;border:none;cursor:pointer}
+  .mf-close{font-size:1.3rem;color:var(--muted);background:none;border:none;cursor:pointer;line-height:1;padding:0.2rem}
+  .mf-count{padding:0.8rem 1.5rem;font-style:italic;font-size:0.9rem;color:var(--muted)}
+  .mf-count strong{font-style:normal;color:var(--navy);font-weight:400}
+  .mf-body{padding:0 1.5rem 1rem}
+  .mf-group{margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+  .mf-label{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--charcoal);opacity:0.5;font-weight:500;margin-bottom:0.5rem;display:block}
+  .mf-opts{display:flex;flex-wrap:wrap;gap:0.4rem}
+  .mf-btn{padding:0.4rem 0.8rem;border:1px solid var(--border);border-radius:3px;font-size:0.9rem;color:var(--charcoal);font-family:'Cormorant Garamond',serif;transition:all 0.2s;background:transparent}
+  .mf-btn:hover{border-color:var(--gold);color:var(--navy)}
+  .mf-btn.ac{background:var(--navy);border-color:var(--navy);color:var(--parch)}
+  .mf-apply{position:sticky;bottom:0;padding:1rem 1.5rem;background:var(--cream);border-top:1px solid var(--border)}
+  .mf-apply-btn{width:100%;padding:0.9rem;background:var(--navy);color:var(--parch);border:none;border-radius:3px;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;font-family:system-ui,sans-serif;font-weight:600;cursor:pointer;transition:background 0.3s}
+  .mf-apply-btn:hover{background:var(--ink)}
+
+/* MOBILE */
+.m-filter-badge{display:none;width:20px;height:20px;border-radius:50%;background:var(--terra);color:#fff;font-size:0.6rem;align-items:center;justify-content:center;font-weight:700;margin-left:0.2rem}
+.m-filter{display:none;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:100;padding:0.8rem 1.8rem;background:var(--navy);color:var(--parch);border-radius:999px;font-size:0.78rem;font-family:system-ui,sans-serif;font-weight:700;box-shadow:0 8px 30px rgba(0,0,0,0.25);align-items:center;gap:0.5rem;letter-spacing:0.06em}
+
+@media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.main-layout{grid-template-columns:1fr;padding:0 1.5rem}.sidebar{display:none}.grid-col{padding:0 0 5rem}.grid{grid-template-columns:1fr;gap:1.5rem}.themes-inner{padding:0 1rem}
+  .nav{padding:0.8rem 1.2rem}.nav-links{display:none}.header{padding:3rem 1.5rem 2.5rem}.header-inner{flex-direction:column;align-items:flex-start;gap:1.5rem}.header-right{text-align:left;display:flex;gap:2rem}.header-divider{display:none}
+  .filters-bar{padding:0.6rem 1rem;overflow-x:auto}.filters-inner{flex-wrap:nowrap}
+  .sort-bar{padding:0.8rem 1.5rem}.grid{grid-template-columns:1fr;padding:0.5rem 1.5rem 5rem;gap:1.5rem}/* mobile feat disabled */
+  .m-filter-badge{display:none;width:20px;height:20px;border-radius:50%;background:var(--terra);color:#fff;font-size:0.6rem;align-items:center;justify-content:center;font-weight:700;margin-left:0.2rem}
+.m-filter{display:flex}.cta-section{grid-template-columns:1fr;padding:3rem 1.5rem;gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-left">
+    <a href="vedic-trails-homepage-v20.html" class="nav-back"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+    <a href="vedic-trails-homepage-v20.html" class="nav-brand">Vedic Trails</a>
+    <div class="nav-links">
+      <a href="journeys.html" class="nav-link active">Journeys</a>
+      <a href="stories.html" class="nav-link">Stories</a>
+      <a href="calendar.html" class="nav-link">Calendar</a>
+      <a href="sacred-anomalies.html" class="nav-link">Sacred Anomalies</a>
+    </div>
+  </div>
+  <a href="https://wa.me/919920120186" class="nav-cta" target="_blank" rel="noopener">Enquire</a>
+</nav>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="header-eyebrow">All Journeys</div>
+      <h1 class="header-title">Sacred circuits <em>across India</em></h1>
+      <p class="header-sub">23 curated pilgrimages and temple circuits. Each one designed around a tradition, a geography, and an intention. All are fully customisable.</p>
+    </div>
+    <div class="header-right">
+      <div class="header-divider"></div>
+      <div class="header-stat"><div class="header-stat-val">23</div><div class="header-stat-label">Circuits</div></div>
+      <div class="header-stat"><div class="header-stat-val">9</div><div class="header-stat-label">Sacred Traditions</div></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="themes-strip">
+  <div class="themes-inner">
+    <button class="th-btn active" data-th="all"><span class="th-glyph">ॐ</span> All</button>
+    <button class="th-btn" data-th="jyotirlinga"><span class="th-glyph">श</span> Jyotirlingas</button>
+    <button class="th-btn" data-th="chardham"><span class="th-glyph">उ</span> Char Dham</button>
+    <button class="th-btn" data-th="shakti"><span class="th-glyph">शक्ति</span> Shakti Peethas</button>
+    <button class="th-btn" data-th="krishna"><span class="th-glyph">कृ</span> Krishna</button>
+    <button class="th-btn" data-th="ramayana"><span class="th-glyph">राम</span> Ramayana</button>
+    <button class="th-btn" data-th="buddhist"><span class="th-glyph">ब</span> Buddhist</button>
+    <button class="th-btn" data-th="south"><span class="th-glyph">த</span> South India</button>
+    <button class="th-btn" data-th="himalayan"><span class="th-glyph">हि</span> Himalayan</button>
+    <button class="th-btn" data-th="offbeat"><span class="th-glyph">◉</span> Offbeat</button>
+  </div>
+</div>
+
+<div class="filters-bar" id="fbar" style="display:none">
+  <div class="filters-inner">
+    <div class="filter-group"><span class="filter-label">Deity</span>
+      <button class="f-btn" data-f="d" data-v="shiva">Shiva</button>
+      <button class="f-btn" data-f="d" data-v="vishnu">Vishnu</button>
+      <button class="f-btn" data-f="d" data-v="shakti">Shakti</button>
+      <button class="f-btn" data-f="d" data-v="krishna">Krishna</button>
+      <button class="f-btn" data-f="d" data-v="rama">Rama</button>
+      <button class="f-btn" data-f="d" data-v="buddhist">Buddha</button>
+    </div>
+    <div class="filter-sep"></div>
+    <div class="filter-group"><span class="filter-label">Region</span>
+      <button class="f-btn" data-f="r" data-v="north">North</button>
+      <button class="f-btn" data-f="r" data-v="south">South</button>
+      <button class="f-btn" data-f="r" data-v="east">East</button>
+      <button class="f-btn" data-f="r" data-v="west">West</button>
+      <button class="f-btn" data-f="r" data-v="himalayan">Himalayas</button>
+    </div>
+    <div class="filter-sep"></div>
+    <div class="filter-group"><span class="filter-label">Duration</span>
+      <button class="f-btn" data-f="k" data-v="weekend">Weekend</button>
+      <button class="f-btn" data-f="k" data-v="short">3–5D</button>
+      <button class="f-btn" data-f="k" data-v="medium">6–9D</button>
+      <button class="f-btn" data-f="k" data-v="long">10D+</button>
+    </div>
+    <button class="filter-clear" id="clr" onclick="clr()" style="display:none">Clear all ✕</button>
+  </div>
+</div>
+
+
+<div class="main-layout">
+<aside class="sidebar" id="sb">
+  <div class="sb-header">
+    <span class="sb-title">Refine</span>
+    <button class="sb-clear" onclick="clr()">Clear all</button>
+  </div>
+  <div class="sb-count" id="sbcnt">Showing <strong>23</strong> circuits</div>
+
+  <div class="sb-group"><span class="sb-label">Deity</span>
+    <div class="sb-opts">
+      <button class="sb-btn" data-f="d" data-v="shiva">Shiva</button>
+      <button class="sb-btn" data-f="d" data-v="vishnu">Vishnu</button>
+      <button class="sb-btn" data-f="d" data-v="shakti">Devi · Shakti</button>
+      <button class="sb-btn" data-f="d" data-v="krishna">Krishna</button>
+      <button class="sb-btn" data-f="d" data-v="rama">Rama</button>
+      <button class="sb-btn" data-f="d" data-v="hanuman">Hanuman</button>
+      <button class="sb-btn" data-f="d" data-v="buddhist">Buddha</button>
+      <button class="sb-btn" data-f="d" data-v="jain">Jain</button>
+    </div>
+  </div>
+  <div class="sb-group"><span class="sb-label">Region</span>
+    <div class="sb-opts">
+      <button class="sb-btn" data-f="r" data-v="north">North India</button>
+      <button class="sb-btn" data-f="r" data-v="south">South India</button>
+      <button class="sb-btn" data-f="r" data-v="east">East India</button>
+      <button class="sb-btn" data-f="r" data-v="west">West India</button>
+      <button class="sb-btn" data-f="r" data-v="himalayan">Himalayas</button>
+    </div>
+  </div>
+  <div class="sb-group"><span class="sb-label">Duration</span>
+    <div class="sb-opts" style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem">
+      <button class="sb-btn" data-f="k" data-v="weekend">Weekend</button>
+      <button class="sb-btn" data-f="k" data-v="short">3–5 Days</button>
+      <button class="sb-btn" data-f="k" data-v="medium">6–9 Days</button>
+      <button class="sb-btn" data-f="k" data-v="long">10+ Days</button>
+    </div>
+  </div>
+  <div class="sb-group"><span class="sb-label">Experience</span>
+    <div class="sb-opts">
+      <button class="sb-btn" data-f="s" data-v="family">Family</button>
+      <button class="sb-btn" data-f="s" data-v="solo">Solo</button>
+      <button class="sb-btn" data-f="s" data-v="elder">Elder-friendly</button>
+      <button class="sb-btn" data-f="s" data-v="luxury">Luxury</button>
+      <button class="sb-btn" data-f="s" data-v="cultural">Cultural</button>
+    </div>
+  </div>
+  <div class="sb-group"><span class="sb-label">Difficulty</span>
+    <div class="sb-opts">
+      <button class="sb-btn" data-f="df" data-v="easy">Easy</button>
+      <button class="sb-btn" data-f="df" data-v="moderate">Moderate</button>
+    </div>
+  </div>
+  <div class="sb-group"><span class="sb-label">Price</span>
+    <div class="sb-opts" style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem">
+      <button class="sb-btn" data-f="pr" data-v="budget">Under ₹20K</button>
+      <button class="sb-btn" data-f="pr" data-v="mid">₹20K – 40K</button>
+      <button class="sb-btn" data-f="pr" data-v="premium">₹40K – 70K</button>
+      <button class="sb-btn" data-f="pr" data-v="luxury">₹70K+</button>
+    </div>
+  </div>
+</aside>
+<div class="grid-col">
+
+<div class="sort-bar">
+  <div class="sort-count" id="cnt">Showing <strong>23</strong> journeys</div>
+  <div class="sort-right">
+    <select class="sort-sel" id="srt" onchange="srt(this.value)">
+      <option value="f">Featured</option>
+      <option value="pa">Price: Low → High</option>
+      <option value="pd">Price: High → Low</option>
+      <option value="da">Duration: Shortest</option>
+      <option value="dd">Duration: Longest</option>
+    </select>
+  </div>
+</div>
+
+<div class="grid" id="grd"></div>
+
+</div><!-- grid-col -->
+</div><!-- main-layout -->
+
+<div class="cta-section">
+  <div class="cta-left">
+    <div class="cta-eyebrow">Can't find what you're looking for?</div>
+    <h2 class="cta-title">We design journeys <em>from scratch</em></h2>
+    <p class="cta-body">Tell us your dates, your intention, and who is travelling. Our pilgrimage concierge will build a circuit that exists nowhere on this page.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="https://wa.me/919920120186?text=Hello%20Vedic%20Trails%20%F0%9F%99%8F%20I%20would%20like%20to%20plan%20a%20custom%20pilgrimage." class="cta-btn cta-btn-primary" target="_blank" rel="noopener">WhatsApp our concierge</a>
+    <a href="quiz.html" class="cta-btn cta-btn-outline">Take the journey quiz →</a>
+  </div>
+</div>
+
+<button class="m-filter" id="mFilterBtn" onclick="openMF()">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+  Filters
+  <span class="m-filter-badge" id="mfBadge">0</span>
+</button>
+
+<script>
+const J=[{"id": "char-dham", "t": "Char Dham Yatra", "te": "Yamunotri · Gangotri · Kedarnath · Badrinath", "url": "tour-char-dham.html", "r": "Uttarakhand", "rk": ["north", "himalayan"], "d": ["shiva", "vishnu"], "dur": "10N · 11D", "dd": 11, "dk": "long", "p": 39999, "pd": "₹39,999", "diff": "moderate", "s": ["family", "devotional", "elder"], "th": ["chardham", "himalayan"], "mood": "The journey believed to wash away the karma of a lifetime.", "g": "उ", "img": "photo-1606722581293-628fa217a6f7", "feat": false, "tag": "Most Popular"}, {"id": "tamil-nadu", "t": "Tamil Temple Circuit", "te": "Meenakshi · Brihadeeswara · Ramanathaswamy · Chidambaram", "url": "tour-tamil-nadu.html", "r": "Tamil Nadu", "rk": ["south"], "d": ["shiva", "vishnu"], "dur": "7N · 8D", "dd": 8, "dk": "medium", "p": 52999, "pd": "₹52,999", "diff": "easy", "s": ["family", "cultural", "luxury", "elder"], "th": ["south"], "mood": "The Dravidian temple tradition at its most extraordinary.", "g": "த", "img": "photo-1692173248120-59547c3d4653", "feat": false, "tag": "South India"}, {"id": "buddhist", "t": "Buddhist Circuit", "te": "Bodh Gaya · Sarnath · Kushinagar · Nalanda · Rajgir", "url": "tour-buddhist.html", "r": "Bihar · Uttar Pradesh", "rk": ["north", "east"], "d": ["buddhist"], "dur": "5N · 6D", "dd": 6, "dk": "medium", "p": 31999, "pd": "₹31,999", "diff": "easy", "s": ["solo", "cultural", "devotional"], "th": ["buddhist"], "mood": "The tree is still there. The deer park is still there. He walked here.", "g": "ब", "img": "photo-1566456558951-fe3c9e08a6e0", "feat": false, "tag": "International"}, {"id": "jyotirlinga", "t": "12 Jyotirlingas", "te": "Somnath · Mahakaleshwar · Kedarnath · Kashi Vishwanath · Trimbakeshwar", "url": "tour-jyotirlinga.html", "r": "All India", "rk": ["north", "south", "west", "east"], "d": ["shiva"], "dur": "14N · 15D", "dd": 15, "dk": "long", "p": 84999, "pd": "₹84,999", "diff": "moderate", "s": ["devotional", "luxury", "solo"], "th": ["jyotirlinga"], "mood": "Twelve sites where Shiva manifested as an infinite column of light.", "g": "श", "img": "photo-1605640840605-14ac1855827b", "feat": false, "tag": "Grand Circuit"}, {"id": "kashi", "t": "Kashi & Ayodhya", "te": "Kashi Vishwanath · Manikarnika · Sarnath · Ram Mandir Ayodhya", "url": "tour-kashi.html", "r": "Varanasi · Uttar Pradesh", "rk": ["north"], "d": ["shiva", "rama"], "dur": "5N · 6D", "dd": 6, "dk": "medium", "p": 34999, "pd": "₹34,999", "diff": "easy", "s": ["family", "devotional", "cultural", "elder"], "th": ["ramayana"], "mood": "The oldest city on earth. The most auspicious place to die.", "g": "का", "img": "photo-1600261669797-1bb7b27939be", "feat": false, "tag": "Editor's Pick"}, {"id": "ramayana", "t": "Ramayana Trail", "te": "Ram Mandir · Chitrakoot · Panchavati · Hampi · Rameswaram", "url": "tour-ramayana.html", "r": "Multi-state · North to South", "rk": ["north", "south", "west"], "d": ["rama", "hanuman"], "dur": "8N · 9D", "dd": 9, "dk": "medium", "p": 52999, "pd": "₹52,999", "diff": "easy", "s": ["family", "devotional", "cultural"], "th": ["ramayana"], "mood": "From Ayodhya to Rameswaram — the complete arc of the Ramayana.", "g": "राम", "img": "photo-1593693411515-c20261bcad6e", "feat": false, "tag": ""}, {"id": "krishna", "t": "Krishna Trail", "te": "Janmabhoomi · Banke Bihari · Govardhan · Dwarkadhish", "url": "tour-krishna.html", "r": "Multi-state", "rk": ["north", "west"], "d": ["krishna", "vishnu"], "dur": "7N · 8D", "dd": 8, "dk": "medium", "p": 46999, "pd": "₹46,999", "diff": "easy", "s": ["family", "devotional", "cultural"], "th": ["krishna"], "mood": "Mathura, Vrindavan, Dwarka — the complete arc of his life on earth.", "g": "कृ", "img": "photo-1587474260584-136574528ed5", "feat": false, "tag": ""}, {"id": "shakti", "t": "Shakti Peethas Circuit", "te": "Kalighat · Vindhyavasini · Kamakhya · Jwala Ji", "url": "tour-shakti.html", "r": "Multi-state", "rk": ["north", "east", "west", "south"], "d": ["shakti"], "dur": "6N · 7D", "dd": 7, "dk": "medium", "p": 38999, "pd": "₹38,999", "diff": "easy", "s": ["devotional", "solo"], "th": ["shakti"], "mood": "Five sacred sites where the body of Sati fell — and remains.", "g": "शक्ति", "img": "photo-1561361513-2d000a50f0dc", "feat": false, "tag": ""}, {"id": "kerala", "t": "Kerala Temple Circuit", "te": "Guruvayur · Padmanabhaswamy · Sabarimala · Vadakkunnathan", "url": "tour-kerala.html", "r": "Kerala", "rk": ["south"], "d": ["vishnu", "shakti"], "dur": "6N · 7D", "dd": 7, "dk": "medium", "p": 42999, "pd": "₹42,999", "diff": "moderate", "s": ["family", "luxury", "cultural"], "th": ["south"], "mood": "The most architecturally distinct temple tradition in India.", "g": "കേ", "img": "photo-1602216056096-3b40cc0c9944", "feat": false, "tag": ""}, {"id": "rajasthan", "t": "Rajasthan Sacred Trail", "te": "Brahma Pushkar · Nathdwara · Eklingji · Ranakpur Jain", "url": "tour-rajasthan.html", "r": "Rajasthan", "rk": ["west", "north"], "d": ["vishnu", "shiva", "jain"], "dur": "5N · 6D", "dd": 6, "dk": "medium", "p": 36999, "pd": "₹36,999", "diff": "easy", "s": ["family", "luxury", "cultural", "elder"], "th": ["offbeat", "krishna"], "mood": "The only Brahma temple on earth. 1,444 marble pillars, no two the same.", "g": "र", "img": "photo-1524492412937-b28074a5d7da", "feat": false, "tag": ""}, {"id": "vaishno-devi", "t": "Vaishno Devi", "te": "Vaishno Devi Cave · Ardh Kuwari · Bhairon Temple", "url": "tour-vaishno-devi.html", "r": "Jammu", "rk": ["north", "himalayan"], "d": ["shakti"], "dur": "2N · 3D", "dd": 3, "dk": "weekend", "p": 14999, "pd": "₹14,999", "diff": "moderate", "s": ["family", "devotional", "elder"], "th": ["shakti", "himalayan"], "mood": "The cave-shrine where 8 million pilgrims trek every year.", "g": "वै", "img": "photo-1561731216-c3a4d99437d5", "feat": false, "tag": ""}, {"id": "tirupati", "t": "Tirupati Darshan", "te": "Venkateswara · Varahaswami · Govindaraja Swamy", "url": "tour-tirupati.html", "r": "Andhra Pradesh", "rk": ["south"], "d": ["vishnu"], "dur": "2N · 3D", "dd": 3, "dk": "weekend", "p": 15999, "pd": "₹15,999", "diff": "easy", "s": ["family", "devotional", "elder"], "th": ["south"], "mood": "50,000 pilgrims every day. VIP access to the most visited site on earth.", "g": "व", "img": "photo-1567157577867-05ccb1388e13", "feat": false, "tag": ""}, {"id": "kamakhya", "t": "Kamakhya Pilgrimage", "te": "Kamakhya · Nilachal Hill · Umananda Island", "url": "tour-kamakhya.html", "r": "Assam", "rk": ["east"], "d": ["shakti"], "dur": "3N · 4D", "dd": 4, "dk": "short", "p": 22999, "pd": "₹22,999", "diff": "easy", "s": ["devotional", "solo", "cultural"], "th": ["shakti", "offbeat"], "mood": "No idol. The sacred rock fissure and the spring are the goddess.", "g": "का", "img": "photo-1614079644-39ead3ab8b56", "feat": false, "tag": ""}, {"id": "puri-rameswaram", "t": "Puri · Rameswaram · Dwarka", "te": "Jagannath · Konark · Ramanathaswamy · Dwarkadhish · Somnath", "url": "tour-puri-rameswaram.html", "r": "Coastal India", "rk": ["south", "east", "west"], "d": ["vishnu", "shiva", "krishna"], "dur": "7N · 8D", "dd": 8, "dk": "medium", "p": 54999, "pd": "₹54,999", "diff": "easy", "s": ["family", "luxury", "devotional"], "th": ["chardham", "jyotirlinga", "krishna"], "mood": "Three of the four Char Dhams in one coastal arc.", "g": "चार", "img": "photo-1593693411515-c20261bcad6e", "feat": false, "tag": "Three Dhams"}, {"id": "ujjain", "t": "Ujjain & Omkareshwar", "te": "Mahakaleshwar · Kaal Bhairav · Omkareshwar · Maheshwar", "url": "tour-ujjain.html", "r": "Madhya Pradesh", "rk": ["north", "west"], "d": ["shiva"], "dur": "3N · 4D", "dd": 4, "dk": "short", "p": 19999, "pd": "₹19,999", "diff": "easy", "s": ["devotional", "solo", "cultural"], "th": ["jyotirlinga", "offbeat"], "mood": "Bhasma Aarti at 4 AM. The island shaped like OM.", "g": "उ", "img": "photo-1605640840605-14ac1855827b", "feat": false, "tag": ""}, {"id": "shirdi", "t": "Shirdi & Nashik", "te": "Sai Samadhi · Dwarkamai · Trimbakeshwar · Panchavati", "url": "tour-shirdi.html", "r": "Maharashtra", "rk": ["west"], "d": ["hanuman", "shiva"], "dur": "3N · 4D", "dd": 4, "dk": "short", "p": 18999, "pd": "₹18,999", "diff": "easy", "s": ["family", "devotional", "elder"], "th": ["offbeat"], "mood": "Sai Baba belonged to no religion. Trimbakeshwar — the three-faced Jyotirlinga.", "g": "साई", "img": "photo-1548013146-72479768bada", "feat": false, "tag": ""}, {"id": "dwarka", "t": "Dwarka & Somnath", "te": "Dwarkadhish · Bet Dwarka · Nageshwar · Somnath", "url": "tour-dwarka.html", "r": "Gujarat", "rk": ["west"], "d": ["krishna", "shiva"], "dur": "4N · 5D", "dd": 5, "dk": "short", "p": 26999, "pd": "₹26,999", "diff": "easy", "s": ["family", "devotional", "cultural"], "th": ["krishna", "jyotirlinga"], "mood": "Krishna's submerged kingdom and the temple rebuilt seven times.", "g": "ગ", "img": "photo-1589556737070-2e3f2da9a5f0", "feat": false, "tag": ""}, {"id": "mathura", "t": "Mathura · Vrindavan", "te": "Janmabhoomi · Banke Bihari · Nidhivan · Govardhan · Barsana", "url": "tour-mathura.html", "r": "Uttar Pradesh", "rk": ["north"], "d": ["krishna", "vishnu"], "dur": "4N · 5D", "dd": 5, "dk": "short", "p": 24999, "pd": "₹24,999", "diff": "easy", "s": ["family", "devotional", "cultural", "elder"], "th": ["krishna"], "mood": "He was born here. He grew up here. He left and never came back.", "g": "कृ", "img": "photo-1587474260584-136574528ed5", "feat": false, "tag": ""}, {"id": "andhra", "t": "Andhra Sacred Trail", "te": "Tirupati · Lepakshi · Srisailam Jyotirlinga", "url": "tour-andhra.html", "r": "Andhra Pradesh", "rk": ["south"], "d": ["vishnu", "shiva"], "dur": "4N · 5D", "dd": 5, "dk": "short", "p": 28999, "pd": "₹28,999", "diff": "easy", "s": ["family", "cultural"], "th": ["south", "offbeat", "jyotirlinga"], "mood": "The most visited site on earth, and the temple with a pillar that floats.", "g": "ఆ", "img": "photo-1567157577867-05ccb1388e13", "feat": false, "tag": ""}, {"id": "karnataka", "t": "Karnataka Sacred Trail", "te": "Udupi Krishna · Dharmasthala · Murudeshwar · Hampi", "url": "tour-karnataka.html", "r": "Karnataka", "rk": ["south"], "d": ["krishna", "vishnu", "shiva", "jain"], "dur": "5N · 6D", "dd": 6, "dk": "medium", "p": 32999, "pd": "₹32,999", "diff": "easy", "s": ["family", "cultural", "luxury"], "th": ["south", "krishna", "offbeat"], "mood": "Udupi's nine-hole window. Dharmasthala's generosity. Hampi's boulders.", "g": "ಕ", "img": "photo-1590050752117-238cb20e10df", "feat": false, "tag": ""}, {"id": "bengal", "t": "Bengal Shakti Trail", "te": "Kalighat · Dakshineswar · Belur Math · Tarapith", "url": "tour-bengal.html", "r": "West Bengal", "rk": ["east"], "d": ["shakti"], "dur": "4N · 5D", "dd": 5, "dk": "short", "p": 28999, "pd": "₹28,999", "diff": "easy", "s": ["devotional", "cultural", "solo"], "th": ["shakti", "offbeat"], "mood": "The Bengali relationship with Kali is unlike any other.", "g": "কালী", "img": "photo-1614079644-39ead3ab8b56", "feat": false, "tag": ""}, {"id": "himachal", "t": "Himachal Devi Circuit", "te": "Jwala Ji · Kangra Devi · Chintpurni · Naina Devi", "url": "tour-himachal.html", "r": "Himachal Pradesh", "rk": ["north", "himalayan"], "d": ["shakti"], "dur": "4N · 5D", "dd": 5, "dk": "short", "p": 26999, "pd": "₹26,999", "diff": "easy", "s": ["family", "devotional"], "th": ["shakti", "himalayan", "offbeat"], "mood": "Nine eternal flames from rock fissures. No oil. No wick. No explanation.", "g": "ज्व", "img": "photo-1606722581293-628fa217a6f7", "feat": false, "tag": ""}, {"id": "jyotirlinga-mh", "t": "Maharashtra Jyotirlingas", "te": "Trimbakeshwar · Bhimashankar · Aundha · Ellora · Grishneshwar", "url": "tour-jyotirlinga-mh.html", "r": "Maharashtra", "rk": ["west"], "d": ["shiva"], "dur": "4N · 5D", "dd": 5, "dk": "short", "p": 22999, "pd": "₹22,999", "diff": "easy", "s": ["devotional", "cultural"], "th": ["jyotirlinga"], "mood": "Five of twelve cosmic light columns — all in Maharashtra.", "g": "श्री", "img": "photo-1548013146-72479768bada", "feat": false, "tag": ""}];
+let F={d:[],r:[],k:[],s:[],df:[],pr:[]},so='f',TH='all';
+
+function cd(j){
+  const im='https://images.unsplash.com/'+j.img+'?w=900&q=80&fit=crop';
+  const tag=j.tag?'<div class="card-tag">'+j.tag+'</div>':'';
+  return '<a href="'+j.url+'" class="card">'
+    +'<div class="card-top-meta">'
+    +'<div class="card-top-item"><span class="card-top-label">Duration</span><span class="card-top-val">'+j.dur+'</span></div>'
+    +'<div class="card-top-sep"></div>'
+    +'<div class="card-top-item"><span class="card-top-label">Region</span><span class="card-top-val">'+j.r+'</span></div>'
+    +'<div class="card-top-sep"></div>'
+    +'<div class="card-top-price"><span class="card-top-price-from">From</span><span class="card-top-price-val">'+j.pd+'</span></div>'
+    +'</div>'
+    +'<div class="card-img"><img src="'+im+'" alt="'+j.t+'" loading="lazy">'+tag+'</div>'
+    +'<div class="card-body">'
+    +'<div class="card-title">'+j.t+'</div>'
+    +'<div class="card-temples">'+j.te+'</div>'
+    +'<div class="card-mood">'+j.mood+'</div>'
+    +'</div>'
+    +'<div class="card-divider">'+j.g+'</div>'
+    +'<div class="card-cta-btn">View Itinerary \u2192</div>'
+    +'</a>';
+}
+
+function fl(){
+  let js=[...J];
+  if(TH!=='all')js=js.filter(j=>j.th.includes(TH));
+  const{d,r,k,s,df,pr}=F;
+  if(d.length)js=js.filter(j=>d.some(x=>j.d.includes(x)));
+  if(r.length)js=js.filter(j=>r.some(x=>j.rk.includes(x)));
+  if(k.length)js=js.filter(j=>k.includes(j.dk));
+  if(s.length)js=js.filter(j=>s.some(x=>j.s.includes(x)));
+  if(df.length)js=js.filter(j=>df.includes(j.diff));
+  if(pr.length)js=js.filter(j=>{if(pr.includes('budget')&&j.p<20000)return true;if(pr.includes('mid')&&j.p>=20000&&j.p<40000)return true;if(pr.includes('premium')&&j.p>=40000&&j.p<70000)return true;if(pr.includes('luxury')&&j.p>=70000)return true;return false});
+  if(so==='pa')js.sort((a,b)=>a.p-b.p);
+  else if(so==='pd')js.sort((a,b)=>b.p-a.p);
+  else if(so==='da')js.sort((a,b)=>a.dd-b.dd);
+  else if(so==='dd')js.sort((a,b)=>b.dd-a.dd);
+  else js.sort((a,b)=>(b.feat?1:0)-(a.feat?1:0));
+  return js;
+}
+
+function rn(){
+  const g=document.getElementById('grd');
+  const js=fl();
+  const n=js.length;
+  document.getElementById('cnt').innerHTML='Showing <strong>'+n+'</strong> journey'+(n!==1?'s':'');
+  var sbc=document.getElementById('sbcnt');if(sbc)sbc.innerHTML='Showing <strong>'+n+'</strong> circuit'+(n!==1?'s':'');var mc=document.getElementById('mfCount');if(mc)mc.innerHTML='Showing <strong>'+n+'</strong> circuit'+(n!==1?'s':'');updateMobileBadge();
+  const active=Object.values(F).some(a=>a.length>0);
+  document.getElementById('clr').style.display=active?'block':'none';
+  g.style.opacity='0';g.style.transition='opacity 0.2s ease';
+  setTimeout(function(){
+    g.innerHTML=n?js.map(cd).join(''):'<div class="no-res"><h3 class="no-res-title">No journeys match these filters</h3><p class="no-res-sub">Try broadening your search.</p><button class="no-res-btn" onclick="clr()">Clear all filters</button></div>';
+    g.style.opacity='1';
+  },150);
+}
+
+document.querySelectorAll('.mf-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=b.dataset.f,v=b.dataset.v;
+    if(!F[f])F[f]=[];
+    if(b.classList.contains('ac')){F[f]=F[f].filter(function(x){return x!==v});b.classList.remove('ac');
+      var sb=document.querySelector('.sb-btn[data-f="'+f+'"][data-v="'+v+'"]');if(sb)sb.classList.remove('ac');
+    }else{F[f].push(v);b.classList.add('ac');
+      var sb=document.querySelector('.sb-btn[data-f="'+f+'"][data-v="'+v+'"]');if(sb)sb.classList.add('ac');
+    }
+    rn();syncMobileFilters();
+  });
+});
+document.querySelectorAll('.sb-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=b.dataset.f,v=b.dataset.v;
+    if(!F[f])F[f]=[];
+    if(b.classList.contains('ac')){F[f]=F[f].filter(function(x){return x!==v});b.classList.remove('ac')}
+    else{F[f].push(v);b.classList.add('ac')}
+    rn();
+  });
+});
+document.querySelectorAll('.th-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.th-btn').forEach(function(x){x.classList.remove('active')});
+    b.classList.add('active');
+    TH=b.dataset.th;
+    rn();
+  });
+});
+document.querySelectorAll('.f-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=b.dataset.f,v=b.dataset.v;
+    if(b.classList.contains('ac')){F[f]=F[f].filter(function(x){return x!==v});b.classList.remove('ac')}
+    else{F[f].push(v);b.classList.add('ac')}
+    rn();
+  });
+});
+
+function clr(){F={d:[],r:[],k:[]};document.querySelectorAll('.mf-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=b.dataset.f,v=b.dataset.v;
+    if(!F[f])F[f]=[];
+    if(b.classList.contains('ac')){F[f]=F[f].filter(function(x){return x!==v});b.classList.remove('ac');
+      var sb=document.querySelector('.sb-btn[data-f="'+f+'"][data-v="'+v+'"]');if(sb)sb.classList.remove('ac');
+    }else{F[f].push(v);b.classList.add('ac');
+      var sb=document.querySelector('.sb-btn[data-f="'+f+'"][data-v="'+v+'"]');if(sb)sb.classList.add('ac');
+    }
+    rn();syncMobileFilters();
+  });
+});
+document.querySelectorAll('.sb-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=b.dataset.f,v=b.dataset.v;
+    if(!F[f])F[f]=[];
+    if(b.classList.contains('ac')){F[f]=F[f].filter(function(x){return x!==v});b.classList.remove('ac')}
+    else{F[f].push(v);b.classList.add('ac')}
+    rn();
+  });
+});
+document.querySelectorAll('.th-btn').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.th-btn').forEach(function(x){x.classList.remove('active')});
+    b.classList.add('active');
+    TH=b.dataset.th;
+    rn();
+  });
+});
+document.querySelectorAll('.f-btn').forEach(function(b){b.classList.remove('ac')});rn()}
+function srt(v){so=v;rn()}
+function openMF(){
+  var ov=document.getElementById('mfOverlay');
+  ov.classList.add('open');
+  document.body.style.overflow='hidden';
+  syncMobileFilters();
+}
+function closeMF(e){
+  if(e&&e.target!==document.getElementById('mfOverlay'))return;
+  document.getElementById('mfOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function syncMobileFilters(){
+  document.querySelectorAll('.mf-btn').forEach(function(b){
+    var f=b.dataset.f,v=b.dataset.v;
+    if(F[f]&&F[f].includes(v))b.classList.add('ac');
+    else b.classList.remove('ac');
+  });
+  var n=fl().length;
+  var mc=document.getElementById('mfCount');
+  if(mc)mc.innerHTML='Showing <strong>'+n+'</strong> circuit'+(n!==1?'s':'');
+}
+function updateMobileBadge(){
+  var total=Object.values(F).reduce(function(s,a){return s+a.length},0);
+  var badge=document.getElementById('mfBadge');
+  if(badge){badge.textContent=total;badge.style.display=total>0?'inline-flex':'none'}
+}
+
+rn();
+</script>
+
+<!-- MOBILE FILTER OVERLAY -->
+<div class="mf-overlay" id="mfOverlay" onclick="closeMF(event)">
+  <div class="mf-sheet" id="mfSheet">
+    <div class="mf-header">
+      <span class="mf-title">Filters</span>
+      <div class="mf-header-right">
+        <button class="mf-clear" onclick="clr()">Clear all</button>
+        <button class="mf-close" onclick="closeMF(null)">&#x2715;</button>
+      </div>
+    </div>
+    <div class="mf-count" id="mfCount">Showing <strong>23</strong> circuits</div>
+    <div class="mf-body" id="mfBody">
+      <div class="mf-group"><span class="mf-label">Deity</span>
+        <div class="mf-opts">
+          <button class="mf-btn" data-f="d" data-v="shiva">Shiva</button>
+          <button class="mf-btn" data-f="d" data-v="vishnu">Vishnu</button>
+          <button class="mf-btn" data-f="d" data-v="shakti">Devi · Shakti</button>
+          <button class="mf-btn" data-f="d" data-v="krishna">Krishna</button>
+          <button class="mf-btn" data-f="d" data-v="rama">Rama</button>
+          <button class="mf-btn" data-f="d" data-v="hanuman">Hanuman</button>
+          <button class="mf-btn" data-f="d" data-v="buddhist">Buddha</button>
+          <button class="mf-btn" data-f="d" data-v="jain">Jain</button>
+        </div>
+      </div>
+      <div class="mf-group"><span class="mf-label">Region</span>
+        <div class="mf-opts">
+          <button class="mf-btn" data-f="r" data-v="north">North India</button>
+          <button class="mf-btn" data-f="r" data-v="south">South India</button>
+          <button class="mf-btn" data-f="r" data-v="east">East India</button>
+          <button class="mf-btn" data-f="r" data-v="west">West India</button>
+          <button class="mf-btn" data-f="r" data-v="himalayan">Himalayas</button>
+        </div>
+      </div>
+      <div class="mf-group"><span class="mf-label">Duration</span>
+        <div class="mf-opts">
+          <button class="mf-btn" data-f="k" data-v="weekend">Weekend</button>
+          <button class="mf-btn" data-f="k" data-v="short">3–5 Days</button>
+          <button class="mf-btn" data-f="k" data-v="medium">6–9 Days</button>
+          <button class="mf-btn" data-f="k" data-v="long">10+ Days</button>
+        </div>
+      </div>
+      <div class="mf-group"><span class="mf-label">Experience</span>
+        <div class="mf-opts">
+          <button class="mf-btn" data-f="s" data-v="family">Family</button>
+          <button class="mf-btn" data-f="s" data-v="solo">Solo</button>
+          <button class="mf-btn" data-f="s" data-v="elder">Elder-friendly</button>
+          <button class="mf-btn" data-f="s" data-v="luxury">Luxury</button>
+          <button class="mf-btn" data-f="s" data-v="cultural">Cultural</button>
+        </div>
+      </div>
+      <div class="mf-group"><span class="mf-label">Difficulty</span>
+        <div class="mf-opts">
+          <button class="mf-btn" data-f="df" data-v="easy">Easy</button>
+          <button class="mf-btn" data-f="df" data-v="moderate">Moderate</button>
+        </div>
+      </div>
+      <div class="mf-group"><span class="mf-label">Price</span>
+        <div class="mf-opts">
+          <button class="mf-btn" data-f="pr" data-v="budget">Under ₹20K</button>
+          <button class="mf-btn" data-f="pr" data-v="mid">₹20K – 40K</button>
+          <button class="mf-btn" data-f="pr" data-v="premium">₹40K – 70K</button>
+          <button class="mf-btn" data-f="pr" data-v="luxury">₹70K+</button>
+        </div>
+      </div>
+    </div>
+    <div class="mf-apply">
+      <button class="mf-apply-btn" onclick="closeMF(null)">Show Results</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
