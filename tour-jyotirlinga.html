@@ -1198,6 +1198,119 @@ img { max-width: 100%; display: block; }
   <meta name="twitter:title" content="12 Jyotirlingas · 14N·15D · From ₹84,999 · Vedic Trails" />
   <meta name="twitter:description" content="Twelve sites where Shiva manifested as columns of cosmic light across India. The most ambitious sacred circuit in Hinduism." />
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1606722581293-628fa217a6f7?w=1200&q=80" />
+<style>
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s var(--ease);
+    background: rgba(247, 241, 229, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  nav.scrolled {
+    background: rgba(247, 241, 229, 0.96);
+    padding: 1rem 3rem;
+    border-bottom: 1px solid var(--border-soft);
+    box-shadow: 0 1px 30px rgba(15, 31, 58, 0.04);
+  }
+  nav.over-dark {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  nav.over-dark .nav-logo-text,
+  nav.over-dark .nav-links a {
+    color: rgba(244, 236, 216, 0.92);
+  }
+  nav.over-dark .nav-logo-mark circle,
+  nav.over-dark .nav-logo-mark path { stroke: #E6C77A; }
+  nav.over-dark .nav-logo-mark circle[fill] { fill: #E6C77A; }
+  nav.over-dark .nav-links a:hover { color: #FFE8A8; }
+  nav.over-dark .nav-cta {
+    background: transparent;
+    color: #E6C77A;
+    border: 1px solid rgba(230, 199, 122, 0.55);
+  }
+  nav.over-dark .nav-cta:hover {
+    background: rgba(230, 199, 122, 0.15);
+    border-color: #E6C77A;
+    color: #FFE8A8;
+    transform: none;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--navy);
+  }
+  .nav-logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+  .nav-logo-text {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.45rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--navy);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s var(--ease);
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s var(--ease);
+    text-decoration: none;
+  }
+  .nav-cta:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+  }
+    nav { padding: 1.2rem 1.2rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+</style>
 </head>
 <body data-tour-id="jyotirlinga">
 
@@ -2090,6 +2203,5 @@ img { max-width: 100%; display: block; }
 })();
 
 </script>
-<script src="nav.js"></script>
 </body>
 </html>
