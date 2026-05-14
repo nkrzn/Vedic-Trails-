@@ -102,30 +102,323 @@
     .nav-links { display: none; }
     .nav-cta { display: none; }
 </style>
+<style>
+/* ═══════════════════════════════════════════════════
+   VEDIC TRAILS — GLOBAL NAV SYSTEM
+   Luxury spiritual travel · Minimal · Sacred · Timeless
+   ═══════════════════════════════════════════════════ */
+
+#vt-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  background: rgba(246, 240, 230, 0.0);
+  border-bottom: 1px solid rgba(184, 146, 74, 0.0);
+  transition: background 0.5s ease, border-color 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+}
+
+#vt-nav.scrolled {
+  background: rgba(251, 246, 236, 0.94);
+  border-bottom: 1px solid rgba(184, 146, 74, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 24px rgba(15, 31, 58, 0.05);
+}
+
+/* Homepage starts transparent, inner pages start scrolled */
+#vt-nav.always-light {
+  background: rgba(251, 246, 236, 0.94);
+  border-bottom: 1px solid rgba(184, 146, 74, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* LOGO */
+.vt-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: #0F1F3A;
+  flex-shrink: 0;
+}
+
+.vt-logo svg { display: block; }
+
+.vt-logo-text {
+  font-family: 'Cormorant Garamond', 'Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #0F1F3A;
+  line-height: 1;
+}
+
+/* NAV LINKS */
+.vt-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vt-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  padding: 0 1.6rem;
+  height: 76px;
+  position: relative;
+  transition: opacity 0.25s;
+}
+
+.vt-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1.5px;
+  background: #B8924A;
+  transition: width 0.3s ease;
+}
+
+.vt-nav-item:hover::after,
+.vt-nav-item.active::after { width: 60%; }
+
+/* Sanskrit label */
+.vt-sk {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: rgba(15, 31, 58, 0.42);
+  line-height: 1;
+  display: block;
+  text-align: center;
+  transition: color 0.25s;
+}
+
+/* English label */
+.vt-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15, 31, 58, 0.72);
+  line-height: 1;
+  display: block;
+  text-align: center;
+  transition: color 0.25s;
+  white-space: nowrap;
+}
+
+.vt-nav-item:hover .vt-en,
+.vt-nav-item.active .vt-en { color: #B8924A; }
+
+.vt-nav-item:hover .vt-sk,
+.vt-nav-item.active .vt-sk { color: rgba(184, 146, 74, 0.6); }
+
+/* CTA BUTTON */
+.vt-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  padding: 0.55rem 1.6rem;
+  background: #0F1F3A;
+  border-radius: 2rem;
+  flex-shrink: 0;
+  transition: background 0.3s, transform 0.2s;
+  margin-left: 1.2rem;
+}
+
+.vt-cta:hover {
+  background: #1E3258;
+  transform: translateY(-1px);
+}
+
+.vt-cta-sk {
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: rgba(246, 240, 230, 0.55);
+}
+
+.vt-cta-en {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: #F6F0E6;
+  font-weight: 600;
+}
+
+/* MOBILE HAMBURGER */
+.vt-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.vt-menu-btn span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #0F1F3A;
+  transition: all 0.3s;
+}
+
+/* MOBILE MENU */
+#vt-mobile-menu {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(320px, 88vw);
+  background: #FBF6EC;
+  z-index: 1001;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 5rem 2.5rem 3rem;
+  border-left: 1px solid rgba(184,146,74,0.12);
+  box-shadow: -8px 0 40px rgba(15,31,58,0.08);
+}
+
+#vt-mobile-menu.open { transform: translateX(0); }
+
+.vt-mobile-close {
+  position: absolute;
+  top: 1.4rem; right: 1.6rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: rgba(15,31,58,0.4);
+  cursor: pointer;
+  padding: 8px;
+}
+
+#vt-mobile-menu ul { list-style: none; padding: 0; margin: 0; }
+
+#vt-mobile-menu li { border-bottom: 1px solid rgba(184,146,74,0.1); }
+
+#vt-mobile-menu a {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 1.2rem 0;
+  text-decoration: none;
+}
+
+#vt-mobile-menu .vt-sk {
+  font-size: 11px;
+  color: rgba(15,31,58,0.35);
+}
+
+#vt-mobile-menu .vt-en {
+  font-size: 15px;
+  color: #0F1F3A;
+  letter-spacing: 0.1em;
+}
+
+.vt-mobile-cta {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  background: #0F1F3A;
+  color: #F6F0E6 !important;
+  padding: 0.8rem 2rem !important;
+  border-radius: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+  border-bottom: none !important;
+  flex-direction: row !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .vt-nav-links, .vt-cta { display: none; }
+  .vt-menu-btn { display: flex; }
+  #vt-nav { padding: 0 1.5rem; }
+}
+
+@media (max-width: 1100px) {
+  .vt-nav-item { padding: 0 1.1rem; }
+  .vt-en { font-size: 10px; }
+  .vt-sk { font-size: 10px; }
+  #vt-nav { padding: 0 2rem; }
+}</style>
 </head>
 <body data-tour-id="rajasthan">
 
-<nav id="nav">
-  <a href="#" class="nav-logo">
-    <svg class="nav-logo-mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="20" cy="20" r="18" fill="none" stroke="#B8924A" stroke-width="1"/>
-      <circle cx="20" cy="20" r="12" fill="none" stroke="#B8924A" stroke-width="0.7" opacity="0.6"/>
-      <path d="M20 4 L20 36 M4 20 L36 20" stroke="#B8924A" stroke-width="0.5" opacity="0.4"/>
-      <circle cx="20" cy="20" r="4" fill="#B8924A"/>
+<nav id="vt-nav">
+  <a href="vedic-trails-homepage-v20.html" class="vt-logo" aria-label="Vedic Trails Home">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="17.5" stroke="#B8924A" stroke-width="0.75" opacity="0.7"/>
+      <circle cx="20" cy="20" r="11" stroke="#B8924A" stroke-width="0.5" opacity="0.4"/>
+      <path d="M20 5.5 L20 34.5 M5.5 20 L34.5 20" stroke="#B8924A" stroke-width="0.5" opacity="0.35"/>
+      <circle cx="20" cy="20" r="3.5" fill="#B8924A" opacity="0.85"/>
     </svg>
-    <span class="nav-logo-text">Vedic Trails</span>
+    <span class="vt-logo-text">Vedic Trails</span>
   </a>
-  <ul class="nav-links">
-    <li><a href="journeys.html"><span style="display:flex;flex-direction:column;align-items:center;line-height:1.1"><span style="font-family:'Noto Serif Devanagari',serif;font-size:0.72rem;opacity:0.65">यात्रा</span><span>Yatras</span></span></a></li>
-        <li><a href="signature-journeys.html"><span style="font-family:'Noto Serif Devanagari',serif;font-size:0.72rem;opacity:0.65;font-weight:400">विशिष्ट</span><span>Signature</span></a></li>
-    <li><a href="vedic-trails-homepage-v20.html#sacred-geography"><span style="display:flex;flex-direction:column;align-items:center;line-height:1.15;gap:1px"><span style="font-family:'Noto Serif Devanagari',serif;font-size:0.72rem;opacity:0.65;font-weight:400">पवित्र भूगोल</span><span>Sacred Geography</span></span></a></li>
-    
-    <li><a href="calendar.html"><span style="display:flex;flex-direction:column;align-items:center;line-height:1.15;gap:1px"><span style="font-family:'Noto Serif Devanagari',serif;font-size:0.72rem;opacity:0.65;font-weight:400">पंचांग</span><span>Calendar</span></span></a></li>
-    <li><a href="stories.html"><span style="display:flex;flex-direction:column;align-items:center;line-height:1.15;gap:1px"><span style="font-family:'Noto Serif Devanagari',serif;font-size:0.72rem;opacity:0.65;font-weight:400">कथाएँ</span><span>Stories</span></span></a></li>
+  <ul class="vt-nav-links" role="list">
+    <li><a href="journeys.html" class="vt-nav-item">
+      <span class="vt-sk">यात्रा</span>
+      <span class="vt-en">Yatras</span>
+    </a></li>
+    <li><a href="signature-journeys.html" class="vt-nav-item">
+      <span class="vt-sk">विशिष्ट</span>
+      <span class="vt-en">Signatures</span>
+    </a></li>
+    <li><a href="vedic-trails-homepage-v20.html#sacred-geography" class="vt-nav-item">
+      <span class="vt-sk">पवित्र भूगोल</span>
+      <span class="vt-en">Sacred&nbsp;Geography</span>
+    </a></li>
+    <li><a href="calendar.html" class="vt-nav-item">
+      <span class="vt-sk">पंचांग</span>
+      <span class="vt-en">Calendar</span>
+    </a></li>
+    <li><a href="stories.html" class="vt-nav-item">
+      <span class="vt-sk">कथाएँ</span>
+      <span class="vt-en">Stories</span>
+    </a></li>
   </ul>
-  <a href="quiz.html" class="nav-cta"><span style="display:flex;flex-direction:column;align-items:center;line-height:1.15;gap:1px"><span style="font-family:'Noto Serif Devanagari',serif;font-size:0.72rem;opacity:0.65;font-weight:400">यात्रा खोज</span><span>Find My Yatra</span></span></a>
-  <button class="mobile-menu-btn" aria-label="Menu">☰</button>
+  <a href="quiz.html" class="vt-cta" aria-label="Find My Yatra">
+    <span class="vt-sk vt-cta-sk">यात्रा खोज</span>
+    <span class="vt-en vt-cta-en">Find My Yatra</span>
+  </a>
+  <button class="vt-menu-btn" aria-label="Open menu" onclick="document.getElementById('vt-mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile Menu -->
+<div id="vt-mobile-menu">
+  <button class="vt-mobile-close" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')" aria-label="Close menu">✕</button>
+  <ul>
+    <li><a href="journeys.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">यात्रा</span><span class="vt-en">Yatras</span></a></li>
+    <li><a href="signature-journeys.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">विशिष्ट</span><span class="vt-en">Signatures</span></a></li>
+    <li><a href="vedic-trails-homepage-v20.html#sacred-geography" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">पवित्र भूगोल</span><span class="vt-en">Sacred Geography</span></a></li>
+    <li><a href="calendar.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">पंचांग</span><span class="vt-en">Calendar</span></a></li>
+    <li><a href="stories.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">कथाएँ</span><span class="vt-en">Stories</span></a></li>
+    <li><a href="quiz.html" class="vt-mobile-cta" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')">Find My Yatra</a></li>
+  </ul>
+</div>
 
 <section class="hero">
   <div class="hero-glyph-bg">र</div>
