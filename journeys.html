@@ -190,7 +190,36 @@ a{text-decoration:none;color:inherit}button{font-family:inherit;cursor:pointer;b
 }
 </style>
 <style id="vt-nav-css">
-undefined
+#vt-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(251,246,236,0.94);border-bottom:1px solid rgba(184,146,74,0.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:background 0.5s ease,border-color 0.5s ease,box-shadow 0.5s ease;}
+#vt-nav.scrolled{box-shadow:0 1px 24px rgba(15,31,58,0.05);}
+.vt-logo{display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:#0F1F3A;flex-shrink:0;}
+.vt-logo svg{display:block;}
+.vt-logo-text{font-family:'Cormorant Garamond','Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:0.04em;color:#0F1F3A;line-height:1;}
+.vt-nav-links{display:flex;align-items:center;gap:0;list-style:none;margin:0;padding:0;}
+.vt-nav-item{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;padding:0 1.6rem;height:76px;position:relative;transition:opacity 0.25s;}
+.vt-nav-item::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:1.5px;background:#B8924A;transition:width 0.3s ease;}
+.vt-nav-item:hover::after,.vt-nav-item.active::after{width:60%;}
+.vt-sk{font-family:'Noto Serif Devanagari',serif;font-size:11px;font-weight:300;letter-spacing:0.04em;color:rgba(15,31,58,0.42);line-height:1;display:block;text-align:center;transition:color 0.25s;}
+.vt-en{font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(15,31,58,0.72);line-height:1;display:block;text-align:center;transition:color 0.25s;white-space:nowrap;}
+.vt-nav-item:hover .vt-en,.vt-nav-item.active .vt-en{color:#B8924A;}
+.vt-nav-item:hover .vt-sk,.vt-nav-item.active .vt-sk{color:rgba(184,146,74,0.6);}
+.vt-cta{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-decoration:none;padding:0.55rem 1.6rem;background:#0F1F3A;border-radius:2rem;flex-shrink:0;transition:background 0.3s,transform 0.2s;margin-left:1.2rem;}
+.vt-cta:hover{background:#1E3258;transform:translateY(-1px);}
+.vt-cta-sk{font-size:9.5px;letter-spacing:0.06em;color:rgba(246,240,230,0.55);}
+.vt-cta-en{font-size:10.5px;letter-spacing:0.18em;color:#F6F0E6;font-weight:600;}
+.vt-menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;}
+.vt-menu-btn span{display:block;width:22px;height:1.5px;background:#0F1F3A;transition:all 0.3s;}
+#vt-mobile-menu{position:fixed;top:0;right:0;bottom:0;width:min(320px,88vw);background:#FBF6EC;z-index:1001;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);padding:5rem 2.5rem 3rem;border-left:1px solid rgba(184,146,74,0.12);box-shadow:-8px 0 40px rgba(15,31,58,0.08);}
+#vt-mobile-menu.open{transform:translateX(0);}
+.vt-mobile-close{position:absolute;top:1.4rem;right:1.6rem;background:none;border:none;font-size:1.2rem;color:rgba(15,31,58,0.4);cursor:pointer;padding:8px;}
+#vt-mobile-menu ul{list-style:none;padding:0;margin:0;}
+#vt-mobile-menu li{border-bottom:1px solid rgba(184,146,74,0.1);}
+#vt-mobile-menu a{display:flex;flex-direction:column;gap:3px;padding:1.2rem 0;text-decoration:none;}
+#vt-mobile-menu .vt-sk{font-size:11px;color:rgba(15,31,58,0.35);}
+#vt-mobile-menu .vt-en{font-size:15px;color:#0F1F3A;letter-spacing:0.1em;}
+.vt-mobile-cta{display:inline-flex !important;align-items:center;justify-content:center;margin-top:2rem;background:#0F1F3A;color:#F6F0E6 !important;padding:0.8rem 2rem !important;border-radius:2rem;font-family:'Cormorant Garamond',serif;font-size:13px !important;letter-spacing:0.15em !important;text-transform:uppercase;border-bottom:none !important;flex-direction:row !important;}
+@media (max-width:900px){.vt-nav-links,.vt-cta{display:none;}.vt-menu-btn{display:flex;}#vt-nav{padding:0 1.5rem;}}
+@media (max-width:1100px){.vt-nav-item{padding:0 1.1rem;}.vt-en{font-size:10px;}.vt-sk{font-size:10px;}#vt-nav{padding:0 2rem;}}
 </style>
 </head>
 <body>
