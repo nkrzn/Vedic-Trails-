@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signature Journeys · Vedic Trails</title>
+  <meta name="description" content="Nine rare curated spiritual experiences across sacred India. For those who seek depth, not distance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+
+/* ═══════════════════════════════════════════════════
+   VEDIC TRAILS — GLOBAL NAV SYSTEM
+   Luxury spiritual travel · Minimal · Sacred · Timeless
+   ═══════════════════════════════════════════════════ */
+
+#vt-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3rem;
+  background: rgba(246, 240, 230, 0.0);
+  border-bottom: 1px solid rgba(184, 146, 74, 0.0);
+  transition: background 0.5s ease, border-color 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+}
+
+#vt-nav.scrolled {
+  background: rgba(251, 246, 236, 0.94);
+  border-bottom: 1px solid rgba(184, 146, 74, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 24px rgba(15, 31, 58, 0.05);
+}
+
+/* Homepage starts transparent, inner pages start scrolled */
+#vt-nav.always-light {
+  background: rgba(251, 246, 236, 0.94);
+  border-bottom: 1px solid rgba(184, 146, 74, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* LOGO */
+.vt-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: #0F1F3A;
+  flex-shrink: 0;
+}
+
+.vt-logo svg { display: block; }
+
+.vt-logo-text {
+  font-family: 'Cormorant Garamond', 'Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #0F1F3A;
+  line-height: 1;
+}
+
+/* NAV LINKS */
+.vt-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vt-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  padding: 0 1.6rem;
+  height: 76px;
+  position: relative;
+  transition: opacity 0.25s;
+}
+
+.vt-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1.5px;
+  background: #B8924A;
+  transition: width 0.3s ease;
+}
+
+.vt-nav-item:hover::after,
+.vt-nav-item.active::after { width: 60%; }
+
+/* Sanskrit label */
+.vt-sk {
+  font-family: 'Noto Serif Devanagari', serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: rgba(15, 31, 58, 0.42);
+  line-height: 1;
+  display: block;
+  text-align: center;
+  transition: color 0.25s;
+}
+
+/* English label */
+.vt-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15, 31, 58, 0.72);
+  line-height: 1;
+  display: block;
+  text-align: center;
+  transition: color 0.25s;
+  white-space: nowrap;
+}
+
+.vt-nav-item:hover .vt-en,
+.vt-nav-item.active .vt-en { color: #B8924A; }
+
+.vt-nav-item:hover .vt-sk,
+.vt-nav-item.active .vt-sk { color: rgba(184, 146, 74, 0.6); }
+
+/* CTA BUTTON */
+.vt-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  padding: 0.55rem 1.6rem;
+  background: #0F1F3A;
+  border-radius: 2rem;
+  flex-shrink: 0;
+  transition: background 0.3s, transform 0.2s;
+  margin-left: 1.2rem;
+}
+
+.vt-cta:hover {
+  background: #1E3258;
+  transform: translateY(-1px);
+}
+
+.vt-cta-sk {
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: rgba(246, 240, 230, 0.55);
+}
+
+.vt-cta-en {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  color: #F6F0E6;
+  font-weight: 600;
+}
+
+/* MOBILE HAMBURGER */
+.vt-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.vt-menu-btn span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #0F1F3A;
+  transition: all 0.3s;
+}
+
+/* MOBILE MENU */
+#vt-mobile-menu {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(320px, 88vw);
+  background: #FBF6EC;
+  z-index: 1001;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 5rem 2.5rem 3rem;
+  border-left: 1px solid rgba(184,146,74,0.12);
+  box-shadow: -8px 0 40px rgba(15,31,58,0.08);
+}
+
+#vt-mobile-menu.open { transform: translateX(0); }
+
+.vt-mobile-close {
+  position: absolute;
+  top: 1.4rem; right: 1.6rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: rgba(15,31,58,0.4);
+  cursor: pointer;
+  padding: 8px;
+}
+
+#vt-mobile-menu ul { list-style: none; padding: 0; margin: 0; }
+
+#vt-mobile-menu li { border-bottom: 1px solid rgba(184,146,74,0.1); }
+
+#vt-mobile-menu a {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 1.2rem 0;
+  text-decoration: none;
+}
+
+#vt-mobile-menu .vt-sk {
+  font-size: 11px;
+  color: rgba(15,31,58,0.35);
+}
+
+#vt-mobile-menu .vt-en {
+  font-size: 15px;
+  color: #0F1F3A;
+  letter-spacing: 0.1em;
+}
+
+.vt-mobile-cta {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  background: #0F1F3A;
+  color: #F6F0E6 !important;
+  padding: 0.8rem 2rem !important;
+  border-radius: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase;
+  border-bottom: none !important;
+  flex-direction: row !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .vt-nav-links, .vt-cta { display: none; }
+  .vt-menu-btn { display: flex; }
+  #vt-nav { padding: 0 1.5rem; }
+}
+
+@media (max-width: 1100px) {
+  .vt-nav-item { padding: 0 1.1rem; }
+  .vt-en { font-size: 10px; }
+  .vt-sk { font-size: 10px; }
+  #vt-nav { padding: 0 2rem; }
+}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F7F1E5; --ivory: #FBF6EC; --navy: #0F1F3A; --navy-deep: #0A1628;
+      --gold: #B8924A; --gold-light: #D4AE5F; --gold-pale: #E8D29A;
+      --terracotta: #8B4A3A; --sage: #6B7C5E; --dust: #C4B49A; --muted: #8A7F72;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--navy); font-family: 'Cormorant Garamond', serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; padding-top: 80px; }
+
+    /* HERO */
+    .hero { height: 90vh; min-height: 600px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; background: var(--navy-deep); }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 55% at 50% 65%, rgba(184,146,74,0.13) 0%, transparent 65%), radial-gradient(ellipse 55% 55% at 15% 30%, rgba(139,74,58,0.12) 0%, transparent 55%), linear-gradient(165deg, #0a1628 0%, #111e36 40%, #0e1a2e 70%, #090e1a 100%); }
+    .hero-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(184,146,74,0.07) 0%, transparent 70%); animation: glow 7s ease-in-out infinite; }
+    @keyframes glow { 0%,100% { transform:translate(-50%,-50%) scale(1); opacity:.7; } 50% { transform:translate(-50%,-50%) scale(1.1); opacity:1; } }
+    .hero-ring { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); border-radius:50%; border:1px solid rgba(184,146,74,0.07); }
+    .ring-1 { width:500px; height:500px; }
+    .ring-2 { width:340px; height:340px; border-color:rgba(184,146,74,0.04); }
+    .hero-content { position:relative; z-index:2; max-width:820px; padding:0 2rem; animation:fadeUp 1.2s ease forwards; opacity:0; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+    .hero-eyebrow { display:flex; align-items:center; justify-content:center; gap:1rem; margin-bottom:2rem; }
+    .hero-eyebrow-line { width:40px; height:1px; background:var(--gold); opacity:.4; }
+    .hero-label { font-size:.67rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); opacity:.85; }
+    .hero-title { font-family:'Fraunces',serif; font-size:clamp(3rem,7vw,6rem); font-weight:200; line-height:1.02; color:var(--cream); margin-bottom:1.8rem; }
+    .hero-title em { font-style:italic; color:var(--gold-light); }
+    .hero-sub { font-size:1.1rem; font-weight:300; line-height:1.75; color:rgba(247,241,229,0.5); max-width:560px; margin:0 auto; }
+    .hero-scroll { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.6rem; animation:fadeUp 2s ease 1s forwards; opacity:0; }
+    .hero-scroll-line { width:1px; height:44px; background:linear-gradient(to bottom,rgba(184,146,74,.6),transparent); animation:drip 2.5s ease-in-out infinite; }
+    @keyframes drip { 0%{transform:scaleY(0);transform-origin:top;opacity:1;} 65%{transform:scaleY(1);transform-origin:top;opacity:1;} 100%{transform:scaleY(1);transform-origin:top;opacity:0;} }
+    .hero-scroll-text { font-size:.6rem; letter-spacing:.25em; text-transform:uppercase; color:rgba(184,146,74,.45); }
+
+    /* INTRO */
+    .intro { background:var(--ivory); padding:7rem 3rem; text-align:center; border-bottom:1px solid rgba(184,146,74,.12); }
+    .intro-inner { max-width:820px; margin:0 auto; }
+    .intro-quote { font-family:'Fraunces',serif; font-size:clamp(1.6rem,3vw,2.6rem); font-weight:200; font-style:italic; line-height:1.45; color:var(--navy); margin-bottom:2.5rem; }
+    .intro-quote em { font-style:normal; color:#96721E; font-weight:300; }
+    .intro-divider { width:40px; height:1px; background:var(--gold); margin:0 auto 2rem; opacity:.35; }
+    .intro-body { font-size:1.05rem; font-weight:300; line-height:1.9; color:rgba(15,31,58,.5); max-width:640px; margin:0 auto; }
+
+    /* SECTION HEADER */
+    .section-header { padding:6rem 3rem 3rem; display:flex; align-items:flex-end; justify-content:space-between; max-width:1400px; margin:0 auto; }
+    .section-label { font-size:.65rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:.8rem; }
+    .section-title { font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:200; color:var(--navy); line-height:1.15; }
+    .section-count { font-size:.7rem; letter-spacing:.15em; color:var(--dust); text-transform:uppercase; padding-bottom:.5rem; }
+
+    /* GRID */
+    .journeys-grid { padding:2rem 3rem 6rem; max-width:1400px; margin:0 auto; display:flex; flex-direction:column; gap:3px; }
+    .grid-row { display:grid; gap:3px; }
+    .r-2l { grid-template-columns:1.5fr 1fr; }
+    .r-3 { grid-template-columns:1fr 1fr 1fr; }
+    .r-2r { grid-template-columns:1fr 1.5fr; }
+    .h-lg { height:560px; }
+    .h-md { height:440px; }
+
+    /* CARD */
+    .journey-card { position:relative; overflow:hidden; cursor:pointer; }
+    .card-bg { position:absolute; inset:0; transition:transform .9s cubic-bezier(.25,.46,.45,.94); }
+    .journey-card:hover .card-bg { transform:scale(1.05); }
+    .card-vignette { position:absolute; inset:0; background:linear-gradient(to bottom,rgba(8,16,28,.08) 0%,rgba(8,16,28,.55) 55%,rgba(8,16,28,.93) 100%); transition:background .5s; }
+    .journey-card:hover .card-vignette { background:linear-gradient(to bottom,rgba(8,16,28,.15) 0%,rgba(8,16,28,.62) 50%,rgba(8,16,28,.96) 100%); }
+    .card-content { position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:flex-end; padding:2.2rem; transition:transform .4s ease; }
+    .journey-card:hover .card-content { transform:translateY(-5px); }
+    .card-num { font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gold-pale); opacity:.75; margin-bottom:.5rem; }
+    .card-title { font-family:'Fraunces',serif; font-weight:200; color:var(--cream); line-height:1.15; margin-bottom:.6rem; }
+    .h-lg .card-title { font-size:clamp(1.8rem,2.8vw,2.6rem); }
+    .h-md .card-title { font-size:clamp(1.4rem,2vw,1.9rem); }
+    .card-tag { font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-pale); opacity:.6; margin-bottom:.9rem; }
+    .card-desc { font-size:.9rem; font-weight:300; line-height:1.7; color:rgba(247,241,229,.6); max-width:400px; opacity:0; transform:translateY(6px); transition:opacity .4s .08s,transform .4s .08s; }
+    .journey-card:hover .card-desc { opacity:1; transform:translateY(0); }
+    .card-link { display:inline-flex; align-items:center; gap:.5rem; font-size:.67rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold-light); margin-top:1rem; opacity:0; transition:opacity .4s .12s; }
+    .journey-card:hover .card-link { opacity:1; }
+
+    /* BACKGROUNDS */
+    .bg-kashi { background:linear-gradient(155deg,#1a0800 0%,#3d1200 28%,#6b2500 55%,#3a1000 78%,#1a0600 100%); }
+    .bg-kashi::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 40% at 35% 28%,rgba(255,140,40,.2) 0%,transparent 58%); }
+    .bg-south { background:linear-gradient(155deg,#0a1808 0%,#142a10 28%,#1e3a18 55%,#122010 78%,#081608 100%); }
+    .bg-south::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 55% 40% at 60% 30%,rgba(196,135,58,.16) 0%,transparent 55%); }
+    .bg-kerala { background:linear-gradient(155deg,#06120e 0%,#0e2018 28%,#152e20 55%,#0a1e14 78%,#060e0a 100%); }
+    .bg-kerala::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 55% 38% at 42% 30%,rgba(80,150,100,.18) 0%,transparent 55%); }
+    .bg-himalaya { background:linear-gradient(155deg,#0c1016 0%,#162030 28%,#1e2a3e 55%,#121a2a 78%,#09101a 100%); }
+    .bg-himalaya::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 35% at 50% 22%,rgba(200,210,230,.1) 0%,transparent 52%); }
+    .bg-river { background:linear-gradient(155deg,#07100e 0%,#0e1e1a 28%,#152624 55%,#0e1c18 78%,#060e0c 100%); }
+    .bg-river::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 35% at 45% 30%,rgba(100,160,150,.14) 0%,transparent 55%); }
+    .bg-aarti { background:linear-gradient(155deg,#150800 0%,#2e1000 28%,#501a00 55%,#2a0e00 78%,#120600 100%); }
+    .bg-aarti::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 55% 38% at 40% 35%,rgba(255,110,20,.22) 0%,transparent 55%); }
+    .bg-mystic { background:linear-gradient(155deg,#120a14 0%,#221428 28%,#301e3a 55%,#1e122c 78%,#0e0812 100%); }
+    .bg-mystic::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 55% 35% at 55% 25%,rgba(180,100,160,.12) 0%,transparent 55%); }
+    .bg-fire { background:linear-gradient(155deg,#180400 0%,#340800 28%,#5e0e00 55%,#3c0800 78%,#180400 100%); }
+    .bg-fire::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 50% 42% at 50% 38%,rgba(255,90,10,.26) 0%,transparent 55%); }
+    .bg-wellness { background:linear-gradient(155deg,#081508 0%,#102210 28%,#183018 55%,#0e1e0e 78%,#081008 100%); }
+    .bg-wellness::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 38% at 35% 30%,rgba(107,124,94,.24) 0%,transparent 55%); }
+
+    /* DETAILS STRIP */
+    .details-strip { background:#F3EDE0; border-top:1px solid rgba(184,146,74,.12); border-bottom:1px solid rgba(184,146,74,.12); padding:4rem 3rem; }
+    .details-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:3rem; }
+    .detail-item { text-align:center; }
+    .detail-num { font-family:'Fraunces',serif; font-size:2.8rem; font-weight:200; color:var(--gold); line-height:1; margin-bottom:.5rem; }
+    .detail-label { font-size:.7rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(15,31,58,.4); }
+
+    /* PHILOSOPHY */
+    .philosophy { background:var(--navy-deep); padding:7rem 3rem; position:relative; overflow:hidden; }
+    .philosophy::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 18% 50%,rgba(184,146,74,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 82% 50%,rgba(139,74,58,.05) 0%,transparent 60%); }
+    .philosophy-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; position:relative; }
+    .philosophy-label { font-size:.65rem; letter-spacing:.25em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:1.2rem; }
+    .philosophy-heading { font-family:'Fraunces',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:200; line-height:1.25; color:var(--cream); margin-bottom:1.8rem; }
+    .philosophy-heading em { font-style:italic; color:var(--gold-light); }
+    .philosophy-body { font-size:1rem; font-weight:300; line-height:1.9; color:rgba(247,241,229,.48); }
+    .pillars { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+    .pillar { padding:1.6rem; border:1px solid rgba(184,146,74,.13); background:rgba(247,241,229,.03); transition:border-color .3s,background .3s,transform .3s; }
+    .pillar:hover { border-color:rgba(184,146,74,.28); background:rgba(184,146,74,.06); transform:translateY(-3px); }
+    .pillar-icon { font-size:1.2rem; display:block; margin-bottom:.8rem; }
+    .pillar-name { font-family:'Fraunces',serif; font-size:1rem; font-weight:300; color:var(--cream); margin-bottom:.5rem; }
+    .pillar-desc { font-size:.82rem; font-weight:300; line-height:1.7; color:rgba(247,241,229,.38); }
+
+    /* EXPERIENCES */
+    .experiences { background:var(--ivory); padding:7rem 3rem; border-top:1px solid rgba(184,146,74,.1); }
+    .exp-inner { max-width:1200px; margin:0 auto; }
+    .exp-header { margin-bottom:4rem; }
+    .exp-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+    .exp-item { padding:2.2rem 2.2rem 2.2rem 0; border-top:1px solid rgba(184,146,74,.17); border-right:1px solid rgba(184,146,74,.09); }
+    .exp-item:nth-child(3n) { border-right:none; padding-right:0; }
+    .exp-item:nth-child(n+4) { margin-top:2rem; }
+    .exp-num { font-size:.58rem; letter-spacing:.22em; color:var(--gold); text-transform:uppercase; display:block; margin-bottom:.9rem; }
+    .exp-name { font-family:'Fraunces',serif; font-size:1.25rem; font-weight:300; color:var(--navy); margin-bottom:.8rem; line-height:1.3; }
+    .exp-desc { font-size:.9rem; font-weight:300; line-height:1.8; color:rgba(15,31,58,.48); }
+
+    /* CTA */
+    .cta-section { background:var(--navy-deep); padding:9rem 3rem; text-align:center; position:relative; overflow:hidden; }
+    .cta-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(184,146,74,.07) 0%,transparent 70%); }
+    .cta-inner { max-width:680px; margin:0 auto; position:relative; }
+    .cta-ornament { width:1px; height:50px; background:linear-gradient(to bottom,var(--gold),transparent); margin:0 auto 2.5rem; opacity:.45; }
+    .cta-label { font-size:.65rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; display:block; }
+    .cta-title { font-family:'Fraunces',serif; font-size:clamp(1.8rem,4vw,3.5rem); font-weight:200; font-style:italic; color:var(--cream); line-height:1.25; margin-bottom:1.5rem; }
+    .cta-sub { font-size:1rem; font-weight:300; line-height:1.8; color:rgba(247,241,229,.43); margin-bottom:3rem; }
+    .cta-buttons { display:flex; align-items:center; justify-content:center; gap:1.2rem; flex-wrap:wrap; }
+    .btn-primary { display:inline-flex; align-items:center; gap:.8rem; background:linear-gradient(135deg,var(--gold) 0%,var(--terracotta) 100%); color:white; text-decoration:none; padding:1rem 2.5rem; font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; transition:opacity .3s,transform .3s; }
+    .btn-primary:hover { opacity:.88; transform:translateY(-2px); }
+    .btn-secondary { display:inline-flex; align-items:center; gap:.6rem; color:rgba(247,241,229,.42); text-decoration:none; padding:1rem 2rem; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; border:1px solid rgba(247,241,229,.14); transition:color .3s,border-color .3s; }
+    .btn-secondary:hover { color:var(--gold-light); border-color:rgba(184,146,74,.38); }
+
+    footer { background:var(--navy-deep); padding:3rem; border-top:1px solid rgba(184,146,74,.07); text-align:center; color:rgba(247,241,229,.2); font-size:.78rem; letter-spacing:.06em; }
+    footer a { color:rgba(184,146,74,.42); text-decoration:none; transition:color .3s; }
+    footer a:hover { color:var(--gold); }
+
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .85s ease,transform .85s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .d1 { transition-delay:.1s; } .d2 { transition-delay:.2s; } .d3 { transition-delay:.3s; }
+
+    @media (max-width:1024px) { .r-2l,.r-2r { grid-template-columns:1fr; } .r-3 { grid-template-columns:1fr 1fr; } .h-lg,.h-md { height:420px; } .philosophy-inner { grid-template-columns:1fr; gap:3rem; } .exp-grid { grid-template-columns:1fr 1fr; } .details-inner { grid-template-columns:1fr 1fr; } }
+    @media (max-width:768px) { .journeys-grid,.section-header { padding-left:1.5rem; padding-right:1.5rem; } .r-3 { grid-template-columns:1fr; } .exp-grid { grid-template-columns:1fr; } .intro,.philosophy,.experiences,.cta-section,.details-strip { padding:5rem 1.5rem; } }
+  </style>
+</head>
+<body>
+<nav id="vt-nav">
+  <a href="vedic-trails-homepage-v20.html" class="vt-logo" aria-label="Vedic Trails Home">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="17.5" stroke="#B8924A" stroke-width="0.75" opacity="0.7"/>
+      <circle cx="20" cy="20" r="11" stroke="#B8924A" stroke-width="0.5" opacity="0.4"/>
+      <path d="M20 5.5 L20 34.5 M5.5 20 L34.5 20" stroke="#B8924A" stroke-width="0.5" opacity="0.35"/>
+      <circle cx="20" cy="20" r="3.5" fill="#B8924A" opacity="0.85"/>
+    </svg>
+    <span class="vt-logo-text">Vedic Trails</span>
+  </a>
+  <ul class="vt-nav-links" role="list">
+    <li><a href="journeys.html" class="vt-nav-item">
+      <span class="vt-sk">यात्रा</span>
+      <span class="vt-en">Yatras</span>
+    </a></li>
+    <li><a href="signature-journeys.html" class="vt-nav-item">
+      <span class="vt-sk">विशिष्ट</span>
+      <span class="vt-en">Signatures</span>
+    </a></li>
+    <li><a href="vedic-trails-homepage-v20.html#sacred-geography" class="vt-nav-item">
+      <span class="vt-sk">पवित्र भूगोल</span>
+      <span class="vt-en">Sacred&nbsp;Geography</span>
+    </a></li>
+    <li><a href="calendar.html" class="vt-nav-item">
+      <span class="vt-sk">पंचांग</span>
+      <span class="vt-en">Calendar</span>
+    </a></li>
+    <li><a href="stories.html" class="vt-nav-item">
+      <span class="vt-sk">कथाएँ</span>
+      <span class="vt-en">Stories</span>
+    </a></li>
+  </ul>
+  <a href="quiz.html" class="vt-cta" aria-label="Find My Yatra">
+    <span class="vt-sk vt-cta-sk">यात्रा खोज</span>
+    <span class="vt-en vt-cta-en">Find My Yatra</span>
+  </a>
+  <button class="vt-menu-btn" aria-label="Open menu" onclick="document.getElementById('vt-mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="vt-mobile-menu">
+  <button class="vt-mobile-close" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')" aria-label="Close menu">✕</button>
+  <ul>
+    <li><a href="journeys.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">यात्रा</span><span class="vt-en">Yatras</span></a></li>
+    <li><a href="signature-journeys.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">विशिष्ट</span><span class="vt-en">Signatures</span></a></li>
+    <li><a href="vedic-trails-homepage-v20.html#sacred-geography" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">पवित्र भूगोल</span><span class="vt-en">Sacred Geography</span></a></li>
+    <li><a href="calendar.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">पंचांग</span><span class="vt-en">Calendar</span></a></li>
+    <li><a href="stories.html" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')"><span class="vt-sk">कथाएँ</span><span class="vt-en">Stories</span></a></li>
+    <li><a href="quiz.html" class="vt-mobile-cta" onclick="document.getElementById('vt-mobile-menu').classList.remove('open')">Find My Yatra</a></li>
+  </ul>
+</div>
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-ring ring-1"></div>
+    <div class="hero-ring ring-2"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-label">Signature Journeys · Vedic Trails</span>
+        <div class="hero-eyebrow-line"></div>
+      </div>
+      <h1 class="hero-title">Sacred India,<br><em>without compromise.</em></h1>
+      <p class="hero-sub">Nine rare experiences built for those who seek depth, not distance. Each one unrepeatable.</p>
+    </div>
+    <div class="hero-scroll"><div class="hero-scroll-line"></div><span class="hero-scroll-text">Scroll</span></div>
+  </section>
+
+  <section class="intro"><div class="intro-inner reveal">
+    <p class="intro-quote">"The pilgrim does not travel to <em>find God</em>.<br>The pilgrim travels to become <em>worthy of the encounter</em>."</p>
+    <div class="intro-divider"></div>
+    <p class="intro-body">These are not tours. They are initiations — built around the rhythms of sacred India: the hour before dawn at the ghats, the silence of a forest temple, the warmth of a priest's fire at dusk. Each Signature Journey is limited in size, uncompromising in depth.</p>
+  </div></section>
+
+  <section style="background:var(--cream)">
+    <div class="section-header reveal">
+      <div><span class="section-label">The Collection</span><h2 class="section-title">Nine Journeys.<br>Nine Kinds of Sacred.</h2></div>
+      <span class="section-count">Nine curated journeys · 2025–26</span>
+    </div>
+    <div class="journeys-grid">
+      <div class="grid-row r-2l reveal">
+        <div class="journey-card h-lg"><div class="card-bg bg-kashi"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 01</span><h2 class="card-title">Dawn in Kashi</h2><span class="card-tag">Varanasi · 5 Nights · Ganga Aarti · Fire Rituals</span><p class="card-desc">Begin before the city wakes. A private boat on the Ganga as the first flames are lit on the ghats. Predawn entry to Kashi Vishwanath. The same ritual, uninterrupted for 3,000 years.</p><span class="card-link">Begin this journey →</span></div></div>
+        <div class="journey-card h-lg"><div class="card-bg bg-south"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 02</span><h2 class="card-title">Sacred South Temple Trail</h2><span class="card-tag">Tamil Nadu · 8 Nights · Gopurams · Devadasi Arts</span><p class="card-desc">From Madurai to Rameswaram along the great corridor of Dravidian temple civilisation. Private darshans, hereditary priests, evenings with classical musicians.</p><span class="card-link">Begin this journey →</span></div></div>
+      </div>
+      <div class="grid-row r-3 reveal">
+        <div class="journey-card h-md"><div class="card-bg bg-kerala"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 03</span><h2 class="card-title">Monsoon Temple Routes of Kerala</h2><span class="card-tag">Kerala · 6 Nights · Theyyam · Ayurveda</span><p class="card-desc">The monsoon transforms Kerala into something otherworldly. Theyyam performances in rain-washed courtyards. Ayurvedic immersion in a 200-year-old tharavad.</p><span class="card-link">Begin this journey →</span></div></div>
+        <div class="journey-card h-md"><div class="card-bg bg-himalaya"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 04</span><h2 class="card-title">Himalayan Shiva Journey</h2><span class="card-tag">Uttarakhand · 7 Nights · Kedarnath · Meditation</span><p class="card-desc">Trek at dawn, arrive at Kedarnath before the crowds. Spend an evening with a sadhu whose lineage reaches back twelve generations.</p><span class="card-link">Begin this journey →</span></div></div>
+        <div class="journey-card h-md"><div class="card-bg bg-river"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 05</span><h2 class="card-title">Sacred River Circuits</h2><span class="card-tag">Prayagraj · Haridwar · 6 Nights · Sangam</span><p class="card-desc">Follow India's sacred rivers to their most powerful confluences. At the Sangam, three rivers hold the accumulated prayer of ten thousand years.</p><span class="card-link">Begin this journey →</span></div></div>
+      </div>
+      <div class="grid-row r-2r reveal">
+        <div class="journey-card h-lg"><div class="card-bg bg-aarti"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 06</span><h2 class="card-title">Night Aarti Experiences</h2><span class="card-tag">Multi-city · 7 Nights · Fire · River · Sound</span><p class="card-desc">Five sacred Aartis across five sacred cities. Varanasi, Haridwar, Ujjain — each an invitation to stand inside one of the world's oldest living rituals.</p><span class="card-link">Begin this journey →</span></div></div>
+        <div class="journey-card h-lg"><div class="card-bg bg-mystic"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 07</span><h2 class="card-title">Mystical Temples of India</h2><span class="card-tag">Pan-India · 10 Nights · Shakti · Sacred Architecture</span><p class="card-desc">India holds temples that exist outside the tourist imagination — carved into mountains, submerged in lakes, hidden in forests. Eight of them, with a scholar and silence as companions.</p><span class="card-link">Begin this journey →</span></div></div>
+      </div>
+      <div class="grid-row r-2l reveal">
+        <div class="journey-card h-lg"><div class="card-bg bg-fire"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 08</span><h2 class="card-title">Fire Meditation<br><em style="font-style:italic;color:var(--gold-light)">& Inner Retreat</em></h2><span class="card-tag">Rishikesh · Varanasi · 8 Nights · Agni · Pranayama</span><p class="card-desc">Daily Havan ceremonies with a trained Vedic priest. Twilight pranayama on the Ganga. A fire walk under open sky at the edge of the Himalayas.</p><span class="card-link">Begin this journey →</span></div></div>
+        <div class="journey-card h-lg"><div class="card-bg bg-wellness"></div><div class="card-vignette"></div><div class="card-content"><span class="card-num">Journey 09</span><h2 class="card-title">Sacred Wellness<br><em style="font-style:italic;color:var(--gold-light)">& Restoration</em></h2><span class="card-tag">Kerala · Rishikesh · 10 Nights · Ayurveda · Yoga · Silence</span><p class="card-desc">Panchakarma prescribed by a lineage Vaidya in a private Kerala estate. Then north to Rishikesh for Ashtanga, pranayama, and designed silence. Leave lighter than you arrived.</p><span class="card-link">Begin this journey →</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="details-strip">
+    <div class="details-inner">
+      <div class="detail-item reveal"><div class="detail-num">9</div><div class="detail-label">Signature journeys</div></div>
+      <div class="detail-item reveal d1"><div class="detail-num">5–10</div><div class="detail-label">Nights per journey</div></div>
+      <div class="detail-item reveal d2"><div class="detail-num">8</div><div class="detail-label">Max travellers per departure</div></div>
+      <div class="detail-item reveal d3"><div class="detail-num">∞</div><div class="detail-label">Years of living tradition</div></div>
+    </div>
+  </section>
+
+  <section class="philosophy">
+    <div class="philosophy-inner">
+      <div class="reveal"><span class="philosophy-label">How we build them</span><h2 class="philosophy-heading">Every journey begins<br>with a <em>conversation</em>,<br>not a brochure.</h2><p class="philosophy-body">We learn who you are — what you carry, what you seek, what you're ready to let go of. The journey is then shaped around that. Temples, timings, companions, silences — everything is considered. Nothing is accidental.</p></div>
+      <div class="pillars reveal">
+        <div class="pillar"><span class="pillar-icon">🔥</span><p class="pillar-name">Ritual Access</p><p class="pillar-desc">Private darshans, pre-dawn ceremonies, and introductions to hereditary priests most visitors never encounter.</p></div>
+        <div class="pillar"><span class="pillar-icon">📖</span><p class="pillar-name">Living Scholars</p><p class="pillar-desc">Each journey is accompanied by a Sanskrit pandit, historian, or temple architect with ancestral knowledge.</p></div>
+        <div class="pillar"><span class="pillar-icon">🌿</span><p class="pillar-name">Sacred Wellness</p><p class="pillar-desc">Ayurveda, fire ceremonies, and forest meditations woven into the rhythm of each day.</p></div>
+        <div class="pillar"><span class="pillar-icon">🏛️</span><p class="pillar-name">Considered Stays</p><p class="pillar-desc">Heritage havelis, forest lodges, riverside estates — chosen for soul, not star rating.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="experiences">
+    <div class="exp-inner">
+      <div class="exp-header reveal"><span class="section-label">Woven into every journey</span><h2 class="section-title">The Moments That Stay</h2></div>
+      <div class="exp-grid">
+        <div class="exp-item reveal"><span class="exp-num">01</span><h3 class="exp-name">Pre-dawn temple entry</h3><p class="exp-desc">Brahma Muhurta — the creator's hour. Access to temples in silence, before the world wakes.</p></div>
+        <div class="exp-item reveal d1"><span class="exp-num">02</span><h3 class="exp-name">Agni Havan ceremony</h3><p class="exp-desc">A 90-minute sacred fire ceremony. Mantras chanted. The smoke carries intention skyward. Genuinely transformative.</p></div>
+        <div class="exp-item reveal d2"><span class="exp-num">03</span><h3 class="exp-name">Ganga at first light</h3><p class="exp-desc">A private boat before the city wakes. Only the sound of oars and the first bells from the ghats.</p></div>
+        <div class="exp-item reveal"><span class="exp-num">04</span><h3 class="exp-name">Panchakarma immersion</h3><p class="exp-desc">Authentic Ayurvedic detoxification prescribed by a lineage Vaidya in a private estate.</p></div>
+        <div class="exp-item reveal d1"><span class="exp-num">05</span><h3 class="exp-name">Designed silence</h3><p class="exp-desc">At least one full day of curated silence in each journey. A practice that changes everything that follows.</p></div>
+        <div class="exp-item reveal d2"><span class="exp-num">06</span><h3 class="exp-name">The sacred meal</h3><p class="exp-desc">Prasad from the temple kitchen — cooked the same way for 400 years in some places. Eating as devotion.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-inner reveal">
+      <div class="cta-ornament"></div>
+      <span class="cta-label">Begin here</span>
+      <h2 class="cta-title">Every great journey begins<br>with a single question.</h2>
+      <p class="cta-sub">Tell us what you're looking for. We'll design something that fits only you.</p>
+      <div class="cta-buttons">
+        <a href="quiz.html" class="btn-primary">Find My Yatra →</a>
+        <a href="vedic-trails-homepage-v20.html#concierge" class="btn-secondary">Speak with us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><p>© 2025 Vedic Trails &nbsp;·&nbsp; <a href="vedic-trails-homepage-v20.html">Home</a> &nbsp;·&nbsp; <a href="journeys.html">Yatras</a> &nbsp;·&nbsp; <a href="signature-journeys.html">Signature Journeys</a> &nbsp;·&nbsp; <a href="quiz.html">Find My Yatra</a></p></footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.07 });
+    reveals.forEach(el => obs.observe(el));
+  </script>
+  
+<script>
+(function() {
+  var nav = document.getElementById('vt-nav');
+  if (!nav) return;
+  
+  // Inner pages always start in light mode
+  var isHomepage = window.location.pathname.includes('homepage') || 
+                   window.location.pathname === '/' ||
+                   window.location.pathname.endsWith('index.html');
+  
+  if (!isHomepage) { nav.classList.add('always-light'); }
+
+  // Mark active nav item
+  var path = window.location.pathname;
+  var links = document.querySelectorAll('.vt-nav-item');
+  links.forEach(function(link) {
+    if (path.includes(link.getAttribute('href').split('#')[0].replace('./', ''))) {
+      link.classList.add('active');
+    }
+  });
+
+  // Scroll behavior for homepage
+  if (isHomepage) {
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) { nav.classList.add('scrolled'); }
+      else { nav.classList.remove('scrolled'); }
+    }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>
