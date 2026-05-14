@@ -4561,11 +4561,12 @@
 
 <script>
   // NAV scroll state — over the photographic plates (dark) nav reads light-on-transparent
-  const nav = document.getElementById('nav');
+   const nav = document.getElementById('vt-nav');
   function updateNav() {
+     if (!nav) return;
     const plates = document.querySelectorAll('.plate');
     const lastPlate = plates[plates.length - 1];
-    const heroEl = document.querySelector('.hero');
+   
     const y = window.scrollY;
 
     let inPlatesRegion = false;
