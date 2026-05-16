@@ -1511,6 +1511,103 @@ body {
     .sg-energy-grid, .sg-circuit-grid { grid-template-columns: 1fr; }
     .sg-river-card { grid-template-columns: 1fr; gap: 0.5rem; }
   }
+
+/* ═══════════════════════════════════════════════════
+   SCROLL REVEAL ANIMATIONS
+   ═══════════════════════════════════════════════════ */
+  .sg-reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sg-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .sg-reveal-stagger > .sg-reveal {
+    transition-delay: calc(var(--i, 0) * 120ms);
+  }
+
+/* ═══════════════════════════════════════════════════
+   TEMPLE PANEL IMAGE
+   ═══════════════════════════════════════════════════ */
+  .panel-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 0;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .panel-image.loaded {
+    opacity: 1;
+  }
+  .panel-image-credit {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    color: rgba(184, 148, 85, 0.4);
+    margin-top: -0.7rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+  }
+
+/* ═══════════════════════════════════════════════════
+   SECTION TRANSITIONS — gradient overlaps between light/dark
+   ═══════════════════════════════════════════════════ */
+  .sg-transition-to-dark::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, #1A1A17);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .sg-transition-to-light::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, #FBF6EC);
+    pointer-events: none;
+    z-index: 3;
+  }
+
+/* ═══════════════════════════════════════════════════
+   DIYA COUNTER BAR — floating bottom counter
+   ═══════════════════════════════════════════════════ */
+  .sg-diya-bar {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: rgba(26, 26, 23, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(184, 148, 85, 0.18);
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: rgba(232, 220, 200, 0.7);
+    letter-spacing: 0.06em;
+    z-index: 900;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.4s, transform 0.4s;
+  }
+  .sg-diya-bar.show {
+    display: flex;
+  }
+  .sg-diya-bar-flame {
+    color: #D87B3D;
+    font-size: 0.85rem;
+  }
 </style>
 </head>
 <body>
@@ -1834,26 +1931,26 @@ body {
     <h2 class="sg-shell-title">Where the Earth <em>Speaks</em></h2>
     <p class="sg-shell-sub" style="max-width:680px;margin:0 auto 1rem;">Some places on earth register differently — geomagnetically, geologically, experientially. India mapped them before science had a word for it.</p>
 
-    <div class="sg-energy-grid">
-      <div class="sg-energy-card">
+    <div class="sg-energy-grid sg-reveal-stagger">
+      <div class="sg-energy-card sg-reveal">
         <div class="sg-card-coords">29.8400°N, 79.5200°E · 2,116 m</div>
         <div class="sg-card-title">Kasar Devi</div>
         <div class="sg-card-hook">NASA flagged this ridge. Ancient rishis chose it millennia earlier.</div>
         <div class="sg-card-body">The Kasar Devi ridge in Almora registers unusual geomagnetic activity — the same Van Allen Belt anomaly found at Machu Picchu and Stonehenge. The 2nd-century CE Kasar Devi temple sits at the epicentre. Swami Vivekananda meditated here. Bob Dylan stayed in the 1960s. The ridge has attracted seekers from every tradition.</div>
       </div>
-      <div class="sg-energy-card">
+      <div class="sg-energy-card sg-reveal">
         <div class="sg-card-coords">30.7352°N, 79.0669°E · 3,583 m</div>
         <div class="sg-card-title">Kedarnath</div>
         <div class="sg-card-hook">The highest Jyotirlinga. A temple that survived the apocalypse in 2013.</div>
         <div class="sg-card-body">At 11,755 feet, Kedarnath sits at the headwaters of the Mandakini river on a glacial moraine. During the 2013 floods that killed thousands, a boulder wedged behind the temple and diverted the floodwaters — the 8th-century structure survived intact while everything around it was destroyed.</div>
       </div>
-      <div class="sg-energy-card">
+      <div class="sg-energy-card sg-reveal">
         <div class="sg-card-coords">9.2881°N, 79.3174°E · Sea level</div>
         <div class="sg-card-title">Rameswaram</div>
         <div class="sg-card-hook">22 sacred wells inside one temple — each with water that tastes different.</div>
         <div class="sg-card-body">The Ramanathaswamy temple contains 22 theerthams (sacred wells) within its compound. Despite being meters apart, the water in each well differs in taste, temperature, and mineral content. The temple sits on a Palk Strait island connected by the Pamban Bridge — India\'s most dramatic railway approach.</div>
       </div>
-      <div class="sg-energy-card">
+      <div class="sg-energy-card sg-reveal">
         <div class="sg-card-coords">25.3109°N, 83.0107°E · 81 m</div>
         <div class="sg-card-title">Kashi Vishwanath</div>
         <div class="sg-card-hook">The city that sits on Shiva\'s trident — lifted above cosmic destruction.</div>
@@ -1872,28 +1969,28 @@ body {
     <h2 class="sg-shell-title">Temples Aligned to the <em>Stars</em></h2>
     <p class="sg-shell-sub" style="max-width:680px;margin:0 auto 1rem;">These temples weren't just built to face the sky — they were calibrated to it. Equinox light, solstice shadows, cardinal precision that predates the compass.</p>
 
-    <div class="sg-cosmic-grid">
-      <div class="sg-cosmic-card">
+    <div class="sg-cosmic-grid sg-reveal-stagger">
+      <div class="sg-cosmic-card sg-reveal">
         <div class="sg-cosmic-glyph">☉</div>
         <div class="sg-cosmic-name">Konark Sun Temple</div>
         <div class="sg-cosmic-detail">Oriented so the first rays of the equinox sun strike the Nata Mandir diamond. The 24 carved wheels function as sundials accurate to the minute.</div>
       </div>
-      <div class="sg-cosmic-card">
+      <div class="sg-cosmic-card sg-reveal">
         <div class="sg-cosmic-glyph">☽</div>
         <div class="sg-cosmic-name">Hampi Virupaksha</div>
         <div class="sg-cosmic-detail">On the spring equinox, the sun projects an inverted image of the main gopuram onto the inner sanctum wall — a 7th-century camera obscura.</div>
       </div>
-      <div class="sg-cosmic-card">
+      <div class="sg-cosmic-card sg-reveal">
         <div class="sg-cosmic-glyph">◯</div>
         <div class="sg-cosmic-name">Chidambaram Nataraja</div>
         <div class="sg-cosmic-detail">Located near the earth\'s geomagnetic equator. The Nataraja represents cosmic dance — CERN placed a replica at its entrance. The inner sanctum worships empty space.</div>
       </div>
-      <div class="sg-cosmic-card">
+      <div class="sg-cosmic-card sg-reveal">
         <div class="sg-cosmic-glyph">✦</div>
         <div class="sg-cosmic-name">Ujjain Mahakaleshwar</div>
         <div class="sg-cosmic-detail">Sits on the Tropic of Cancer — ancient India\'s prime meridian. The only south-facing Jyotirlinga, oriented toward Yama\'s direction. Shiva as the lord of time.</div>
       </div>
-      <div class="sg-cosmic-card">
+      <div class="sg-cosmic-card sg-reveal">
         <div class="sg-cosmic-glyph">△</div>
         <div class="sg-cosmic-name">Brihadeeswara</div>
         <div class="sg-cosmic-detail">The 216-foot vimana casts no shadow at noon. An 80-ton capstone placed without modern machinery. The proportions follow mathematical ratios that match the temple\'s latitude.</div>
@@ -1905,9 +2002,9 @@ body {
 <!-- ═══════════════════════════════════════════════════
      SECTION 5 — ATLAS HANDOFF · DARK (threshold)
      ═══════════════════════════════════════════════════ -->
-<section class="sg-section sg-atlas-handoff">
+<section class="sg-section sg-atlas-handoff sg-transition-to-light">
   <div class="sg-section-inner">
-    <div class="sg-handoff-inner">
+    <div class="sg-handoff-inner sg-reveal">
       <div class="sg-shell-eyebrow dark">The Atlas of Sacred Anomalies</div>
       <div class="sg-handoff-count">8 DOCUMENTED SITES · FIELD REPORTS · CLASSIFIED</div>
       <h2 class="sg-shell-title">Go <em>Deeper</em></h2>
@@ -1938,8 +2035,8 @@ body {
     <h2 class="sg-shell-title">Rivers as Living <em>Consciousness</em></h2>
     <p class="sg-shell-sub" style="max-width:680px;margin:0 auto 1rem;">In India, rivers are not geography — they are goddesses. Each has a mythology, a personality, and a pilgrimage route traced along its banks for millennia.</p>
 
-    <div class="sg-rivers-grid">
-      <div class="sg-river-card">
+    <div class="sg-rivers-grid sg-reveal-stagger">
+      <div class="sg-river-card sg-reveal">
         <div class="sg-river-glyph">गं</div>
         <div>
           <div class="sg-river-name">Ganga</div>
@@ -1947,7 +2044,7 @@ body {
           <div class="sg-river-body">From the Gaumukh glacier to the Bay of Bengal — 2,525 km. Ganga is not a river; she is a goddess who agreed to descend to earth. Shiva caught her fall in his matted hair. To die on her banks is to exit the cycle of rebirth. Her water has measurable bacteriophage properties that resist putrefaction — science hasn't fully explained why.</div>
         </div>
       </div>
-      <div class="sg-river-card">
+      <div class="sg-river-card sg-reveal">
         <div class="sg-river-glyph">नर्</div>
         <div>
           <div class="sg-river-name">Narmada</div>
@@ -1955,7 +2052,7 @@ body {
           <div class="sg-river-body">The only river in India that is circumambulated — pilgrims walk her entire length (2,600 km), up one bank and down the other. The Narmada Parikrama takes 3 years on foot. Every pebble in her riverbed is considered a natural Shiva lingam. She flows west when almost every other Indian river flows east.</div>
         </div>
       </div>
-      <div class="sg-river-card">
+      <div class="sg-river-card sg-reveal">
         <div class="sg-river-glyph">गो</div>
         <div>
           <div class="sg-river-name">Godavari</div>
@@ -1963,7 +2060,7 @@ body {
           <div class="sg-river-body">Born at Trimbakeshwar from a water pot carried by the sage Gautama. At 1,465 km, she is peninsular India's longest river. The Pushkaram festival every 12 years draws millions to her banks. She links the Jyotirlinga at Trimbakeshwar to the Shakti Peetha at Kakinada — sacred at both source and mouth.</div>
         </div>
       </div>
-      <div class="sg-river-card">
+      <div class="sg-river-card sg-reveal">
         <div class="sg-river-glyph">स</div>
         <div>
           <div class="sg-river-name">Saraswati</div>
@@ -1971,7 +2068,7 @@ body {
           <div class="sg-river-body">The most sacred river in the Rig Veda — and the one that no longer exists on the surface. Satellite imagery reveals a dried paleochannel running from the Himalayas to the Rann of Kutch, matching Vedic descriptions exactly. She "disappeared underground" according to tradition. ISRO confirms a subsurface water channel along the same route.</div>
         </div>
       </div>
-      <div class="sg-river-card">
+      <div class="sg-river-card sg-reveal">
         <div class="sg-river-glyph">கா</div>
         <div>
           <div class="sg-river-name">Kaveri</div>
@@ -1992,33 +2089,33 @@ body {
     <h2 class="sg-shell-title">The <em>Why</em> Behind the Sacred</h2>
     <p class="sg-shell-sub" style="max-width:680px;margin:0 auto 1rem;">Editorial explorations of temple science, pilgrimage consciousness, and sacred geometry.</p>
 
-    <div class="sg-article-grid">
-      <a href="#" class="sg-article-card">
+    <div class="sg-article-grid sg-reveal-stagger">
+      <a href="#" class="sg-article-card sg-reveal">
         <div class="sg-article-category">Temple Science</div>
         <div class="sg-article-title">Why Temples Face East — and the Five That Don't</div>
         <div class="sg-article-preview">Most Hindu temples face east to catch the first light. But Mahakaleshwar faces south, Kamakhya faces west, and the reasons reveal a deeper logic than solar worship.</div>
       </a>
-      <a href="#" class="sg-article-card">
+      <a href="#" class="sg-article-card sg-reveal">
         <div class="sg-article-category">Sacred Geometry</div>
         <div class="sg-article-title">The Mathematics of the Vastu Purusha Mandala</div>
         <div class="sg-article-preview">Every Indian temple is built on a grid — the Vastu Purusha Mandala. The grid encodes the body of a cosmic being pinned to the earth by 45 gods. Architecture as cosmological diagram.</div>
       </a>
-      <a href="#" class="sg-article-card">
+      <a href="#" class="sg-article-card sg-reveal">
         <div class="sg-article-category">Pilgrimage</div>
         <div class="sg-article-title">The 108 km Walk: Kanwar Yatra and the Physics of Devotion</div>
         <div class="sg-article-preview">Millions carry Ganga water 108 km on foot to pour on the Baidyanath lingam. The distance isn't arbitrary — 108 is the ratio of sun-distance to sun-diameter.</div>
       </a>
-      <a href="#" class="sg-article-card">
+      <a href="#" class="sg-article-card sg-reveal">
         <div class="sg-article-category">Geology</div>
         <div class="sg-article-title">Rivers That Changed Course and the Temples They Left Behind</div>
         <div class="sg-article-preview">When the Saraswati dried up, Harappan settlements moved. When the Ganga shifted, temple towns were stranded. Sacred geography is also climate history.</div>
       </a>
-      <a href="#" class="sg-article-card">
+      <a href="#" class="sg-article-card sg-reveal">
         <div class="sg-article-category">Acoustics</div>
         <div class="sg-article-title">Stone Pillars That Sing: Musical Columns of South Indian Temples</div>
         <div class="sg-article-preview">At Hampi and Madurai, stone pillars produce distinct musical notes when struck. The columns are tuned to specific ragas — how did 16th-century sculptors tune stone?</div>
       </a>
-      <a href="#" class="sg-article-card">
+      <a href="#" class="sg-article-card sg-reveal">
         <div class="sg-article-category">Anthropology</div>
         <div class="sg-article-title">The Devadasi Question: Dance, Power, and Erasure</div>
         <div class="sg-article-preview">Temple dancers were artists, land-owners, and ritual specialists. Colonial and reform movements ended the tradition. The dance survived; the context didn't.</div>
@@ -2036,26 +2133,26 @@ body {
     <h2 class="sg-shell-title">Walk the <em>Ancient Paths</em></h2>
     <p class="sg-shell-sub" style="max-width:680px;margin:0 auto 1rem;">Curated multi-site journeys that connect the geography above into lived experience. Each circuit is a thesis — proven by walking it.</p>
 
-    <div class="sg-circuit-grid">
-      <a href="tour-char-dham.html" class="sg-circuit-card">
+    <div class="sg-circuit-grid sg-reveal-stagger">
+      <a href="tour-char-dham.html" class="sg-circuit-card sg-reveal">
         <div class="sg-circuit-icon">उ</div>
         <div class="sg-circuit-name">Himalayan Shiva Circuit</div>
         <div class="sg-circuit-desc">Kedarnath, Badrinath, Gangotri, Yamunotri — the four Himalayan dhams. Glacial valleys, hot springs, and temples at the edge of habitable altitude. The pilgrimage that defines the threshold between human and divine geography.</div>
         <div class="sg-circuit-meta">10N · 11D · From ₹39,999</div>
       </a>
-      <a href="tour-shakti.html" class="sg-circuit-card">
+      <a href="tour-shakti.html" class="sg-circuit-card sg-reveal">
         <div class="sg-circuit-icon">शक्ति</div>
         <div class="sg-circuit-name">Devi Energy Trail</div>
         <div class="sg-circuit-desc">Vaishno Devi, Kamakhya, Jwalamukhi, Kalighat — sites where the goddess's body fell to earth. Cave shrines, eternal flames, tantric rituals. The feminine sacred mapped across the subcontinent.</div>
         <div class="sg-circuit-meta">6N · 7D · From ₹38,999</div>
       </a>
-      <a href="#" class="sg-circuit-card">
+      <a href="#" class="sg-circuit-card sg-reveal">
         <div class="sg-circuit-icon">नर्</div>
         <div class="sg-circuit-name">River & Ritual Journey</div>
         <div class="sg-circuit-desc">Follow the Ganga from glacier to sea, or circumambulate the Narmada. River journeys trace the arteries of Indian sacred geography — every confluence a pilgrimage point, every bank a cremation ground or temple.</div>
         <div class="sg-circuit-meta">7N · 8D · From ₹44,999</div>
       </a>
-      <a href="#" class="sg-circuit-card">
+      <a href="#" class="sg-circuit-card sg-reveal">
         <div class="sg-circuit-icon">☉</div>
         <div class="sg-circuit-name">Temple Astronomy Trail</div>
         <div class="sg-circuit-desc">Konark, Chidambaram, Brihadeeswara, Ujjain — temples that encode solstice alignments, shadow engineering, and cosmic geometry. See how ancient astronomers built their observations into stone.</div>
@@ -2539,6 +2636,27 @@ body {
     routesLayer.innerHTML = '';
   }
 
+  const templeImages = {
+    'somnath': 'https://images.unsplash.com/photo-1621427637036-b29a39724cce?w=600&h=320&fit=crop',
+    'kashi': 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&h=320&fit=crop',
+    'kedarnath': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&h=320&fit=crop',
+    'rameswaram': 'https://images.unsplash.com/photo-1621151766108-80ff531cb153?w=600&h=320&fit=crop',
+    'badrinath': 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&h=320&fit=crop',
+    'puri': 'https://images.unsplash.com/photo-1590677880200-f5d40f809014?w=600&h=320&fit=crop',
+    'madurai': 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=320&fit=crop',
+    'vaishno-devi': 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&h=320&fit=crop',
+    'bodhgaya': 'https://images.unsplash.com/photo-1624461680695-a4c3fa3e8a6e?w=600&h=320&fit=crop',
+    'tirupati': 'https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=600&h=320&fit=crop',
+    'kamakhya': 'https://images.unsplash.com/photo-1623850473490-89d94e24a456?w=600&h=320&fit=crop',
+    'dwarka': 'https://images.unsplash.com/photo-1609947017136-9dab82eacd49?w=600&h=320&fit=crop',
+    'mahakaleshwar': 'https://images.unsplash.com/photo-1609947017136-9dab82eacd49?w=600&h=320&fit=crop',
+    'thanjavur': 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=320&fit=crop',
+    'chidambaram': 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&h=320&fit=crop',
+    'pushkar': 'https://images.unsplash.com/photo-1609947017136-9dab82eacd49?w=600&h=320&fit=crop',
+    'ayodhya': 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&h=320&fit=crop',
+    'vrindavan': 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&h=320&fit=crop',
+  };
+
   function selectTemple(id) {
     const t = temples.find(x => x.id === id);
     if (!t) return;
@@ -2550,6 +2668,7 @@ body {
     const diyaKey = 'diya_' + t.id;
     const isLit = localStorage.getItem(diyaKey) === '1';
     const diyaCount = Object.keys(localStorage).filter(k => k.startsWith('diya_') && localStorage.getItem(k) === '1').length;
+    const imgSrc = templeImages[t.id];
 
     const sections = [];
     if (t.mythology) sections.push({ label: 'Mythology & Origin', body: t.mythology });
@@ -2561,6 +2680,7 @@ body {
     empty.style.display = 'none';
     content.classList.add('show');
     content.innerHTML = `
+      ${imgSrc ? `<img class="panel-image" src="${imgSrc}" alt="${t.name}" onload="this.classList.add('loaded')">` : ''}
       <div class="panel-coords">${t.coords || ''}</div>
       <div class="panel-type">${t.state.toUpperCase()}</div>
       <h3 class="panel-title">${t.name}</h3>
@@ -3090,6 +3210,55 @@ body {
     setTimeout(emitRipple, 300);
   }, 400);
 
+})();
+</script>
+
+<!-- Diya counter bar -->
+<div class="sg-diya-bar" id="diyaBar">
+  <span class="sg-diya-bar-flame">🪔</span>
+  <span id="diyaBarText"></span>
+</div>
+
+<!-- Scroll reveal observer + diya bar + stagger index assignment -->
+<script>
+(function() {
+  // Assign stagger indices
+  document.querySelectorAll('.sg-reveal-stagger').forEach(container => {
+    Array.from(container.querySelectorAll('.sg-reveal')).forEach((el, i) => {
+      el.style.setProperty('--i', i);
+    });
+  });
+
+  // IntersectionObserver for scroll reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.sg-reveal').forEach(el => observer.observe(el));
+
+  // Diya counter bar
+  function updateDiyaBar() {
+    const count = Object.keys(localStorage).filter(k => k.startsWith('diya_') && localStorage.getItem(k) === '1').length;
+    const bar = document.getElementById('diyaBar');
+    const text = document.getElementById('diyaBarText');
+    if (count > 0) {
+      bar.classList.add('show');
+      text.textContent = count + (count === 1 ? ' diya' : ' diyas') + ' lit across Bharat';
+    } else {
+      bar.classList.remove('show');
+    }
+  }
+  updateDiyaBar();
+
+  const origSetItem = localStorage.setItem.bind(localStorage);
+  const origRemoveItem = localStorage.removeItem.bind(localStorage);
+  localStorage.setItem = function(k, v) { origSetItem(k, v); if (k.startsWith('diya_')) updateDiyaBar(); };
+  localStorage.removeItem = function(k) { origRemoveItem(k); if (k.startsWith('diya_')) updateDiyaBar(); };
 })();
 </script>
 
