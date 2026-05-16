@@ -15,6 +15,18 @@
    ═══════════════════════════════════════════════════ */
 #vt-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(251,246,236,0.94);border-bottom:1px solid rgba(184,146,74,0.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:background 0.5s ease,border-color 0.5s ease,box-shadow 0.5s ease,color 0.5s ease;}
 #vt-nav.scrolled{box-shadow:0 1px 24px rgba(15,31,58,0.05);}
+#vt-nav.nav-over-hero{background:rgba(10,10,8,0.35);border-bottom-color:rgba(184,146,74,0.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+#vt-nav.nav-over-hero .vt-logo-text{color:#F6F0E6;}
+#vt-nav.nav-over-hero .vt-en{color:rgba(246,240,230,0.8);}
+#vt-nav.nav-over-hero .vt-sk{color:rgba(246,240,230,0.4);}
+#vt-nav.nav-over-hero .vt-nav-item:hover .vt-en,#vt-nav.nav-over-hero .vt-nav-item.active .vt-en{color:#D4A853;}
+#vt-nav.nav-over-hero .vt-nav-item:hover .vt-sk,#vt-nav.nav-over-hero .vt-nav-item.active .vt-sk{color:rgba(212,168,83,0.55);}
+#vt-nav.nav-over-hero .vt-nav-item::after{background:#D4A853;}
+#vt-nav.nav-over-hero .vt-cta{background:rgba(246,240,230,0.1);border:1px solid rgba(246,240,230,0.2);}
+#vt-nav.nav-over-hero .vt-cta-en{color:#F6F0E6;}
+#vt-nav.nav-over-hero .vt-cta-sk{color:rgba(246,240,230,0.5);}
+#vt-nav.nav-over-hero .vt-cta:hover{background:rgba(246,240,230,0.18);}
+#vt-nav.nav-over-hero .vt-menu-btn span{background:#F6F0E6;}
 .vt-logo{display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:#0F1F3A;flex-shrink:0;}
 .vt-logo svg{display:block;}
 .vt-logo-text{font-family:'Cormorant Garamond','Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:0.04em;color:#0F1F3A;line-height:1;}
@@ -3337,6 +3349,23 @@ body {
   const origRemoveItem = localStorage.removeItem.bind(localStorage);
   localStorage.setItem = function(k, v) { origSetItem(k, v); if (k.startsWith('diya_')) updateDiyaBar(); };
   localStorage.removeItem = function(k) { origRemoveItem(k); if (k.startsWith('diya_')) updateDiyaBar(); };
+
+  // Transparent nav over hero, solid after scrolling past it
+  const navEl = document.getElementById('vt-nav');
+  const heroEl = document.querySelector('.sg-hero');
+  if (navEl && heroEl) {
+    navEl.classList.add('nav-over-hero');
+    function checkNavHero() {
+      const heroBottom = heroEl.offsetTop + heroEl.offsetHeight - 80;
+      if (window.scrollY > heroBottom) {
+        navEl.classList.remove('nav-over-hero');
+      } else {
+        navEl.classList.add('nav-over-hero');
+      }
+    }
+    window.addEventListener('scroll', checkNavHero, { passive: true });
+    checkNavHero();
+  }
 
 })();
 </script>
