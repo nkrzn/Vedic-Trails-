@@ -15,13 +15,15 @@
    ═══════════════════════════════════════════════════ */
 #vt-nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(251,246,236,0.94);border-bottom:1px solid rgba(184,146,74,0.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:background 0.5s ease,border-color 0.5s ease,box-shadow 0.5s ease,color 0.5s ease;}
 #vt-nav.scrolled{box-shadow:0 1px 24px rgba(15,31,58,0.05);}
-#vt-nav.nav-hero{background:transparent;border-bottom-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;}
-#vt-nav.nav-hero .vt-logo-text{color:#F6F0E6;}
-#vt-nav.nav-hero .vt-logo svg circle,#vt-nav.nav-hero .vt-logo svg path{stroke:#B89455;}
-#vt-nav.nav-hero .vt-en{color:rgba(246,240,230,0.72);}
-#vt-nav.nav-hero .vt-sk{color:rgba(246,240,230,0.35);}
-#vt-nav.nav-hero .vt-nav-item:hover .vt-en,#vt-nav.nav-hero .vt-nav-item.active .vt-en{color:#D4A853;}
+#vt-nav.nav-hero{background:linear-gradient(180deg, rgba(10,10,8,0.55) 0%, transparent 100%);border-bottom-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;}
+#vt-nav.nav-hero .vt-logo-text{color:#F6F0E6 !important;}
+#vt-nav.nav-hero .vt-logo svg circle,#vt-nav.nav-hero .vt-logo svg path{stroke:#D4A853 !important;}
+#vt-nav.nav-hero .vt-en{color:rgba(246,240,230,0.85) !important;}
+#vt-nav.nav-hero .vt-sk{color:rgba(246,240,230,0.45) !important;}
+#vt-nav.nav-hero .vt-nav-item:hover .vt-en,#vt-nav.nav-hero .vt-nav-item.active .vt-en{color:#D4A853 !important;}
 #vt-nav.nav-hero .vt-nav-item::after{background:#D4A853;}
+#vt-nav.nav-hero .vt-cta{background:rgba(246,240,230,0.12);border:1px solid rgba(212,168,83,0.35);}
+#vt-nav.nav-hero .vt-cta:hover{background:rgba(212,168,83,0.18);}
 #vt-nav.nav-hero .vt-menu-btn span{background:#F6F0E6;}
 .vt-logo{display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:#0F1F3A;flex-shrink:0;}
 .vt-logo svg{display:block;}
@@ -1748,7 +1750,7 @@ body {
      ═══════════════════════════════════════════════════ -->
 <section class="sg-section sg-hero">
   <div class="sg-hero-bg">
-    <img src="https://images.unsplash.com/photo-1561361058-c24cecae35ca?w=1920&q=80" alt="Varanasi ghats at dawn" loading="eager">
+    <img src="https://images.unsplash.com/photo-1523190301657-195ef118bb36?w=2400&q=90&fm=jpg&fit=crop" alt="Sacred Ganesh sculpture" loading="eager">
   </div>
   <div class="sg-hero-inner">
     <div class="sg-hero-eyebrow">Sacred Geography · Vedic Trails</div>
