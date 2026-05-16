@@ -1596,16 +1596,16 @@ body {
 /* ═══════════════════════════════════════════════════
    SCROLL REVEAL ANIMATIONS
    ═══════════════════════════════════════════════════ */
-  .sg-reveal {
+  .js-reveal .sg-reveal {
     opacity: 0;
     transform: translateY(32px);
     transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .sg-reveal.visible {
+  .js-reveal .sg-reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
-  .sg-reveal-stagger > .sg-reveal {
+  .js-reveal .sg-reveal-stagger > .sg-reveal {
     transition-delay: calc(var(--i, 0) * 120ms);
   }
 
@@ -3312,12 +3312,20 @@ body {
 <!-- Scroll reveal observer + diya bar + stagger index assignment -->
 <script>
 (function() {
+  // Opt in to scroll-reveal hiding only when JS is running AND IntersectionObserver
+  // is available; otherwise leave content visible (graceful fallback for previews,
+  // RSS readers, search bots, etc.).
+  var canReveal = 'IntersectionObserver' in window;
+  if (canReveal) document.documentElement.classList.add('js-reveal');
+
   // Assign stagger indices
   document.querySelectorAll('.sg-reveal-stagger').forEach(container => {
     Array.from(container.querySelectorAll('.sg-reveal')).forEach((el, i) => {
       el.style.setProperty('--i', i);
     });
   });
+
+  if (!canReveal) return;
 
   // IntersectionObserver for scroll reveals
   const observer = new IntersectionObserver((entries) => {
@@ -3330,6 +3338,12 @@ body {
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.sg-reveal').forEach(el => observer.observe(el));
+
+  // Safety net: if the observer hasn't fired for some elements after 2s
+  // (e.g. page rendered inside a non-scrolling iframe / preview), reveal them.
+  setTimeout(() => {
+    document.querySelectorAll('.sg-reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+  }, 2000);
 
   // Diya counter bar
   function updateDiyaBar() {
